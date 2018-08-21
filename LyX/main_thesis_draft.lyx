@@ -5884,7 +5884,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/4_contacts.svg
-	width 45text%
+	width 50col%
 
 \end_inset
 
@@ -8814,10 +8814,14 @@ Sum of angles == 180 degrees
 
 \begin_layout Standard
 
-\change_inserted 947510081 1533897826
+\change_inserted 947510081 1534880661
 Sum of angles == 360 degrees
-\change_unchanged
+\end_layout
 
+\begin_layout Standard
+
+\change_inserted 947510081 1534880686
+Add a flowchart for the decision process of the objects placement algorithm.
 \end_layout
 
 \begin_layout Subsection
