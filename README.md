@@ -1,7 +1,9 @@
 A supplimentary code for the M.Sc. Thesis
-SIMULTANEOUS GRASPING OF MULTIPLE OBJECTS
-by Yossi Ovcharik
+
+SIMULTANEOUS GRASPING OF MULTIPLE OBJECTS\
+by Yossi Ovcharik\
 Advisor: Prof. Amir Shapiro
-Ben-Gurion University of Negev
-Faculty of Engineering Sciences
+
+Ben-Gurion University of Negev\
+Faculty of Engineering Sciences\
 Department of Mechanical Engineering
