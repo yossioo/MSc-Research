@@ -1,0 +1,563 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "palatino" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 12
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation landscape
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2cm
+\topmargin 3cm
+\rightmargin 2cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+Given set of polygonal bodies
+\end_layout
+
+\begin_layout Standard
+Some of the bodies are in contact with another.
+\end_layout
+
+\begin_layout Standard
+Given each body grasped has at least 4 contacts: some of them are fingers
+ and some are inter-body contacts.
+ Writing equilibrium equation for each body we get:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+M\bar{f}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where: 
+\begin_inset Formula $\bar{f}=\begin{bmatrix}f_{f1}\\
+f_{f2}\\
+f_{p12}\\
+f_{p13}\\
+.\\
+.\\
+f_{pMN}
+\end{bmatrix}$
+\end_inset
+
+ is a set of forces between fingers and bodies, and between bodies and other
+ bodies in contact.
+ 
+\begin_inset Formula $M$
+\end_inset
+
+ matrix rows are equations for 
+\begin_inset Formula $\begin{bmatrix}f_{x}\\
+f_{y}\\
+\tau
+\end{bmatrix}=\begin{bmatrix}0\\
+0\\
+0
+\end{bmatrix}$
+\end_inset
+
+ for each body.
+\end_layout
+
+\begin_layout Standard
+The matrix will be block diagonal with some cross-block columns which correspond
+ to body-to-body contacts.
+\end_layout
+
+\begin_layout Standard
+Example:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename images/2_polygonal_bodies.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+two bodies in contact at one point.
+ Contact forces shown in red, finger forces shown in blue.
+ Each force 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ acts at point 
+\begin_inset Formula $\mathbf{x}_{i}$
+\end_inset
+
+ located at body boundary, with direction 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ which vector is 
+\begin_inset Formula $\begin{bmatrix}\cos\theta_{i}\\
+\sin\theta_{i}
+\end{bmatrix}=\begin{bmatrix}c_{i}\\
+s_{i}
+\end{bmatrix}$
+\end_inset
+
+.
+ The inter-body contact force 
+\begin_inset Formula $f_{AB}$
+\end_inset
+
+ selected to act in direction 
+\begin_inset Formula $\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}$
+\end_inset
+
+ at point 
+\begin_inset Formula $\mathbf{x}_{AB}$
+\end_inset
+
+.
+ We assume that not all forces acted at the same point.
+ We assume that one force acts at one body only.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}\\
+f_{Bx}\\
+f_{By}\\
+\tau_{B}
+\end{bmatrix}=\begin{bmatrix}c_{1} & c_{2} & c_{3} & c_{AB}\\
+s_{1} & s_{2} & s_{3} & s_{AB}\\
+\mathbf{x}_{1}\times\begin{bmatrix}c_{1}\\
+s_{1}
+\end{bmatrix} & \mathbf{x}_{2}\times\begin{bmatrix}c_{2}\\
+s_{2}
+\end{bmatrix} & \mathbf{x}_{3}\times\begin{bmatrix}c_{3}\\
+s_{3}
+\end{bmatrix} & \mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}\\
+ &  &  & -c_{AB} & c_{4} & c_{5} & c_{6}\\
+ &  &  & -s_{AB} & s_{4} & s_{5} & s_{6}\\
+ &  &  & -\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix} & \mathbf{x}_{4}\times\begin{bmatrix}c_{4}\\
+s_{4}
+\end{bmatrix} & \mathbf{x}_{5}\times\begin{bmatrix}c_{5}\\
+s_{5}
+\end{bmatrix} & \mathbf{x}_{6}\times\begin{bmatrix}c_{6}\\
+s_{6}
+\end{bmatrix}
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{AB}\\
+f_{4}\\
+f_{5}\\
+f_{6}
+\end{bmatrix}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A block for each body which corresponds to forces applied by fingers on
+ that body only can be written as:
+\begin_inset Formula 
+\[
+G_{f\left[m:n\right]}=\begin{bmatrix}c_{m} & ... & c_{n}\\
+s_{m} & ... & s_{n}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix} & ... & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
+s_{n}
+\end{bmatrix}
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+And:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}\\
+f_{Bx}\\
+f_{By}\\
+\tau_{B}
+\end{bmatrix}=\begin{bmatrix}G_{f\left[1:3\right]} & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & 0\\
+0 & \left\{ \begin{array}{c}
+-c_{AB}\\
+-s_{AB}\\
+-\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & G_{f\left[4:6\right]}
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{AB}\\
+f_{4}\\
+f_{5}\\
+f_{6}
+\end{bmatrix}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+or rearranged:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}\\
+f_{Bx}\\
+f_{By}\\
+\tau_{B}
+\end{bmatrix}=\begin{bmatrix}G_{f\left[1:3\right]} & 0 & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} \\
+0 & G_{f\left[4:6\right]} & \left\{ \begin{array}{c}
+-c_{AB}\\
+-s_{AB}\\
+-\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} 
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{4}\\
+f_{5}\\
+f_{6}\\
+f_{AB}
+\end{bmatrix}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It can be stated that the matrix consists of block diagonals and 
+\begin_inset Quotes eld
+\end_inset
+
+inter-body
+\begin_inset Quotes erd
+\end_inset
+
+ columns.
+\end_layout
+
+\begin_layout Standard
+Another example with 3 polygons: A,B,C, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}\\
+f_{Bx}\\
+f_{By}\\
+\tau_{B}\\
+f_{Cx}\\
+f_{Cy}\\
+\tau_{C}
+\end{bmatrix}=\begin{bmatrix}G_{f\left[1:3\right]} & 0 & 0 & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & 0\\
+0 & G_{f\left[4:6\right]} & 0 & \left\{ \begin{array}{c}
+-c_{AB}\\
+-s_{AB}\\
+-\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & 0 & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} \\
+0 & 0 & G_{f\left[7:9\right]} & 0 & \left\{ \begin{array}{c}
+-c_{AC}\\
+-s_{AC}\\
+-\mathbf{x}_{AC}^{C}\times\begin{bmatrix}c_{AC}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & \left\{ \begin{array}{c}
+-c_{AC}\\
+-s_{AC}\\
+-\mathbf{x}_{AC}^{C}\times\begin{bmatrix}c_{AC}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} 
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{4}\\
+f_{5}\\
+f_{6}\\
+f_{AB}
+\end{bmatrix}=0
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A system will be in equilibrium if a [non-trivial] set of forces exist that
+ solves the equation.
+\end_layout
+
+\begin_layout Standard
+The existence of the solution depends on the rank of the 
+\begin_inset Formula $M$
+\end_inset
+
+ matrix.
+ Since there are more columns than rows (and therefore there is no unique
+ solution) we need to ensure that the rows are linearly independent.
+\end_layout
+
+\begin_layout Standard
+For proposed solution: each 
+\begin_inset Formula $G_{f\left[m:n\right]}$
+\end_inset
+
+ block consists of 3 rows and 1:3 columns.
+\end_layout
+
+\begin_layout Standard
+When there is one column, third row is a linear combination of first 2:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+G_{f\left[m\right]}=\begin{bmatrix}c_{m}\\
+s_{m}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix}
+\end{bmatrix}=\begin{bmatrix}c_{m}\\
+s_{m}\\
+x_{m}s_{m}-y{}_{m}c_{m}
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In case of 1 finger contact on given body, 3rd row of the big matrix (torque)
+ will be linear combination of first 2 only if the finger contact is on
+ the same location as other (inter-body) contacts, which by definition is
+ neither feasible nor needed.
+\end_layout
+
+\begin_layout Standard
+When there are 2 columns then 3rd row will only be a linear combination
+ of first 2 only if both contacts are in the same point
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+G_{f\left[m,n\right]}=\begin{bmatrix}c_{m} & c_{n}\\
+s_{m} & s_{n}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix} & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
+s_{n}
+\end{bmatrix}
+\end{bmatrix}=\begin{bmatrix}c_{m} & c_{n}\\
+s_{m} & s_{n}\\
+x_{m}s_{m}-y{}_{m}c_{m} & x_{n}s_{n}-y{}_{n}c_{n}
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\rightarrow\mathbf{x}_{m}=\mathbf{x}_{n}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When there are more columns, same applies: all contacts have to be in the
+ same location in order to reduce the rank of the grasp matrix.
+\end_layout
+
+\begin_layout Standard
+We can conclude that each 3 rows for each body are linearly independent
+ .
+\end_layout
+
+\begin_layout Standard
+Since the matrix is build with blocks, we can see that there are (and cannot
+ be) 2 linearly dependent block rows.
+ 
+\end_layout
+
+\begin_layout Description
+Proof: Assuming that block rows 
+\emph on
+i 
+\emph default
+and 
+\emph on
+j
+\emph default
+ are linearly dependent.
+ In particular, first 
+\begin_inset Formula $G$
+\end_inset
+
+-blocks (that corresponds to set of forces applied by fingers) on these
+ rows are at the same columns.
+ That means that same forces act on different bodies, while acting at the
+ same point.
+ Which is impossible, since by definition each finger contacts one body
+ only.
+\end_layout
+
+\begin_layout Standard
+Therefore, if given matrix has full rank, there exists a non-trivial (but
+ not unique) set of forces that will keep the system in equilibrium.
+\end_layout
+
+\end_body
+\end_document
