@@ -143,6 +143,7 @@ theorems-ams-extended
 \html_css_as_file 0
 \html_be_strict false
 \author 5864013 "yo"
+\author 243817340 "Yossi"
 \author 947510081 "yossi" yossiovcharik@gmail.com
 \end_header
 
@@ -1567,6 +1568,17 @@ Should mention ICRA here, and the book that could be published.
 
 \begin_layout Section
 Literature Review
+\change_inserted 243817340 1534932751
+
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Literature-Review"
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -3616,6 +3628,16 @@ General idea is to find an amount of missing finger contacts for each object
 
 \begin_layout Section
 Mathematical description
+\change_inserted 243817340 1534928760
+
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 243817340 1534928773
+REWRITE THIS SECTION
+\change_unchanged
+
 \end_layout
 
 \begin_layout Standard
@@ -3630,17 +3652,7 @@ status open
 
 \begin_layout Plain Layout
 Treat the contact point and not the whole polygon.
-
-\change_inserted 5864013 1534659244
- 
-\end_layout
-
-\begin_layout Plain Layout
-
-\change_inserted 5864013 1534659254
-Think what do I want to say here at all.
-\change_unchanged
-
+ Think what do I want to say here at all.
 \end_layout
 
 \end_inset
@@ -3797,6 +3809,42 @@ v_{12}\cdot\hat{n}_{1}^{2}=0
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/cont_v2e.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vertex-to-Edge contact example.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
 
@@ -3828,6 +3876,42 @@ Edge-Edge
  Graphically this can be depicted as follows: Polygon 1, polygon 2, contact
  line, contact points.
  Cases with 2 points, case with 3 vertices, case with 4 vertices in contact.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/cont_e2e.svg
+	lyxscale 30
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Edge-to-Edge contact examples.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Labeling
@@ -3862,12 +3946,117 @@ Vertex to inner vertex (in concave polygon) is another type of discrete
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/cont_v2iv.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vertex-to-Inner-Vertex contact example.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Other variants of contact descriptions are variations of the mentioned above.
  Examples: edge and inner vertex, vertex and vertex, edge and edge.
  Outer vertex to outer vertex contact assumed to be unstable and is discarded
  in this work.
  One polygon can contact several others in distinct points, apart from a
- case where several vertices are coincident as shown in FIGURE ###
+ case where several vertices are coincident as shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Multi-object-vertex"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\change_inserted 243817340 1534929654
+, in this case, 
+\end_layout
+
+\begin_layout Standard
+
+\change_inserted 243817340 1534929510
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+
+\change_inserted 243817340 1534929510
+\begin_inset Graphics
+	filename images/multi-object-vertex.svg
+	lyxscale 30
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\change_inserted 243817340 1534929510
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\change_inserted 243817340 1534929790
+Multi-object vertex 
+\begin_inset Formula $v$
+\end_inset
+
+.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Multi-object-vertex"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\change_unchanged
+
 \end_layout
 
 \begin_layout Subsection
@@ -3901,6 +4090,78 @@ where
 \end_inset
 
  is the contact normal direction inward the polygon B.
+ An example of inter-object contact description shown on 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Contact-desription-example."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ The contact is saved as: 
+\begin_inset Formula $C=\left\{ A,B,p,V\right\} ,$
+\end_inset
+
+where 
+\begin_inset Formula $A,B$
+\end_inset
+
+ are the names of the polygons, 
+\begin_inset Formula $p$
+\end_inset
+
+ is the contact location vector in selected coordinate frame and 
+\begin_inset Formula $V$
+\end_inset
+
+ is the inward normal direction of the second polygon at the contact location.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/cont_description.svg
+	lyxscale 30
+	width 55text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Contact description example.
+ 
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Contact-desription-example."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -4007,6 +4268,38 @@ al (
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/solutions_existence.svg
+	lyxscale 30
+	width 55text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Solution existence example.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
 Example:
 \end_layout
 
@@ -4131,16 +4424,16 @@ f_{By}\\
 \tau_{B}
 \end{bmatrix} & =\left[\begin{array}{ccc}
 G_{f\left[1:3\right]} & \left\{ \begin{array}{c}
-c_{AB}\\
-s_{AB}\\
-\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
+-c_{AB}\\
+-s_{AB}\\
+-\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
 s_{AB}
 \end{bmatrix}
 \end{array}\right\}  & 0\\
 0 & \left\{ \begin{array}{c}
--c_{AB}\\
--s_{AB}\\
--\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
 s_{AB}
 \end{bmatrix}
 \end{array}\right\}  & G_{f\left[4:6\right]}
@@ -4153,16 +4446,16 @@ f_{5}\\
 f_{6}
 \end{bmatrix}=\nonumber \\
 = & \begin{bmatrix}G_{f\left[1:3\right]} & 0 & \left\{ \begin{array}{c}
-c_{AB}\\
-s_{AB}\\
-\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
+-c_{AB}\\
+-s_{AB}\\
+\mathbf{-x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
 s_{AB}
 \end{bmatrix}
 \end{array}\right\} \\
 0 & G_{f\left[4:6\right]} & \left\{ \begin{array}{c}
--c_{AB}\\
--s_{AB}\\
--\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
 s_{AB}
 \end{bmatrix}
 \end{array}\right\} 
@@ -4374,6 +4667,42 @@ Assuming optimal configuration of the objects where each of them is immobilized
  Example: jigsaw puzzle which once assembled can be immobilized by 4 fingers.
 \end_layout
 
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/minimum_4_fing.svg
+	lyxscale 30
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Immobilization by minimum 4 fingers.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Proposition
 Given a polygonal object and 3 parallel frictionless contacts on the object
  boundary (same edge or different edges).
@@ -4404,13 +4733,6 @@ intersecting
 
 \begin_layout Proof
 Direction of contacts should 
-\end_layout
-
-\begin_layout Standard
-Additional examples: Egg-like shape of the objects arrangement where 2 objects
- require 1 external constraint each, but for the objects to be immobilized
- 4 fingers needed.
- 
 \end_layout
 
 \begin_layout Standard
@@ -4503,8 +4825,8 @@ o
 \begin_inset Formula $w_{e}$
 \end_inset
 
- can can be defined by a two-dimensional cone in a vertical plane of a wrench
- space.
+ can can be defined by a two-dimensional convex cone in a vertical plane
+ of a wrench space.
  
 \end_layout
 
@@ -4545,6 +4867,86 @@ which is exactly a linear combination of two marginal wrenches.
  In a geometrical representation, it is a planar angle contained in a vertical
  plane (plane's normal direction has no torsional component) in the wrench
  space.
+ Illustration shows an example of a generalized edge wrench.
+ An edge of polygonal object B has inward normal direction 
+\begin_inset Formula $n_{ab}$
+\end_inset
+
+.
+ Two marginal contacts 
+\begin_inset Formula $a,b$
+\end_inset
+
+ are shown in violet, with locations defined by vectors 
+\begin_inset Formula $p_{a},p_{b}$
+\end_inset
+
+ respectively.
+ Wrenches induced by these contacts are calculated by:
+\begin_inset Formula 
+\[
+w_{a}=\begin{bmatrix}\hat{n}_{a}\\
+\vec{p}_{a}\times\hat{n}_{a}
+\end{bmatrix},\;w_{b}=\begin{bmatrix}\hat{n}_{b}\\
+\vec{p}_{b}\times\hat{n}_{b}
+\end{bmatrix}.
+\]
+
+\end_inset
+
+As can be seen from the figure, contact 
+\begin_inset Formula $a$
+\end_inset
+
+ induces positive torque about the selected reference point, while contact
+ 
+\begin_inset Formula $b$
+\end_inset
+
+ induces negative torque.
+ Hence, the 3-rd components of a wrench have opposite signs and are located
+ on different sides of the 
+\emph on
+xy
+\emph default
+-plane.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/Edge-Generalized-Wrench.svg
+	lyxscale 30
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+EGW.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -4584,7 +4986,7 @@ Equilibrium condition for a grasp is that the total wrench for all contacts
  equals to zero:
 \begin_inset Formula 
 \begin{equation}
-\sum_{i=1}^{4}G_{i}f_{i}=0
+\sum_{i=1}^{4}G_{i}f_{i}=0\label{eq:Total-Wrench}
 \end{equation}
 
 \end_inset
@@ -4625,7 +5027,17 @@ literal "true"
 \end_layout
 
 \begin_layout Proof
-Rewriting the equation ###:
+Rewriting the 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "eq:Total-Wrench"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Proof
@@ -4838,6 +5250,42 @@ When a object arrangement is given (or obtained) and desired amount of external
  constraints is found by proposed solution, there is no guarantee that there
  is no sub-set of objects which is not immobilized.
  Example of such unconstrained sub-set is shown below:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/not_immobilized_object_set.svg
+	lyxscale 30
+	width 55text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Not immobilized object set while each object is immobilized individually.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -7808,9 +8256,9 @@ What about a restrictions on finger placement that arise from close objects?
 \begin_layout Standard
 
 \change_inserted 947510081 1534328682
-DEAL WITH THIS PART LATER
+DEAL WITH THIS PART LATE
 \change_unchanged
- ##########
+R
 \end_layout
 
 \begin_layout Subsection
@@ -7830,7 +8278,17 @@ Given a configuration of objects in contact (single group, each object has
 
 \begin_layout Standard
 Several methods for single object finger placement were developed (presented
- in SECTION ### LITERATURE REVIEW).
+ in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "sec:Literature-Review"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
  For the purposes of this work 2 (??) methods were compared: moment-labeling
  based contact point derivation and grasp quality measure assessed random
  contact point placement with constraints.
@@ -8465,7 +8923,6 @@ DEAL WITH THIS LATER
 \change_unchanged
 .
  ADD EXAMPLE WITH NUMERICAL DATA OF GQM FOR EACH BODY AND FOR CONSTELLLATION.
- ##############
 \end_layout
 
 \begin_layout Standard
