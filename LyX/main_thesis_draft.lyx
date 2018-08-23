@@ -4432,11 +4432,8 @@ literal "true"
 
 \end_inset
 
- for each contact
-\end_layout
-
-\begin_layout Proof
-Rewriting the 
+ for each contact.
+ Rewriting the 
 \begin_inset CommandInset ref
 LatexCommand formatted
 reference "eq:Total-Wrench"
