@@ -8024,7 +8024,7 @@ Software
 
 \begin_layout Standard
 MATLAB computing environment was used for the purpose of geometrical simulations.
- Specialized graphical user interface programs were created for evaluation
+ Specialized graphical user interface (GUI) programs were created for evaluation
  and presentation of the algorithms
 \begin_inset Foot
 status open
@@ -8050,6 +8050,127 @@ literal "false"
 
 \begin_layout Subsection
 Setup
+\end_layout
+
+\begin_layout Standard
+V-REP environment was used for physical simulation of the performance of
+ the algorithms.
+ The software incorporated several common physics engines which allow testing
+ of different scenarios of computer simulations.
+ 
+\end_layout
+
+\begin_layout Standard
+Delta-robot model of && was used to perform as the main manipulator, custom
+ end effector was added to the model to perform grasping of desired object
+ sets.
+ 
+\end_layout
+
+\begin_layout Standard
+The end-effector consists of 10 individually actuated fingers, which can
+ move in the 
+\begin_inset Quotes eld
+\end_inset
+
+palm
+\begin_inset Quotes erd
+\end_inset
+
+ plane freely and have limited movement in Z direction.
+ Depending on the found solution, the desired number of fingers can be extended
+ to execute the grasp.
+\end_layout
+
+\begin_layout Standard
+Objects' location and orientation is obtained programmatically, while in
+ real life scenario can be done by different means (e.g.
+ RGB or 3D cameras, tracking cameras, resistive or capacitive surfaces etc.)
+\end_layout
+
+\begin_layout Standard
+Control of the robot is done in closed loop by internal means of the V-REP
+ software, while the control of the algorithm steps is done in the specialized
+ GUI.
+ The simulation is divided into several steps:
+\end_layout
+
+\begin_layout Enumerate
+Obtaining environment information:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Number of objects
+\end_layout
+
+\begin_layout Enumerate
+Positions
+\end_layout
+
+\begin_layout Enumerate
+Shapes
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Obtaining the desired constellation variants
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+variants are shown in preview pane along with quality measures
+\end_layout
+
+\begin_layout Enumerate
+desired variant can be selected for the execution
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Rearranging the objects
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+objects are moved by pushing algorithms to obtain the desired configuration
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Immobilizing the objects
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Required amount of fingers are selected and extended to perform the grasp
+\end_layout
+
+\begin_layout Enumerate
+manipulator moves above the objects
+\end_layout
+
+\begin_layout Enumerate
+Manipulator and the end effector are lowered down to constrain the constellation
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Immobilization tests
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+moving in plane
+\end_layout
+
+\begin_layout Enumerate
+moving to vertical plane and rotating
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+Executions of the steps can be controlled from the UI.
 \end_layout
 
 \begin_layout Subsection
@@ -8079,8 +8200,8 @@ The objects are known and only the location of objects is obtained via RGBD
  camera.
  The robot is equipped with an end-effector designed according to the algorithm'
 s output.
- Robotic arm used is ROBOTIS Manipulator H, controlled by laptop with ROS
- hosted in Ubuntu.
+ Robotic arm used is ROBOTIS Manipulator H, controlled by laptop with Robot
+ Operating System (ROS) hosted in Ubuntu.
 \end_layout
 
 \begin_layout Subsection
