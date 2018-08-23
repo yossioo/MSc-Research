@@ -6,6 +6,10 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
+% set fonts for nicer pdf view
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
 
@@ -4472,6 +4476,58 @@ Given the fact that
  a linear combination of other wrenches and hence will not allow equilibrium
  grasp.
  
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/inverted_cone_A.svg
+	lyxscale 30
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Inverted Cone, with vector 
+\emph on
+
+\begin_inset Formula $a$
+\end_inset
+
+
+\emph default
+ inside and vector 
+\emph on
+
+\begin_inset Formula $b$
+\end_inset
+
+
+\emph default
+ outside
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proposition
