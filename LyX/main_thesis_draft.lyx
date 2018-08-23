@@ -4676,11 +4676,6 @@ base
  point will increase some of the distances while decreasing other.
  Maximized minimal selected distance will be where all 3 distances are equal,
  and can be presented as shown below.
- The #ADDFIG shows 3 surfaces corresponding to distances 
-\begin_inset Formula $d_{12},d_{23},d_{31}$
-\end_inset
-
- with intersection points, marked with red vertical lines.
  This can be extended to cases for more complex convex cones, analogously
  to inscribing a circle in a polygon.
  In a way similar to such circle inscribed in a irregular polygon, the maximized
@@ -4709,7 +4704,16 @@ Note
 \end_inset
 
  point lies further from the origin (along the central axis of the convex
- cone), the inscribe sphere radius will increase as well.
+ cone), the inscribed sphere radius will increase as well.
+\end_layout
+
+\begin_layout Standard
+Example: A polygonal object with 3 The #ADDFIG shows 3 surfaces corresponding
+ to distances 
+\begin_inset Formula $d_{12},d_{23},d_{31}$
+\end_inset
+
+ with intersection points, marked with red vertical lines.
 \end_layout
 
 \begin_layout Subsection
