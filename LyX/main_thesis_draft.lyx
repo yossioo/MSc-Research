@@ -4514,7 +4514,14 @@ Inverted Cone, with vector
 
 
 \emph default
- outside
+ outside.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:inv_cone_001"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4530,8 +4537,8 @@ Inverted Cone, with vector
 \begin_layout Proposition
 Given a set of 3 contacts, the 4th contact that will yield highest volume
  of InscribedSphere grasp quality measure is the one that has a wrench space
- vector that lies along the axis of the anti-cone of wrench vectors of other
- contacts.
+ vector that lies along the axis of the InvertedCone of wrench vectors of
+ other contacts.
 \end_layout
 
 \begin_layout Proof
@@ -4702,11 +4709,428 @@ Note
 
  point lies further from the origin (along the central axis of the convex
  cone), the inscribed sphere radius will increase as well.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inverted_cone_placement.svg
+	lyxscale 30
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A square object with 3 contacts.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:inv_cone_002"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Example: A polygonal object with 3 The #ADDFIG shows 3 surfaces corresponding
- to distances 
+Example: A square object with 3 contacts Each contact is located 1 unit
+ length from an edge.
+ The contacts are described by the direction and the position as follows:
+ 
+\begin_inset Formula 
+\[
+C_{a}=\left\{ n_{a}=\begin{bmatrix}1\\
+0
+\end{bmatrix},p_{a}=\begin{bmatrix}-2\\
+1
+\end{bmatrix}\right\} 
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+C_{b}=\left\{ n_{b}=\begin{bmatrix}0\\
+-1
+\end{bmatrix},p_{b}=\begin{bmatrix}-1\\
+2
+\end{bmatrix}\right\} 
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+C_{c}=\left\{ n_{c}=\begin{bmatrix}0\\
+1
+\end{bmatrix},p_{c}=\begin{bmatrix}1\\
+-2
+\end{bmatrix}\right\} 
+\]
+
+\end_inset
+
+Corresponding wrenches are:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{a}=\begin{bmatrix}\hat{n}_{a}\\
+\vec{p}_{a}\times\hat{n}_{a}
+\end{bmatrix}=\begin{bmatrix}\begin{bmatrix}1\\
+0
+\end{bmatrix}\\
+\begin{bmatrix}-2\\
+1
+\end{bmatrix}\times\begin{bmatrix}1\\
+0
+\end{bmatrix}
+\end{bmatrix}=\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{b}=\begin{bmatrix}\hat{n}_{b}\\
+\vec{p}_{b}\times\hat{n}_{b}
+\end{bmatrix}=\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+w_{c}=\begin{bmatrix}\hat{n}_{c}\\
+\vec{p}_{c}\times\hat{n}_{c}
+\end{bmatrix}=\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Convex cone of these wrenches along with it's inverse are shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:inv_cone_003"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inv_cone_01.svg
+	lyxscale 30
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Contact wrenches, convex cone and inverted convex cone.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:inv_cone_003"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The distance of some point from 3 faces of the inverted cone is calculated
+ by projecting the point onto the face normal.
+ Face normal directions are:
+\begin_inset Formula 
+\[
+\hat{n}_{ab}=\frac{w_{a}\times w_{b}}{\left|w_{a}\times w_{b}\right|}=\frac{\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}\times\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}}{\left|\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}\times\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}\right|}=-\frac{\sqrt{3}}{3}\left[\begin{array}{c}
+1\\
+1\\
+1
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{n}_{bc}=\frac{w_{b}\times w_{c}}{\left|w_{b}\times w_{c}\right|}=\frac{\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}\times\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}}{\left|\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}\times\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}\right|}=\begin{bmatrix}-1\\
+0\\
+0
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\hat{n}_{ca}=\frac{w_{c}\times w_{a}}{\left|w_{c}\times w_{a}\right|}=\frac{\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}\times\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}}{\left|\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}\times\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}\right|}=\frac{\sqrt{3}}{3}\left[\begin{array}{c}
+-1\\
+1\\
+-1
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+First, we need to find edges, whose generalized wrenches intersect with
+ the inverted cone.
+ After such edge is found, we can parameterize the location along the edge
+ and get a vertical line in the wrench space.
+ The distance from each edge can be written as a function of the location
+ along the edge.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+We wish to maximize the minimal of the distances.
+ Since the function is smooth (it is 
+\begin_inset Formula $\mathrm{C}^{0}$
+\end_inset
+
+), derivation of the maximum is impossible in explicit way but it can be
+ done numerically.
+ ALGORITHM 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Insert a picture here, with abscissa is the parameter along an edge, and
+ ordinate is the distance from an edge.
+ show 3 functions - for each edge, end the minimal among them.
+ Select the maximal point.
+\end_layout
+
+\begin_layout Standard
+Alternatively, we can express the radius of the inscribed sphere to be parameter
+ized by a location along an edge.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Maximizing the minimum of several functions can be done by finding the intersect
+ion points between them (Is this valid in general) What about cases where
+ functions are not monotonic?.
+ In case of 3D space, 3 functions, in 2D also can be 3? What if the minima
+ is higher at some other point? Find intersection points, find piece-wise
+ the minimal function.
+ Check for maximum higher than at the intersection point.
+ Something about periodical functions and frequency ratios.
+ What does it mean that the line of possible wrench vector end points is
+ straight, and that the minimal distance from a plane will by or at some
+ edge or along the whole line.
+ If a line is parallel to the plane (projection on the plane's normal is
+ 0) than the distance from that plane can be discarded.
+ This happens if one of the planes is vertical, because in our cases such
+ lines are vertical (normal direction is the same, but the torque component
+ of the wrench is changing) 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+& For a vector, the distance of the end-point from a plane will monotonically
+ increase or decrease ...
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\shape italic
+\emph on
+\color green
+MAYBE ALL THIS SHOULD BE IN THE SOLUTION CHAPTER?
+\end_layout
+
+\begin_layout Standard
+In addition, we can examine the distances of some general unit vector from
+ the convex cone faces.
+\end_layout
+
+\begin_layout Standard
+Unit vector in 
+\begin_inset Formula $\rthree$
+\end_inset
+
+ can be parameterized by 2 values, we can select polar coordinates: azimuth
+ from the positive 
+\emph on
+x-
+\emph default
+axis and angle from zenith (
+\emph on
+z
+\emph default
+-axis) 
+\begin_inset Formula $\left[\varphi,\theta\right]$
+\end_inset
+
+ to be such angles, and hence a general vector can be expressed as
+\begin_inset Formula 
+\[
+v=\begin{bmatrix}x\\
+y\\
+z
+\end{bmatrix}=\begin{bmatrix}\cos\varphi\cdot\sin\theta\\
+\sin\varphi\cdot\sin\theta\\
+\cos\theta
+\end{bmatrix}
+\]
+
+\end_inset
+
+Central axis of the convex cone is: 
+\begin_inset Formula $Ax=\left[\begin{array}{ccc}
+\frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2}\end{array}\right]^{T},$
+\end_inset
+
+which expressed in azimuth and elevation from the positive 
+\emph on
+x
+\emph default
+ axis is 
+\begin_inset Formula $\left[0,\pi/4\right].$
+\end_inset
+
+ Examining all possible directions of a unit vector in 
+\begin_inset Formula $\rthree$
+\end_inset
+
+, we can calculate the distance of the vector end point from a given plane
+ passing through the origin by projecting the vector on the plane normal.
+\end_layout
+
+\begin_layout Standard
+The #ADDFIG shows 3 surfaces corresponding to distances 
 \begin_inset Formula $d_{12},d_{23},d_{31}$
 \end_inset
 
