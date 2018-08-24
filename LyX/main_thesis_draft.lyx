@@ -27,20 +27,29 @@
   {\centering \emph{This page intentionally left blank.}\par}
   \vspace{\fill}%
 }
-\makeatletter
-\renewcommand*{\cleardoubleoddstandardpage}{%
-  \clearpage
-  \if@twoside
-    \ifodd\c@page
-    \else
-      \blankpage
-      \thispagestyle{empty}%
-      \newpage
-      \if@twocolumn\hbox{}\newpage\fi
-    \fi
-  \fi
-}
-\makeatother
+%\makeatletter
+%\renewcommand*{\cleardoubleoddstandardpage}{%
+%  \clearpage
+%  \if@twoside
+%    \ifodd\c@page
+%    \else
+%      \blankpage
+%      \thispagestyle{empty}%
+%      \newpage
+%      \if@twocolumn\hbox{}\newpage\fi
+%    \fi
+%  \fi
+%}
+%\makeatother
+
+\usepackage{scrlayer}
+\DeclareNewLayer[
+    foreground,
+    textarea,
+    contents=\blankpage
+  ]{blankpage.fg}
+\DeclarePageStyleByLayers{blank}{blankpage.fg}
+\KOMAoptions{cleardoublepage=blank}
 
 
 % Allow nomenclature entries with units
@@ -5133,7 +5142,7 @@ note the
 \begin_inset Quotes erd
 \end_inset
 
- sign to obtain positive distance.
+ sign to obtain positive distance SOMETHING WRONG HERE WITH THIS MINUS.
  
 \begin_inset Note Note
 status collapsed
@@ -5228,6 +5237,111 @@ s
 \emph default
 .
  
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inv_cone_03.svg
+	lyxscale 30
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Distance from convex cone faces.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inv_cone_04.svg
+	lyxscale 30
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Object with added contact
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Selecting the contact based on Inscribed Sphere Radius.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+In this case, due to the symmetry of the object and the contact locations,
+ 
+\begin_inset Formula $d_{1}$
+\end_inset
+
+ and 
+\begin_inset Formula $d_{3}$
+\end_inset
+
+ are equal, while 
+\begin_inset Formula $d_{2}$
+\end_inset
+
+ is constant.
+ Additional examples provided in Appendix.
 \end_layout
 
 \begin_layout Proof
@@ -9137,9 +9251,78 @@ options "bibtotoc,apalike"
 
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Chapter*
 \start_of_appendix
-Appendix A
+Appendix
+\end_layout
+
+\begin_layout Chapter
+Software
+\end_layout
+
+\begin_layout Standard
+Source code is available at 
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/yossioo/MSc-Research"
+target "https://github.com/yossioo/MSc-Research"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Additional videos are available at Youtube channel: &&&
+\end_layout
+
+\begin_layout Standard
+The software used for the research is:
+\end_layout
+
+\begin_layout Standard
+MATLAB r2018a
+\end_layout
+
+\begin_layout Standard
+V-REP 3.5.0 Educational Version
+\end_layout
+
+\begin_layout Standard
+ROS Kinetic on Ubuntu 16.04
+\end_layout
+
+\begin_layout Chapter
+Examples of calculated grasps
+\end_layout
+
+\begin_layout Standard
+3 fingers - 1 found
+\end_layout
+
+\begin_layout Chapter
+Examples of rearranged object sets
+\end_layout
+
+\begin_layout Chapter
+Examples of finger found for sets
+\end_layout
+
+\begin_layout Chapter
+Simulations
+\end_layout
+
+\begin_layout Standard
+V-REP
+\end_layout
+
+\begin_layout Chapter
+Experiments
+\end_layout
+
+\begin_layout Standard
+Real robot
 \end_layout
 
 \end_body

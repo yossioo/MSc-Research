@@ -7,7 +7,7 @@ p = Polygon_mkII([-2 -2 ; -2 2; 2 2; 2 -2]);
 figure(1)
 clf
 p.plot()
-hold on
+hold on; grid on;
 axis equal
 
 C1 = p.find_contacts_for_positions(3/16);
@@ -61,27 +61,72 @@ legend({'$w_a$','$w_b$','$w_c$',...
 saveas(gcf,'../LyX/images/example_inv_cone_01.svg')
 
 %%
-figure(3); clf;
-edge_names = {'West edge','North edge','East edge','South edge'};
-for i = 1:p.N_e
-    subplot(2,2,i)
-    tetramesh(iDT,'FaceAlpha',0.1,'FaceColor','b');
-    hold on; grid on; axis equal;
-%     a = gca;
-%     a.Position = [0.1+(1-mod(i,2))*0.5, 0.6-0.475*(i>2), .35, .35];
-    view(-35,15)
-    zlabel('\tau_z','FontSize',20)
-    xlabel('f_x','FontSize',20)
-    ylabel('f_y','FontSize',20)
-    title(edge_names{i})
-    n = p.Inner_normals(i,:);
-    e1 = p.Edges(i,:);
-    e2 = p.Edges(i+1,:);
-    w = [n, cross2d(e1,n);
-        n, cross2d(e2,n)];
-    DT_GEW = delaunayTriangulation([1e-3 1e-3 0; -1e-3 2.5e-3 1e-4 ; w]);
-    tetramesh(DT_GEW,'FaceAlpha',0.1,'FaceColor','y');
-    quiver3(0*w(:,1),0*w(:,1),0*w(:,1),w(:,1),w(:,2),w(:,3),'AutoScale','off')
+% figure(3); clf;
+% edge_names = {'West edge','North edge','East edge','South edge'};
+% for i = 1:p.N_e
+%     subplot(2,2,i)
+%     tetramesh(iDT,'FaceAlpha',0.1,'FaceColor','b');
+%     hold on; grid on; axis equal;
+% %     a = gca;
+% %     a.Position = [0.1+(1-mod(i,2))*0.5, 0.6-0.475*(i>2), .35, .35];
+%     view(-35,15)
+%     zlabel('\tau_z','FontSize',20)
+%     xlabel('f_x','FontSize',20)
+%     ylabel('f_y','FontSize',20)
+%     title(edge_names{i})
+%     n = p.Inner_normals(i,:);
+%     e1 = p.Edges(i,:);
+%     e2 = p.Edges(i+1,:);
+%     w = [n, cross2d(e1,n);
+%         n, cross2d(e2,n)];
+%     DT_GEW = delaunayTriangulation([1e-3 1e-3 0; -1e-3 2.5e-3 1e-4 ; w]);
+%     tetramesh(DT_GEW,'FaceAlpha',0.1,'FaceColor','y');
+%     quiver3(0*w(:,1),0*w(:,1),0*w(:,1),w(:,1),w(:,2),w(:,3),'AutoScale','off')
+% 
+% end
+% saveas(gcf,'../LyX/images/example_inv_cone_02.svg')
 
-end
-saveas(gcf,'../LyX/images/example_inv_cone_02.svg')
+%%
+figure(4); clf;
+i = 3;
+nx = p.Inner_normals(i,1);
+ny = p.Inner_normals(i,2);
+x1 = p.Edges(i,1);
+y1 = p.Edges(i,2);
+x2 = p.Edges(i+1,1);
+y2 = p.Edges(i+1,2);
+
+s = linspace(0,1,100);
+wk = [nx;ny;0]+0*s + cross([(1-s)*x1+s*x2;(1-s)*y1+s*y2;0*s] ,[nx;ny;0]+0*s);
+
+% Make it work with any number of planes. But what if the cone is not
+% convex? Make it convex first!
+d1 = dot(wk, cross(W1-wk, W2-wk));
+d2 = dot(wk, cross(W2-wk, W3-wk));
+d3 = dot(wk, cross(W3-wk, W1-wk));
+d = min([d1;d2;d3]);
+mx = find(d==max(d));
+pos = s(mx(1))*p.E_norm_lengths(i) + p.Norm_cum_len(i) - eps
+
+plot(s,d1,'-r',s,d2,'-g',s,d3,'-b')
+grid on;hold on
+ylabel('Inscribed sphere radius');
+xlabel('s')
+a = gca;
+x_pos = a.Position(1) + s(mx(1)) * a.Position(3);
+y_pos = a.Position(2) + ...
+    (d(mx(1))-a.YLim(1))/diff(a.YLim) * a.Position(4);
+
+annotation('textarrow',x_pos*[0.8 1],y_pos*[0.9 1],...
+    'String','Selected location',...
+    'FontSize',20)
+plot(s,d,'-k','LineWidth',1.5)
+legend({'$d_1$','$d_2$','$d_3$','$\min{d}$'},'Location','northwest','Interpreter','latex')
+saveas(gcf,'../LyX/images/example_inv_cone_03.svg')
+
+
+figure(1)
+C = p.find_contacts_for_positions(pos);
+c = Vector(C(1:2),C(3:4),1);
+c.plot_contact('b');
+saveas(gcf,'../LyX/images/example_inv_cone_04.svg')
