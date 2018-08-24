@@ -6,6 +6,11 @@
 \origin unavailable
 \textclass article
 \use_default_options true
+\begin_modules
+algorithm2e
+theorems-ams
+theorems-ams-extended
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -29,6 +34,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -75,6 +81,191 @@
 \end_header
 
 \begin_body
+
+\begin_layout Proposition
+Given a set of k contacts, the (k+1)-th contact that will yield highest
+ volume of InscribedSphere grasp quality measure is the one that has a wrench
+ space vector that lies along the axis of the InvertedCone of wrench vectors
+ of other contacts.
+\end_layout
+
+\begin_layout Proof
+As seen in proposition 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:InvCone-interior"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ has to lie inside of the Anti-Cone.
+ If 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ lies on a cone boundary then it and 2 vectors that form that boundary (denoted
+ by 
+\begin_inset Formula $w_{1},w_{2}$
+\end_inset
+
+), will form a surface that contains the origin of the wrench space.
+ To maximize the distance of said surface from the origin (which is equivalent
+ to maximizing the sphere of origin centered inscribe sphere of the convex
+ polyhedron) the 
+\emph on
+
+\begin_inset Formula $w_{4}$
+\end_inset
+
+
+\emph default
+ point ought to be farthest as possible from the surface formed by 
+\begin_inset Formula $w_{1},w_{2}$
+\end_inset
+
+ and the origin.
+ Alternatively, the surface built by 3 points will be farthest from the
+ origin when some point projected on the surface's normal direction will
+ yield higher
+\end_layout
+
+\begin_layout Proof
+Given 3 unit wrench vectors 
+\begin_inset Formula $w_{1},w_{2},w_{3}$
+\end_inset
+
+, we define a 
+\emph on
+central axis
+\emph default
+ of their convex cone as:
+\begin_inset Formula 
+\begin{equation}
+a=\frac{w_{1}+w_{2}+w_{3}}{\left|w_{1}+w_{2}+w_{3}\right|}
+\end{equation}
+
+\end_inset
+
+Assuming a counterclockwise arrangement of the vectors around 
+\begin_inset Formula $a$
+\end_inset
+
+, respective distances from the boundary planes to the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point can be written as:
+\begin_inset Formula 
+\begin{equation}
+d_{12}=\begin{bmatrix}x_{4}\\
+y_{4}\\
+z_{4}
+\end{bmatrix}\cdot\left(\begin{bmatrix}x_{1}\\
+y_{1}\\
+z_{1}
+\end{bmatrix}\times\begin{bmatrix}x_{2}\\
+y_{2}\\
+z_{2}
+\end{bmatrix}\right)
+\end{equation}
+
+\end_inset
+
+where cross product selected to yield a vector pointing inside the cone.
+ Since origin centered inscribed sphere radius is a minimal of the distances
+ to the planes, of convex polyhedra, we select the minimal distance from
+ any and all surfaces to be:
+\begin_inset Formula 
+\begin{equation}
+D=\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+And hence, the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ vector to yield such a distance will be
+\begin_inset Formula 
+\begin{equation}
+w_{4}=\underset{\left[x_{4},y_{4},z_{4}\right]^{T}}{\mathrm{argmax}}\left(\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Since the vectors normal to the cone faces projected on the 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+ of the cone are positively spanning the plane that the 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+ is on, any change of a 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point will increase some of the distances while decreasing other.
+ Maximized minimal selected distance will be where all 3 distances are equal,
+ and can be presented as shown below.
+ This can be extended to cases for more complex convex cones, analogously
+ to inscribing a circle in a polygon.
+ In a way similar to such circle inscribed in a irregular polygon, the maximized
+ minimal distance from the faces of a cone will lie along a central axis.
+ Reader can refer to 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Icking2001,Delaunay1934"
+literal "true"
+
+\end_inset
+
+.
+ 
+\emph on
+Note
+\emph default
+: The derivation above treated the vectors to be unit vectors, including
+ the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+.
+ In case where the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point lies further from the origin (along the central axis of the convex
+ cone), the inscribed sphere radius will increase as well.
+ ———-
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
 
 \begin_layout Standard
 \begin_inset Note Note

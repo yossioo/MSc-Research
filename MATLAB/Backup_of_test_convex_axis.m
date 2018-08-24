@@ -71,21 +71,21 @@ V = v1+v2+v3;
 V = V/norm(V);
 A_center = [atan2d(V(2),V(1)), atan2d(V(3),norm(V(1:2)))]
 
-figure(2)
-clf
-mesh(A,E,D_full,'EdgeAlpha',0, 'FaceColor','flat')
-% contour(A,E,D_full)
-hold on
-% surf(A,E,p1_fix,'EdgeAlpha',0.5)
-% surf(A,E,p2_fix,'EdgeAlpha',0.5)
-% surf(A,E,p3_fix,'EdgeAlpha',0.5)
-plot3(A_center(1)*[1 1], A_center(2)*[1 1],...
-    2.1*minmax(D_full(:)'),'r-','LineWidth',2)
-plot3(180+A_center(1)*[1 1], -A_center(2)*[1 1],...
-    2.1*minmax(D_full(:)'),'r-','LineWidth',2)
-% plot3(A_center(1)*[1 1]-180, -A_center(2)*[1 1]-180,...
-%     1.1*minmax(D_full(:)'),'r-','LineWidth',2)
-% plot3(A_center(1)*[1 1], A_center(2)*[1 1]-180,...
-%     1.1*minmax(D_full(:)'),'r-','LineWidth',2)
-xlabel('Azimuth from X [deg] ')
-ylabel('Elevation from XY [deg] ')
+% figure(2)
+% clf
+% mesh(A,E,D_full,'EdgeAlpha',0, 'FaceColor','flat')
+% % contour(A,E,D_full)
+% hold on
+% % surf(A,E,p1_fix,'EdgeAlpha',0.5)
+% % surf(A,E,p2_fix,'EdgeAlpha',0.5)
+% % surf(A,E,p3_fix,'EdgeAlpha',0.5)
+% plot3(A_center(1)*[1 1], A_center(2)*[1 1],...
+%     2.1*minmax(D_full(:)'),'r-','LineWidth',2)
+% plot3(180+A_center(1)*[1 1], -A_center(2)*[1 1],...
+%     2.1*minmax(D_full(:)'),'r-','LineWidth',2)
+% % plot3(A_center(1)*[1 1]-180, -A_center(2)*[1 1]-180,...
+% %     1.1*minmax(D_full(:)'),'r-','LineWidth',2)
+% % plot3(A_center(1)*[1 1], A_center(2)*[1 1]-180,...
+% %     1.1*minmax(D_full(:)'),'r-','LineWidth',2)
+% xlabel('Azimuth from X [deg] ')
+% ylabel('Elevation from XY [deg] ')
