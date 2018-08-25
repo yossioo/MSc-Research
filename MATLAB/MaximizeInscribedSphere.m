@@ -7,4 +7,7 @@ wi = [wix; wiy; wiz];
 wj = [wjx; wjy; wjz];
 d = -dot(wk, cross(wi-wk, wj-wk));
 
-latex(simplify(d))
+% latex(simplify(d))
+
+ex = cross2d( (1-s)*[x1;y1]+s*[x2;y2], [nx;ny])
+latex(simplify(cross2d( (1-s)*[x1;y1]+s*[x2;y2], [nx;ny])))

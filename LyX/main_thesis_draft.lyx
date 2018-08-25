@@ -60,15 +60,26 @@
 
 
 % avoids that floats are placed above its sections
-\let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
+%\let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
+
+% Use this for naming ref types when referencing.
+\providecommand{\thmautorefname}{Theorem}
+\providecommand{\corautorefname}{Corollary}
+\providecommand{\lemautorefname}{Lemma}
+\providecommand{\propautorefname}{Proposition}
+\providecommand{\eqautorefname}{Equation}
+
+
+\AtBeginDocument{%
+\let\ref\autoref
+%\renewcommand\equationautorefname{\@gobble}
+}
 \end_preamble
 \options a4paper,12pt,openany, marginparwidth=1cm, marginparsep=1cm
 \use_default_options true
 \begin_modules
 endnotes
-tabs-within-sections
-theorems-ams
-theorems-ams-extended
+theorems-bytype
 \end_modules
 \maintain_unincluded_children false
 \language english
@@ -101,8 +112,8 @@ theorems-ams-extended
 \pdf_subject "Grasping of Multiple Object with Minimum Fingers"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered true
-\pdf_bookmarksopen false
-\pdf_bookmarksopenlevel 1
+\pdf_bookmarksopen true
+\pdf_bookmarksopenlevel 2
 \pdf_breaklinks false
 \pdf_pdfborder true
 \pdf_colorlinks true
@@ -191,6 +202,15 @@ theorems-ams-extended
 \begin_layout Standard
 \begin_inset FormulaMacro
 \newcommand{\x}{\times}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\c}{\textcolor{brown}{\&\& }}
+{\textcolor{brown}{\&\& }}
 \end_inset
 
 
@@ -2288,8 +2308,18 @@ literal "true"
 \end_inset
 
  for more detailed explanation.
- && GM maps the contact forces at contact locations to wrenches induces
- in the body.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\color brown
+&& MAYBE IT SHOULD BE SHOWN HERE?
+\end_layout
+
+\begin_layout Standard
+&& GM maps the contact forces at contact locations to wrenches induces in
+ the body.
  Example of grasp map from 
 \begin_inset CommandInset citation
 LatexCommand citep
@@ -2734,7 +2764,7 @@ Once convex hull is built, quantitative assessment can be performed.
  One way of doing that is determining the largest sphere to inscribe in
  the hull with its center at origin, as shown in Figure , and measuring
  it's diameter.
- If vectors are normalized, the diameter of the sphere can serve as 
+ If vectors are normalized, the radius of the sphere can serve as 
 \series bold
 \emph on
 grasp quality measure
@@ -2788,6 +2818,12 @@ INSERT IMAGES ON FORM AND FORCE CLOSURE, EQUILIBRIUM GRASP, MANIPULABLE
 
 \begin_layout Subsubsection*
 Quality Measures
+\end_layout
+
+\begin_layout Standard
+
+\color brown
+&& NEED MORE INFO HERE
 \end_layout
 
 \begin_layout Standard
@@ -2879,6 +2915,10 @@ ned intersection point.
 \end_layout
 
 \begin_layout Standard
+
+\color brown
+&& 
+\color inherit
 INSERT NEW IMAGES:
 \end_layout
 
@@ -2962,6 +3002,12 @@ Graphs
 \end_layout
 
 \begin_layout Standard
+
+\color brown
+&& Rethink this section.
+\end_layout
+
+\begin_layout Standard
 The main interest of this research is multiple objects grasping which requires
  objects interaction classification.
  Some of the objects can be in contacts with other object(s) and these connectio
@@ -3002,8 +3048,7 @@ The polygons are assumed to be non-self-intersecting, while for practical
 \end_layout
 
 \begin_layout Standard
-In a given set of objects only configuration where graph describing it is
- connected are of interest.
+In a given set of objects only connected configurations are of interest.
  The problem with more than one distinct group of connected polygons are
  easily divided to subproblems.
 \end_layout
@@ -3016,8 +3061,7 @@ The work focuses on construction of equilibrium force closure grasps with
 
 \begin_layout Standard
 Finger contacts are point contacts and hence can act on one object at a
- time.
- As a result from that, two fingers cannot be placed at same location.
+ time, two fingers cannot be placed at same location.
 \end_layout
 
 \begin_layout Section
@@ -3055,8 +3099,22 @@ In a common workspace polygonal objects can contact one another in several
  After the classification is presented, an algorithm for finger placement
  given configuration of polygons is proposed, and then an algorithm for
  polygons placement is proposed.
- The idea can be expanded for various tasks, such as home assistant robot
+ 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The idea can be expanded for various tasks, such as home assistant robot
  that brings several items in one run.
+\end_layout
+
+\begin_layout Plain Layout
+– This should go to Motivation.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3093,6 +3151,13 @@ status open
 
 \begin_layout Plain Layout
 Objects set and a corresponding graph.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Objects-set-and"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -3106,8 +3171,17 @@ Objects set and a corresponding graph.
 \end_layout
 
 \begin_layout Standard
-Example: 4 objects in FIGURE below where 1 and 2 touch 3, and 4 touches
- 2,3.
+Example: 4 objects in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Objects-set-and"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ where 1 and 2 touch 3, and 4 touches 2,3.
  The contacts serve as graph edges, while objects are represented as graph
  nodes.
  Graph for the given object configuration is shown below.
@@ -3137,16 +3211,7 @@ Mathematical description
 
 \begin_layout Standard
 REWRITE THIS SECTION
-\end_layout
-
-\begin_layout Standard
-Given 2 polygons, 
-\begin_inset Formula $p_{1},p_{2}$
-\end_inset
-
-.
- The twist 
-\begin_inset Marginal
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
@@ -3156,7 +3221,16 @@ Treat the contact point and not the whole polygon.
 
 \end_inset
 
- of polygon 
+
+\end_layout
+
+\begin_layout Standard
+Given 2 polygons, 
+\begin_inset Formula $p_{1},p_{2}$
+\end_inset
+
+.
+ The twist of polygon 
 \begin_inset Formula $p_{1}$
 \end_inset
 
@@ -3559,7 +3633,7 @@ For the purpose of polygon arrangement evaluation, every contact is assumed
 \begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-C=\left\{ id\left(P_{A}\right),id\left(P_{B}\right),p_{i},V\right\} 
+C=\left\{ id\left(P_{A}\right),id\left(P_{B}\right),p,\hat{n}\right\} 
 \end{equation}
 
 \end_inset
@@ -3569,11 +3643,11 @@ where
 \end_inset
 
  stands for polygon number/identification entry, 
-\begin_inset Formula $p_{i}$
+\begin_inset Formula $p$
 \end_inset
 
  is a contact point location and 
-\begin_inset Formula $V$
+\begin_inset Formula $\hat{n}$
 \end_inset
 
  is the contact normal direction inward the polygon B.
@@ -3589,7 +3663,7 @@ noprefix "false"
 
 .
  The contact is saved as: 
-\begin_inset Formula $C=\left\{ A,B,p,V\right\} ,$
+\begin_inset Formula $C=\left\{ A,B,p,\hat{n}\right\} ,$
 \end_inset
 
 where 
@@ -3601,7 +3675,7 @@ where
 \end_inset
 
  is the contact location vector in selected coordinate frame and 
-\begin_inset Formula $V$
+\begin_inset Formula $\hat{n}$
 \end_inset
 
  is the inward normal direction of the second polygon at the contact location.
@@ -3709,14 +3783,25 @@ The matrix will be block diagonal with some cross-block columns which correspond
 Given an edge of a polygonal object and a frictionless point contact, the
  generalized (superposition) wrench for all possible locations of contact
  along the edge can be expressed as 2 dimensional cone (2 vectors) in vertical
- plane of the CONFIGURATION SPACE (the plane's normal direction will be
- in XY plane).
+ plane of the configuration space (the plane's normal direction will be
+ in 
+\begin_inset Formula $f_{x}f_{y}$
+\end_inset
+
+ plane).
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:EGW-vertical"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
 All possible contacts on the edge will have the same direction and hence
  same 
-\begin_inset Formula $F_{x},F_{y}$
+\begin_inset Formula $f_{x},f_{y}$
 \end_inset
 
  components.
@@ -3754,345 +3839,6 @@ al (
  is an equilibrium grasp.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename images/solutions_existence.svg
-	lyxscale 30
-	width 55text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Solution existence example.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Example:
-\end_layout
-
-\begin_layout Standard
-two bodies in contact at one point.
- Contact forces shown in red, finger forces shown in blue.
- Each force 
-\begin_inset Formula $f_{i}$
-\end_inset
-
- acts at point 
-\begin_inset Formula $\mathbf{x}_{i}$
-\end_inset
-
- located at body boundary, with direction 
-\begin_inset Formula $\theta_{i}$
-\end_inset
-
- which vector is 
-\begin_inset Formula $\begin{bmatrix}\cos\theta_{i}\\
-\sin\theta_{i}
-\end{bmatrix}=\begin{bmatrix}c_{i}\\
-s_{i}
-\end{bmatrix}$
-\end_inset
-
-.
- The inter-body contact force 
-\begin_inset Formula $f_{AB}$
-\end_inset
-
- selected to act in direction 
-\begin_inset Formula $\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}$
-\end_inset
-
- at point 
-\begin_inset Formula $\mathbf{x}_{AB}$
-\end_inset
-
-.
- We assume that not all forces act at the same point.
- We assume that one force acts at one body only.
-\end_layout
-
-\begin_layout Standard
-Defining a grasp matrix for fingers 
-\emph on
-m
-\emph default
- to 
-\emph on
-n
-\emph default
- (note the linear independence of the rows in a matrix):
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-G_{f\left[m:n\right]}=\begin{bmatrix}c_{m} & ... & c_{n}\\
-s_{m} & ... & s_{n}\\
-\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
-s_{m}
-\end{bmatrix} & ... & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
-s_{n}
-\end{bmatrix}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-such that in case of isolated 2D object
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\begin{bmatrix}f_{Ax}\\
-f_{Ay}\\
-\tau_{A}
-\end{bmatrix}=\begin{bmatrix}c_{1} & c_{2} & c_{3}\\
-s_{1} & s_{2} & s_{3}\\
-\mathbf{x}_{1}\times\begin{bmatrix}c_{1}\\
-s_{1}
-\end{bmatrix} & \mathbf{x}_{2}\times\begin{bmatrix}c_{2}\\
-s_{2}
-\end{bmatrix} & \mathbf{x}_{3}\times\begin{bmatrix}c_{3}\\
-s_{3}
-\end{bmatrix}
-\end{bmatrix}\begin{bmatrix}f_{1}\\
-f_{2}\\
-f_{3}
-\end{bmatrix}=G_{f\left[1:3\right]}\begin{bmatrix}f_{1}\\
-f_{2}\\
-f_{3}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-We can summarize the forces action on 2 bodies:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{align}
-\begin{bmatrix}f_{Ax}\\
-f_{Ay}\\
-\tau_{A}\\
-f_{Bx}\\
-f_{By}\\
-\tau_{B}
-\end{bmatrix} & =\left[\begin{array}{ccc}
-G_{f\left[1:3\right]} & \left\{ \begin{array}{c}
--c_{AB}\\
--s_{AB}\\
--\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}
-\end{array}\right\}  & 0\\
-0 & \left\{ \begin{array}{c}
-c_{AB}\\
-s_{AB}\\
-\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}
-\end{array}\right\}  & G_{f\left[4:6\right]}
-\end{array}\right]\begin{bmatrix}f_{1}\\
-f_{2}\\
-f_{3}\\
-f_{AB}\\
-f_{4}\\
-f_{5}\\
-f_{6}
-\end{bmatrix}=\nonumber \\
-= & \begin{bmatrix}G_{f\left[1:3\right]} & 0 & \left\{ \begin{array}{c}
--c_{AB}\\
--s_{AB}\\
-\mathbf{-x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}
-\end{array}\right\} \\
-0 & G_{f\left[4:6\right]} & \left\{ \begin{array}{c}
-c_{AB}\\
-s_{AB}\\
-\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}
-\end{array}\right\} 
-\end{bmatrix}\begin{bmatrix}f_{1}\\
-f_{2}\\
-f_{3}\\
-f_{4}\\
-f_{5}\\
-f_{6}\\
-f_{AB}
-\end{bmatrix}=0
-\end{align}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-It can be stated that the grasp matrix for the given set of objects consists
- of a diagonal blocks and of diagonal columns.
- A system will be in equilibrium if a [non-trivial] set of forces exist
- that solves the equation.
-\end_layout
-
-\begin_layout Standard
-The existence of the solution depends on the rank of the 
-\begin_inset Formula $G$
-\end_inset
-
- matrix.
- Since there are more columns than rows (and therefore there is no unique
- solution) we need to ensure that the rows are linearly independent.
-\end_layout
-
-\begin_layout Standard
-Each 
-\begin_inset Formula $G_{f\left[m:n\right]}$
-\end_inset
-
- block consists of 3 rows and 1:3 columns.When there is one column, third
- row is a linear combination of first 2:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-G_{f\left[m\right]}=\begin{bmatrix}c_{m}\\
-s_{m}\\
-\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
-s_{m}
-\end{bmatrix}
-\end{bmatrix}=\begin{bmatrix}c_{m}\\
-s_{m}\\
-x_{m}s_{m}-y{}_{m}c_{m}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In case of 1 finger contact on given body, 3rd row of the big matrix (torque)
- will be linear combination of first 2 only if the finger contact is on
- the same location as other (inter-body) contacts (and has same direction),
- which by definition is neither feasible nor needed.
-\end_layout
-
-\begin_layout Standard
-When there are 2 columns then 3rd row will only be a linear combination
- of first 2 only if both contacts are in the same point
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-G_{f\left[m,n\right]}=\begin{bmatrix}c_{m} & c_{n}\\
-s_{m} & s_{n}\\
-\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
-s_{m}
-\end{bmatrix} & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
-s_{n}
-\end{bmatrix}
-\end{bmatrix}=\begin{bmatrix}c_{m} & c_{n}\\
-s_{m} & s_{n}\\
-x_{m}s_{m}-y{}_{m}c_{m} & x_{n}s_{n}-y{}_{n}c_{n}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\rightarrow\mathbf{x}_{m}=\mathbf{x}_{n}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-When there are more columns, same applies: all contacts have to be in the
- same location in order to reduce the rank of the grasp matrix.
-\end_layout
-
-\begin_layout Standard
-We can conclude that each 3 rows for each body are linearly independent
- .
-\end_layout
-
-\begin_layout Standard
-Since the matrix is built with blocks, we can see that there are no (and
- cannot be) 2 linearly dependent block rows.
- 
-\end_layout
-
-\begin_layout Proof
-Assuming that block rows 
-\emph on
-i 
-\emph default
-and 
-\emph on
-j
-\emph default
- are linearly dependent.
- In particular, first 
-\begin_inset Formula $G$
-\end_inset
-
--blocks (that corresponds to set of forces applied by fingers) on these
- rows are at the same columns.
- That means that same forces act on different bodies, while acting at the
- same point.
- Which is impossible, since by definition each finger contacts one body
- only.
-\end_layout
-
-\begin_layout Standard
-Therefore, if given matrix has full rank, there exists a non-trivial (but
- not unique) set of forces that will keep the system in equilibrium.
-\end_layout
-
 \begin_layout Proposition
 A set of 
 \begin_inset Formula $N$
@@ -4108,6 +3854,13 @@ A set of
 \end_inset
 
  fingers assuming first order non-frictional contacts.
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:3N_fingers"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
@@ -4214,11 +3967,339 @@ intersecting
  point.
 \end_layout
 
-\begin_layout Proof
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/solutions_existence.svg
+	lyxscale 30
+	width 55text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Solution existence example.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Example: Two bodies in contact at one point.
+ Contact forces shown in red, finger forces shown in blue.
+ Each force 
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ acts at point 
+\begin_inset Formula $\mathbf{x}_{i}$
+\end_inset
+
+ located at body boundary, with direction 
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ which vector is 
+\begin_inset Formula $\begin{bmatrix}\cos\theta_{i}\\
+\sin\theta_{i}
+\end{bmatrix}=\begin{bmatrix}c_{i}\\
+s_{i}
+\end{bmatrix}$
+\end_inset
+
+.
+ The inter-body contact force 
+\begin_inset Formula $f_{AB}$
+\end_inset
+
+ selected to act in direction 
+\begin_inset Formula $\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}$
+\end_inset
+
+ at point 
+\begin_inset Formula $\mathbf{x}_{AB}$
+\end_inset
+
+.
+ The objects are immobilized by 3 fingers, according to the 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:3N_fingers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.Defining a grasp matrix for fingers 
+\emph on
+m
+\emph default
+ to 
+\emph on
+n
+\emph default
+ (note the linear independence of the rows in a matrix):
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+G_{f\left[m:n\right]}=\begin{bmatrix}c_{m} & ... & c_{n}\\
+s_{m} & ... & s_{n}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix} & ... & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
+s_{n}
+\end{bmatrix}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+such that in case of isolated 2D object
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}
+\end{bmatrix}=\begin{bmatrix}c_{1} & c_{2} & c_{3}\\
+s_{1} & s_{2} & s_{3}\\
+\mathbf{x}_{1}\times\begin{bmatrix}c_{1}\\
+s_{1}
+\end{bmatrix} & \mathbf{x}_{2}\times\begin{bmatrix}c_{2}\\
+s_{2}
+\end{bmatrix} & \mathbf{x}_{3}\times\begin{bmatrix}c_{3}\\
+s_{3}
+\end{bmatrix}
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}
+\end{bmatrix}=G_{f\left[1:3\right]}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+When there are 2 or more columns, 3rd row will only be a linear combination
+ of first 2 only if all contacts are in the same point:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+G_{f\left[m,n\right]}=\begin{bmatrix}c_{m} & c_{n}\\
+s_{m} & s_{n}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix} & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
+s_{n}
+\end{bmatrix}
+\end{bmatrix}=\begin{bmatrix}c_{m} & c_{n}\\
+s_{m} & s_{n}\\
+x_{m}s_{m}-y{}_{m}c_{m} & x_{n}s_{n}-y{}_{n}c_{n}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\rightarrow\mathbf{x}_{m}=\mathbf{x}_{n}
+\]
+
+\end_inset
+
+Each 
+\begin_inset Formula $G_{f\left[m:n\right]}$
+\end_inset
+
+ block consists of 3 rows and 1:3 columns.When there is one column, third
+ row is a linear combination of first 2:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+G_{f\left[m\right]}=\begin{bmatrix}c_{m}\\
+s_{m}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix}
+\end{bmatrix}=\begin{bmatrix}c_{m}\\
+s_{m}\\
+x_{m}s_{m}-y{}_{m}c_{m}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+In case of 1 finger contact on given body, 3rd row of the grasp matrix (torque)
+ will be linear combination of first 2 only if the finger contacts is on
+ the same locations as other (inter-body) contacts (and has same direction),
+ which by definition is neither feasible nor needed.
+\end_layout
+
+\begin_layout Standard
+We can summarize the forces action on 2 bodies:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}\\
+f_{Bx}\\
+f_{By}\\
+\tau_{B}
+\end{bmatrix} & =\left[\begin{array}{ccc}
+G_{f\left[1:3\right]} & \left\{ \begin{array}{c}
+-c_{AB}\\
+-s_{AB}\\
+-\mathbf{x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & 0\\
+0 & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & G_{f\left[4:6\right]}
+\end{array}\right]\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{AB}\\
+f_{4}\\
+f_{5}\\
+f_{6}
+\end{bmatrix}=\nonumber \\
+= & \begin{bmatrix}G_{f\left[1:3\right]} & 0 & \left\{ \begin{array}{c}
+-c_{AB}\\
+-s_{AB}\\
+\mathbf{-x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} \\
+0 & G_{f\left[4:6\right]} & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} 
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{4}\\
+f_{5}\\
+f_{6}\\
+f_{AB}
+\end{bmatrix}=0\label{eq:Full-GM}
+\end{align}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As seen in the 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Full-GM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ above, the grasp matrix for the given set of objects consists of a diagonal
+ blocks and off diagonal columns.
+ A system will be in equilibrium if a non-trivial set of forces exist that
+ solves the equation.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+The existence of the solution depends on the rank of the 
+\begin_inset Formula $G$
+\end_inset
+
+ matrix.
+ Since there are more columns than rows (and therefore there is no unique
+ solution) we need to ensure that the rows are linearly independent.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Since the matrix is built with blocks, we can see that there are no (and
+ cannot be) 2 linearly dependent block rows.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Assuming that block rows i and j are linearly dependent.
+ In particular, first 
+\begin_inset Formula $G$
+\end_inset
+
+-blocks (that corresponds to set of forces applied by fingers) on these
+ rows are at the same columns.
+ That means that same forces act on different bodies, while acting at the
+ same point.
+ Which is impossible, since by definition each finger contacts one body
+ only.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Therefore, if given matrix has full rank, there exists a non-trivial (but
+ not unique) set of forces that will keep the system in equilibrium.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
 3 Frictionless contacts that intersecting at one point.
 \end_layout
 
-\begin_layout Proof
+\begin_layout Standard
+
+\emph on
 Direction of contacts should 
 \end_layout
 
@@ -4271,7 +4352,7 @@ e
 \emph default
  and a reference point 
 \emph on
-o
+o,
 \emph default
  the set of all possible wrenches 
 \begin_inset Formula $w_{e}$
@@ -4370,7 +4451,7 @@ The expression for the edge generalized wrench can be rewritten to a form
  of:
 \begin_inset Formula 
 \begin{align}
-w\left(s\right) & =\left(1-s\right)\begin{bmatrix}\hat{n}\\
+w_{e}\left(s\right) & =\left(1-s\right)\begin{bmatrix}\hat{n}\\
 \vec{e}_{1}\times\hat{n}
 \end{bmatrix}+s\begin{bmatrix}\hat{n}\\
 \vec{e}_{2}\times\hat{n}
@@ -4380,7 +4461,7 @@ w\left(s\right) & =\left(1-s\right)\begin{bmatrix}\hat{n}\\
  & =\left[\begin{array}{c}
 n_{x}\\
 n_{y}\\
-\left(x_{1}\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\cdot\left(x_{2}\cdot n_{y}+y_{2}\cdot n_{x}-x_{1}\cdot n_{y}-y_{1}\cdot n_{x}\right)
+\left(x_{1}\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\left(n_{y}\left(x_{2}-x_{1}\right)+n_{x}\left(y_{1}-y_{2}\right)\right)
 \end{array}\right]\label{eq:EGW-parameterization}
 \end{align}
 
@@ -4687,8 +4768,8 @@ name "Example:-A-square"
 
 \end_inset
 
-: A square object with 3 contacts Each contact is located 1 unit length
- from an edge.
+: A square object with 3 contacts.
+ Each contact is located 1 unit length from an edge.
  The contacts are described by the direction and the position as follows:
  
 \begin_inset Formula 
@@ -4737,9 +4818,8 @@ Corresponding wrenches are:
 \[
 w_{a}=\begin{bmatrix}\hat{n}_{a}\\
 \vec{p}_{a}\times\hat{n}_{a}
-\end{bmatrix}=\begin{bmatrix}\begin{bmatrix}1\\
-0
-\end{bmatrix}\\
+\end{bmatrix}=\begin{bmatrix}1\\
+0\\
 \begin{bmatrix}-2\\
 1
 \end{bmatrix}\times\begin{bmatrix}1\\
@@ -5072,9 +5152,6 @@ noprefix "false"
 central axis
 \emph default
  of their convex cone as:
-\end_layout
-
-\begin_layout Proof
 \begin_inset Formula 
 \[
 a=\frac{\sum_{i=1}^{k-1}w_{i}}{\left|\sum_{i=1}^{k-1}w_{i}\right|}
@@ -5090,12 +5167,12 @@ k-1
  meaning that 
 \begin_inset Formula 
 \[
-a\cdot\left(w_{i}\times w_{i+1}\right)>0\;\forall i\in\left[1:k-1\right]
+a\cdot\left(w_{i}\times w_{i+1}\right)>0\;\forall i\in\left[1:k-1\right],
 \]
 
 \end_inset
 
-and
+
 \begin_inset Formula 
 \[
 a\cdot\left(w_{k-1}\times w_{1}\right)>0.
@@ -5142,7 +5219,18 @@ note the
 \begin_inset Quotes erd
 \end_inset
 
- sign to obtain positive distance SOMETHING WRONG HERE WITH THIS MINUS.
+ sign to obtain positive distance
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+MATLAB has polyshapes stored with vertices in clockwise direction, hence
+ no minus sign in the code.
+\end_layout
+
+\end_inset
+
+.
  
 \begin_inset Note Note
 status collapsed
@@ -5214,29 +5302,36 @@ s
  and thus a compound function of minimal distance can be built.
 \begin_inset Formula 
 \[
-d=\min d_{i}.
+d=\min\left\{ d_{i}\right\} \;i\in\left[1,\right].
 \]
 
 \end_inset
 
-Since the function is not smooth the maximum can be found numerically.
- Elaborating on 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "Example:-A-square"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
- we can see 3 distances from convex hull faces as function of the parameter
- 
+Since projection is a linear transformation, and EGW endpoints segment being
+ parameterized uniformly, the distance function will be linearly dependent
+ on on 
+\emph on
+s
+\emph default
+ parameter.
+ Meaning that the distance function will be either constant or monotonically
+ increasing/decreasing along the change in 
 \emph on
 s
 \emph default
 .
+ Solution can be found by examining 
+\emph on
+k-1
+\emph default
+ 1st order polynomials and finding the maximized minimal value.
+ Since the functions are 1st order polynomials, there either will be 1 such
+ solution or infinite number of solutions (in case where there is a plane
+ parallel to the EGW endpoints segment and hence the distance is constant).
  
+\end_layout
+
+\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -5318,7 +5413,9 @@ Object with added contact
 
 \begin_layout Plain Layout
 Selecting the contact based on Inscribed Sphere Radius.
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Selecting-the-contact"
 
 \end_inset
 
@@ -5327,7 +5424,38 @@ Selecting the contact based on Inscribed Sphere Radius.
 
 \end_inset
 
-In this case, due to the symmetry of the object and the contact locations,
+
+\end_layout
+
+\end_inset
+
+Elaborating on the example 
+\begin_inset CommandInset ref
+LatexCommand vpageref
+reference "Example:-A-square"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:Selecting-the-contact"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ we can see 3 distances from convex hull faces as function of the parameter
+ 
+\emph on
+s
+\emph default
+.
+ In this case, due to the symmetry of the object and the contact locations,
  
 \begin_inset Formula $d_{1}$
 \end_inset
@@ -5341,328 +5469,10 @@ In this case, due to the symmetry of the object and the contact locations,
 \end_inset
 
  is constant.
+ In this case one of the distances is constant, and it is minimal at some
+ part of the domain.
+ Contact point selected to be furthest from the brink.
  Additional examples provided in Appendix.
-\end_layout
-
-\begin_layout Proof
-
-\family sans
-(which is equivalent to maximizing the sphere of origin centered inscribe
- sphere of the convex polyhedron) the 
-\emph on
-
-\begin_inset Formula $w_{4}$
-\end_inset
-
-
-\emph default
- point ought to be farthest as possible from the surface formed by 
-\begin_inset Formula $w_{1},w_{2}$
-\end_inset
-
- and the origin.
- Alternatively, the surface built by 3 points will be farthest from the
- origin when some point projected on the surface's normal direction will
- yield higher
-\end_layout
-
-\begin_layout Proof
-
-\family sans
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-Given 3 unit wrench vectors 
-\begin_inset Formula $w_{1},w_{2},w_{3}$
-\end_inset
-
-, we define a 
-\emph on
-central axis
-\emph default
- of their convex cone as:
-\begin_inset Formula 
-\begin{equation}
-a=\frac{w_{1}+w_{2}+w_{3}}{\left|w_{1}+w_{2}+w_{3}\right|}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Assuming a counterclockwise arrangement of the vectors around 
-\begin_inset Formula $a$
-\end_inset
-
-, respective distances from the boundary planes to the 
-\begin_inset Formula $w_{4}$
-\end_inset
-
- point can be written as:
-\begin_inset Formula 
-\begin{equation}
-d_{12}=\begin{bmatrix}x_{4}\\
-y_{4}\\
-z_{4}
-\end{bmatrix}\cdot\left(\begin{bmatrix}x_{1}\\
-y_{1}\\
-z_{1}
-\end{bmatrix}\times\begin{bmatrix}x_{2}\\
-y_{2}\\
-z_{2}
-\end{bmatrix}\right)
-\end{equation}
-
-\end_inset
-
-where cross product selected to yield a vector pointing inside the cone.
- Since origin centered inscribed sphere radius is a minimal of the distances
- to the planes, of convex polyhedra, we select the minimal distance from
- any and all surfaces to be:
-\begin_inset Formula 
-\begin{equation}
-D=\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-
-\family sans
-And hence, the 
-\begin_inset Formula $w_{4}$
-\end_inset
-
- vector to yield such a distance will be
-\begin_inset Formula 
-\begin{equation}
-w_{4}=\underset{\left[x_{4},y_{4},z_{4}\right]^{T}}{\mathrm{argmax}}\left(\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)\right)
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-
-\family sans
-Since the vectors normal to the cone faces projected on the 
-\begin_inset Quotes eld
-\end_inset
-
-base
-\begin_inset Quotes erd
-\end_inset
-
- of the cone are positively spanning the plane that the 
-\begin_inset Quotes eld
-\end_inset
-
-base
-\begin_inset Quotes erd
-\end_inset
-
- is on, any change of a 
-\begin_inset Formula $w_{4}$
-\end_inset
-
- point will increase some of the distances while decreasing other.
- Maximized minimal selected distance will be where all 3 distances are equal,
- and can be presented as shown below.
- This can be extended to cases for more complex convex cones, analogously
- to inscribing a circle in a polygon.
- In a way similar to such circle inscribed in a irregular polygon, the maximized
- minimal distance from the faces of a cone will lie along a central axis.
- Reader can refer to 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Icking2001,Delaunay1934"
-literal "true"
-
-\end_inset
-
-.
- 
-\emph on
-Note
-\emph default
-: The derivation above treated the vectors to be unit vectors, including
- the 
-\begin_inset Formula $w_{4}$
-\end_inset
-
-.
- In case where the 
-\begin_inset Formula $w_{4}$
-\end_inset
-
- point lies further from the origin (along the central axis of the convex
- cone), the inscribed sphere radius will increase as well.
- 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\emph on
-First, we need to find edges, whose generalized wrenches intersect with
- the inverted cone.
- After such edge is found, we can parameterize the location along the edge
- and get a vertical line in the wrench space.
- The distance from each edge can be written as a function of the location
- along the edge.
- 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\emph on
-We wish to maximize the minimal of the distances.
- Since the function is smooth (it is 
-\begin_inset Formula $\mathrm{C}^{0}$
-\end_inset
-
-), derivation of the maximum is impossible in explicit way but it can be
- done numerically.
- ALGORITHM 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\emph on
-Insert a picture here, with abscissa is the parameter along an edge, and
- ordinate is the distance from an edge.
- show 3 functions - for each edge, end the minimal among them.
- Select the maximal point.
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-Alternatively, we can express the radius of the inscribed sphere to be parameter
-ized by a location along an edge.
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\emph on
-Maximizing the minimum of several functions can be done by finding the intersect
-ion points between them (Is this valid in general) What about cases where
- functions are not monotonic?.
- In case of 3D space, 3 functions, in 2D also can be 3? What if the minima
- is higher at some other point? Find intersection points, find piece-wise
- the minimal function.
- Check for maximum higher than at the intersection point.
- Something about periodical functions and frequency ratios.
- What does it mean that the line of possible wrench vector end points is
- straight, and that the minimal distance from a plane will by or at some
- edge or along the whole line.
- If a line is parallel to the plane (projection on the plane's normal is
- 0) than the distance from that plane can be discarded.
- This happens if one of the planes is vertical, because in our cases such
- lines are vertical (normal direction is the same, but the torque component
- of the wrench is changing) 
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\emph on
-& For a vector, the distance of the end-point from a plane will monotonically
- increase or decrease ...
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-\series bold
-\shape italic
-\emph on
-\color green
-MAYBE ALL THIS SHOULD BE IN THE SOLUTION CHAPTER?
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-In addition, we can examine the distances of some general unit vector from
- the convex cone faces.
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-Unit vector in 
-\begin_inset Formula $\rthree$
-\end_inset
-
- can be parameterized by 2 values, we can select polar coordinates: azimuth
- from the positive 
-\emph on
-x-
-\emph default
-axis and angle from zenith (
-\emph on
-z
-\emph default
--axis) 
-\begin_inset Formula $\left[\varphi,\theta\right]$
-\end_inset
-
- to be such angles, and hence a general vector can be expressed as
-\begin_inset Formula 
-\[
-v=\begin{bmatrix}x\\
-y\\
-z
-\end{bmatrix}=\begin{bmatrix}\cos\varphi\cdot\sin\theta\\
-\sin\varphi\cdot\sin\theta\\
-\cos\theta
-\end{bmatrix}
-\]
-
-\end_inset
-
-Central axis of the convex cone is: 
-\begin_inset Formula $Ax=\left[\begin{array}{ccc}
-\frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2}\end{array}\right]^{T},$
-\end_inset
-
-which expressed in azimuth and elevation from the positive 
-\emph on
-x
-\emph default
- axis is 
-\begin_inset Formula $\left[0,\pi/4\right].$
-\end_inset
-
- Examining all possible directions of a unit vector in 
-\begin_inset Formula $\rthree$
-\end_inset
-
-, we can calculate the distance of the vector end point from a given plane
- passing through the origin by projecting the vector on the plane normal.
-\end_layout
-
-\begin_layout Standard
-
-\family sans
-The #ADDFIG shows 3 surfaces corresponding to distances 
-\begin_inset Formula $d_{12},d_{23},d_{31}$
-\end_inset
-
- with intersection points, marked with red vertical lines.
 \end_layout
 
 \begin_layout Subsection
@@ -5673,14 +5483,20 @@ Connectivity graph search
 When a object arrangement is given (or obtained) and desired amount of external
  constraints is found by proposed solution, there is no guarantee that there
  is no sub-set of objects which is not immobilized.
- Example of such unconstrained sub-set is shown below:
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Example of such unconstrained sub-set is shown below in FIG.
+ 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -5712,13 +5528,18 @@ Not immobilized object set while each object is immobilized individually.
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Despite the fact that each object is immobilized relative to others, a sub-set
  A is able to move, being held by 2 constraints only.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-This leads to a grasp assessment regarding sub-sets of the given arrangement.
+This leads to a need of grasp assessment for sub-sets of the given arrangement.
  Each connected sub-set should be tested and ensured to be first order immobiliz
 ed.
  Representing the objects arrangement as a connected graph one can find
@@ -5754,34 +5575,161 @@ Recursively excluding nodes and checking whether connected graphs exist.
 \end_layout
 
 \begin_layout Standard
-The algorithm is a depth first tree search.
- ?????? The algorithm is a simple iteration over given graph, excluding
- nodes and checking whether the graph is still connected.
- If it is, the sub-graph is added to the set of connected sub-graphs, and
- the algorithm is called recursively.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/graph_example_a.svg
+	lyxscale 30
+	width 30col%
+
+\end_inset
+
+
 \end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Full graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/graph_example_b.svg
+	lyxscale 30
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+B node removed
+\begin_inset Newline newline
+\end_inset
+
+no connected subgraphs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/graph_example_c.svg
+	lyxscale 30
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+C node removed
+\begin_inset Newline newline
+\end_inset
+
+AB subgraph is connected
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Graph, connected and disconnected subgraphs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
 
 \begin_layout Section
 Polygonal object evaluation
 \end_layout
 
-\begin_layout Standard
-Each polygonal object is defined by a set of vertices ordered in counterclockwis
-e (????) order.
- Each one of the objects is evaluated and several properties saved for future
- use:
+\begin_layout Plain Layout
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Polygonal object is defined by a set of vertices ordered in counterclockwise
+ order, which is the initial data given for a polygon.
+ For every and each one of the objects that are to be grasped following
+ properties are of interest:
 \end_layout
 
-\begin_layout Itemize
-Vertices locations
-\end_layout
-
-\begin_layout Itemize
-Concave vertices if exist
-\end_layout
-
-\begin_layout Itemize
-Vertex angles
+\begin_layout Plain Layout
+For the grasp planning on a single object:
 \end_layout
 
 \begin_layout Itemize
@@ -5797,7 +5745,17 @@ Normalized cumulative length along the boundary
 \end_layout
 
 \begin_layout Itemize
-Polygon center of area / Pole of inaccessibility for concave polygons
+Polygon center of area 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+/ Pole of inaccessibility for concave polygons
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Itemize
@@ -5808,6 +5766,28 @@ and triplets
 .
  Complexity 
 \begin_inset Formula $O(n^{k})\;for\;k=2,3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+Additionally, for objects placement planning:
+\end_layout
+
+\begin_layout Itemize
+Vertex angles
+\end_layout
+
+\begin_layout Itemize
+Concave vertices if exist
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
