@@ -209,7 +209,7 @@ theorems-bytype
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\c}{\textcolor{brown}{\&\& }}
+\newcommand{\c}{\textcolor{brown}{\&\&}}
 {\textcolor{brown}{\&\& }}
 \end_inset
 
@@ -8557,16 +8557,18 @@ Once every given object is immobilized by other objects and fingers, the
  constellation still might be not fully immobilized.
  Example: 
 \begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:2-Objects-not-immobilized"
+LatexCommand ref
+reference "fig:2-of-3-objects-not-immobilized"
 
 \end_inset
 
- shows 3 objects.
- Black object immobilized by 4 contacts from red and blue objects.
- Red and and blue are immobilized by two additional fingers each one.
- Noting the contacts that act on blue and black objects (shown as red arrows)
- intersect at same point and hence do not immobilize these two objects together.
+ shows 3 objects: black object is immobilized by 4 contacts from red and
+ blue objects while red and and blue are immobilized by two additional fingers
+ each one.
+ The contacts that act on blue and black objects (shown as red arrows) intersect
+ at same point and hence do not immobilize these two objects together –
+ namely, these two objects can rotate together about the contact intersection
+ point.
  
 \end_layout
 
@@ -8582,7 +8584,7 @@ status open
 \begin_inset Graphics
 	filename images/constellation_evaluation.svg
 	lyxscale 30
-	width 65text%
+	width 45text%
 
 \end_inset
 
@@ -8593,10 +8595,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-2 Objects not immobilized 
+2 of 3 objects are not immobilized.
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:2-Objects-not-immobilized"
+name "fig:2-of-3-objects-not-immobilized"
 
 \end_inset
 
@@ -8617,10 +8619,43 @@ name "fig:2-Objects-not-immobilized"
 Total immobilization can be achieved by ensuring that every possible subset
  of objects is immobilized.
  This requires extraction of all possible connected subsets from the given
- set object and evaluation whether it is or is not immobilized.
+ set object and evaluation whether they are or are not immobilized.
  Each constellation ought to have at least 4 external contacts.
- If there are less - additional contacts required to immobilize it (Example
- #ADDFIG).
+ If there are less - additional contacts required to immobilize it.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/not_immobilized_object_set.svg
+	lyxscale 30
+	width 30text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+2 objects set is not immobilized.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8629,10 +8664,7 @@ If the amount of external contacts is higher than 4, assessment of intersection
  or not.
  If the contacts intersect at one point, contact positions of added fingers
  can be altered in a regions that was found for that contact (see above
- (what, the regions?) maybe #ADDFIG), example #ADD FIGURE shows 2 objects
- independently immobilized, contact regions and possible corrected finger
- position.
- 
+ (what, the regions?) maybe #ADDFIG)
 \end_layout
 
 \begin_layout Standard
@@ -8647,7 +8679,18 @@ Further assessment of Grasp Quality Measure can be performed for given subset.
  Examining the grasps by computing GQMs shows that individual GQMs are high
  (maximal values) but total GQM (due to external contact vectors only) is
  low due to the directions of the external fingers contacts.
- The vectors have relatively low 
+ Example in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GQMs-difference."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows two polygonal objects immobilized by 4 external contacts.
+ External contact direction vectors have relatively low 
 \emph on
 y
 \emph default
@@ -8657,8 +8700,6 @@ y
 y
 \emph default
 -component of the wrench vectors.
- DEAL WITH THIS LATER.
- ADD EXAMPLE WITH NUMERICAL DATA OF GQM FOR EACH BODY AND FOR CONSTELLLATION.
 \end_layout
 
 \begin_layout Standard
@@ -8670,10 +8711,18 @@ status open
 \begin_layout Plain Layout
 \noindent
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
 \begin_inset Graphics
-	filename images/GQMs.pdf
+	filename images/GQMs.svg
 	lyxscale 30
-	width 55text%
+	width 35text%
 
 \end_inset
 
@@ -8684,7 +8733,64 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-GQMs
+Immobilized objects.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/GQMs.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Convex Hull for each object and for the set..
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GQMs differences.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GQMs-difference."
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8939,15 +9045,31 @@ Sum of angles == 180 degrees
 Sum of angles == 360 degrees
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+c
+\end_layout
+
+\end_inset
+
+ What about: ?
+\end_layout
+
+\begin_layout Itemize
 Description
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Itemize
 Completeness 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Itemize
 Complexity
 \end_layout
 
@@ -8957,11 +9079,10 @@ Rearranging the objects
 
 \begin_layout Standard
 Once desired configuration is found the rearrangement planning is needed.
-\end_layout
-
-\begin_layout Standard
-On object selected to stay in place, while others ought to move.
- 
+ Many algorithms for single object manipulations were developed, but in
+ this case due to several objects to be moved.
+ Objects placement algorithms are designed in a way that will allow stacking
+ the objects in the defined order.
 \end_layout
 
 \begin_layout Standard
@@ -8975,17 +9096,70 @@ literal "true"
 
 \end_inset
 
+ present methods for moving objects in assemblies in plane.
+ Simultaneous manipulation of several objects is out of the scope of this
+ research, and it is assumed that there is a way to rearrange the objects
+ from given configuration to the desired one.
+ 
+\end_layout
+
+\begin_layout Standard
+For the purposes of simulations and experiments, objects are scattered in
+ the workspace at distances that allow for each object to be repositioned
+ at desired location.
+ Each manipulation is defined by base object and moved object.
+ Objects are grasped and moved individually while maintaining finger positions
+ that will not interfere with adjacent objects.
+ Alternatively, if no such option exists, the object can be positioned at
+ a pre-pose and pushed from there.
+ 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Objects are moved by stable pushing which allows translation and rotation
+ of the object.
+ Geometric center assumed to be the center of rotation.
+\end_layout
+
+\end_inset
+
 
 \end_layout
 
 \begin_layout Standard
-OR Objects are moved by stable pushing which allows translation and rotation
- of the object.
- Geometric center assumed
+Base object is an object or a set of objects that serve as a base for a
+ moved object to be placed in contact to.
 \end_layout
 
 \begin_layout Section
 Limitations
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+c{What can I write here?} 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Limitations of the finger placement? Finger sizes, proximity to the vertex
+ – dealing with uncertainty.
+ While rearranging:
+\end_layout
+
+\begin_layout Standard
+Limitation of the multiobject evaluation? Object placement?
 \end_layout
 
 \begin_layout Standard
