@@ -14,7 +14,7 @@
    viewBox="0 0 800 600"
    version="1.1"
    id="SVGRoot"
-   inkscape:version="0.92.2 (5c3e80d, 2017-08-06)"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
    sodipodi:docname="cont_description.svg">
   <sodipodi:namedview
      id="base"
@@ -24,15 +24,15 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4133333"
-     inkscape:cx="400"
+     inkscape:cx="152.35848"
      inkscape:cy="300"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1920"
-     inkscape:window-height="1017"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="3840"
+     inkscape:window-height="2080"
+     inkscape:window-x="2869"
+     inkscape:window-y="-11"
      inkscape:window-maximized="1" />
   <defs
      id="defs815">
@@ -209,7 +209,7 @@
          id="tspan4217"
          x="374.64624"
          y="215.8019"
-         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-opacity:1">V</tspan></text>
+         style="font-style:italic;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Palatino Linotype';-inkscape-font-specification:'Palatino Linotype Italic';fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-opacity:1">n</tspan></text>
     <path
        style="fill:none;stroke:#006400;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:9, 3;stroke-dashoffset:0;marker-end:url(#marker4277)"
        d="M 144.33963,565.33019 398.46123,233.68508"
