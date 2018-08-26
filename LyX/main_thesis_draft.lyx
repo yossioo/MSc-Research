@@ -8817,8 +8817,18 @@ Given an unordered set of objects, each object is scanned and classified:
 \end_layout
 
 \begin_layout Standard
-First, we classify possible configurations of 2 adjacent bodies based on
- the amount of fingers needed for each body to complete the fixture.
+First of all, we need to know how many polygons with concave vertices exist,
+ and how many exist with vertex angles less than 
+\begin_inset Formula $90\text{°}$
+\end_inset
+
+.
+ Additionally, how many angles are smaller than concave angles if any.
+\end_layout
+
+\begin_layout Standard
+Recapping the inter object contact types along with the additional contacts
+ needed for the immobilization.
 \end_layout
 
 \begin_layout Standard
@@ -8826,9 +8836,19 @@ First, we classify possible configurations of 2 adjacent bodies based on
 \series bold
 Edge-to-edge
 \series default
- fixation provides two parallel contacts which are useful in cases where
- some other 2 different edges provide normal directions that are crossing
- in the parallel contacts' 
+ fixation provides two parallel contacts, their convex cone can be seen
+ as infinite 
+\begin_inset Quotes eld
+\end_inset
+
+corridor
+\begin_inset Quotes erd
+\end_inset
+
+, formed by the contact region swept along the contacts' normal direction.
+ The interaction can be considered useful in cases where some other 2 different
+ edges provide normal directions that are crossing in the parallel contacts'
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -8845,11 +8865,39 @@ corridor
 \begin_inset Quotes erd
 \end_inset
 
- , where normal directions of the adjacent edges induce opposite wrenches
- about the edge with two contacts.
+, where normal directions of 2 adjacent edges induce opposite wrenches about
+ the edge with two contacts.
  This requires at least 2 additional external contacts for each object to
  complete the fixture.
  
+\end_layout
+
+\begin_layout Standard
+One way of finding such configuration is checking whether there exists an
+ object with a vertex (concave or convex) that is projected on the interior
+ of some non-adjacent edge (base edge), the edge can be used as a base of
+ edge-to-edge contact, and the vertex's adjacent edges will serve as locations
+ for 2 additional fingers.
+ The grasp will be feasible if normal directions from the adjacent edges
+ and from the base edge will positively span 
+\begin_inset Formula $\rtwo$
+\end_inset
+
+.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+c
+\end_layout
+
+\end_inset
+
+ CONTINUE HERE &&
 \end_layout
 
 \begin_layout Standard
