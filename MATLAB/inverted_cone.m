@@ -106,9 +106,9 @@ d2 = dot(wk, cross(W2-wk, W3-wk));
 d3 = dot(wk, cross(W3-wk, W1-wk));
 d = min([d1;d2;d3]);
 mx = find(d==max(d));
-pos = s(mx(1))*p.E_norm_lengths(i) + p.Norm_cum_len(i) - eps
+pos = s(mx(1))*p.E_norm_lengths(i) + p.Norm_cum_len(i) - eps;
 
-plot(s,d1,'-r',s,d2,'-g',s,d3,'-b')
+plot(s,d1,'-b',s,d2,'-g',s,d3,'-.r','LineWidth',1)
 grid on;hold on
 ylabel('Inscribed sphere radius');
 xlabel('s')

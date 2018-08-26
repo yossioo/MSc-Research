@@ -128,6 +128,8 @@
       /><line x1="520.075" x2="520.075" y1="560.725" style="fill:none; stroke:red; stroke-width:2;" y2="475.15"
       /><path d="M619.7699 395.6982 L605.65 392.1682 L619.7699 388.6382" style="fill:none; stroke-width:2; fill-rule:evenodd; stroke:blue;"
       /><line x1="691.225" x2="605.65" y1="392.1682" style="fill:none; stroke:blue; stroke-width:2;" y2="392.1682"
+      /><path d="M619.7699 395.6982 L605.65 392.1682 L619.7699 388.6382" style="fill:none; stroke-width:2; fill-rule:evenodd; stroke:blue;"
+      /><line x1="691.225" x2="605.65" y1="392.1682" style="fill:none; stroke:blue; stroke-width:2;" y2="392.1682"
     /></g
   ></g
 ></svg
