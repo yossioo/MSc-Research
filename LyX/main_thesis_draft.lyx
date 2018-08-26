@@ -9002,24 +9002,20 @@ status open
 
 \end_layout
 
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:In-v-a"
-
-\end_inset
-
-
+\begin_layout Standard
+First, we classify possible configurations of 2 adjacent bodies based on
+ the amount of fingers needed for each body to complete the fixture.
 \end_layout
 
-\end_inset
+\begin_layout Standard
 
-
-\end_layout
-
+\series bold
+Edge-to-edge
+\series default
+ fixation provides two parallel contacts which are useful in cases where
+ some other 2 different edges provide normal directions that are crossing
+ in the parallel contacts' 
+\begin_inset Quotes eld
 \end_inset
 
 
@@ -9038,17 +9034,9 @@ status open
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:In-v-b"
-
+.
+ Simple example would be a case with a vertex inside of the 
+\begin_inset Quotes eld
 \end_inset
 
 
@@ -9056,10 +9044,16 @@ name "fig:In-v-b"
 
 \end_inset
 
-
+ , where normal directions of the adjacent edges induce opposite wrenches
+ about the edge with two contacts.
+ This requires at least 2 additional external contacts for each object to
+ complete the fixture.
+ 
 \end_layout
 
-\end_inset
+\begin_layout Standard
+\begin_inset Note Note
+status open
 
 
 \end_layout
