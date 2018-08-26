@@ -249,7 +249,7 @@ Department of Mechanical Engineering
 
 
 \begin_inset Graphics
-	filename images/BGU_Logo.png
+	filename ../../Desktop/images/BGU_Logo.png
 	lyxscale 30
 	width 15page%
 
@@ -358,7 +358,7 @@ status open
 \size large
 \bar under
 \begin_inset Graphics
-	filename images/amir.png
+	filename ../../Desktop/images/amir.png
 	lyxscale 30
 	height 1cm
 
@@ -2084,7 +2084,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/object w contact.svg
+	filename ../../Desktop/images/object w contact.svg
 	lyxscale 30
 	width 25text%
 
@@ -2227,7 +2227,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/friction cone.svg
+	filename ../../Desktop/images/friction cone.svg
 	lyxscale 30
 
 \end_inset
@@ -2409,7 +2409,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/Murray-GraspMap.png
+	filename ../../Desktop/images/Murray-GraspMap.png
 	lyxscale 50
 	width 75text%
 
@@ -2732,7 +2732,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/ConvexHull.svg
+	filename ../../Desktop/images/ConvexHull.svg
 	lyxscale 50
 	width 50text%
 
@@ -2740,7 +2740,7 @@ status open
 
 
 \begin_inset Graphics
-	filename images/ConvexHull-Sphere.svg
+	filename ../../Desktop/images/ConvexHull-Sphere.svg
 	lyxscale 50
 	width 50text%
 
@@ -2979,7 +2979,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/nguyen_1.bmp
+	filename ../../Desktop/images/nguyen_1.bmp
 	lyxscale 30
 	width 30text%
 
@@ -2987,7 +2987,7 @@ status open
 
 
 \begin_inset Graphics
-	filename images/nguyen2.png
+	filename ../../Desktop/images/nguyen2.png
 	lyxscale 30
 	width 30text%
 
@@ -3225,7 +3225,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/set_example.svg
+	filename ../../Desktop/images/set_example.svg
 	lyxscale 30
 	width 70text%
 
@@ -3472,7 +3472,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/cont_v2e.svg
+	filename ../../Desktop/images/cont_v2e.svg
 	lyxscale 30
 	width 35text%
 
@@ -3538,7 +3538,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/cont_e2e.svg
+	filename ../../Desktop/images/cont_e2e.svg
 	lyxscale 30
 	width 75text%
 
@@ -3602,7 +3602,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/cont_v2iv.svg
+	filename ../../Desktop/images/cont_v2iv.svg
 	lyxscale 30
 	width 35text%
 
@@ -3654,7 +3654,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/multi-object-vertex.svg
+	filename ../../Desktop/images/multi-object-vertex.svg
 	lyxscale 30
 	width 45text%
 
@@ -3756,7 +3756,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/cont_description.svg
+	filename ../../Desktop/images/cont_description.svg
 	lyxscale 30
 	width 55text%
 
@@ -3972,7 +3972,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/minimum_4_fing.svg
+	filename ../../Desktop/images/minimum_4_fing.svg
 	lyxscale 30
 	width 45text%
 
@@ -4039,7 +4039,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/solutions_existence.svg
+	filename ../../Desktop/images/solutions_existence.svg
 	lyxscale 30
 	width 55text%
 
@@ -4379,7 +4379,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/Edge-Generalized-Wrench.svg
+	filename ../../Desktop/images/Edge-Generalized-Wrench.svg
 	lyxscale 30
 	width 75text%
 
@@ -4620,7 +4620,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/inverted_cone_A.svg
+	filename ../../Desktop/images/inverted_cone_A.svg
 	lyxscale 30
 	width 75text%
 
@@ -4779,7 +4779,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/example_inverted_cone_placement.svg
+	filename ../../Desktop/images/example_inverted_cone_placement.svg
 	lyxscale 30
 	width 45text%
 
@@ -4915,7 +4915,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/example_inv_cone_01.svg
+	filename ../../Desktop/images/example_inv_cone_01.svg
 	lyxscale 30
 	width 75text%
 
@@ -5028,7 +5028,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/example_inv_cone_02.svg
+	filename ../../Desktop/images/example_inv_cone_02.svg
 	lyxscale 30
 	width 75text%
 
@@ -5357,7 +5357,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/example_inv_cone_03.svg
+	filename ../../Desktop/images/example_inv_cone_03.svg
 	lyxscale 30
 	width 45col%
 
@@ -5390,7 +5390,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/example_inv_cone_04.svg
+	filename ../../Desktop/images/example_inv_cone_04.svg
 	lyxscale 30
 	width 45col%
 
@@ -5507,7 +5507,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/not_immobilized_object_set.svg
+	filename ../../Desktop/images/not_immobilized_object_set.svg
 	lyxscale 30
 	width 55text%
 
@@ -5597,7 +5597,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/graph_example_a.svg
+	filename ../../Desktop/images/graph_example_a.svg
 	lyxscale 30
 	width 30col%
 
@@ -5630,7 +5630,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/graph_example_b.svg
+	filename ../../Desktop/images/graph_example_b.svg
 	lyxscale 30
 	width 30col%
 
@@ -5667,7 +5667,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/graph_example_c.svg
+	filename ../../Desktop/images/graph_example_c.svg
 	lyxscale 30
 	width 30col%
 
@@ -5779,7 +5779,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/GQMs.svg
+	filename ../../Desktop/images/GQMs.svg
 	lyxscale 30
 	width 35text%
 
@@ -5812,7 +5812,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/GQM_set_vs_one.svg
+	filename ../../Desktop/images/GQM_set_vs_one.svg
 	lyxscale 30
 	width 35text%
 
@@ -6832,7 +6832,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/4_contacts.svg
+	filename ../../Desktop/images/4_contacts.svg
 	lyxscale 30
 	width 45text%
 
@@ -8679,7 +8679,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/constellation_evaluation.svg
+	filename ../../Desktop/images/constellation_evaluation.svg
 	lyxscale 30
 	width 45text%
 
@@ -8725,7 +8725,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/not_immobilized_object_set.svg
+	filename ../../Desktop/images/not_immobilized_object_set.svg
 	lyxscale 30
 	width 30text%
 
@@ -8865,7 +8865,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/OP_e2e.svg
+	filename ../../Desktop/images/OP_e2e.svg
 	lyxscale 30
 	width 35text%
 
@@ -8898,7 +8898,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/OP_e2e_02.svg
+	filename ../../Desktop/images/OP_e2e_02.svg
 	lyxscale 30
 	width 35text%
 
@@ -8993,7 +8993,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/OP_v2iv.svg
+	filename ../../Desktop/images/OP_v2iv.svg
 	lyxscale 30
 	width 35text%
 
@@ -9002,20 +9002,24 @@ status open
 
 \end_layout
 
-\begin_layout Standard
-First, we classify possible configurations of 2 adjacent bodies based on
- the amount of fingers needed for each body to complete the fixture.
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:In-v-a"
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
+\end_inset
 
-\series bold
-Edge-to-edge
-\series default
- fixation provides two parallel contacts which are useful in cases where
- some other 2 different edges provide normal directions that are crossing
- in the parallel contacts' 
-\begin_inset Quotes eld
+
+\end_layout
+
 \end_inset
 
 
@@ -9028,15 +9032,23 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/OP_v2iv_ce.svg
+	filename ../../Desktop/images/OP_v2iv_ce.svg
 	lyxscale 30
 	width 35text%
 
 \end_inset
 
-.
- Simple example would be a case with a vertex inside of the 
-\begin_inset Quotes eld
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:In-v-b"
+
 \end_inset
 
 
@@ -9044,16 +9056,10 @@ status open
 
 \end_inset
 
- , where normal directions of the adjacent edges induce opposite wrenches
- about the edge with two contacts.
- This requires at least 2 additional external contacts for each object to
- complete the fixture.
- 
+
 \end_layout
 
-\begin_layout Standard
-\begin_inset Note Note
-status open
+\end_inset
 
 
 \end_layout
