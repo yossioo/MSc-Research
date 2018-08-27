@@ -8,7 +8,7 @@
 \begin_preamble
 % set fonts for nicer pdf view
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
-
+%\usepackage{myModule}
 
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
@@ -17,31 +17,11 @@
 \usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
 
 
-
-% Flowcharts
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows,matrix}
-
 \newcommand*{\blankpage}{%
   \par\vspace*{0.25\textheight}%
   {\centering \emph{This page intentionally left blank.}\par}
   \vspace{\fill}%
 }
-%\makeatletter
-%\renewcommand*{\cleardoubleoddstandardpage}{%
-%  \clearpage
-%  \if@twoside
-%    \ifodd\c@page
-%    \else
-%      \blankpage
-%      \thispagestyle{empty}%
-%      \newpage
-%      \if@twocolumn\hbox{}\newpage\fi
-%    \fi
-%  \fi
-%}
-%\makeatother
-
 \usepackage{scrlayer}
 \DeclareNewLayer[
     foreground,
@@ -58,7 +38,6 @@
 \renewcommand{\nomentryend}{\dotfill#1}}
 
 
-
 % avoids that floats are placed above its sections
 %\let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
 
@@ -70,15 +49,25 @@
 \providecommand{\eqautorefname}{Equation}
 
 
+% Make references automatically formatted
 \AtBeginDocument{%
 \let\ref\autoref
 %\renewcommand\equationautorefname{\@gobble}
 }
+
+
+
+% Flowcharts
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[siunitx]{circuitikz}
+\usetikzlibrary{shapes,arrows,matrix}
+\usepackage{pgfplots}
+\usepackage{smartdiagram}
 \end_preamble
 \options a4paper,12pt,openany, marginparwidth=1cm, marginparsep=1cm
 \use_default_options true
 \begin_modules
-endnotes
 theorems-bytype
 \end_modules
 \maintain_unincluded_children false
@@ -5880,6 +5869,9 @@ The algorithm # detects whether a given point belongs to a boundary of given
 \end_layout
 
 \begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -5927,7 +5919,7 @@ KwResult{Boolean True if the point lies on polygon boundary}
 
 	
 \backslash
-For{$e_1,e_2$ = adjacent veritces of $P$}
+For{$e_1,e_2$ = adjacent vertices of $P$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -5994,6 +5986,11 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 The algorithm # is used to perform an inspection of contact points for given
  2 polygons.
@@ -6001,6 +5998,9 @@ The algorithm # is used to perform an inspection of contact points for given
  all contacts both the location and direction of the contact and the polygons
  IDs (numbers) that the contact relates to.
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -6405,6 +6405,11 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Once all contacts between all polygons are determined, remaining needed
  fingers placement can be done for each polygon.
@@ -6474,6 +6479,9 @@ reference "subsec:Inverted-cone-test"
  is used to select the most promising contact location.
  The algorithm is presented below:
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -6718,6 +6726,11 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 The algorithms gives a solution for cases where 3 given contacts' wrench
  space vectors are linearly independent.
@@ -6740,6 +6753,9 @@ Set some error margins for placement uncertainty.
  #CHECK again the logic in this sections, see if it matches the one presented
  in the class on July 29.
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -6785,6 +6801,11 @@ Selecting two (non-parallel) contacts and form a cone along with anti-cone.
  or both.
  Check whether that segment(s) has normal projections on edges of the polygon.
  For every edge that got a real projection of the segment on it form a }
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6912,6 +6933,9 @@ the plane
  If such edge found, two marginal wrenches are tested to get grasp quality
  measure, which is saved along with contact locations.
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -7196,6 +7220,11 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 If no such edge found, or if higher quality measures are desired, variants
  of 2 edge combinations are selected to check whether they complete the
@@ -7208,6 +7237,9 @@ If no such edge found, or if higher quality measures are desired, variants
  from wrenches that have largest grasp quality measure.
  The algorithm is presented below:
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -7593,6 +7625,11 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 Finding 3 finger contacts for 1 inter-object contact
 \end_layout
@@ -7679,6 +7716,9 @@ Two variants of the algorithm presented, where first one is testing simple
  combinations with lower computational complexity, and second one is more
  robust but requires more computations.
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -8044,10 +8084,18 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 If no suitable combinations found by the algorithm presented above, following
  algorithm can be used:
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -8510,6 +8558,11 @@ twoheadleftarrow
 
 \backslash
 end{algorithm}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -8987,7 +9040,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -9026,7 +9079,7 @@ name "fig:In-v-a"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -9133,19 +9186,6 @@ Vertex-to-inner-vertex with a contiguous edge and a contact point fixation
 Vertex-to-inner-vertex with additional contact points are equivalent to
  the vertex-to-inner-vertex with contiguous edges formations.
  The provide same amount of contacts, but the normal directions can differ.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{CONTINUE HERE}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -9168,7 +9208,7 @@ reference "fig:Contiguous-edge-with"
 
 \end_inset
 
- shows an example of possible contact locations for this fixation.5
+ shows an example of possible contact locations for this fixation.
 \begin_inset Float figure
 wide false
 sideways false
@@ -9215,6 +9255,222 @@ name "fig:Contiguous-edge-with"
 Given all this considerations, presented set of objects can be arranged
  to require the minimal amount of external fingers for each object and hence
  minimal amount of fingers in total.
+\end_layout
+
+\begin_layout Standard
+\align block
+The approach for objects rearrangement is to stack objects in configuration
+ that will require amount of minimal fingers for each object, maximizing
+ number of inter-object effective contacts.
+ The order of the stacking is suitable for the one-by-one object manipulation.
+ The possible inter-object fixations can be ordered by amount and restrictions
+ on additional contacts that are to be applied.
+\end_layout
+
+\begin_layout Standard
+\align block
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagramset{set color list={green,green,green,yellow,orange,red},
+\end_layout
+
+\begin_layout Plain Layout
+
+back arrow disabled=true}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagram[descriptive diagram]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 2 contiguous edges}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 1 contiguous edge with point contact}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 1 contiguous edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2, {Edge to edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2, {Inner vertex}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2+, {Vertex to edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Object placement priority.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Basically, last option (vertex to edge) will never be selected intentionally
+ since if there is an option to place an vertex on an edge, there also is
+ an option to place edge on edge.
+ Vertex-to-inner vertex option is preferred over Inner-vertex since it potential
+ly can be fixed with sole finger.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_cc2.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+2 Contiguous edges.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{CONTINUE HERE}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{See whether this is relevant:}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9297,6 +9553,9 @@ Sum of angles == 360 degrees
 \end_layout
 
 \begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -9341,6 +9600,11 @@ Complexity
 \begin_layout Plain Layout
 
 }
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -9690,9 +9954,17 @@ Written before the Introduction
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "main,IEEEfull"
+btprint "btPrintCited"
+bibfiles "main"
 options "bibtotoc,apalike"
 
 \end_inset
@@ -9755,7 +10027,7 @@ Examples of rearranged object sets
 \end_layout
 
 \begin_layout Chapter
-Examples of finger found for sets
+Examples of finger combinations found for sets
 \end_layout
 
 \begin_layout Chapter
@@ -9784,6 +10056,345 @@ status open
 \backslash
 z{test}
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Junk
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw (0,0) to [R=1<
+\backslash
+kilo 
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,0) to [ I , i=50<
+\backslash
+milli 
+\backslash
+ampere>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,0) to [R=516<
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,3) to [V,v=50<V>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,3) to [diode ]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,3) to [ ospst=S]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagram[descriptive diagram]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Style,{Define shapes, colors, shading,
+\end_layout
+
+\begin_layout Plain Layout
+
+          and line styles for nodes and arrows}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Position, {Place nodes using a matrix,
+\end_layout
+
+\begin_layout Plain Layout
+
+              relative or absolute positioning}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Relation, Insert edges or arrows
+\end_layout
+
+\begin_layout Plain Layout
+
+             between selected nodes},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Label, Add labels on edges or arrows}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Preview
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{scope}[blend group = soft light]
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[red!30!white]   ( 90:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[green!30!white] (210:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[blue!30!white]  (330:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 90:2)    {Typography};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 210:2)   {SDfasdfasdfasdf};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 330:2)   {Coding};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node [font=
+\backslash
+Large] {
+\backslash
+LaTeX};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+222
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+———–
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+[grid=major,samples=30,mark=none]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[blue,very thick ,domain=-180:180]{sin(x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+XY example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\xymatrix{\text{Some text here}\ar[drr] & \cos\left(\theta\right) & e\\
+c\ar[rr]_{Under}^{Over} &  & f
+}
+\]
 
 \end_inset
 
