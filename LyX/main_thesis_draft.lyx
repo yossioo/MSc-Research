@@ -203,7 +203,7 @@ theorems-bytype
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\z}[1]{\textsf{\textbf{\textit{*\textcolor{red}{\emph{*#1}}}}} }
+\newcommand{\z}[1]{\textsf{\textbf{\textit{*\textcolor{red}{\emph{*\;#1}}}}} }
 {#1}
 \end_inset
 
@@ -8859,7 +8859,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \noindent
@@ -8892,7 +8892,7 @@ Spanning vectors
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \noindent
@@ -9153,13 +9153,62 @@ z{CONTINUE HERE}
 \series bold
 Contiguous edge with point contact
 \series default
- fixation forms a case with 3 contacts, which has to be divided to 2 sub-cases:
- where the contact can slip and where it cannot, namely - whether the point
- contact projection lies in the interior of the contiguous edge (OR IS IT
- if the point contact normal induces opposite wrenches about contiguous
- edge's vertices ?).
- Examples of such cases show below.
- Case B allows fixture with one additional finger, while Case A does not.
+ fixation forms a case with 3 contacts, which allows fixation with one additiona
+l finger under certain conditions: there should exist an edge, which projections
+ common segment with the point contact's normal has a part lying inside
+ the edge contact's infinite projection and also the new edge, point and
+ given edge normal directions should span 
+\begin_inset Formula $\rtwo$
+\end_inset
+
+.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Contiguous-edge-with"
+
+\end_inset
+
+ shows an example of possible contact locations for this fixation.5
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_c2_p.svg
+	lyxscale 30
+	width 50text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Contiguous edge with point contact.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Contiguous-edge-with"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
