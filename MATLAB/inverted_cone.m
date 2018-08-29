@@ -61,30 +61,32 @@ legend({'$w_a$','$w_b$','$w_c$',...
 saveas(gcf,'../LyX/images/example_inv_cone_01.svg')
 
 %%
-% figure(3); clf;
-% edge_names = {'West edge','North edge','East edge','South edge'};
-% for i = 1:p.N_e
-%     subplot(2,2,i)
-%     tetramesh(iDT,'FaceAlpha',0.1,'FaceColor','b');
-%     hold on; grid on; axis equal;
-% %     a = gca;
-% %     a.Position = [0.1+(1-mod(i,2))*0.5, 0.6-0.475*(i>2), .35, .35];
-%     view(-35,15)
-%     zlabel('\tau_z','FontSize',20)
-%     xlabel('f_x','FontSize',20)
-%     ylabel('f_y','FontSize',20)
-%     title(edge_names{i})
-%     n = p.Inner_normals(i,:);
-%     e1 = p.Edges(i,:);
-%     e2 = p.Edges(i+1,:);
-%     w = [n, cross2d(e1,n);
-%         n, cross2d(e2,n)];
-%     DT_GEW = delaunayTriangulation([1e-3 1e-3 0; -1e-3 2.5e-3 1e-4 ; w]);
-%     tetramesh(DT_GEW,'FaceAlpha',0.1,'FaceColor','y');
-%     quiver3(0*w(:,1),0*w(:,1),0*w(:,1),w(:,1),w(:,2),w(:,3),'AutoScale','off')
-% 
-% end
-% saveas(gcf,'../LyX/images/example_inv_cone_02.svg')
+figure(3); clf;
+cr = ceil(sqrt(p.N_e)); %cols-rows
+% edge_names = 'Edge ' + string((1:p.N_e)');
+edge_names = {'West edge','North edge','East edge','South edge'};
+for i = 1:p.N_e
+    subplot(cr,cr,i)
+    tetramesh(iDT,'FaceAlpha',0.1,'FaceColor','b');
+    hold on; grid on; axis equal;
+%     a = gca;
+%     a.Position = [0.1+(1-mod(i,2))*0.5, 0.6-0.475*(i>2), .35, .35];
+    view(-35,15)
+    zlabel('\tau_z','FontSize',20)
+    xlabel('f_x','FontSize',20)
+    ylabel('f_y','FontSize',20)
+    title(edge_names{i})
+    n = p.Inner_normals(i,:);
+    e1 = p.Edges(i,:);
+    e2 = p.Edges(i+1,:);
+    w = [n, cross2d(e1,n);
+        n, cross2d(e2,n)];
+    DT_GEW = delaunayTriangulation([1e-3 1e-3 0; -1e-3 2.5e-3 1e-4 ; w]);
+    tetramesh(DT_GEW,'FaceAlpha',0.1,'FaceColor','y');
+    quiver3(0*w(:,1),0*w(:,1),0*w(:,1),w(:,1),w(:,2),w(:,3),'AutoScale','off')
+
+end
+saveas(gcf,'../LyX/images/example_inv_cone_02.svg')
 
 %%
 figure(4); clf;

@@ -6,6 +6,12 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
+% Algorithms
+\usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
+%\PassOptionsToPackage{linesnumbered}{algorithm2e}
+%\PassOptionsToPackage{algoruled}{algorithm2e}
+%\PassOptionsToPackage{boxed}{algorithm2e}
+
 % set fonts for nicer pdf view
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
 %\usepackage{myModule}
@@ -13,8 +19,6 @@
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
 
-% Algorithms
-\usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
 
 
 \newcommand*{\blankpage}{%
@@ -2259,7 +2263,19 @@ capable
 \end_layout
 
 \begin_layout Standard
-INSERT CONTACT TYPES SUMMARIZING FIGURE HERE
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{INSERT CONTACT TYPES SUMMARIZING FIGURE HERE}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2368,6 +2384,7 @@ z{WHAT?}
 
 \end_inset
 
+.
  Grasp map for this example is given by:
 \begin_inset Formula 
 \begin{equation}
@@ -3154,6 +3171,9 @@ In a common workspace polygonal objects can contact one another in several
  After the classification is presented, an algorithm for finger placement
  given configuration of polygons is proposed, and then an algorithm for
  polygons placement is proposed.
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -3327,6 +3347,10 @@ right
 
 \end_inset
 
+ 
+\end_layout
+
+\begin_layout Standard
 Let
 \begin_inset Formula $\hat{n}_{i}^{j}$
 \end_inset
@@ -4275,6 +4299,12 @@ z{Check the following, what is this? Do I need it at all? }
 \begin_layout Standard
 
 \emph on
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\emph on
 The existence of the solution depends on the rank of the
 \begin_inset Formula $G$
 \end_inset
@@ -4284,14 +4314,14 @@ The existence of the solution depends on the rank of the
  solution) we need to ensure that the rows are linearly independent.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \emph on
 Since the matrix is built with blocks, we can see that there are no (and
  cannot be) 2 linearly dependent block rows.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \emph on
 Assuming that block rows i and j are linearly dependent.
@@ -4307,23 +4337,28 @@ Assuming that block rows i and j are linearly dependent.
  only.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \emph on
 Therefore, if given matrix has full rank, there exists a non-trivial (but
  not unique) set of forces that will keep the system in equilibrium.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \emph on
 3 Frictionless contacts that intersecting at one point.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \emph on
 Direction of contacts should
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -5807,6 +5842,1195 @@ name "fig:GQMs-difference."
 \end_layout
 
 \begin_layout Section
+Determining new configuration for objects
+\end_layout
+
+\begin_layout Standard
+Given an unordered set of objects, each object is scanned and classified:
+ number of edges, concave vertices, edges' lengths.
+ Scanned and classified objects allow assessment of different constellations
+ for future grasping.
+ Based on the algorithms and inter-object contacts classification as presented
+ above, several strategies for object rearrangement can be implemented.
+\end_layout
+
+\begin_layout Standard
+\align block
+The approach for objects rearrangement is to stack objects in configuration
+ that will require amount of minimal fingers for each object, maximizing
+ number of inter-object effective contacts.
+ Objects in the set in the new configuration can be described by a tree,
+ where the root is some selected object, and all other objects described
+ as children in a way similar to URDF style
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ros.org2009"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+First of all, we need to know how many polygons with concave vertices exist,
+ and how many exist with vertex angles less than 
+\begin_inset Formula $90\text{°}$
+\end_inset
+
+.
+ Additionally, how many angles are smaller than concave angles if any.
+\end_layout
+
+\begin_layout Standard
+Recapping the inter object contact types along with the additional contacts
+ needed for the immobilization, we assume that the parent object is immobilized
+ and inducing contact forces on a child object, which has to be immobilized
+ by additional fingers.
+ In the following paragraphs, term
+\begin_inset Quotes eld
+\end_inset
+
+fixation
+\begin_inset Quotes erd
+\end_inset
+
+ refers to the contacts of the parent object acting on the child object.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Edge-to-edge
+\series default
+ fixation provides two parallel contacts, their convex cone can be seen
+ as infinite 
+\begin_inset Quotes eld
+\end_inset
+
+corridor
+\begin_inset Quotes erd
+\end_inset
+
+, formed by the contact region swept along the contacts' normal direction.
+ The interaction can be considered useful in cases where some other 2 different
+ edges provide normal directions that are crossing in the parallel contacts'
+ 
+\begin_inset Quotes eld
+\end_inset
+
+corridor
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Simple example would be a case with a vertex inside of the 
+\begin_inset Quotes eld
+\end_inset
+
+corridor
+\begin_inset Quotes erd
+\end_inset
+
+, where normal directions of 2 adjacent edges induce opposite wrenches about
+ the edge with two contacts.
+ This requires at least 2 additional external contacts for each object to
+ complete the fixture.
+\end_layout
+
+\begin_layout Standard
+One way of finding such configuration is checking whether there exists an
+ object with a vertex (concave or convex) that is projected on the interior
+ of some non-adjacent edge (base edge), the edge can be used as a base of
+ edge-to-edge contact, and the vertex's adjacent edges will serve as locations
+ for 2 additional fingers.
+ The grasp will be feasible if normal directions from the adjacent edges
+ and from the base edge will positively span 
+\begin_inset Formula $\rtwo$
+\end_inset
+
+.
+ Example of feasible and non feasible grasps are shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Edge-infinite-projection"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_e2e.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Spanning vectors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_e2e_02.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Not spanning vectors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Edge infinite projection and vertex with adjacent normal vectors.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Edge-infinite-projection"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vertex-to-inner-vertex
+\series default
+fixation provides 2 edges normal directions, which yield a convex cone with
+ distinct vertex (unlike two parallel contacts which can be considered as
+ convex cone with a vertex at infinity).
+\end_layout
+
+\begin_layout Standard
+This fixation allows use of single edge to complete the fixture, given that
+ the edge's inner normal direction is a negative combination of the given
+ contacts' directions, and the edge allows two distinct contacts with opposing
+ wrenches about the vertex (i.e.
+ vertex is projected on the inner of the edge segment), as shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:In-v-a"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ In case no such edge exist, two different edges provide normal directions
+ which form a convex cone that mutually overlap(have a common region) the
+ given convex cone (or their anti-cones), and the line connecting the vertices
+ of the cones is in the interior of the overlapping region.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_v2iv.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:In-v-a"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_v2iv_ce.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:In-v-b"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Inner vertex.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Inner-vertex."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vertex-to-inner-vertex with contiguous edge
+\series default
+fixation contributes 3 effective contacts and needs only one external finger
+ contact in the optimal case.
+ For this there should exist an edge which projection along it's normal
+ direction has 2-contact vertex inside it's interior and a there exists
+ an intersecting segment of that projection and the 3rd normal direction
+ that lies inside the convex cone of first 2 normals.
+ Example of such configuration is shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:In-v-b"
+
+\end_inset
+
+.
+ If no such edge exists, 2 external contacts are required to immobilize
+ this grasp by a method presented above
+\end_layout
+
+\begin_layout Standard
+Vertex-to-inner-vertex with 2 contiguous edges fixation provides a optimal
+ configuration which requires sole external contact for the immobilization
+ of the object.
+ Since objects are polygonal objects with non intersection edges and non-zero
+ thickness, there will always exist an edge with a normal direction that
+ will complete the form closure.
+\end_layout
+
+\begin_layout Standard
+Vertex-to-inner-vertex with a contiguous edge and a contact point fixation
+ is similar to the previous one except for the normal direction, and hence
+ in certain cases can be self immobilizing.
+\end_layout
+
+\begin_layout Standard
+Vertex-to-inner-vertex with additional contact points are equivalent to
+ the vertex-to-inner-vertex with contiguous edges formations.
+ The provide same amount of contacts, but the normal directions can differ.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Contiguous edge with vertex point contact
+\series default
+ fixation forms a case with 3 contacts, which allows fixation with one additiona
+l finger under certain conditions: there should exist an edge, which projections
+ common segment with the point contact's normal has a part lying inside
+ the edge contact's infinite projection and also the new edge, point and
+ given edge normal directions should span 
+\begin_inset Formula $\rtwo$
+\end_inset
+
+.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Contiguous-edge-with"
+
+\end_inset
+
+ shows an example of possible contact locations for this fixation.
+\end_layout
+
+\begin_layout Standard
+Example on 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:2-Contiguous-edges."
+
+\end_inset
+
+ describes 2 contiguous edges, which can be seen as sub case for the described
+ fixation and any contact with normal direction which is negative linear
+ combination of the normals of 2 edges will immobilize the object.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_c2_p.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Contiguous edge with point contact.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Contiguous-edge-with"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_cc2.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+2 Contiguous edges.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:2-Contiguous-edges."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of preferred edge contacts.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\SpecialChar allowbreak
+Given all these considerations, presented set of objects can be arranged
+ to require the minimal amount of external fingers for each object and hence
+ minimal amount of fingers in total.
+\end_layout
+
+\begin_layout Standard
+\align block
+The order of the stacking is suitable for the one-by-one object manipulation.
+ Possible inter-object fixations can be ordered by amount and restrictions
+ on additional contacts that are to be applied.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Object-placement-priority."
+
+\end_inset
+
+ describes the order of preferable inter-object relations, based on amount
+ of external fingers needed for the immobilization of child object relative
+ to the parent.
+\end_layout
+
+\begin_layout Standard
+\align block
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagramset{set color list={green,green,green,yellow,orange,red},
+\end_layout
+
+\begin_layout Plain Layout
+
+back arrow disabled=true}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagram[descriptive diagram]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 2 contiguous edges}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 1 contiguous edge with point contact}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 1 contiguous edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2, {Edge to edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2, {Vertex-to-inner-vertex}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2+, {Vertex to edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Object placement priority.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Object-placement-priority."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Basically, last option (vertex to edge) will never be selected intentionally
+ since if there is an option to place an vertex on an edge, there also is
+ an option to place edge on edge.
+ Vertex-to-inner vertex option also exists but for stability it is preferred
+ to rotate the child object so it will have more parent contacts - vertex-to-inn
+er-vertex with a contiguous edge.
+\end_layout
+
+\begin_layout Standard
+First step is to define a root object, which will serve as base for further
+ object stacking.
+ This is done either by selecting a polygon with concave vertex, or stacking
+ together two objects to form a concavity.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Defining the root object}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwData{Set of polygons $P = {p_i}
+\backslash
+;i
+\backslash
+in 
+\backslash
+left[ 1,K 
+\backslash
+right]$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwResult{Tree of objects including the root object and possibly one child;
+ defining the root concavity.}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+eIf{$
+\backslash
+exists$ 1+ concave vertices}
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	Root object = $p_i$ with widest concave vertex
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+{ % No concave vertices
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+eIf{$
+\backslash
+exists$ 2 vertices with inner angles $
+\backslash
+geq 90 
+\backslash
+textdegree$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Root = $p$ with greatest angle
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Root.Child(k) = $p$ with second greatest angle
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Align vertices to conctact, child leans on longest adjacent edge of the
+ parent
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Root = $p$ with longest edge
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Root.Child(k) = $p$ with second longest edge
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Align longest edges to be collinear, vertex on child's longest edge coincident
+ with midpoint of parent's longest edge.
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When root object is determined, further stacking can be done.
+ If there are objects with vertex angles less than the concavity angle,
+ they are stacked together inside the concavity, possibly forming multiple
+ concavities.
+ If no such object exists, an object that will form a new concavity is stacked
+ inside the root concavity.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Objects stacking}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwData{Set of polygons $P = {p_i}
+\backslash
+;i
+\backslash
+in 
+\backslash
+left[ 1,K 
+\backslash
+right]$, Object tree $T$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwResult{Complete tree defining the configuration of the set of of objects.}
+\end_layout
+
+\begin_layout Plain Layout
+
+$C = 
+\backslash
+textrm{list of concavities}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+initialize C with the root concavity
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+L = $
+\backslash
+left
+\backslash
+{ v
+\backslash
+right
+\backslash
+}  $ sorted list of polygon vertices
+\backslash
+; % with $
+\backslash
+angle v 
+\backslash
+leq 
+\backslash
+angle 
+\backslash
+left( C 
+\backslash
+right)  $
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ForEach{$v 
+\backslash
+in L$}
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+eIf{$
+\backslash
+angle 
+\backslash
+left( v 
+\backslash
+right) 
+\backslash
+leq 
+\backslash
+angle 
+\backslash
+left( c_i  
+\backslash
+in C 
+\backslash
+right)$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Stack the child object in the $c_i$, 
+\backslash
+emph{vertex to innter vertex}, edge aligned preferrably to a edge with non
+ equal length
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$
+\backslash
+textrm{move } L.v 
+\backslash
+textrm{ to } T.v $ and save child location and orientation
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$C.c_i = 
+\backslash
+textrm{reduced concavity}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$C = 
+\backslash
+textrm{new formed concavities}$
+\backslash
+tcc*[r]{Upd.
+ concavities list}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Find smallest concavity that allows 
+\backslash
+emph{contiguous edge with vertex contact} interaction, stack object there.
+\end_layout
+
+\begin_layout Plain Layout
+
+		$C = 
+\backslash
+textrm{new formed concavities}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After the desired configuration is obtained, finger contact locations can
+ be obtained using the algorithms in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Algorithms-for-finger"
+
+\end_inset
+
+.
+ The locations that are found should be tested to complete a form closure
+ grasp, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What about:
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Description
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Completeness
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Complexity
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Contacts search
 \end_layout
 
@@ -5818,6 +7042,20 @@ Given a set of polygonal objects, first step is to find the contacts between
  vertices of one polygon lie on edges or on vertices of another one.
  Due to the complexity of the process, it is split to 2 parts: specific
  point on polygon evaluation and contact search for the polygons.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Add part where regions allowed for finger placement are saved as well.}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -6382,7 +7620,7 @@ The methods relies on a fact that 4 frictionless contacts is a minimum for
 \end_layout
 
 \begin_layout Section
-Algorithms for finger placement
+Fingers placement
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:Algorithms-for-finger"
@@ -6841,7 +8079,7 @@ Adding one finger to each object will immobilized it but the whole configuration
  Assessment of such cases is discussed in
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "sec:Alg-for-multiO-eval"
+reference "sec:MultiO-eval-n-grasp-secur"
 
 \end_inset
 
@@ -7623,14 +8861,12 @@ literal "true"
 \end_inset
 
 ).
-\end_layout
-
-\begin_layout Standard
-The main idea is to form 2 imaginary convex cones each formed by 2 normal
+ The main idea is to form 2 imaginary convex cones each formed by 2 normal
  vectors.
  The line connecting the cones' vertices should lie inside of the intersection
  of 2 cones (or intersection of anti-cones of these 2 cones).
  If the connecting line lies inside - the grasp will be force closure.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -7647,7 +8883,7 @@ For given problem, one contact is given and non movable, other 3 can be
 
  will have the most area of intersection with the polygon.
  Afterwards other edges tested to form a cone that will have a common intersecti
-on with
+on with 
 \begin_inset Formula $ConeA$
 \end_inset
 
@@ -8636,15 +9872,23 @@ Flowchart
 Completeness
 \end_layout
 
+\begin_layout Standard
+t
+\end_layout
+
 \begin_layout Subsection
 Complexity
 \end_layout
 
+\begin_layout Standard
+t
+\end_layout
+
 \begin_layout Section
-Algorithm for multi object grasp evaluation
+Multi object grasp evaluation and grasp securing
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:Alg-for-multiO-eval"
+name "sec:MultiO-eval-n-grasp-secur"
 
 \end_inset
 
@@ -8749,586 +9993,11 @@ If the amount of external contacts is higher than 4, assessment of intersection
  of contacts external to the subset can show whether the subset is immobilized
  or not.
  If the contacts intersect at one point, contact positions of added fingers
- can be altered in a regions that was found for that contact (see above
- (what, the regions?) maybe #ADDFIG)
-\end_layout
-
-\begin_layout Section
-Algorithm for objects placement
+ can be altered in a allowed regions that were found for that contact.
+ 
 \end_layout
 
 \begin_layout Standard
-Given an unordered set of objects, each object is scanned and classified:
- number of edges, concave vertices, edges' lengths.
- Scanned and classified objects allow assessment of different constellations
- for future grasping.
- Based on the algorithms and inter-object contacts classification as presented
- above, several strategies for object rearrangement can be implemented.
-\end_layout
-
-\begin_layout Standard
-\align block
-The approach for objects rearrangement is to stack objects in configuration
- that will require amount of minimal fingers for each object, maximizing
- number of inter-object effective contacts.
- Objects in the set in the new configuration can be described by a tree,
- where the root is some selected object, and all other objects described
- as children in a way similar to URDF style
-\begin_inset CommandInset citation
-LatexCommand citep
-key "ros.org2009"
-literal "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-First of all, we need to know how many polygons with concave vertices exist,
- and how many exist with vertex angles less than
-\begin_inset Formula $90\text{°}$
-\end_inset
-
-.
- Additionally, how many angles are smaller than concave angles if any.
-\end_layout
-
-\begin_layout Standard
-Recapping the inter object contact types along with the additional contacts
- needed for the immobilization, we assume that the parent object is immobilized
- and inducing contact forces on a child object, which has to be immobilized
- by additional fingers.
- In the following paragraphs, term
-\begin_inset Quotes eld
-\end_inset
-
-fixation
-\begin_inset Quotes erd
-\end_inset
-
- refers to the contacts of the parent object acting on the child object.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Edge-to-edge
-\series default
- fixation provides two parallel contacts, their convex cone can be seen
- as infinite
-\begin_inset Quotes eld
-\end_inset
-
-corridor
-\begin_inset Quotes erd
-\end_inset
-
-, formed by the contact region swept along the contacts' normal direction.
- The interaction can be considered useful in cases where some other 2 different
- edges provide normal directions that are crossing in the parallel contacts'
-\begin_inset Quotes eld
-\end_inset
-
-corridor
-\begin_inset Quotes erd
-\end_inset
-
-.
- Simple example would be a case with a vertex inside of the
-\begin_inset Quotes eld
-\end_inset
-
-corridor
-\begin_inset Quotes erd
-\end_inset
-
-, where normal directions of 2 adjacent edges induce opposite wrenches about
- the edge with two contacts.
- This requires at least 2 additional external contacts for each object to
- complete the fixture.
-\end_layout
-
-\begin_layout Standard
-One way of finding such configuration is checking whether there exists an
- object with a vertex (concave or convex) that is projected on the interior
- of some non-adjacent edge (base edge), the edge can be used as a base of
- edge-to-edge contact, and the vertex's adjacent edges will serve as locations
- for 2 additional fingers.
- The grasp will be feasible if normal directions from the adjacent edges
- and from the base edge will positively span
-\begin_inset Formula $\rtwo$
-\end_inset
-
-.
- Example of feasible and non feasible grasps are shown in
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Edge-infinite-projection"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename images/OP_e2e.svg
-	lyxscale 30
-	width 35text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Spanning vectors
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename images/OP_e2e_02.svg
-	lyxscale 30
-	width 35text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Not spanning vectors
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Edge infinite projection and vertex with adjacent normal vectors.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Edge-infinite-projection"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Vertex-to-inner-vertex
-\series default
-fixation provides 2 edges normal directions, which yield a convex cone with
- distinct vertex (unlike two parallel contacts which can be considered as
- convex cone with a vertex at infinity).
-\end_layout
-
-\begin_layout Standard
-This fixation allows use of single edge to complete the fixture, given that
- the edge's inner normal direction is a negative combination of the given
- contacts' directions, and the edge allows two distinct contacts with opposing
- wrenches about the vertex (i.e.
- vertex is projected on the inner of the edge segment), as shown in
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:In-v-a"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- In case no such edge exist, two different edges provide normal directions
- which form a convex cone that mutually overlap(have a common region) the
- given convex cone (or their anti-cones), and the line connecting the vertices
- of the cones is in the interior of the overlapping region.
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename images/OP_v2iv.svg
-	lyxscale 30
-	width 35text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:In-v-a"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status collapsed
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename images/OP_v2iv_ce.svg
-	lyxscale 30
-	width 35text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:In-v-b"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Inner vertex.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Inner-vertex."
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Vertex-to-inner-vertex with contiguous edge
-\series default
-fixation contributes 3 effective contacts and needs only one external finger
- contact in the optimal case.
- For this there should exist an edge which projection along it's normal
- direction has 2-contact vertex inside it's interior and a there exists
- an intersecting segment of that projection and the 3rd normal direction
- that lies inside the convex cone of first 2 normals.
- Example of such configuration is shown in
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:In-v-b"
-
-\end_inset
-
-.
- If no such edge exists, 2 external contacts are required to immobilize
- this grasp by a method presented above
-\end_layout
-
-\begin_layout Standard
-Vertex-to-inner-vertex with 2 contiguous edges fixation provides a optimal
- configuration which requires sole external contact for the immobilization
- of the object.
- Since objects are polygonal objects with non intersection edges and non-zero
- thickness, there will always exist an edge with a normal direction that
- will complete the form closure.
-\end_layout
-
-\begin_layout Standard
-Vertex-to-inner-vertex with a contiguous edge and a contact point fixation
- is similar to the previous one except for the normal direction, and hence
- in certain cases can be self immobilizing.
-\end_layout
-
-\begin_layout Standard
-Vertex-to-inner-vertex with additional contact points are equivalent to
- the vertex-to-inner-vertex with contiguous edges formations.
- The provide same amount of contacts, but the normal directions can differ.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Contiguous edge with vertex point contact
-\series default
- fixation forms a case with 3 contacts, which allows fixation with one additiona
-l finger under certain conditions: there should exist an edge, which projections
- common segment with the point contact's normal has a part lying inside
- the edge contact's infinite projection and also the new edge, point and
- given edge normal directions should span
-\begin_inset Formula $\rtwo$
-\end_inset
-
-.
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Contiguous-edge-with"
-
-\end_inset
-
- shows an example of possible contact locations for this fixation.
-\end_layout
-
-\begin_layout Standard
-Example on
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:2-Contiguous-edges."
-
-\end_inset
-
- describes 2 contiguous edges, which can be seen as sub case for the described
- fixation and any contact with normal direction which is negative linear
- combination of the normals of 2 edges will immobilize the object.
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename images/OP_c2_p.svg
-	lyxscale 30
-	width 35text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Contiguous edge with point contact.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Contiguous-edge-with"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename images/OP_cc2.svg
-	lyxscale 30
-	width 35text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-2 Contiguous edges.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:2-Contiguous-edges."
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Example of preferred edge contacts.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\SpecialChar allowbreak
-Given all these considerations, presented set of objects can be arranged
- to require the minimal amount of external fingers for each object and hence
- minimal amount of fingers in total.
-\end_layout
-
-\begin_layout Standard
-\align block
-The order of the stacking is suitable for the one-by-one object manipulation.
- Possible inter-object fixations can be ordered by amount and restrictions
- on additional contacts that are to be applied.
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Object-placement-priority."
-
-\end_inset
-
- describes the order of preferable inter-object relations, based on amount
- of external fingers needed for the immobilization of child object relative
- to the parent.
-\end_layout
-
-\begin_layout Standard
-\align block
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
 \begin_inset Preview
 
 \begin_layout Standard
@@ -9339,68 +10008,346 @@ status open
 
 
 \backslash
-begin{center}
+begin{algorithm}[H]
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-smartdiagramset{set color list={green,green,green,yellow,orange,red},
-\end_layout
-
-\begin_layout Plain Layout
-
-back arrow disabled=true}
+caption{Multi object grasp evaluation}   
 \end_layout
 
 \begin_layout Plain Layout
 
 
 \backslash
-smartdiagram[descriptive diagram]{
+KwData{Set of polygons $P = {p_i}
+\backslash
+;i
+\backslash
+in 
+\backslash
+left[ 1,K 
+\backslash
+right]$ including locations and orientations, Set of contacts $C = 
+\backslash
+left
+\backslash
+{c_i
+\backslash
+right
+\backslash
+}$ with allowed regions}
 \end_layout
 
 \begin_layout Plain Layout
 
-  {1,{Vertex-to-inner-vertex
-\backslash
 
 \backslash
- 2 contiguous edges}},
+KwResult{Set of contact adjustments if needed, set of additional contacts
+ if needed }
 \end_layout
 
 \begin_layout Plain Layout
 
-  {1,{Vertex-to-inner-vertex
-\backslash
 
 \backslash
- 1 contiguous edge with point contact}},
+ForEach{subset of object configuration}
 \end_layout
 
 \begin_layout Plain Layout
 
-  {1,{Vertex-to-inner-vertex
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	L = $
 \backslash
-
+left
 \backslash
- 1 contiguous edge}},
+{lc_i
+\backslash
+right
+\backslash
+}$ -- set of external contact lines
+\backslash
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-  {2, {Edge to edge}},
+	
+\backslash
+If{$
+\backslash
+left| L 
+\backslash
+right| < 4$}
 \end_layout
 
 \begin_layout Plain Layout
 
-  {2, {Vertex-to-inner-vertex}},
+	{
 \end_layout
 
 \begin_layout Plain Layout
 
-  {2+, {Vertex to edge}},
+		Treat the subset as one object
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{$
+\backslash
+left| L 
+\backslash
+right| = 3 $ and $ 
+\backslash
+exists
+\backslash
+, x 
+\backslash
+in lc_i
+\backslash
+quad 
+\backslash
+forall lc_i 
+\backslash
+in L $}
+\end_layout
+
+\begin_layout Plain Layout
+
+		{
+\end_layout
+
+\begin_layout Plain Layout
+
+			Move 1 finger in allowed region
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		Add missing contacts (max 2)
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%	N = $
+\backslash
+left
+\backslash
+{nc_i
+\backslash
+right
+\backslash
+}$ -- set of normal directions of external contacts
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+uIf{$ 
+\backslash
+exists
+\backslash
+, x 
+\backslash
+in lc_i
+\backslash
+quad 
+\backslash
+forall lc_i 
+\backslash
+in L $}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Intersection point between contact lines exists
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Build 2 EGWs for 2 non-collinear contacts and adjust positions
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+uElseIf{$ 
+\backslash
+exists
+\backslash
+, x_1 
+\backslash
+in lc_j
+\backslash
+quad j={1,2,3} $}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{	
+\end_layout
+
+\begin_layout Plain Layout
+
+		3 of the contacts are intersecting
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{$ 
+\backslash
+exists
+\backslash
+, x_2 
+\backslash
+in lc_k , 
+\backslash
+notin lc_j
+\backslash
+quad 
+\backslash
+left|
+\backslash
+left
+\backslash
+{lc_k
+\backslash
+right
+\backslash
+}
+\backslash
+right|>1$}
+\end_layout
+
+\begin_layout Plain Layout
+
+		{
+\end_layout
+
+\begin_layout Plain Layout
+
+			Exists another point where two or more contact lines intersect
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+textbf{
+\backslash
+textit{continue}}
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		Build 2 EGWs for 2 non-collinear $lc_j$ and adjust positions
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Else
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+textbf{
+\backslash
+textit{continue}}
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}	
+\end_layout
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
 \end_layout
 
 \begin_layout Plain Layout
@@ -9412,287 +10359,7 @@ smartdiagram[descriptive diagram]{
 
 
 \backslash
-end{center}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Object placement priority.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:Object-placement-priority."
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Basically, last option (vertex to edge) will never be selected intentionally
- since if there is an option to place an vertex on an edge, there also is
- an option to place edge on edge.
- Vertex-to-inner vertex option also exists but for stability it is preferred
- to rotate the child object so it will have more parent contacts - vertex-to-inn
-er-vertex with a contiguous edge.
-\end_layout
-
-\begin_layout Standard
-The Algorithm 
-\end_layout
-
-\begin_layout Enumerate
-Scan the objects
-\end_layout
-
-\begin_layout Enumerate
-If There exist several object with concave vertices -
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-select one with largest angle to be base object or the one with longest
- edges next to the concave vertex
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-ElseIf 1 such object
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-- select it to be base
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Else (no concave angles)
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-assess angles sum == 180/360 deg
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-if such exist - they can be stacked together.
- Maybe some of them will form a
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Find 2 objects with longest edges, align 1 vertex of the object with 2nd
- longest edge to the middle of the another object's longest edge and the
- edges are collinear
-\end_layout
-
-\end_deeper
-\begin_layout Enumerate
-Now there exists a concavity - either from one object
-\end_layout
-
-\begin_layout Enumerate
-Find objects with smallest angles (smaller than the concavity angle), sort
-\series bold
- descending
-\series default
-/ascending ?
-\end_layout
-
-\begin_deeper
-\begin_layout Enumerate
-select the object and stick it in the concavity.
-\end_layout
-
-\begin_layout Enumerate
-continue along the list or until an object cannot fill in.
- Use one additional item to stick not until the end - form edge+vertex contact.
-\end_layout
-
-\begin_deeper
-\begin_layout Itemize
-Optional – each time reassess the configurations, and find concavities.
- Check whether some of them give longer common edge segements, and stick
- objects there
-\end_layout
-
-\end_deeper
-\end_deeper
-\begin_layout Enumerate
-Items that did not fit in any concavity v2v type – check e-v type
-\end_layout
-
-\begin_layout Enumerate
-Place fingers on each item.
- (Can we stick more items to bound these?)
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{CONTINUE HERE}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Preview
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{See whether this is relevant:}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Plain Layout
-
-\series bold
-Case I, One Inner Vertex:
-\series default
-The angle of the vertex is saved and combinations of vertex angles of other
- objects are selected to yield a sum that is less or equal to the inner
- vertex angle.
-\begin_inset Formula 
-\begin{equation}
-\underset{\left\{ v_{k}\right\} }{\argmax\;}K;\qquad\sum_{k}^{K}\angle v_{k}\leq\angle IntVert
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-This way the number of objects that are stuffed inside the concavity is
- maximized.
- Optimally, either all objects are aligned with their sharpest vertices
- and stacked inside the concavity, or the concavity is filled with several
- objects.
-\end_layout
-
-\begin_layout Standard
-Another options is if some objects is quite small, and being stacked in
- the concavity form 2 additional inner vertices of the combined super-object.
-\end_layout
-
-\begin_layout Standard
-If there are no concave objects, a pair of objects can be stacked to form
- a concavity.
- In this case, an object with longest edge is selected to be a base and
- another object with an edge that is shorter than the first one and capable
- to be immobilized with 2 additional fingers apart from 2 parallel inter-object
- contacts is stacked so the edges are contiguous are in contact.
- One of the vertices of the shorter edge will be a concavity, and from here
- the algorithm for the concavities can be applied.
-\end_layout
-
-\begin_layout Standard
-Polygonal objects analyzed and selected in the following order: Objects
- with inner vertices are searched for and selected to be base objects, which
- other objects are going to lean on.
- Inner vertex can provide beneficial inter-object contacts for one or more
- additional polygonal objects.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Preview
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{What about:
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Description
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Completeness
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Complexity
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-}
+end{algorithm}
 \end_layout
 
 \end_inset
@@ -9706,7 +10373,7 @@ Complexity
 \end_layout
 
 \begin_layout Section
-Rearranging the objects
+Objects rearrangement
 \end_layout
 
 \begin_layout Standard
@@ -10162,6 +10829,10 @@ Real robot
 \end_layout
 
 \begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset ERT
 status open
 
@@ -10170,6 +10841,11 @@ status open
 
 \backslash
 z{test}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
