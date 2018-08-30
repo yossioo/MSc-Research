@@ -5845,6 +5845,18 @@ name "fig:GQMs-difference."
 Determining new configuration for objects
 \end_layout
 
+\begin_layout Subsection
+Description
+\end_layout
+
+\begin_layout Subsection
+Pseudocode
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
 \begin_layout Standard
 Given an unordered set of objects, each object is scanned and classified:
  number of edges, concave vertices, edges' lengths.
@@ -6957,6 +6969,22 @@ end{algorithm}
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What if there are no concavities after several stacking steps?}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 After the desired configuration is obtained, finger contact locations can
  be obtained using the algorithms in 
 \begin_inset CommandInset ref
@@ -7630,12 +7658,115 @@ name "sec:Algorithms-for-finger"
 
 \end_layout
 
+\begin_layout Subsection
+Description
+\end_layout
+
+\begin_layout Standard
+Given a configuration of objects in contact (single group, each object has
+ at least one contact), the configuration is parameterized by contact types.
+ Each inter-object interaction is classified according to the variants defined
+ above in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Relationship-between-polygons"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ When all contacts are found, each object is checked and an amount of additional
+ contacts for first order form closure is derived.
+ For every object all missing fingers are found.
+\end_layout
+
+\begin_layout Standard
+Several methods for single object finger placement were developed (presented
+ in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Literature-Review"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ For the purposes of this work 2 (??) methods were compared: moment-labeling
+ based contact point derivation and grasp quality measure assessed random
+ contact point placement with constraints.
+\end_layout
+
+\begin_layout Standard
+Next step is to perform a check, whether any group of objects is not immobilized.
+ A connectivity graph is build for given configuration.
+ Connected sub-graphs are extracted from the given graph, and corresponding
+ object constellations are tested for 1st order immobilization.
+ If the constellation is not immobilized (see examples #ADDFIG) additional
+ fingers are placed while the constellation is treated like a single object.
+\end_layout
+
+\begin_layout Standard
+After all the variants are checked we can conclude that the group of objects
+ is immobilized.
+\end_layout
+
+\begin_layout Standard
+Steps of the algorithm.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{alg:C_from_2P}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What about masking the edges that are not available for grasp?
+\end_layout
+
+\begin_layout Plain Layout
+
+Formal description?
+\end_layout
+
+\begin_layout Plain Layout
+
+Flowchart}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 The global finger placement process is divided to several cases of polygon
  contact combinations.
  Cases of existing 3,2 and 1 inter-object contacts are addressed.
  When possible, contact locations selected to yield highest grasp quality
  measure, namely origin centered inscribed sphere radius.
+\end_layout
+
+\begin_layout Subsection
+Pseudocode
 \end_layout
 
 \begin_layout Paragraph
@@ -9785,87 +9916,6 @@ z{DEAL WITH THIS PART LATER}
 \end_inset
 
 
-\end_layout
-
-\begin_layout Subsection
-Description
-\end_layout
-
-\begin_layout Standard
-Given a configuration of objects in contact (single group, each object has
- at least one contact), the configuration is parameterized by contact types.
- Each inter-object interaction is classified according to the variants defined
- above in
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "subsec:Relationship-between-polygons"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- When all contacts are found, each object is checked and an amount of additional
- contacts for first order form closure is derived.
- For every object all missing fingers are found.
-\end_layout
-
-\begin_layout Standard
-Several methods for single object finger placement were developed (presented
- in
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Literature-Review"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- For the purposes of this work 2 (??) methods were compared: moment-labeling
- based contact point derivation and grasp quality measure assessed random
- contact point placement with constraints.
-\end_layout
-
-\begin_layout Standard
-Next step is to perform a check, whether any group of objects is not immobilized.
- A connectivity graph is build for given configuration.
- Connected sub-graphs are extracted from the given graph, and corresponding
- object constellations are tested for 1st order immobilization.
- If the constellation is not immobilized (see examples #ADDFIG) additional
- fingers are placed while the constellation is treated like a single object.
-\end_layout
-
-\begin_layout Standard
-After all the variants are checked we can conclude that the group of objects
- is immobilized.
-\end_layout
-
-\begin_layout Standard
-Steps of the algorithm.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-ref{alg:C_from_2P}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Formal description?
-\end_layout
-
-\begin_layout Standard
-Flowchart
 \end_layout
 
 \begin_layout Subsection
