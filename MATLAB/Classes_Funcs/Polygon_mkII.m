@@ -7,11 +7,11 @@ classdef Polygon_mkII < handle
     
     
     properties
+        Name; % Can save some ID
         Shape
         Polygon_color = [1 0 0];
         Edges; % [N+1x2] matrix with edges points, clockwise
         Inner_normals;
-        Edges_azimuth;
         Variants2;
         Variants3;
         E_lengths;
@@ -21,11 +21,9 @@ classdef Polygon_mkII < handle
         Cum_length;  % Cumulative length of all the perimeter
         Norm_cum_len; % Normalized Cumulative Length
         Center;
-        turn_directions; %1 for left; -1 for right
-        concave_ind; % Indices of concave vertices
+        Turn_directions; %1 for left; -1 for right
+        Concave_ind; % Indices of concave vertices
         V_angles; % Vertex inner angles
-        Name; % Can save some ID
-        Color;
     end
     
     methods
@@ -36,7 +34,9 @@ classdef Polygon_mkII < handle
             if nargin >1 
                 obj.Name = name;
             else
-                obj.Name = '';
+                name = randi([1 52],1,5);
+                name(name > 26) = name(name > 26)+6;
+                obj.Name = char(name+64);
             end
             if nargin > 2
                 obj.Polygon_color = color; 
@@ -54,16 +54,16 @@ classdef Polygon_mkII < handle
             v1 = obj.Edges(1,:)-obj.Edges(obj.N_e,:);
            v2 = obj.Edges(2,:)-obj.Edges(1,:);
            cr = cross2d(v1/norm(v1),v2/norm(v2));
-           obj.turn_directions(1) = sign(cr);
-           obj.V_angles(1) = round(180+angle_of_2_vec(v1,v2),5);
+           obj.Turn_directions(1) = sign(cr);
+           obj.V_angles(1) = round(180+angle_of_2_vec(v1,v2),1);
            for i = 1:obj.N_e-1
                v1 = obj.Edges(i+1,:)-obj.Edges(i,:);
                v2 = obj.Edges(i+2,:)-obj.Edges(i+1,:);
                cr = cross2d(v1/norm(v1),v2/norm(v2));
-               obj.turn_directions(i+1) = sign(cr);
-               obj.V_angles(i+1) = round(180+angle_of_2_vec(v1,v2),5);
+               obj.Turn_directions(i+1) = sign(cr);
+               obj.V_angles(i+1) = round(180+angle_of_2_vec(v1,v2),1);
            end
-           obj.concave_ind = obj.turn_directions > 0;
+           obj.Concave_ind = obj.Turn_directions > 0;
         end
         
         function rotate(obj, theta_d, point)
@@ -172,6 +172,20 @@ classdef Polygon_mkII < handle
                 color = obj.Polygon_color;
             end
             plot(obj.Shape, 'FaceColor',color,'FaceAlpha',.4);
+            text(obj.Center(1),obj.Center(2),obj.Name);
+        end
+        
+        function plot_vertex(obj, vertex_id, color)
+            if nargin < 2
+                error("No vertex index specified.")
+            else
+                if nargin < 3
+                    color = obj.Polygon_color;
+                end
+                plot(obj.Edges(vertex_id,1),...
+                    obj.Edges(vertex_id,2),'-s',...
+                    'Color',color,'MarkerSize',15);
+            end
         end
         
         function p = find_fartherst_point_from_x(obj,x)
@@ -184,8 +198,9 @@ classdef Polygon_mkII < handle
             p = obj.Shape.Vertices(ind(1),:);
         end
         
-        function inside = is_inside(obj,point)
-            inside = inpolygon(point(1),point(2),...
+        function [inside,on] = in_polygon(obj,points)
+            % points have to be Nx2 array
+            [inside,on] = inpolygon(points(:,1),points(:,2),...
                 obj.Edges(:,1),obj.Edges(:,2));
         end
         
@@ -199,17 +214,27 @@ classdef Polygon_mkII < handle
         end
         
         function n = find_normal_at_point(obj, point)
-            % If want to check whether a point is on edge
-            %             vecnorm([200 200] - obj.Edges,2,2) == 0
+            % What about case of e2e contact, looking for normal of
+            % the end-vertex?
+            n = [];
+            dist_from_vert = vecnorm((obj.Edges - point)');
+            ind = find(dist_from_vert<obj.Cum_length(end)*1e-3);
+            if ind
+                warning("Polygon_mkII:VertexNormalUndefined","Vertex detected, skipping the point")
+                return
+            end
             for i = 1:obj.N_e
+                is_on_edge = dot(point-obj.Edges(i,:),point-obj.Edges(i+1,:)) <1e-5;
                 % Check whether points are collinear
-                D  = det([point 1; obj.Edges([i i+1],:) [1;1]]);
-                if abs(D) < sum(obj.E_lengths)
-                    break
+                if is_on_edge
+                    D  = det([point 1; obj.Edges([i i+1],:) [1;1]]);
+                    if abs(D) < obj.Area *1e-4
+                        ni = -obj.Inner_normals(i,:);
+                        ni = ni./norm(ni);
+                        n = [n;ni];
+                    end
                 end
             end
-            n = -obj.Inner_normals(i,:);
-            n = n./norm(n);
         end
         
         function n_vecs = find_contacts_for_positions(obj, positions)

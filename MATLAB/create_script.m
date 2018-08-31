@@ -14,6 +14,7 @@ warning('off', 'MATLAB:polyshape:repairedBySimplify')
 % vert = [cos(t(:)), sin(t(:))];
 % P{1} = Polygon_mkII(vert,"Hex_A");
 % P{2} = Polygon_mkII(vert,"Hex_B");
+% P{3} = Polygon_mkII(vert,"Hex_3");
 
 %% More shapes without concave vertices and less than 90 deg
 % P{1} = Polygon_mkII([-1 -1; 1 -1; -.5 1],"Triangle A");
@@ -36,8 +37,8 @@ warning('off', 'MATLAB:polyshape:repairedBySimplify')
 t = 0: 2*pi/M :(2*pi-eps*1e5);
 vert = [cos(t(:)), sin(t(:))];
 colors = jet(N);
-R = normrnd(1, .2, numel(t),N);
+R = normrnd(1, 0.0, numel(t),N);
 for i=1:N
-    name = "Triangle_" + char(64+i);
+    name = "Tr-" + char(65+floor(i/26)) +char(64+mod(i,26));
     P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:));
 end

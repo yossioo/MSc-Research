@@ -8,8 +8,8 @@ end
 V1 = v1./vecnorm(v1.').';
 V2 = v2./vecnorm(v2.');
 
-c = acosd(dot(V1,V2));
-s = asind(cross2d(V1,V2));
+c = acosd(round(dot(V1,V2),5));
+s = asind(round(cross2d(V1,V2),5));
 
 if s == 0
     angle = c;

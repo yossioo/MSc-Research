@@ -1,12 +1,12 @@
 %% This script implements the search for new configuration of the objects
-
+warning off MATLAB:polyshape:boundary3Points
 %% First we wish to find the root object:
 max_concave_angle = 0;
 Root_Object = [];
 
 for object = P
     p = object{1};
-    conc_vert_angles = 360-p.V_angles(p.concave_ind);
+    conc_vert_angles = 360-p.V_angles(p.Concave_ind);
     if max(conc_vert_angles) > max_concave_angle
         Root_Object = p;
         Tree{1} = p;
@@ -19,10 +19,10 @@ if isempty(Root_Object) % no concave vertices found
     vert_list = {};
     for object = P
         p = object{1};
-        if find(p.V_angles >= 90)
+        if find(p.V_angles > 90)
             poly_list{end+1} = p;
             diff_w_90 = p.V_angles - 90;
-            diff_w_90(diff_w_90<=0) = 180;
+            diff_w_90(diff_w_90<0) = 180;
             ind = find(min(diff_w_90) == diff_w_90);
             vert_list{end+1} = ind(1);
         end
@@ -43,7 +43,7 @@ if isempty(Root_Object) % no concave vertices found
         Root_Object = poly_list{i(1)};
         Tree(1) = poly_list(i);
         Tree(2) = poly_list(3-i);
-               
+        
         V1 = Tree{1}.Edges(vert_list{i},:);
         V2 = Tree{2}.Edges(vert_list{3-i},:);
         
@@ -57,7 +57,7 @@ if isempty(Root_Object) % no concave vertices found
                 edge_2_align_direction = diff(Tree{2}.Edges([vert_list{3-i},vert_list{3-i}-1],:))
             end
         else % j==1 - on root object longest edge is the leading edge
-                        
+            
             if vert_list{i} == 1
                 edge_base_direction = diff(Tree{1}.Edges([end,end-1],:))
             else
@@ -86,7 +86,7 @@ if isempty(Root_Object) % no concave vertices found
             if isempty(Tree)
                 Tree{1} = p;
                 e_lengths(1) = max_e_length;
-                e_ids(1) = max_e_id;
+                e_ids(1) = max_e_id(1);
             else
                 if max_e_length>e_lengths(1)
                     Tree{2} = Tree{1};
@@ -94,11 +94,11 @@ if isempty(Root_Object) % no concave vertices found
                     e_lengths(2) = e_lengths(1) ;
                     e_ids(2) = e_ids(1);
                     e_lengths(1) = max_e_length;
-                    e_ids(1) = max_e_id;
+                    e_ids(1) = max_e_id(1);
                 elseif max_e_length>e_lengths(2)
                     Tree{2} = p;
                     e_lengths(2) = max_e_length;
-                    e_ids(2) = max_e_id;
+                    e_ids(2) = max_e_id(1);
                 end
             end
         end
@@ -115,13 +115,83 @@ if isempty(Root_Object) % no concave vertices found
 end
 
 %% Stacking process
-
-uni = simplify(get_unified_poly(Tree));
-Uni_mkII = Polygon_mkII(round(uni.Vertices,3));
-
-figure(3)
-for i = 1: Uni_mkII.N_e
-    Uni_mkII.plot()
+clear p
+% Remove items that are stacked from the initial cell array
+for i = 1:numel(Tree)
+    ind = is_Polygon_in_array(Tree{i},P);
+    if ind
+        P(ind) = [];
+        disp(Tree{i}.Name + " removed from  P")
+    end
 end
 
-axis equal
+% disp('P contains:')
+% for i = 1:numel(P)
+%     fprintf("P{%d}: %s\n",i,P{i}.Name)
+% end
+
+while ~isempty(P)
+    % Unify the shape
+    uni = get_unified_poly(Tree);
+    UnifiedPolygon = Polygon_mkII(round(uni.Vertices,3));
+    outer_angles = 360-UnifiedPolygon.V_angles;
+    outer_angles(~UnifiedPolygon.Concave_ind) = 0;
+    conc_angles = 360-UnifiedPolygon.V_angles(UnifiedPolygon.Concave_ind);
+    biggest_conc_ind = find(max(outer_angles) == outer_angles,1);
+    outer_angles(~UnifiedPolygon.Concave_ind) = 1e3;
+    % Search for shape with widest angle
+    max_angle = 0;
+    P_ind = 0;
+    v_ind = 0;
+    for i = 1:numel(P)
+        if max(P{i}.V_angles) > max_angle
+            P_ind = i;
+            v_ind = find(max(P{i}.V_angles) > max_angle,1);
+            max_angle = max(P{i}.V_angles);
+        end
+    end
+    
+    if find(max_angle<=conc_angles)
+        % Can fit a poly somewhere
+        concavity_left_after_stacking = outer_angles-max_angle;
+        concavity_left_after_stacking(concavity_left_after_stacking<0) = 1e3;
+        conc_ind = find(concavity_left_after_stacking == min(concavity_left_after_stacking),1);
+        stack_poly_to_vertex_w_edge(UnifiedPolygon, P{P_ind}, conc_ind, v_ind,1)
+
+        Tree{end+1} = P{P_ind};
+%         Tree{end}.Name = strcat(num2str(numel(Tree))," - ",Tree{end}.Name );
+        P(P_ind) = [];
+        
+    else
+        % Push back the object, maybe later will be some concavity to
+        % use.
+        P{end+1} = P{P_ind};
+        P(P_ind) = [];
+    end
+    
+    if numel(P) > 0
+        disp("Not done yet")
+        disp('P contains:')
+        for i = 1:numel(P)
+            fprintf("P{%d}: %s\n",i,P{i}.Name)
+        end
+    end
+    
+    figure(19)
+    clf;
+    Tree{1}.plot(); hold on;
+    for i = 2:numel(Tree)
+%         Tree{i}.Name = strcat(num2str(i)," - ",Tree{i}.Name) ;
+        Tree{i}.plot()
+        
+    end
+    axis equal
+    grid on
+    hold off
+    
+end
+
+% So far so good. Think over the logic of stacking inside of most
+% fitting concavity, or the largest one or smth.
+
+

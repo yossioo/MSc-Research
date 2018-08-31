@@ -7,17 +7,16 @@ addpath('Classes_Funcs')
 % objects.
 
 N = 3; % number of objects
-M = 3; % - number of vertices in polygons
+M = 4; % - number of vertices in polygons
 create_script
 
-figure(1); clf
-P{1}.plot(); hold on;
-for i = 2:numel(P)
-    P{i}.plot()
-end
-
-axis equal
-grid on
+% figure(1); clf
+% P{1}.plot(); hold on;
+% for i = 2:numel(P)
+%     P{i}.plot()
+% end
+% axis equal
+% grid on
 
 %% Rearrange the objects
 
@@ -25,7 +24,7 @@ rearrange_script
 
 %% Find inter-object contacts
 
-% find_i_contacts_script
+find_i_contacts_script
 
 %% Find fingers
 

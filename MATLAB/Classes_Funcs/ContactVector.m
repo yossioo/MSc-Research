@@ -1,5 +1,5 @@
-classdef Vector
-    %VECTOR plucker vector
+classdef ContactVector
+    %CONTACTVECTOR plucker vector
     %   Detailed explanation goes here
     
     properties
@@ -7,10 +7,11 @@ classdef Vector
         direction_vector = [1 0];
         length = 1;
         default_color = [1 0 0];
+        polygon_num
     end
     
     methods
-        function obj = Vector(point, direction, length)
+        function obj = ContactVector(point, direction, length, polygon_num)
             %VECTOR Construct an instance of this class
             %   Detailed explanation goes here
             switch nargin
@@ -24,10 +25,13 @@ classdef Vector
                     obj.length = 1;
                 case 3
                     obj.length = length;
-                    
                     obj.point_on_the_line = point(:).';
                     obj.direction_vector = direction(:).' ./ norm(direction);
-                    
+                case 4
+                    obj.length = length;
+                    obj.point_on_the_line = point(:).';
+                    obj.direction_vector = direction(:).' ./ norm(direction);
+                    obj.polygon_num = polygon_num;
             end
         end
         
