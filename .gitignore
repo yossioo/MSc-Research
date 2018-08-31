@@ -1,3 +1,6 @@
 *.asv
 *.lyx~
 *.lyx#
+LyX/main\.bib\.sav
+
+~\$*\.SLD*
