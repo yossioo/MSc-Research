@@ -1417,7 +1417,7 @@ name "sec:Literature-Review"
 
 \begin_layout Standard
 Important contribution to the future development of robotics in general
- and grasping in particular belongs to
+ and grasping in particular belongs to 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Reuleaux1876,Landau1982"
@@ -1427,6 +1427,7 @@ literal "true"
 
  for bringing the basics of mechanics and mechanism kinematics, which serve
  as foundation for every analytical approach of robotics study.
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Lozano-Perez1983"
@@ -1453,6 +1454,7 @@ literal "true"
  introduces an essential ideas of screw theory which allows use of wrench
  and wrench space concepts, tools that take major part in the contemporary
  robotics.
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Murray1994"
@@ -1465,7 +1467,7 @@ literal "true"
  With general tools for mechanisms and manipulators in particular, interaction
  of such manipulators with the environment can be formulated using Coulomb's
  friction, categorizing contacts for frictional, frictionless, hard or soft
- contacts
+ contacts 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Murray1994"
@@ -1474,6 +1476,7 @@ literal "true"
 \end_inset
 
 .
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Rimon1995"
@@ -1487,7 +1490,7 @@ literal "true"
 
 \begin_layout Standard
 Given broad mathematical basics, grasping becomes of particular interest
- with
+ with 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Mishra1987"
@@ -1496,7 +1499,7 @@ literal "true"
 \end_inset
 
  showing existence of positive grasps, and allowing following grasp synthesis
- development:
+ development: 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Bunis2018,Borst2004"
@@ -1506,7 +1509,7 @@ literal "true"
 
 .
  Derivations would not be possible without defining form and force closure
- by
+ by 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Asada1989"
@@ -1523,6 +1526,7 @@ literal "true"
 \end_inset
 
 .
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Nguyen1986"
@@ -1535,7 +1539,7 @@ literal "true"
 
 \begin_layout Standard
 More methods on grasp construction include synthesizing grasps evolved from
- predefined configurations
+ predefined configurations 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Pollard1996"
@@ -1545,7 +1549,7 @@ literal "true"
 
 , mimicking human behavior in grasping tasks: using predefined shapes and
  modes for closure grasps are planned with numerical computations of trajectorie
-s intersections
+s intersections 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Wren1995"
@@ -1557,7 +1561,7 @@ literal "true"
 \end_layout
 
 \begin_layout Standard
-Contact modeling
+Contact modeling 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Xydas1999"
@@ -1581,7 +1585,7 @@ literal "true"
 \end_layout
 
 \begin_layout Standard
-Grasp evaluation takes a long way with
+Grasp evaluation takes a long way with 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Mishra1989"
@@ -1589,7 +1593,7 @@ literal "true"
 
 \end_inset
 
- discussing the stability of grasps,
+ discussing the stability of grasps, 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Ferrari1992"
@@ -1597,7 +1601,7 @@ literal "true"
 
 \end_inset
 
- introducing quality measures based on wrenches,
+ introducing quality measures based on wrenches, 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Roa2015"
@@ -6150,7 +6154,7 @@ name "fig:In-v-a"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \noindent
@@ -6194,7 +6198,7 @@ name "fig:In-v-b"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Inner vertex.
+Inner vertex immobilization.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Inner-vertex."
@@ -6298,10 +6302,11 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6341,7 +6346,7 @@ name "fig:Contiguous-edge-with"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
