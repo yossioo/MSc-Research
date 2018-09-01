@@ -17,10 +17,10 @@ else
     align_direction = poly_child.find_vector_from_vertex(vertex_child_id,1);
 end
 
-% V1 = mean(Tree{1}.Edges([e_ids(1),e_ids(1)+1],:));
-% base_direction = Tree{1}.find_vector_from_vertex(e_ids(1),1);
-% align_direction = -Tree{2}.find_vector_from_vertex(e_ids(2),1);
-% V2 = Tree{2}.Edges(e_ids(2),:);
+% V1 = mean(PolyList{1}.Edges([e_ids(1),e_ids(1)+1],:));
+% base_direction = PolyList{1}.find_vector_from_vertex(e_ids(1),1);
+% align_direction = -PolyList{2}.find_vector_from_vertex(e_ids(2),1);
+% V2 = PolyList{2}.Edges(e_ids(2),:);
 
 poly_child.rotate(-angle_of_2_vec(base_direction, align_direction), V2);
 poly_child.translate(V1-V2);

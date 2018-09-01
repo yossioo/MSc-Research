@@ -36,10 +36,10 @@ classdef ContactVector
         end
         
         function CCW = cross_around_point(obj, point)
-            % Returns the moment of the vector aroung a p
+            % Returns the moment of the vector aroung a point
             r = obj.point_on_the_line - point;
             CCW = r(1)*obj.direction_vector(2) - r(2)*obj.direction_vector(1);
-            CCW = CCW./norm(CCW);
+%             CCW = CCW./norm(CCW);
         end
         
         function line_segment = inf_line(obj)

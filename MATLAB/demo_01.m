@@ -6,8 +6,9 @@ addpath('Classes_Funcs')
 % The script creates a cell array P, which contains the polygonal
 % objects.
 
-N = 3; % number of objects
-M = 4; % - number of vertices in polygons
+N = 4; % number of objects
+M = 3; % - number of vertices in polygons
+Noise = 0;
 create_script
 
 % figure(1); clf
@@ -28,17 +29,18 @@ find_i_contacts_script
 
 %% Find fingers
 
-% find_fingers_script
+find_fingers_script
 
 %% Display results
-
-figure(2);
-clf;
-
-Tree{1}.plot(); hold on;
-for i = 2:numel(Tree)
-    Tree{i}.plot()
-end
-
-axis equal
-grid on
+% 
+% figure(20);
+% clf;
+% 
+% PolyList{1}.plot(); hold on;
+% for i = 2:numel(PolyList)
+%     PolyList{i}.plot()
+%     text(PolyList{i}.Center(1)-5,PolyList{i}.Center(2),num2str(i))
+% end
+% 
+% axis equal
+% grid on

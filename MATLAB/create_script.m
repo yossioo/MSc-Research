@@ -37,7 +37,7 @@ warning('off', 'MATLAB:polyshape:repairedBySimplify')
 t = 0: 2*pi/M :(2*pi-eps*1e5);
 vert = [cos(t(:)), sin(t(:))];
 colors = jet(N);
-R = normrnd(1, 0.0, numel(t),N);
+R = normrnd(1, Noise, numel(t),N);
 for i=1:N
     name = "Tr-" + char(65+floor(i/26)) +char(64+mod(i,26));
     P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:));
