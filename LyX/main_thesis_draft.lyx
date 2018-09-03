@@ -4484,7 +4484,7 @@ w_{a}=\begin{bmatrix}\hat{n}_{a}\\
 
 \end_inset
 
-As can be seen from the figure, contact
+As can be seen from the FIGURE , contact
 \begin_inset Formula $a$
 \end_inset
 
@@ -10734,6 +10734,40 @@ Executions of the steps can be controlled from the UI.
 Results
 \end_layout
 
+\begin_layout Standard
+A simple case of 3 equilateral triangles presented in the 
+\emph on
+SIMULATIONS.
+ The designed configuration and designed grasp are presented above.
+ 3D printed end effector is presented on the FIGURE.
+ Due to 
+\end_layout
+
+\begin_layout Standard
+A case of 6 equilateral triangles
+\end_layout
+
+\begin_layout Standard
+A case of 3 squares
+\end_layout
+
+\begin_layout Standard
+A case of 4 squares
+\end_layout
+
+\begin_layout Standard
+A case of 3 hexagons
+\end_layout
+
+\begin_layout Standard
+Cases of 3-4-5-...
+ irregular triangles.
+\end_layout
+
+\begin_layout Standard
+A case of 3-4-5 octagons?
+\end_layout
+
 \begin_layout Section
 Experiments
 \end_layout
@@ -10743,26 +10777,52 @@ Bring a 3D printed set of objects and designed gripper to the defense.
  Include the results in the Appendix, and in the presentation
 \end_layout
 
+\begin_layout Standard
+The results of the algorithms' performance were tested in experimental setups.
+ Robotic manipulator with 6DOF was equipped with an end effector designed
+ according to the algorithm's output.
+ The robot is controlled by a laptop with Robot Operating System (ROS) hosted
+ in Ubuntu.
+ Several polygonal objects were selected to be stacked, and after the verificati
+on by the algorithm a custom-made end effector with stationary fingers was
+ manufactured by 3D printing.
+ The end effector was tested and confirmed to immobilize the desired set
+ of objects both in simulation and in experiments.
+ Due to the real world imperfections, the fingers of the designed end effectors
+ are made with chamfers, this allowed grasping of the arranged set of items
+ despite small perturbations of item locations and robotic arm performance.
+\end_layout
+
 \begin_layout Subsection
 Experimental Setup
 \end_layout
 
 \begin_layout Standard
-The performance of the algorithms was tested in experimental setups in the
- laboratory.
-\end_layout
-
-\begin_layout Standard
-The objects are known and only the location of objects is obtained via RGBD
- camera.
- The robot is equipped with an end-effector designed according to the algorithm'
-s output.
- Robotic arm used is ROBOTIS Manipulator H, controlled by laptop with Robot
- Operating System (ROS) hosted in Ubuntu.
+For several examined cases of polygon sets, 
 \end_layout
 
 \begin_layout Subsection
 Experimental Results
+\end_layout
+
+\begin_layout Standard
+A simple case of 3 equilateral triangles presented in the SIMULATIONS.
+ The designed configuration and designed grasp are presented above.
+ 3D printed end effector is presented on the FIGURE.
+ Fingers - 1 joint finger - touches 2 triangles.
+\end_layout
+
+\begin_layout Standard
+A case of 6 equilateral triangles
+\end_layout
+
+\begin_layout Standard
+A case of 3 hexagons
+\end_layout
+
+\begin_layout Standard
+Cases of 3-4-5-...
+ irregular triangles.
 \end_layout
 
 \begin_layout Chapter
