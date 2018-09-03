@@ -5,9 +5,99 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+% set fonts for nicer pdf view
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+
+% Algorithms
+\usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
+
+
+
+\newcommand*{\blankpage}{%
+  \par\vspace*{0.25\textheight}%
+  {\centering \emph{This page intentionally left blank.}\par}
+  \vspace{\fill}%
+}
+%\makeatletter
+%\renewcommand*{\cleardoubleoddstandardpage}{%
+%  \clearpage
+%  \if@twoside
+%    \ifodd\c@page
+%    \else
+%      \blankpage
+%      \thispagestyle{empty}%
+%      \newpage
+%      \if@twocolumn\hbox{}\newpage\fi
+%    \fi
+%  \fi
+%}
+%\makeatother
+
+\usepackage{scrlayer}
+\DeclareNewLayer[
+    foreground,
+    textarea,
+    contents=\blankpage
+  ]{blankpage.fg}
+\DeclarePageStyleByLayers{blank}{blankpage.fg}
+\KOMAoptions{cleardoublepage=blank}
+
+
+% Allow nomenclature entries with units
+\newcommand{\nomunit}[1]{%
+% \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+\renewcommand{\nomentryend}{\dotfill#1}}
+
+
+
+% avoids that floats are placed above its sections
+%\let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
+
+% Use this for naming ref types when referencing.
+\providecommand{\thmautorefname}{Theorem}
+\providecommand{\corautorefname}{Corollary}
+\providecommand{\lemautorefname}{Lemma}
+\providecommand{\propautorefname}{Proposition}
+\providecommand{\eqautorefname}{Equation}
+
+
+\AtBeginDocument{%
+\let\ref\autoref
+%\renewcommand\equationautorefname{\@gobble}
+}
+
+
+
+% Flowcharts
+\usepackage{tikz}
+\usepackage[siunitx]{circuitikz}
+\usetikzlibrary{shapes,arrows,matrix}
+
+
+\usepackage{pgfplots}
+\usepackage{smartdiagram}
+
+
+\usepackage{environ}
+
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\end_preamble
 \use_default_options true
 \begin_modules
-algorithm2e
 theorems-ams
 theorems-ams-extended
 \end_modules
@@ -81,6 +171,826 @@ theorems-ams-extended
 \end_header
 
 \begin_body
+
+\begin_layout Standard
+———–
+\end_layout
+
+\begin_layout Standard
+TiKZ example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw (0,0) to [R=1<
+\backslash
+kilo 
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,0) to [ I , i=50<
+\backslash
+milli 
+\backslash
+ampere>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,0) to [R=516<
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,3) to [V,v=50<V>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,3) to [diode ]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,3) to [ ospst=S]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,0)
+\end_layout
+
+\begin_layout Plain Layout
+
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagram[descriptive diagram]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Style,{Define shapes, colors, shading,
+\end_layout
+
+\begin_layout Plain Layout
+
+          and line styles for nodes and arrows}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Position, {Place nodes using a matrix,
+\end_layout
+
+\begin_layout Plain Layout
+
+              relative or absolute positioning}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Relation, Insert edges or arrows
+\end_layout
+
+\begin_layout Plain Layout
+
+             between selected nodes},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Label, Add labels on edges or arrows}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Preview
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{scope}[blend group = soft light]
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[red!30!white]   ( 90:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[green!30!white] (210:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[blue!30!white]  (330:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 90:2)    {Typography};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 210:2)   {Design};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 330:2)   {Sleeping};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node [font=
+\backslash
+Large] {
+\backslash
+LaTeX};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+222
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scaletikzpicturetowidth}{
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[scale=
+\backslash
+tikzscale,
+\end_layout
+
+\begin_layout Plain Layout
+
+    every path/.style = {},
+\end_layout
+
+\begin_layout Plain Layout
+
+    every node/.append style = {font=
+\backslash
+sffamily}
+\end_layout
+
+\begin_layout Plain Layout
+
+  ]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[right color=green, left color=white, opacity=0.7]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,-0.5) rectangle (0,6.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[rotate=90, above] at (0,3) {Non-Negative Gold};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[top color=yellow, bottom color=white, opacity=0.7]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,-0.5) rectangle (8.5,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[below] at (4,0) {Non-Negative Bills};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[left color=red, bottom color=red, right color=white, opacity=0.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,5.5) -- (8.5,3) -- (8.5,6.5) -- (-0.5,6.5) -- cycle;
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+path (-0.5,5.5) -- node[pos=0.23, sloped, above] {Volume Constraint}
+\end_layout
+
+\begin_layout Plain Layout
+
+      (8.5,3);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[left color=blue, right color=white, opacity=0.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (2.5,6.5) -- (8.5,6.5) -- (8.5,0) -- (5,0) -- cycle;
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+path (5,0) -- node[pos=0.3, sloped, above] {Weight Constraint} (2.5,6.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[text width=7em, align=center] at (2,2)
+\end_layout
+
+\begin_layout Plain Layout
+
+      {Feasible Region of the Linear Relaxation};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw[->] (-0.5,0) -- (8.5,0) node[below] {Gold bars};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw[->] (0,-0.5) -- (0,6.5) node[above] {Bill stacks};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[rotate=-45, above, text width=9em, align=center] at (7.25,5.25)
+\end_layout
+
+\begin_layout Plain Layout
+
+      {Level Curves of the Objective Function};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+path[clip] (-0.5,-0.5) rectangle (8.5,6.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0.5,3,...,13} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+draw[help lines] (-0.5,
+\backslash
+i) -- +(-45:15);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[very thick, ->] (9,3.25) -- node[above, text width=4cm, align=center]
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+Large
+\backslash
+bfseries Add Integrality Constraints} (13,3.25);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{scope}[shift={(14,0)}]
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[right color=green, left color=white, opacity=0.7]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,-0.5) rectangle (0,6.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[top color=yellow, bottom color=white, opacity=0.7]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,-0.5) rectangle (8.5,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[left color=red, bottom color=red, right color=white, opacity=0.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,5.5) -- (8.5,3) -- (8.5,6.5) -- (-0.5,6.5) -- cycle;
+\end_layout
+
+\begin_layout Plain Layout
+
+   
+\backslash
+shade[left color=blue, right color=white, opacity=0.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+     (2.5,6.5) -- (8.5,6.5) -- (8.5,0) -- (5,0) -- cycle;
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw[->] (-0.5,0) -- (8.5,0) node[below] {Gold bars};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw[->] (0,-0.5) -- (0,6.5) node[above] {Bill stacks};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,1,...,6.5} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+draw[help lines] (-0.5,
+\backslash
+i) -- (8.5,
+\backslash
+i);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {2,4,...,8.5} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+draw[help lines] (
+\backslash
+i,6.5) -- (
+\backslash
+i,-0.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,1,...,5} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+node[draw,cross out,label={left:
+\backslash
+i}] at (0,
+\backslash
+i) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,1,...,4} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+node[draw,cross out] at (2,
+\backslash
+i) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,1,...,2} {
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node[draw,cross out] at (4,
+\backslash
+i) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,2,...,6} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+node[below] at (
+\backslash
+i,0) {
+\backslash
+pgfmathparse{int(
+\backslash
+i/2)}
+\backslash
+pgfmathresult};
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[very thick, draw=black, fill=white, rectangle, rounded corners,
+\end_layout
+
+\begin_layout Plain Layout
+
+      text width=8em, align=center] at (6,5)
+\end_layout
+
+\begin_layout Plain Layout
+
+      {Feasible solutions of the integer program are the crosses};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scaletikzpicturetowidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+fff
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+———–
+\end_layout
+
+\begin_layout Standard
+XY example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\xymatrix{\text{Some text here}\ar[drr] & \cos\left(\theta\right) & e\\
+c\ar[rr]_{Under}^{Over} &  & f
+}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+———–
+\end_layout
 
 \begin_layout Standard
 Polygonal object evaluation
