@@ -6,7 +6,7 @@ addpath('Classes_Funcs')
 % The script creates a cell array P, which contains the polygonal
 % objects.
 
-N = 4; % number of objects
+N = 3; % number of objects
 M = 3; % - number of vertices in polygons
 Noise = 0;
 create_script

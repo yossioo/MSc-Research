@@ -48,7 +48,8 @@ if in
     
     w_top = cone2d(:,1);
     w_bot = cone2d(:,2);
-    
+    new_top = w_top;
+    new_bot = w_bot;
     % Projection of 2D cone vectors on different face normals
     proj_top = dot(repmat(w_top,1,N), n_cone3d);
     proj_bot = dot(repmat(w_bot,1,N), n_cone3d);
@@ -67,7 +68,7 @@ if in
         new_bot = cross(n_cone3d(:,ind_bot_min(1)),-n_cone2d);
         new_bot = new_bot./norm(new_bot(1:2));
     end
-    cone2d_new=[new_top;new_bot];
+    cone2d_new=[new_top,new_bot];
 %     quiver3(0,0,0,new_top(1), new_top(2),new_top(3),'Color','m')
 %     quiver3(0,0,0,new_bot(1), new_bot(2),new_bot(3),'Color','m')
 else

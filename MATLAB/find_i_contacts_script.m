@@ -95,3 +95,10 @@ for o_i = ALL
     end
 end
 
+
+%% Remove duplicate contacts ?
+
+% This can be done by iterating over wrenches and `cross`-ing one with
+% another. If some cross yields norm smaller than 
+
+% norm(cross([1 0 0 ],[1 0.03 0.01]))
