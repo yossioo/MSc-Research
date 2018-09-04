@@ -213,12 +213,22 @@ classdef Polygon_mkII < handle
             
         end
         
+        function point = point_from_edgePosition(obj,edge_num, position_on_edge)
+%             position = obj.Norm_cum_len(edge_num)+obj.E_norm_lengths(edge_num)*position_on_edge;
+            if edge_num > obj.N_e
+                error("Edge number exceeds number of edges")
+            end
+            v = obj.Edges([edge_num, edge_num+1],:);
+            point = v(1,:)+diff(v)*position_on_edge;
+        end
+        
         function n = find_normal_at_point(obj, point)
             % What about case of e2e contact, looking for normal of
             % the end-vertex?
             n = [];
             dist_from_vert = vecnorm((obj.Edges - point)');
-            ind = find(dist_from_vert<obj.Cum_length(end)*1e-3);
+            dist_from_vert( isnan(dist_from_vert)) = Inf;
+            ind = find(dist_from_vert<obj.Area*1e-3);
             if ind
                 warning("Polygon_mkII:VertexNormalUndefined","Vertex detected, skipping the point")
                 return
@@ -229,7 +239,7 @@ classdef Polygon_mkII < handle
                 if is_on_edge
                     D  = det([point 1; obj.Edges([i i+1],:) [1;1]]);
                     if abs(D) < obj.Area *1e-4
-                        ni = -obj.Inner_normals(i,:);
+                        ni = obj.Inner_normals(i,:);
                         ni = ni./norm(ni);
                         n = [n;ni];
                     end

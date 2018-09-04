@@ -2,6 +2,11 @@
 warning off MATLAB:polyshape:boundary3Points
 %#ok<*SAGROW>
 clc;
+
+if numel(P) == 1
+    PolyList{1} = P{1};
+    return
+end
 %% First we wish to find the root object:
 max_concave_angle = 0;
 Root_Object = [];
@@ -14,6 +19,7 @@ for object = P
         PolyList{1} = p;
     end
 end
+
 
 if isempty(Root_Object) % no concave vertices found
     % Look for couple of inner angles higher than 90
@@ -132,6 +138,8 @@ end
 %     fprintf("P{%d}: %s\n",i,P{i}.Name)
 % end
 
+f = figure(19);
+f.Name = 'Rearrange result';
 while ~isempty(P)
     % Unify the shape
     uni = get_unified_poly(PolyList);
@@ -179,7 +187,6 @@ while ~isempty(P)
         end
     end
     
-    figure(19)
     clf;
     PolyList{1}.plot(); hold on;
     for i = 2:numel(PolyList)

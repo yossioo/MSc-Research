@@ -66,6 +66,10 @@ classdef ContactVector
             q.LineWidth = 1;
         end
         
+        function p = get_finger_center(obj, finger_diameter)
+            p = obj.point_on_the_line - finger_diameter/2*obj.direction_vector;
+        end
+        
         function draw_inf_line(obj, color)
             if nargin == 1
                 color = [.3 .3 .3];
