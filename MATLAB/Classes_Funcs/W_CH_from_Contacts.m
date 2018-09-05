@@ -1,0 +1,25 @@
+function [W_CH,W] = W_CH_from_Contacts(Contacts, origin_point)
+if nargin < 2
+    origin_point = [0 0];
+end
+%W_CH_FROM_CONTACTS Summary of this function goes here
+%   Detailed explanation goes here
+N_C = numel(Contacts);
+W = zeros(3,N_C);
+if iscell(Contacts)
+    for c_i = 1:N_C
+        W(:,c_i) = [Contacts{c_i}.direction_vector(:);
+            cross2d(Contacts{c_i}.point_on_the_line-origin_point,...
+            Contacts{c_i}.direction_vector(:))];
+    end
+elseif strcmp(class(Contacts),'ContactVector')
+    for c_i = 1:N_C
+        W(:,c_i) = [Contacts(c_i).direction_vector(:);
+            cross2d(Contacts(c_i).point_on_the_line-origin_point,...
+            Contacts(c_i).direction_vector(:))];
+    end
+end
+K = convhulln(W');
+W_CH = W(:,unique(K));
+end
+

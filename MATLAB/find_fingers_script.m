@@ -1,5 +1,5 @@
 clc;
-clearvars -except PolyList Filtered_Contacts Filtered_Contacts_poly_ind
+clearvars -except PolyList Filtered_Contacts Filtered_Contacts_poly_ind finger_d
 warning off MATLAB:polyshape:boolOperationFailed
 
 TableVarNames = {'PolygonNum','ContactGroup','EdgeNum','EdgeRange','OptimalPosition','ContactVector'};
@@ -26,7 +26,7 @@ for p_i = 1:numel(PolyList)
         plot(p.Center(1),p.Center(2),'rs','MarkerSize',20)
         c.plot_contact()
         
-        W(:,c_i) = round([c.direction_vector(:); c.cross_around_point(p.Center)],2);
+        W(:,c_i) = round([c.direction_vector(:); c.cross_around_point(p.Center) / p.Area^0.5],2);
     end
     figure(101); clf
     quiver3(0*W(1,:),0*W(1,:),0*W(1,:),...
@@ -84,8 +84,8 @@ for p_i = 1:numel(PolyList)
                 Move_from_vertex_ratio * p.Edges(e_i+1,:);
             e2 = Move_from_vertex_ratio*p.Edges(e_i,:) +...
                 (1-Move_from_vertex_ratio) * p.Edges(e_i+1,:);
-            w = [n, cross2d(e1-p.Center,n);
-                n, cross2d(e2-p.Center,n)]';
+            w = [n, cross2d(e1-p.Center,n)/p.Area^0.5;
+                n, cross2d(e2-p.Center,n)/p.Area^0.5]';
             new_EGW = slice_cone(-W_CH,w);
             
             if ~isempty(new_EGW)
@@ -110,23 +110,23 @@ for p_i = 1:numel(PolyList)
                 % from the origin is checked.
                 pos_range = linspace(p1_,p2_);
                 torq_range = linspace(new_EGW(3,1), new_EGW(3,2));
+                d_Full = zeros(size(W_CH,2),numel(pos_range));
                 points_alonge_the_line = [repmat(n(:),1,100);torq_range];
                 
                 V1 = W_CH(:,end)-points_alonge_the_line;
                 V2 = W_CH(:,1)-points_alonge_the_line;
-                face_normal = cross(V1,V2);
-                d = dot(-points_alonge_the_line, face_normal);
+                d_Full(4,:) = dot(-points_alonge_the_line, cross(V1,V2)/norm(cross(V1,V2)));
                 
                 for f_i = 1:size(W_CH,2)-1
                     V1 = W_CH(:,f_i)-points_alonge_the_line;
                     V2 = W_CH(:,f_i+1)-points_alonge_the_line;
-                    d = min([d; dot(-points_alonge_the_line, cross(V1,V2))]);
+                    d_Full(f_i,:) = dot(-points_alonge_the_line, cross(V1,V2)/norm(cross(V1,V2)));
                 end
-                
+                d = min(d_Full,[],1);
                 optimal_pos = pos_range(find(d == max(d),1));
                 contact_point = p.point_from_edgePosition(e_i,optimal_pos);
                 f =  ContactVector(contact_point,...
-                    p.find_normal_at_point(contact_point),1,p_i);
+                    p.find_normal_at_point(contact_point),finger_d,p_i);
                 
                 figure(200+p_i)
                 f1.plot_contact('c')

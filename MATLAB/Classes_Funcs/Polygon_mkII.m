@@ -208,9 +208,6 @@ classdef Polygon_mkII < handle
             edge = obj.Edges([edge_num edge_num+1],:);
             p_out = project_point_on_line(p, edge);
             
-            % This is from a geom2d toolbox
-            %             p_out = projPointOnLine(p,edge);
-            
         end
         
         function point = point_from_edgePosition(obj,edge_num, position_on_edge)
@@ -228,7 +225,7 @@ classdef Polygon_mkII < handle
             n = [];
             dist_from_vert = vecnorm((obj.Edges - point)');
             dist_from_vert( isnan(dist_from_vert)) = Inf;
-            ind = find(dist_from_vert<obj.Area*1e-3);
+            ind = find(dist_from_vert<sqrt(obj.Area)*1e-3);
             if ind
                 warning("Polygon_mkII:VertexNormalUndefined","Vertex detected, skipping the point")
                 return
@@ -276,7 +273,7 @@ classdef Polygon_mkII < handle
             n_vecs(abs(n_vecs) < tol) = 0;
         end
         
-        function pos = find_point_position(obj,points)
+        function pos = point_position(obj,points)
             for point_ind = 1:size(points,1)
                 point = points(point_ind,:);
                 for i = 1:obj.N_e

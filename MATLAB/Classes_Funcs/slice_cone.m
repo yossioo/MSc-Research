@@ -27,6 +27,8 @@ figure(101); clf
 quiver3(0*cone3d(1,:),0*cone3d(1,:),0*cone3d(1,:), ...
     cone3d(1,:), cone3d(2,:), cone3d(3,:),'k-','AutoScale','off')
 hold on;
+quiver3(0*cone3d(1,:),0*cone3d(1,:),0*cone3d(1,:), ...
+    -cone3d(1,:), -cone3d(2,:), -cone3d(3,:),'-','Color',[.5 .5 .5], 'AutoScale','off')
 % XY_CH.plot()
 quiver3(0*cone2d(1,:),0*cone2d(1,:),0*cone2d(1,:), ...
     cone2d(1,:), cone2d(2,:), cone2d(3,:),'r-','AutoScale','off')
@@ -54,16 +56,21 @@ if in
     proj_top = dot(repmat(w_top,1,N), n_cone3d);
     proj_bot = dot(repmat(w_bot,1,N), n_cone3d);
     
+    
+    ind_top_min = find(proj_top == min(proj_top));
+    ind_bot_min = find(proj_bot == min(proj_bot));
+    if  ind_bot_min == ind_top_min
+        % The EGW is outside the inverse cone
+        return
+    end
     if (proj_top < 1e-4) & (proj_bot < 1e-4 )
         return
     end
-    ind_top_min = find(proj_top == min(proj_top));
     if proj_top(ind_top_min(1))<0
         new_top = cross(n_cone3d(:,ind_top_min(1)),n_cone2d);
         new_top = new_top./norm(new_top(1:2));
     end
     
-    ind_bot_min = find(proj_bot == min(proj_bot));
     if proj_bot(ind_bot_min(1))<0
         new_bot = cross(n_cone3d(:,ind_bot_min(1)),-n_cone2d);
         new_bot = new_bot./norm(new_bot(1:2));

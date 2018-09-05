@@ -2,6 +2,8 @@
 clc; clear all; %#ok<*CLALL>
 warning on verbose
 addpath('Classes_Funcs')
+
+finger_d = 10;
 %% Create objects
 % The script creates a cell array P, which contains the polygonal
 % objects.
@@ -33,11 +35,11 @@ find_fingers_script
 
 %% Evaluate grasp and Move fingers (if needed)
 
-
+% evaluate_script
 
 %% Display results
 % 
-figure(20);
+figure(19);
 clf;
 
 PolyList{1}.plot(); hold on; axis equal; grid on;
@@ -46,15 +48,25 @@ for i = 2:numel(PolyList)
     text(PolyList{i}.Center(1)-5,PolyList{i}.Center(2),num2str(i))
 end
 t = linspace(0,2*pi);
-d = 1;
-x = d/2*cos(t); y = d/2*sin(t);
-
+x = finger_d/2*cos(t); y = finger_d/2*sin(t);
 axis manual
+
+
+Fingers.ContactVector(4).point_on_the_line = ...
+    PolyList{4}.point_from_edgePosition(2,0.9)
+
+
+p = zeros(numel(Fingers(:,6)),2);
 for i = 1:numel(Fingers(:,6))
     f = Fingers{i,6};
     f.plot_contact('b')
-    p = f.get_finger_center(d);
-    c = fill(p(1)+x,p(2)+y,'b','FaceAlpha',.2);
+    allowed_reg = [PolyList{Fingers.PolygonNum(i)}.point_from_edgePosition(...
+        Fingers.EdgeNum(i), Fingers.EdgeRange(i,1));
+PolyList{Fingers.PolygonNum(i)}.point_from_edgePosition(...
+        Fingers.EdgeNum(i), Fingers.EdgeRange(i,2))];
+    plot(allowed_reg(:,1),allowed_reg(:,2),'c','LineWidth',2);
+    p(i,:) = f.get_finger_center(finger_d);
+    c = fill(p(i,1)+x,p(i,2)+y,'b','FaceAlpha',.2);
 %     s = scatter(p(1),p(2),100,'b', 'filled','MarkerFaceAlpha',0.2);
     f.draw_inf_line('k')
 end

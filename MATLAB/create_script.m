@@ -1,14 +1,24 @@
 warning('off', 'MATLAB:polyshape:repairedBySimplify')
 
 %% N Random M-shapes
-t = 0: 2*pi/M :(2*pi-eps*1e5);
-vert = [cos(t(:)), sin(t(:))];
-colors = jet(N);
-R = normrnd(1, Noise, numel(t),N);
-for i=1:N
-    name = "Tr-" + char(65+floor(i/26)) +char(64+mod(i,26));
-    P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:)); %#ok<*SAGROW>
-end
+% t = 0: 2*pi/M :(2*pi-eps*1e5);
+% vert = [cos(t(:)), sin(t(:))];
+% colors = jet(N);
+% R = normrnd(20, Noise, numel(t),N);
+% for i=1:N
+%     name = "Tr-" + char(65+floor(i/26)) +char(64+mod(i,26));
+%     P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:)); %#ok<*SAGROW>
+% end
+
+%% some 4 shapes
+R = 30;
+
+P{1} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R 0],"Tri_A");
+P{2} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R 0],"Tri_B");
+P{3} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R 0],"Tri_C");
+P{4} = Polygon_mkII([0 0; 30 30;
+    40 -10; 25 -5; -25 -10; -40 -10; -30 30],"Concave");
+% P{4} = Polygon_mkII([0 0; 30 30; 40 0; 25 -5; -25 -10; -40 0; -30 30],"Concave");
 
 %% Random objects A with concave angles
 % P{1} = Polygon_mkII([0 0; 1 0 ;  .8 .1; .1 .8;0 1],"ConcaveA");

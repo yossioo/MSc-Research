@@ -1,9 +1,10 @@
 %% Contacts search
  %#ok<*SAGROW>
 clc; %#ok<*SAGROW>
+clearvars -except PolyList finger_d
 
 
-if numel(P) == 1
+if numel(PolyList) == 1
     return
 end
 %% Iterate over each polygon
@@ -28,7 +29,7 @@ for p_i = ALL
     
     
     % Search for common edge segments
-    d = 1e-3*Unified.Area; % Bufffer measure
+    d = 1e-3*sqrt(Unified.Area); % Bufffer measure
     for i = 1:p.N_e
         e = p.Edges([i i+1],:);
         [in,out] = intersect(polybuffer(Unified.Shape,d),e);
@@ -38,13 +39,13 @@ for p_i = ALL
                 continue
             end
             for in_i = 1:size(in,1)
-                C{end+1} = ContactVector(in(in_i,:),n,1,p_i);
+                C{end+1} = ContactVector(in(in_i,:),n,finger_d/2,p_i);
                 C_poly_inds(end+1) = p_i;
             end
         end
     end
     
-    d = 1e-3*Unified.Area; % Bufffer measure
+    d = 1e-3*sqrt(p.Area); % Bufffer measure
     for i = 1:Unified.N_e
         e = Unified.Edges([i i+1],:);
         try
@@ -58,7 +59,7 @@ for p_i = ALL
                 continue
             end
             for in_i = 1:size(in,1)
-                C{end+1} = ContactVector(in(in_i,:),n,1,p_i);
+                C{end+1} = ContactVector(in(in_i,:),n,finger_d/2,p_i);
                 C_poly_inds(end+1) = p_i;
             end
         end
@@ -75,7 +76,7 @@ for p_i = ALL
         for n_i = 1:size(n,1)
             if n(n_i,:)
             end
-            C{end+1} = ContactVector(point,n(n_i,:),1,p_i);
+            C{end+1} = ContactVector(point,n(n_i,:),finger_d/2,p_i);
             C_poly_inds(end+1) = p_i;
         end
     end
@@ -86,7 +87,7 @@ for p_i = ALL
         point = points(pt_i,:);
         n = p.find_normal_at_point(point);
         for n_i = 1:size(n,1)
-            C{end+1} = ContactVector(point,n(n_i,:),1,p_i);
+            C{end+1} = ContactVector(point,n(n_i,:),finger_d/2,p_i);
             C_poly_inds(end+1) = p_i;
         end
     end

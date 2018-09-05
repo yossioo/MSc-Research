@@ -1,8 +1,15 @@
 %% This script implements the search for new configuration of the objects
 warning off MATLAB:polyshape:boundary3Points
 %#ok<*SAGROW>
+ %#ok<*UNRCH>
 clc;
+clearvars -except P finger_d
 
+STACK_SHARPEST = true;
+STACK_WIDEST = false;
+FILL_CONCAVITY_1by1 = false;
+FILL_CONCAVITY_THAT_FITS = true;
+%% In case we have one object only
 if numel(P) == 1
     PolyList{1} = P{1};
     return
@@ -133,6 +140,7 @@ for i = 1:numel(PolyList)
     end
 end
 
+P2={};
 % disp('P contains:')
 % for i = 1:numel(P)
 %     fprintf("P{%d}: %s\n",i,P{i}.Name)
@@ -149,36 +157,67 @@ while ~isempty(P)
     conc_angles = 360-UnifiedPolygon.V_angles(UnifiedPolygon.Concave_ind);
     biggest_conc_ind = find(max(outer_angles) == outer_angles,1);
     outer_angles(~UnifiedPolygon.Concave_ind) = 1e3;
-    % Search for shape with widest angle
-    max_angle = 0;
-    P_ind = 0;
-    v_ind = 0;
-    for i = 1:numel(P)
-        if max(P{i}.V_angles) > max_angle
-            P_ind = i;
-            v_ind = find(max(P{i}.V_angles) > max_angle,1);
-            max_angle = max(P{i}.V_angles);
+    if STACK_SHARPEST
+        % Search for shape with sharpest angle
+        min_angle = 180;
+        p_i = 0;
+        v_ind = 0;
+        for i = 1:numel(P)
+            if min(P{i}.V_angles) < min_angle
+                p_i = i;
+                min_angle = min(P{i}.V_angles);
+                v_ind = find(P{i}.V_angles == min_angle,1);
+            end
+        end
+    elseif STACK_WIDEST
+        % Search for shape with widest angle
+        max_angle = 0;
+        p_i = 0;
+        v_ind = 0;
+        for i = 1:numel(P)
+            if max(P{i}.V_angles) > max_angle
+                p_i = i;
+                v_ind = find(max(P{i}.V_angles) > max_angle,1);
+                max_angle = max(P{i}.V_angles);
+            end
         end
     end
     
-    if find(max_angle<=conc_angles)
-        % Can fit a poly somewhere
-        concavity_left_after_stacking = outer_angles-max_angle;
-        concavity_left_after_stacking(concavity_left_after_stacking<0) = 1e3;
-        conc_ind = find(concavity_left_after_stacking == min(concavity_left_after_stacking),1);
-        stack_poly_to_vertex_w_edge(UnifiedPolygon, P{P_ind}, conc_ind, v_ind,1)
+    if FILL_CONCAVITY_1by1
         
-        PolyList{end+1} = P{P_ind};
+    elseif FILL_CONCAVITY_THAT_FITS
+        
+        if STACK_SHARPEST
+            if find(min_angle<=conc_angles)
+                concavity_left_after_stacking = outer_angles-min_angle;
+                concavity_left_after_stacking(concavity_left_after_stacking<0) = 1e3;
+                conc_ind = find(concavity_left_after_stacking == min(concavity_left_after_stacking),1);
+                stack_poly_to_vertex_w_edge(UnifiedPolygon, P{p_i}, conc_ind, v_ind,1)
+            else
+                % Push back the object, maybe later will be some concavity to
+                % use.
+                P2{end+1} = P{p_i};
+                P(p_i) = [];
+            end
+        elseif STACK_WIDEST
+            if find(max_angle<=conc_angles)
+                % Can fit a poly somewhere
+                concavity_left_after_stacking = outer_angles-max_angle;
+                concavity_left_after_stacking(concavity_left_after_stacking<0) = 1e3;
+                conc_ind = find(concavity_left_after_stacking == min(concavity_left_after_stacking),1);
+                stack_poly_to_vertex_w_edge(UnifiedPolygon, P{p_i}, conc_ind, v_ind,1)
+            else
+                % Push back the object, maybe later will be some concavity to
+                % use.
+                P2{end+1} = P{p_i};
+                P(p_i) = [];
+            end
+        end
+        PolyList{end+1} = P{p_i};
         PolyList{end}.Name = strcat(num2str(numel(PolyList))," - ",PolyList{end}.Name );
-        P(P_ind) = [];
+        P(p_i) = [];
         
-    else
-        % Push back the object, maybe later will be some concavity to
-        % use.
-        P{end+1} = P{P_ind};
-        P(P_ind) = [];
     end
-    
     if numel(P) > 0
         disp("Not done yet")
         disp('P contains:')
@@ -199,6 +238,12 @@ while ~isempty(P)
     
 end
 
+while ~isempty(P2)
+    % If P2 is not empty, there are some contacts that did not fit in
+    % any concavity.
+    % We try different way of stacking.
+    break
+end
 % So far so good. Think over the logic of stacking inside of most
 % fitting concavity, or the largest one or smth.
 
