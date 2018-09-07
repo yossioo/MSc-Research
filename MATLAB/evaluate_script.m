@@ -1,6 +1,5 @@
-clc;
-
-clearvars -except Fingers finger_d PolyList TableVarNames
+% clc;
+clearvars -except DEBUG Fingers finger_d PolyList TableVarNames
 
 %% We wish to examine contact combinations
 % If there are more than 1 contact groups we test all
@@ -23,7 +22,7 @@ end
 
 t = linspace(0,2*pi);
 x = finger_d/2*cos(t); y = finger_d/2*sin(t);
-
+U = Polygon_mkII(get_unified_poly(PolyList(:)));
 for combination = GroupCombinations'
     contact_set = [];
     for p_i = 1:N_p_i
@@ -34,8 +33,13 @@ for combination = GroupCombinations'
     N_cs = numel(contact_set);
     if N_cs >= 4
         % Get wrench convex hull
-        [W_CH,W] = W_CH_from_Contacts(contact_set,Polygon_mkII(get_unified_poly(PolyList(:))).Center);
-        K = convhulln([W_CH'; [0 0 0]]);
+        [W_CH,W] = W_CH_from_Contacts(contact_set,U.Center,sqrt(U.Area));
+        K = convhull([W_CH'; [0 0 0]]);
+        figure(300), clf
+        quiver3(0*W(1,:),0*W(1,:),0*W(1,:),W(1,:),W(2,:),W(3,:),'AutoScale','off');
+        hold on, grid on; 
+        quiver3(0*W_CH(1,:),0*W_CH(1,:),0*W_CH(1,:),W_CH(1,:),W_CH(2,:),W_CH(3,:),'AutoScale','off');
+        
         if ismember(size(W_CH,2)+1,K)
             % the C-Hull did not contain the origin
             %% WIP
@@ -43,10 +47,18 @@ for combination = GroupCombinations'
             % whether some can make the CH to contain the origin
             %%% If no contact adjustment can solve it , skip the
             %%% configuration (or save it for double contact test?)
-            ind = 1:numel(combination);
-            for i = ind
-                cts = contact_set(ind~=i);
-                W_CH_temp = W_CH_from_Contacts(contact_set,Polygon_mkII(get_unified_poly(PolyList(:))).Center);
+            p_ind = 1:numel(combination);
+            for p_i = p_ind
+                cts = contact_7777set(p_ind~=ip_i);
+                c = contact_set(p_ind==p_i);
+                W_CH_temp = W_CH_from_Contacts(contact_set,U.Center,sqrt(U.Area));
+                ind_contact = Fingers.PolygonNum == p_i & Fingers.ContactGroup == combination(p_ind)
+%                 p1 = PolyList{i}.point_from_edgePosition(Fingers.EdgeNum(ind_contact),...
+%                     ,Finger)
+%                 p2 = 
+                EGW_temp = [c.direction_vector(:), c.direction_vector(:);...
+                    cross2d(c.point_on_the_line - U.Center, c.direction_vector(:))/sqrt(U.Area),...
+                    cross2d(c.point_on_the_line - U.Center, c.direction_vector(:))/sqrt(U.Area)]
                 %% WIP HERE
                 while 0 
                     for e_i = 1:p.N_e

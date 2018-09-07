@@ -211,12 +211,16 @@ classdef Polygon_mkII < handle
         end
         
         function point = point_from_edgePosition(obj,edge_num, position_on_edge)
-%             position = obj.Norm_cum_len(edge_num)+obj.E_norm_lengths(edge_num)*position_on_edge;
-            if edge_num > obj.N_e
-                error("Edge number exceeds number of edges")
+            %             position = obj.Norm_cum_len(edge_num)+obj.E_norm_lengths(edge_num)*position_on_edge;
+            if isempty(position_on_edge)
+                point = [];
+            else
+                if edge_num > obj.N_e
+                    error("Edge number exceeds number of edges")
+                end
+                v = obj.Edges([edge_num, edge_num+1],:);
+                point = v(1,:)+diff(v)*position_on_edge;
             end
-            v = obj.Edges([edge_num, edge_num+1],:);
-            point = v(1,:)+diff(v)*position_on_edge;
         end
         
         function n = find_normal_at_point(obj, point)
