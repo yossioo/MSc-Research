@@ -2,11 +2,12 @@
 warning off MATLAB:polyshape:boundary3Points
 %#ok<*SAGROW>
  %#ok<*UNRCH>
-clc;
-clearvars -except P finger_d
+% clc;
+clearvars -except P finger_d Filtered_Contacts_poly_ind Filtered_Contacts DEBUG
 
-STACK_SHARPEST = true;
-STACK_WIDEST = false;
+STACK_SHARPEST = true; % false
+STACK_WIDEST = false;% true
+STACK_CLOSE_TO_ORIGIN = false; % Implement this someday
 FILL_CONCAVITY_1by1 = false;
 FILL_CONCAVITY_THAT_FITS = true;
 %% In case we have one object only
@@ -63,22 +64,22 @@ if isempty(Root_Object) % no concave vertices found
         V2 = PolyList{2}.Edges(vert_list{3-i},:);
         
         if j == 2% Longest edge is the following edge on the root object
-            edge_base_direction = diff(PolyList{1}.Edges([vert_list{i},vert_list{i}+1],:))
+            edge_base_direction = diff(PolyList{1}.Edges([vert_list{i},vert_list{i}+1],:));
             
             % select leading edge on child object
             if vert_list{3-i} == 1
-                edge_2_align_direction = diff(PolyList{2}.Edges([end,end-1],:))
+                edge_2_align_direction = diff(PolyList{2}.Edges([end,end-1],:));
             else
-                edge_2_align_direction = diff(PolyList{2}.Edges([vert_list{3-i},vert_list{3-i}-1],:))
+                edge_2_align_direction = diff(PolyList{2}.Edges([vert_list{3-i},vert_list{3-i}-1],:));
             end
         else % j==1 - on root object longest edge is the leading edge
             
             if vert_list{i} == 1
-                edge_base_direction = diff(PolyList{1}.Edges([end,end-1],:))
+                edge_base_direction = diff(PolyList{1}.Edges([end,end-1],:));
             else
-                edge_base_direction = diff(PolyList{1}.Edges([vert_list{i},vert_list{i}-1],:))
+                edge_base_direction = diff(PolyList{1}.Edges([vert_list{i},vert_list{i}-1],:));
             end
-            edge_2_align_direction = diff(PolyList{2}.Edges([vert_list{3-i},vert_list{3-i}+1],:))
+            edge_2_align_direction = diff(PolyList{2}.Edges([vert_list{3-i},vert_list{3-i}+1],:));
         end
         % First we rotate about the contacting vertex
         PolyList{2}.rotate(-angle_of_2_vec(edge_base_direction, edge_2_align_direction), V2)
@@ -136,7 +137,7 @@ for i = 1:numel(PolyList)
     ind = is_Polygon_in_array(PolyList{i},P);
     if ind
         P(ind) = [];
-        disp(PolyList{i}.Name + " removed from  P")
+        disp(PolyList{i}.Name + " removed from P")
     end
 end
 
@@ -147,16 +148,18 @@ P2={};
 % end
 
 f = figure(19);
-f.Name = 'Rearrange result';
+f.Name = 'Rearranged result';
 while ~isempty(P)
     % Unify the shape
     uni = get_unified_poly(PolyList);
     UnifiedPolygon = Polygon_mkII(round(uni.Vertices,3));
     outer_angles = 360-UnifiedPolygon.V_angles;
+%     vertex_distances_from_origin = vecnorm(uni.Vertices,2,2);
     outer_angles(~UnifiedPolygon.Concave_ind) = 0;
     conc_angles = 360-UnifiedPolygon.V_angles(UnifiedPolygon.Concave_ind);
     biggest_conc_ind = find(max(outer_angles) == outer_angles,1);
     outer_angles(~UnifiedPolygon.Concave_ind) = 1e3;
+        
     if STACK_SHARPEST
         % Search for shape with sharpest angle
         min_angle = 180;
@@ -169,6 +172,7 @@ while ~isempty(P)
                 v_ind = find(P{i}.V_angles == min_angle,1);
             end
         end
+
     elseif STACK_WIDEST
         % Search for shape with widest angle
         max_angle = 0;

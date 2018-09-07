@@ -1,9 +1,11 @@
 %% Contacts search
- %#ok<*SAGROW>
-clc; %#ok<*SAGROW>
-clearvars -except PolyList finger_d
+%#ok<*SAGROW>
+% clc;
+clearvars -except DEBUG PolyList finger_d P finger_d Filtered_Contacts_poly_ind Filtered_Contacts
+warning off Polygon_mkII:VertexNormalUndefined
 
 
+d_scale = 1e-3*2.5;
 if numel(PolyList) == 1
     return
 end
@@ -29,7 +31,7 @@ for p_i = ALL
     
     
     % Search for common edge segments
-    d = 1e-3*sqrt(Unified.Area); % Bufffer measure
+    d = d_scale*sqrt(Unified.Area); % Bufffer measure
     for i = 1:p.N_e
         e = p.Edges([i i+1],:);
         [in,out] = intersect(polybuffer(Unified.Shape,d),e);
@@ -45,7 +47,7 @@ for p_i = ALL
         end
     end
     
-    d = 1e-3*sqrt(p.Area); % Bufffer measure
+    d = d_scale*sqrt(p.Area); % Bufffer measure
     for i = 1:Unified.N_e
         e = Unified.Edges([i i+1],:);
         try
@@ -91,16 +93,17 @@ for p_i = ALL
             C_poly_inds(end+1) = p_i;
         end
     end
-    
-    f = figure(p_i);clf
-    f.Name = PolyList{p_i}.Name; 
-    Unified.plot();
-    axis equal; grid on; hold on;
-    plot(polybuffer(Unified.Shape,d))
-    p.plot();
-    for c = C(C_poly_inds == p_i)
-        cont = c{1};
-        cont.plot_contact()
+    if DEBUG
+        f = figure(p_i);clf
+        f.Name = PolyList{p_i}.Name;
+        Unified.plot();
+        axis equal; grid on; hold on;
+        plot(polybuffer(Unified.Shape,d))
+        p.plot();
+        for c = C(C_poly_inds == p_i)
+            cont = c{1};
+            cont.plot_contact()
+        end
     end
 end
 
@@ -108,7 +111,7 @@ end
 %% Remove duplicate contacts ?
 
 % This can be done by iterating over wrenches and `cross`-ing one with
-% another. If some cross yields norm smaller than 
+% another. If some cross yields norm smaller than
 
 % norm(cross([1 0 0 ],[1 0.03 0.01]))
 
@@ -126,7 +129,7 @@ for p_i = 1:numel(PolyList)
             Contacts{c_i}.direction_vector)];
     end
     W = round(W,3);
-    [~,IA,IC]  = uniquetol(W,0.01,'ByRows',true);
+    [~,IA,IC]  = uniquetol(W,0.03,'ByRows',true);
     Filtered_Contacts = [Filtered_Contacts(:)',   Contacts(IA)];
     Filtered_Contacts_poly_ind = [Filtered_Contacts_poly_ind(:);   0*IA+p_i];
     
