@@ -6,41 +6,34 @@
 \origin unavailable
 \textclass scrbook
 \begin_preamble
+% Algorithms
+\usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
+%\PassOptionsToPackage{linesnumbered}{algorithm2e}
+%\PassOptionsToPackage{algoruled}{algorithm2e}
+%\PassOptionsToPackage{boxed}{algorithm2e}
+
 % set fonts for nicer pdf view
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
-
+%\usepackage{myModule}
 
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
 
-% Algorithms
-\usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
 
-
-
-% Flowcharts
-\usepackage{tikz}
-\usetikzlibrary{shapes,arrows,matrix}
 
 \newcommand*{\blankpage}{%
   \par\vspace*{0.25\textheight}%
   {\centering \emph{This page intentionally left blank.}\par}
   \vspace{\fill}%
 }
-\makeatletter
-\renewcommand*{\cleardoubleoddstandardpage}{%
-  \clearpage
-  \if@twoside
-    \ifodd\c@page
-    \else
-      \blankpage
-      \thispagestyle{empty}%
-      \newpage
-      \if@twocolumn\hbox{}\newpage\fi
-    \fi
-  \fi
-}
-\makeatother
+\usepackage{scrlayer}
+\DeclareNewLayer[
+    foreground,
+    textarea,
+    contents=\blankpage
+  ]{blankpage.fg}
+\DeclarePageStyleByLayers{blank}{blankpage.fg}
+\KOMAoptions{cleardoublepage=blank}
 
 
 % Allow nomenclature entries with units
@@ -49,17 +42,41 @@
 \renewcommand{\nomentryend}{\dotfill#1}}
 
 
-
 % avoids that floats are placed above its sections
-\let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
+%\let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
+
+% Use this for naming ref types when referencing.
+\providecommand{\thmautorefname}{Theorem}
+\providecommand{\corautorefname}{Corollary}
+\providecommand{\lemautorefname}{Lemma}
+\providecommand{\propautorefname}{Proposition}
+\providecommand{\eqautorefname}{Equation}
+
+
+\usepackage{subfig}
+\newcommand{\subfigureautorefname}{\figureautorefname}
+
+
+% Make references automatically formatted
+\AtBeginDocument{%
+\let\ref\autoref
+%\renewcommand\equationautorefname{\@gobble}
+}
+
+
+
+% Flowcharts
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage[siunitx]{circuitikz}
+\usetikzlibrary{shapes,arrows,matrix}
+\usepackage{pgfplots}
+\usepackage{smartdiagram}
 \end_preamble
 \options a4paper,12pt,openany, marginparwidth=1cm, marginparsep=1cm
 \use_default_options true
 \begin_modules
-endnotes
-tabs-within-sections
-theorems-ams
-theorems-ams-extended
+theorems-bytype
 \end_modules
 \maintain_unincluded_children false
 \language english
@@ -92,7 +109,7 @@ theorems-ams-extended
 \pdf_subject "Grasping of Multiple Object with Minimum Fingers"
 \pdf_bookmarks true
 \pdf_bookmarksnumbered true
-\pdf_bookmarksopen false
+\pdf_bookmarksopen true
 \pdf_bookmarksopenlevel 1
 \pdf_breaklinks false
 \pdf_pdfborder true
@@ -130,8 +147,8 @@ theorems-ams-extended
 \topmargin 3.18cm
 \rightmargin 2.54cm
 \bottommargin 3.18cm
-\secnumdepth 3
-\tocdepth 3
+\secnumdepth 2
+\tocdepth 2
 \paragraph_separation indent
 \paragraph_indentation default
 \is_math_indent 0
@@ -156,9 +173,6 @@ theorems-ams-extended
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset FormulaMacro
 \newcommand{\rthree}{\reals^{3}}
 \end_inset
@@ -169,11 +183,34 @@ theorems-ams-extended
 \end_inset
 
 
+\begin_inset FormulaMacro
+\newcommand{\rtwo}{\reals^{2}}
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 \begin_inset FormulaMacro
-\newcommand{\rtwo}{\reals^{2}}
+\newcommand{\x}{\times}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\z}[1]{\textbf{*\textcolor{red}{\emph{*\;#1}}} }
+{#1}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FormulaMacro
+\newcommand{\zz}[1]{\textsf{\textbf{\textit{*\textcolor{red}{\emph{*\;#1}}}}} }
+{#1}
 \end_inset
 
 
@@ -268,7 +305,7 @@ Abstract
 \end_layout
 
 \begin_layout Standard
-kfkfasjkdklsfaja sdfl;afjl;asdf 
+kfkfasjkdklsfaja sdfl;afjl;asdf
 \end_layout
 
 \begin_layout Standard
@@ -285,7 +322,7 @@ kfkfasjkdklsfaja sdfl;afjl;asdf
 \align left
 
 \size large
-Prepared by: Yosef Ovcharik 
+Prepared by: Yosef Ovcharik
 \bar under
 
 \begin_inset space \qquad{}
@@ -311,7 +348,7 @@ Prepared by: Yosef Ovcharik
 
 \size large
 Advisor: Prof.
- Amir Shapiro 
+ Amir Shapiro
 \bar under
 
 \begin_inset space \qquad{}
@@ -1259,7 +1296,7 @@ mainmatter
 \end_layout
 
 \begin_layout Chapter
-Introduction 
+Introduction
 \end_layout
 
 \begin_layout Section
@@ -1267,7 +1304,7 @@ Motivation [1 page]
 \end_layout
 
 \begin_layout Standard
-Robotics become a vast field of research and applications, 
+Robotics become a vast field of research and applications,
 \end_layout
 
 \begin_layout Itemize
@@ -1309,7 +1346,6 @@ rs, fixturing, first
 second order, machine learning approach, visual assessment, restraint analysis
  etc.) little work was done on grasping/manipulation of several objects an
  once.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1344,7 +1380,6 @@ Research contribution and innovation [.5-1 page]
 \begin_layout Standard
 The research yielded solid and reproducible results of multiple object immobiliz
 ation that can be integrated in various robotics systems.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1406,7 +1441,6 @@ literal "true"
  for the simultaneous multi-body manipulation, yet because of high computation
  cost and lack of explicit analytical formulations was not fully incorporated
  in this research.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1483,7 +1517,7 @@ literal "true"
 
 \end_inset
 
- 
+
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Rimon1996"
@@ -1501,7 +1535,6 @@ literal "true"
 \end_inset
 
  proposes a viable methods for constructing force closure grasps.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1525,7 +1558,6 @@ literal "true"
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Standard
@@ -1577,7 +1609,7 @@ literal "true"
 
 \end_inset
 
- surveying several methods of grasp quality measure, while 
+ surveying several methods of grasp quality measure, while
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Lin1997"
@@ -1590,7 +1622,7 @@ literal "true"
 
 \begin_layout Standard
 Grasp generation can be addressed with different approach, with randomized
- grasp generation 
+ grasp generation
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Borst2003"
@@ -1604,7 +1636,7 @@ literal "true"
 
 \begin_layout Standard
 Integrating methods in real life applications usually require use of vision
- systems as shows 
+ systems as shows
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Corke2011"
@@ -1613,7 +1645,6 @@ literal "true"
 \end_inset
 
  and often extended to use of machine learning for vision based grasping:
- 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Quillen2018,Bezak2014,Le2010"
@@ -1625,7 +1656,7 @@ literal "true"
 \end_layout
 
 \begin_layout Standard
-The list would not be full without mentioning 
+The list would not be full without mentioning
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Siciliano2016"
@@ -1635,7 +1666,6 @@ literal "true"
 
  providing an overview and composition of concepts and techniques in grasp
  synthesis, evaluation and optimization.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1646,7 +1676,7 @@ Most methods for grasp construction are searching for force closure grasps,
 \end_layout
 
 \begin_layout Standard
-Multiple objects grasping 
+Multiple objects grasping
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Pajarinen2017,Zeng2017"
@@ -1654,11 +1684,23 @@ literal "true"
 
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Standard
-&& Put more info on CONFIGURATION SPACE approach to grasping
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Put more info on CONFIGURATION SPACE approach to grasping}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1674,7 +1716,6 @@ Basically this part should explain to the reader all the basics that are
  known prior this work.
  Everything that is out of the scope of the B.Sc in mechanical engineering
  should be addressed and explained.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1689,7 +1730,6 @@ Starting with introduction to grasping, contact models and grasp matrix,
 Notation in robotics makes a wide use in vectors and matrices, along with
  coordinate frames and transformations.
  A lot of concepts are drawn from linear algebra.
- 
 \begin_inset Note Note
 status open
 
@@ -1707,15 +1747,17 @@ The definitions are given in three-dimensional form, which can be reduced
 Manipulator forces, relations between joint forces/torques and end-effector
  forces, singularities, dynamics of manipulators etc.
  is out of the scope of this work.
- 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Marginal
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-Convex cones and dual cones
+
+
+\backslash
+z{Convex cones and dual cones}
 \end_layout
 
 \end_inset
@@ -1731,7 +1773,6 @@ Motion and Forces
 Traditionally, motion of rigid bodies can be described by utilizing a concept
  knows as twist: the description of both linear and angular velocities of
  a rigid body.
- 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Murray1994"
@@ -1742,7 +1783,7 @@ literal "true"
  shows that any rigid body motion can be described using a twist, namely
  that every motion of a rigid body can be described by a rotation of a body
  about an axis and translation of that body in direction parallel to that
- axis – known as 
+ axis – known as
 \emph on
 screw
 \emph default
@@ -1757,17 +1798,12 @@ V=\begin{bmatrix}\upsilon\\
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-A generalized force, acting on the body is described as a 
+A generalized force, acting on the body is described as a
 \emph on
-wrench 
+wrench
 \emph default
 - force/moment pair, which consists from a linear component and an angular
  component acting on a point.
- 
 \begin_inset Formula 
 \begin{equation}
 F=\begin{bmatrix}f\\
@@ -1777,14 +1813,10 @@ F=\begin{bmatrix}f\\
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Combination of wrench and twist define power: the dot product of twist and
  wrench yield instantaneous power.
  Reciprocal wrenches and twist are combinations that have instantaneous
- zero power: 
+ zero power:
 \begin_inset Formula $F\cdot V=0$
 \end_inset
 
@@ -1793,7 +1825,6 @@ Combination of wrench and twist define power: the dot product of twist and
  way.
  The notion allows simple analysis of kinematics of mechanisms in general,
  and, more importantly, grasping in particular.
- 
 \end_layout
 
 \begin_layout Standard
@@ -1986,26 +2017,25 @@ status open
 
 \end_inset
 
-, and to set contact coordinate frame where 
+, and to set contact coordinate frame where
 \emph on
 z-axis
 \emph default
  is normal to the object surface, pointing inside of the object, this way
- positive 
+ positive
 \emph on
 z
 \emph default
  value means pressure applied by a finger.
  Term pressure here means that finger can exert only pressing force and
  not pulling, as opposed to suction cups.
- Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Coordinate-frames"
 
 \end_inset
 
- illustrates coordinate frames: 
+ illustrates coordinate frames:
 \emph on
 
 \begin_inset Formula $O$
@@ -2013,7 +2043,7 @@ reference "fig:Coordinate-frames"
 
 
 \emph default
- - object coordinate frame, 
+ - object coordinate frame,
 \emph on
 
 \begin_inset Formula $C$
@@ -2021,12 +2051,11 @@ reference "fig:Coordinate-frames"
 
 
 \emph default
- - contact coordinate frame together with vector 
+ - contact coordinate frame together with vector
 \begin_inset Formula $r_{c}$
 \end_inset
 
  which defines the location of contact point in object coordinate frame.
- 
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$r_{c}$"
@@ -2036,9 +2065,6 @@ literal "true"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -2074,10 +2100,6 @@ Coordinate frames.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Contact type would describe the interaction between the surface of the object
  and the surface of the finger.
  Common cases are: normal force only, in cases where friction coefficient
@@ -2089,7 +2111,6 @@ Contact type would describe the interaction between the surface of the object
  laid on a table: friction coefficient between a sheet and a table is considerab
 ly lower than this between the hand and the sheet, this way we could move
  the sheet aside and rotate it about axis normal to the table surface.
- 
 \end_layout
 
 \begin_layout Subparagraph*
@@ -2111,11 +2132,11 @@ is a more realistic contact which can apply both normal and tangent forces
  The modeling of a friction between a finger and an object surface could
  be simplified by assuming that the finger can exert small tangent forces,
  linearly depended with a normal force.
- This would produce a 
+ This would produce a
 \emph on
 friction cone
 \emph default
- as shown in Figure 
+ as shown in
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Friction-cone"
@@ -2123,7 +2144,7 @@ reference "fig:Friction-cone"
 \end_inset
 
 .
- Normal force 
+ Normal force
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$f_{n}$"
@@ -2132,7 +2153,7 @@ literal "true"
 
 \end_inset
 
- and tangent force 
+ and tangent force
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$f_{t}$"
@@ -2141,17 +2162,17 @@ literal "true"
 
 \end_inset
 
- written as 
+ written as
 \begin_inset Formula $f_{n}$
 \end_inset
 
- and 
+ and
 \begin_inset Formula $f_{t}$
 \end_inset
 
  respectively.
  Tangent force depends on normal force.
- and thus can be described mathematically by inequality: 
+ and thus can be described mathematically by inequality:
 \begin_inset Formula 
 \begin{equation}
 \begin{gathered}f_{t}\leq f_{n}\cdot\mu\end{gathered}
@@ -2159,11 +2180,11 @@ literal "true"
 
 \end_inset
 
-where 
+where
 \begin_inset Formula $\mu$
 \end_inset
 
- stands for coefficient of friction 
+ stands for coefficient of friction
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$\\mu$"
@@ -2178,7 +2199,7 @@ literal "true"
  In 2 dimensional space it takes a form of an isosceles triangle with a
  vertex between two equal edges located at the contact point, and the bisector
  lies along the normal direction.
- The half angle of the aforementioned vertex is defined by 
+ The half angle of the aforementioned vertex is defined by
 \begin_inset Formula $\alpha=\arctan\left(\mu\right).$
 \end_inset
 
@@ -2228,7 +2249,7 @@ Soft finger
 \end_layout
 
 \begin_layout Standard
-is the most 
+is the most
 \begin_inset Quotes eld
 \end_inset
 
@@ -2238,7 +2259,7 @@ capable
 
  contact, able to apply both normal and tangent forces, and a torque about
  the contact normal as well.
- In 
+ In
 \begin_inset Formula $\rtwo$
 \end_inset
 
@@ -2246,7 +2267,19 @@ capable
 \end_layout
 
 \begin_layout Standard
-INSERT CONTACT TYPES SUMMARIZING FIGURE HERE
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{INSERT CONTACT TYPES SUMMARIZING FIGURE HERE}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
@@ -2262,7 +2295,7 @@ A grasp is a collection of contacts (types and locations) that can apply
  from contact locations and types, and forces applied.
  Construction of the grasp map can be automatized for accurately known objects
  and fingers.
- Derivation of the matrix is not shown here, reader can refer to 
+ Derivation of the matrix is not shown here, reader can refer to
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Murray1994"
@@ -2271,9 +2304,43 @@ literal "true"
 \end_inset
 
  for more detailed explanation.
- && GM maps the contact forces at contact locations to wrenches induces
- in the body.
- Example of grasp map from 
+\end_layout
+
+\begin_layout Standard
+
+\color brown
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{MAYBE IT SHOULD BE SHOWN HERE.
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+GM maps the contact forces at contact locations to wrenches induces in the
+ body.
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+Grasp map derived by
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Murray1994"
@@ -2281,9 +2348,9 @@ literal "true"
 
 \end_inset
 
- p.222 is presented below in 
+ p.222 is presented below in
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Planar-grasping"
 
 \end_inset
@@ -2291,7 +2358,6 @@ reference "fig:Planar-grasping"
 : a planar rectangular object held by two fingers which apply forces in
  the plane.
  Resulting wrench on the object from one finger can be described as following:
- 
 \begin_inset Formula 
 \begin{equation}
 F_{o}=\begin{bmatrix}f_{o}\\
@@ -2305,19 +2371,25 @@ F_{o}=\begin{bmatrix}f_{o}\\
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-where 
+where
 \begin_inset Formula $R_{c}$
 \end_inset
 
- represents WHAT&& ???
+ represents
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{WHAT?}
 \end_layout
 
-\begin_layout Standard
-Grasp map for this example is given by: 
+\end_inset
+
+.
+ Grasp map for this example is given by:
 \begin_inset Formula 
 \begin{equation}
 G=\begin{bmatrix}0 & 1 & 0 & -1\\
@@ -2364,14 +2436,10 @@ Planar grasping.
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Although the derivation of the grasp matrix is not shown here, reader can
  intuitively see that locations of contacts and orientation of contact coordinat
 e frames are reflected in this representation.
- Using grasp map, total wrench on the object could be defined as: 
+ Using grasp map, total wrench on the object could be defined as:
 \end_layout
 
 \begin_layout Standard
@@ -2420,9 +2488,6 @@ literal "true"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$G$"
@@ -2431,7 +2496,7 @@ literal "true"
 
 \end_inset
 
- 
+
 \begin_inset Formula 
 \begin{equation}
 F_{o}=G\cdot f_{c}=\begin{bmatrix}0 & 1 & 0 & -1\\
@@ -2446,37 +2511,36 @@ f_{y}^{2}
 
 \end_inset
 
- where 
+ where
 \begin_inset Formula $F_{o}$
 \end_inset
 
  denotes a total wrench (force and torque combined) applied to the object,
- 
 \begin_inset Formula $G$
 \end_inset
 
- is the grasp map as shown in 
+ is the grasp map as shown in
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "eq:GraspMap"
 
 \end_inset
 
- and 
+ and
 \begin_inset Formula $f_{c}$
 \end_inset
 
  is contact forces vector (normal and tangent forces applied by each and
  every finger).
  Expanding the matrix-vector product yields total wrench that can be confirmed
- by visual observation of Figure 
+ by visual observation of
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Planar-grasping"
 
 \end_inset
 
-: 
+:
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$F_{i}$"
@@ -2508,10 +2572,6 @@ r\cdot f_{x}^{1}+r\cdot f_{x}^{2}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 The space that is spanned by all contacts is called the Grasp Wrench Space
  (GWS) and characterizes the ability of the grasp to balance disturbance
  forces.
@@ -2568,7 +2628,7 @@ Grasp
 \begin_inset space ~
 \end_inset
 
-stability Presented by 
+stability Presented by
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Montana1988"
@@ -2577,7 +2637,6 @@ literal "true"
 \end_inset
 
 .
- 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Bicchi2000"
@@ -2600,9 +2659,9 @@ Extension (or reduction) of grasp stability on contact stability can be
  fingers), if for small perturbation of contact position, the contact will
  stay in that new position or return to the original position than the contact
  is stable.
- More detailed explanation presented in the 
+ More detailed explanation presented in the
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "subsec:Relationship-between-polygons"
 
 \end_inset
@@ -2622,12 +2681,12 @@ A grasp is a force closure if the space of object wrenches is spanned by
 
 \begin_layout Standard
 If a grasp can resist any external wrench applied to the object the grasp
- is called 
+ is called
 \emph on
 force-closure
 \emph default
 .
- One way to ensure that given grasp is force-closure is constructing 
+ One way to ensure that given grasp is force-closure is constructing
 \emph on
 convex hull
 \emph default
@@ -2644,25 +2703,25 @@ Constructing of convex hull is done by using the columns of grasp map: each
  can be defined by cones, as shown above.
  For the matter of simplicity of the example, tangent forces are assumed
  to be independent of normal once.
- Hence, 
+ Hence,
 \begin_inset Formula $f_{x}$
 \end_inset
 
- assumed to be positive or negative, where 
+ assumed to be positive or negative, where
 \begin_inset Formula $f_{y}$
 \end_inset
 
- is positive only as shown in 
+ is positive only as shown in
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Convex-hull"
+plural "false"
+caps "false"
+noprefix "false"
 
 \end_inset
 
  .
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -2709,20 +2768,24 @@ Convex hull (left) and inscribed sphere (right).
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Once convex hull is built, quantitative assessment can be performed.
  One way of doing that is determining the largest sphere to inscribe in
- the hull with its center at origin, as shown in Figure , and measuring
- it's diameter.
- If vectors are normalized, the diameter of the sphere can serve as 
+ the hull with its center at origin, as shown in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Convex-hull"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and measuring it's diameter.
+ If vectors are normalized, the radius of the sphere can serve as
 \series bold
 \emph on
 grasp quality measure
 \series default
- 
 \emph default
 (dimensionless value)
 \emph on
@@ -2730,12 +2793,11 @@ grasp quality measure
 
 \emph default
  In case of 3-dimensional space and object convex hull is 6-dimensinoal:
- 
 \begin_inset Formula $F_{x},F_{y},F_{z},T_{x},T_{y},T_{z}$
 \end_inset
 
  and it cannot be shown fully in 3-dimensinal domain, but projections such
- as 
+ as
 \begin_inset Formula $F_{x},F_{y},F_{z}$
 \end_inset
 
@@ -2749,7 +2811,7 @@ Form Closure
 \begin_layout Standard
 A grasp is a form closure if it is a force closure and the fingers are frictionl
 ess contacts.
- The form closure is 
+ The form closure is
 \begin_inset Quotes eld
 \end_inset
 
@@ -2765,12 +2827,42 @@ Form closure: Constrain the movement of the object
 \end_layout
 
 \begin_layout Standard
-INSERT IMAGES ON FORM AND FORCE CLOSURE, EQUILIBRIUM GRASP, MANIPULABLE
- GRASP
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{INSERT IMAGES ON FORM AND FORCE CLOSURE, EQUILIBRIUM GRASP, MANIPULABLE
+ GRASP}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection*
 Quality Measures
+\end_layout
+
+\begin_layout Standard
+
+\color brown
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{NEED MORE INFO HERE}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2811,7 +2903,6 @@ Grasp planning and construction
 \begin_layout Standard
 When planning a grasp for given object, one has to determine how many contacts
  and of what kinds are needed.
- 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Murray1994"
@@ -2826,7 +2917,7 @@ literal "true"
  Given an object and a multifingered robot hand (along with robot itself)
  maximal wrenches an hand can exert can be calculated.
  Xiong et al.
- (2007) 
+ (2007)
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Xiong2007"
@@ -2845,7 +2936,6 @@ literal "true"
 \begin_layout Standard
 Variety of methods for grasp planning was presented during years, yet for
  the purposes of this research we use geometrical methods as proposed by
- 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Nguyen1986"
@@ -2859,10 +2949,19 @@ literal "true"
  no more than 2 force directions does not intersect in one point, and remaining
  2 force directions result in moments with different signs about the aforementio
 ned intersection point.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{INSERT NEW IMAGES}
 \end_layout
 
-\begin_layout Standard
-INSERT NEW IMAGES:
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
@@ -2906,10 +3005,6 @@ NGUYEN
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 The methods uses geometric relations between object's edges and corresponding
  normal directions to construct polygons and determine edge regions suitable
  for finger placement.
@@ -2919,7 +3014,7 @@ The methods uses geometric relations between object's edges and corresponding
 
 \begin_layout Standard
 Additional method that is used in a research is random grasp generation
- with evaluation of the resultant grasps, as proposed by 
+ with evaluation of the resultant grasps, as proposed by
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Borst2003"
@@ -2931,17 +3026,33 @@ literal "true"
  Main idea is to generate random contact points along the object's boundary
  and evaluate the resultant grasp both for force closure and for given quality
  measure.
- 
 \end_layout
 
 \begin_layout Standard
 Find optimal set of graphs with independent regions of contact and pick
  mid points of the regions as optimal grasp points.
- 
 \end_layout
 
 \begin_layout Subsection
 Graphs
+\end_layout
+
+\begin_layout Standard
+
+\color brown
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Rethink this section}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2963,11 +3074,23 @@ Graph is structure describing a set of objects and relations between them.
 \end_layout
 
 \begin_layout Standard
-EXAMPLE GRAPHS, ADJACENCY MATRICES
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{EXAMPLE GRAPHS, ADJACENCY MATRICES}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Assumptions 
+Assumptions
 \end_layout
 
 \begin_layout Standard
@@ -2981,12 +3104,10 @@ This work focuses on planar space where objects represented as polygons
 The polygons are assumed to be non-self-intersecting, while for practical
  purposes the null-thickness regions of self-intersection polygons can be
  infinitesimally thickened to form a non-self-intersection polygon.
- 
 \end_layout
 
 \begin_layout Standard
-In a given set of objects only configuration where graph describing it is
- connected are of interest.
+In a given set of objects only connected configurations are of interest.
  The problem with more than one distinct group of connected polygons are
  easily divided to subproblems.
 \end_layout
@@ -2999,12 +3120,28 @@ The work focuses on construction of equilibrium force closure grasps with
 
 \begin_layout Standard
 Finger contacts are point contacts and hence can act on one object at a
- time.
- As a result from that, two fingers cannot be placed at same location.
+ time, two fingers cannot be placed at same location.
 \end_layout
 
 \begin_layout Section
 Problem Statement
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What should be written here at all? Do I need this section? Probably I
+ do, check Yoav's thesis, and Amir's and Avishay's as well.}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Description
@@ -3012,7 +3149,7 @@ Given: A set of polygonal objects in 2D space.
 \end_layout
 
 \begin_layout Description
-Desired: 
+Desired:
 \end_layout
 
 \begin_deeper
@@ -3038,8 +3175,28 @@ In a common workspace polygonal objects can contact one another in several
  After the classification is presented, an algorithm for finger placement
  given configuration of polygons is proposed, and then an algorithm for
  polygons placement is proposed.
- The idea can be expanded for various tasks, such as home assistant robot
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{The idea can be expanded for various tasks, such as home assistant robot
  that brings several items in one run.
+\end_layout
+
+\begin_layout Plain Layout
+
+ This should go to Motivation.}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -3076,7 +3233,9 @@ status open
 
 \begin_layout Plain Layout
 Objects set and a corresponding graph.
-\end_layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Objects-set-and"
 
 \end_inset
 
@@ -3088,9 +3247,23 @@ Objects set and a corresponding graph.
 
 \end_layout
 
-\begin_layout Standard
-Example: 4 objects in FIGURE below where 1 and 2 touch 3, and 4 touches
- 2,3.
+\end_inset
+
+
+\end_layout
+
+\begin_layout Example
+4 objects in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Objects-set-and"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ where 1 and 2 touch 3, and 4 touches 2,3.
  The contacts serve as graph edges, while objects are represented as graph
  nodes.
  Graph for the given object configuration is shown below.
@@ -3106,10 +3279,6 @@ A=\begin{bmatrix}0 & 1 & 2 & 0\\
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 General idea is to find an amount of missing finger contacts for each object
  and each set of objects by examining the relationship between them.
 \end_layout
@@ -3120,16 +3289,7 @@ Mathematical description
 
 \begin_layout Standard
 REWRITE THIS SECTION
-\end_layout
-
-\begin_layout Standard
-Given 2 polygons, 
-\begin_inset Formula $p_{1},p_{2}$
-\end_inset
-
-.
- The twist 
-\begin_inset Marginal
+\begin_inset Foot
 status open
 
 \begin_layout Plain Layout
@@ -3139,60 +3299,71 @@ Treat the contact point and not the whole polygon.
 
 \end_inset
 
- of polygon 
+
+\end_layout
+
+\begin_layout Standard
+Given 2 polygons,
+\begin_inset Formula $p_{1},p_{2}$
+\end_inset
+
+.
+ The twist of polygon
 \begin_inset Formula $p_{1}$
 \end_inset
 
- relative to 
+ relative to
 \begin_inset Formula $p_{2}$
 \end_inset
 
- can be defined as 
+ can be defined as
 \begin_inset Formula $\dot{x}_{12}=\left(v_{12},\omega_{12}\right)^{T}$
 \end_inset
 
 .
  Polygons can maintain contact but not penetrate one another.
- 
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-Let 
-\begin_inset Formula $IP$
-\end_inset
 
- denote the set of interaction points common to both polygons.
- 
+
+\backslash
+z{Let $IP$ denote the set of interaction points common to both polygons.
 \end_layout
 
 \begin_layout Plain Layout
-Let 
-\begin_inset Formula $C=\left\{ c_{i}\right\} $
+
+Let $C=
+\backslash
+left
+\backslash
+{ c_{i}
+\backslash
+right
+\backslash
+} $ be a set of contact descriptions between these polygons.
+ }
+\end_layout
+
 \end_inset
 
- be a set of contact descriptions between these polygons.
  
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
 \begin_layout Standard
-Let 
+Let
 \begin_inset Formula $\hat{n}_{i}^{j}$
 \end_inset
 
- denote the inward normal direction of the boundary of polygon 
+ denote the inward normal direction of the boundary of polygon
 \emph on
 j
 \emph default
- at contact point 
+ at contact point
 \emph on
 i
 \emph default
@@ -3205,7 +3376,7 @@ The contact between the polygons can be described using one or more contact
 \end_layout
 
 \begin_layout Subsection
-Relationship between polygons and polygon sets 
+Relationship between polygons and polygon sets
 \begin_inset CommandInset label
 LatexCommand label
 name "subsec:Relationship-between-polygons"
@@ -3241,40 +3412,40 @@ Vertex-Edge
 
 ).
  The contact normal direction is defined by the edge the of the second polygon.
- The set of contacts for this variant consists of a single contact: 
+ The set of contacts for this variant consists of a single contact:
 \begin_inset Formula $C=\{c_{1}\}.$
 \end_inset
 
  Contact restrictions can be described as following: velocity of the contact
- point on the boundary of 
+ point on the boundary of
 \begin_inset Formula $p_{1}$
 \end_inset
 
- relative to the velocity of the contact point on the boundary of 
+ relative to the velocity of the contact point on the boundary of
 \begin_inset Formula $p_{2}$
 \end_inset
 
- (denoted 
+ (denoted
 \begin_inset Formula $v_{12}$
 \end_inset
 
-) cannot have component in direction 
+) cannot have component in direction
 \begin_inset Formula $\hat{n}_{1}^{2}$
 \end_inset
 
  - polygons cannot penetrate.
- This can be expressed as follows: 
+ This can be expressed as follows:
 \begin_inset Formula $v_{12}\cdot\hat{n}_{1}^{2}\leq0$
 \end_inset
 
 .
  Contact is maintained when the component of the relative velocity in the
  direction if inward normal of first polygon is 0.
- Since 
+ Since
 \begin_inset Formula $\hat{n}_{i}^{2}=-\hat{n}_{i}^{1}$
 \end_inset
 
-, 
+,
 \begin_inset Formula $-v_{12}\cdot\hat{n}_{1}^{2}\leq0$
 \end_inset
 
@@ -3289,9 +3460,6 @@ v_{12}\cdot\hat{n}_{1}^{2}=0
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3342,15 +3510,15 @@ Edge-Edge
  Two different vertices are selected to be such points.
  Since the vertices lie along the same edge, the contact normal directions
  are the same in this case.
- The set of contacts for this variant consists of two contacts: 
+ The set of contacts for this variant consists of two contacts:
 \begin_inset Formula $C=\{c_{1},c_{2}\},\;c_{i}=\left\{ r_{i},\hat{n}\right\} $
 \end_inset
 
-, where 
+, where
 \begin_inset Formula $r_{i}$
 \end_inset
 
- stands for contacts' location and 
+ stands for contacts' location and
 \begin_inset Formula $\hat{n}$
 \end_inset
 
@@ -3358,9 +3526,6 @@ Edge-Edge
  Graphically this can be depicted as follows: Polygon 1, polygon 2, contact
  line, contact points.
  Cases with 2 points, case with 3 vertices, case with 4 vertices in contact.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3400,34 +3565,30 @@ Edge-to-Edge contact examples.
 \labelwidthstring 00.00.0000
 
 \series bold
-Vertex-Vertex 
+Vertex-Vertex
 \series default
 Vertex to inner vertex (in concave polygon) is another type of discrete
  contact with multiple point-normal parameters.
- Polygon 1 vertex is in contact with 2 edges of 
+ Polygon 1 vertex is in contact with 2 edges of
 \begin_inset Formula $p_{2}$
 \end_inset
 
 .
  In this case, since the movement of polygon 1 relative to polygon 2 is
  restricted in 2 directions, 2 normal directions exist at same contact point.
- The set of contacts for this variant consists of two contacts: 
+ The set of contacts for this variant consists of two contacts:
 \begin_inset Formula $C=\{c_{1},c_{2}\},\;c_{i}=\left\{ r,\hat{n_{i}}\right\} $
 \end_inset
 
-, where 
+, where
 \begin_inset Formula $r$
 \end_inset
 
- stands for contact location and 
+ stands for contact location and
 \begin_inset Formula $\hat{n}$
 \end_inset
 
  stands for edges' normal directions.
- 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3469,9 +3630,9 @@ Other variants of contact descriptions are variations of the mentioned above.
  Outer vertex to outer vertex contact assumed to be unstable and is discarded
  in this work.
  One polygon can contact several others in distinct points, apart from a
- case where several vertices are coincident as shown in 
+ case where several vertices are coincident as shown in
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Multi-object-vertex"
 plural "false"
 caps "false"
@@ -3479,10 +3640,7 @@ noprefix "false"
 
 \end_inset
 
-, in this case, 
-\end_layout
-
-\begin_layout Standard
+, in this case,
 \begin_inset Float figure
 wide false
 sideways false
@@ -3505,7 +3663,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Multi-object vertex 
+Multi-object vertex
 \begin_inset Formula $v$
 \end_inset
 
@@ -3537,32 +3695,29 @@ Contact description
 For the purpose of polygon arrangement evaluation, every contact is assumed
  to be performed by polygon A acting on the polygon B.
  The following description of a contact is adapted:
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
-C=\left\{ id\left(P_{A}\right),id\left(P_{B}\right),p_{i},V\right\} 
+C=\left\{ id\left(P_{A}\right),id\left(P_{B}\right),p,\hat{n}\right\} 
 \end{equation}
 
 \end_inset
 
-where 
+where
 \begin_inset Formula $id\left(P\right)$
 \end_inset
 
- stands for polygon number/identification entry, 
-\begin_inset Formula $p_{i}$
+ stands for polygon number/identification entry,
+\begin_inset Formula $p$
 \end_inset
 
- is a contact point location and 
-\begin_inset Formula $V$
+ is a contact point location and
+\begin_inset Formula $\hat{n}$
 \end_inset
 
  is the contact normal direction inward the polygon B.
- An example of inter-object contact description shown on 
+ An example of inter-object contact description shown on
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:Contact-desription-example."
 plural "false"
 caps "false"
@@ -3571,26 +3726,23 @@ noprefix "false"
 \end_inset
 
 .
- The contact is saved as: 
-\begin_inset Formula $C=\left\{ A,B,p,V\right\} ,$
+ The contact is saved as:
+\begin_inset Formula $C=\left\{ A,B,p,\hat{n}\right\} ,$
 \end_inset
 
-where 
+where
 \begin_inset Formula $A,B$
 \end_inset
 
- are the names of the polygons, 
+ are the names of the polygons,
 \begin_inset Formula $p$
 \end_inset
 
- is the contact location vector in selected coordinate frame and 
-\begin_inset Formula $V$
+ is the contact location vector in selected coordinate frame and
+\begin_inset Formula $\hat{n}$
 \end_inset
 
  is the inward normal direction of the second polygon at the contact location.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -3614,7 +3766,6 @@ status open
 
 \begin_layout Plain Layout
 Contact description example.
- 
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:Contact-desription-example."
@@ -3644,9 +3795,6 @@ Given a set of polygonal objects, where some of the objects are in contact
  Each object has at least 4 contacts: some of them are fingers and some
  are inter-body contacts.
  The equilibrium equation for each object is written in form of total wrench:
-\end_layout
-
-\begin_layout Standard
 \begin_inset Formula 
 \begin{equation}
 G\bar{f}=0
@@ -3654,22 +3802,17 @@ G\bar{f}=0
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-where: 
+where:
 \begin_inset Formula $\bar{f}=\left[\begin{array}{cccccc}
 f_{f1} & f_{f2} & f_{p12} & f_{p13} & \dots & f_{pMN}\end{array}\right]^{T}$
 \end_inset
 
  is a set of forces between fingers and bodies, and between bodies and other
  bodies in contact.
- 
 \begin_inset Formula $G$
 \end_inset
 
- matrix rows multiplied by the set of forces produce equations for 
+ matrix rows multiplied by the set of forces produce equations for
 \begin_inset Formula $\begin{bmatrix}f_{x}\\
 f_{y}\\
 \tau
@@ -3680,26 +3823,33 @@ f_{y}\\
 \end_inset
 
  for each body.
-\end_layout
-
-\begin_layout Standard
-The matrix will be block diagonal with some cross-block columns which correspond
- to body-to-body contacts.
- ELABORATE HERE @@@@@@@@@@ ->Example of such matrix given below.
+ The matrix will be block diagonal with some cross-block columns which correspon
+d to body-to-body contacts.
 \end_layout
 
 \begin_layout Lemma
 Given an edge of a polygonal object and a frictionless point contact, the
  generalized (superposition) wrench for all possible locations of contact
  along the edge can be expressed as 2 dimensional cone (2 vectors) in vertical
- plane of the CONFIGURATION SPACE (the plane's normal direction will be
- in XY plane).
+ plane of the configuration space (the plane's normal direction will be
+ in
+\begin_inset Formula $f_{x}f_{y}$
+\end_inset
+
+ plane).
+\begin_inset CommandInset label
+LatexCommand label
+name "lem:EGW-vertical"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
 All possible contacts on the edge will have the same direction and hence
- same 
-\begin_inset Formula $F_{x},F_{y}$
+ same
+\begin_inset Formula $f_{x},f_{y}$
 \end_inset
 
  components.
@@ -3718,7 +3868,7 @@ All possible contacts on the edge will have the same direction and hence
 \begin_layout Proof
 Caratheodory's theorem shows that a N-dimensional space can be positively
  span by N+1 vectors.
- For two-dimensional task space, there are 3 degrees of freedom 
+ For two-dimensional task space, there are 3 degrees of freedom
 \begin_inset Formula $\left(x,y,\theta\right)$
 \end_inset
 
@@ -3737,371 +3887,39 @@ al (
  is an equilibrium grasp.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename images/solutions_existence.svg
-	lyxscale 30
-	width 55text%
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-Solution existence example.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Example:
-\end_layout
-
-\begin_layout Standard
-two bodies in contact at one point.
- Contact forces shown in red, finger forces shown in blue.
- Each force 
-\begin_inset Formula $f_{i}$
-\end_inset
-
- acts at point 
-\begin_inset Formula $\mathbf{x}_{i}$
-\end_inset
-
- located at body boundary, with direction 
-\begin_inset Formula $\theta_{i}$
-\end_inset
-
- which vector is 
-\begin_inset Formula $\begin{bmatrix}\cos\theta_{i}\\
-\sin\theta_{i}
-\end{bmatrix}=\begin{bmatrix}c_{i}\\
-s_{i}
-\end{bmatrix}$
-\end_inset
-
-.
- The inter-body contact force 
-\begin_inset Formula $f_{AB}$
-\end_inset
-
- selected to act in direction 
-\begin_inset Formula $\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}$
-\end_inset
-
- at point 
-\begin_inset Formula $\mathbf{x}_{AB}$
-\end_inset
-
-.
- We assume that not all forces act at the same point.
- We assume that one force acts at one body only.
-\end_layout
-
-\begin_layout Standard
-Defining a grasp matrix for fingers 
-\emph on
-m
-\emph default
- to 
-\emph on
-n
-\emph default
- (note the linear independence of the rows in a matrix):
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-G_{f\left[m:n\right]}=\begin{bmatrix}c_{m} & ... & c_{n}\\
-s_{m} & ... & s_{n}\\
-\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
-s_{m}
-\end{bmatrix} & ... & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
-s_{n}
-\end{bmatrix}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-such that in case of isolated 2D object
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-\begin{bmatrix}f_{Ax}\\
-f_{Ay}\\
-\tau_{A}
-\end{bmatrix}=\begin{bmatrix}c_{1} & c_{2} & c_{3}\\
-s_{1} & s_{2} & s_{3}\\
-\mathbf{x}_{1}\times\begin{bmatrix}c_{1}\\
-s_{1}
-\end{bmatrix} & \mathbf{x}_{2}\times\begin{bmatrix}c_{2}\\
-s_{2}
-\end{bmatrix} & \mathbf{x}_{3}\times\begin{bmatrix}c_{3}\\
-s_{3}
-\end{bmatrix}
-\end{bmatrix}\begin{bmatrix}f_{1}\\
-f_{2}\\
-f_{3}
-\end{bmatrix}=G_{f\left[1:3\right]}\begin{bmatrix}f_{1}\\
-f_{2}\\
-f_{3}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-We can summarize the forces action on 2 bodies:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{align}
-\begin{bmatrix}f_{Ax}\\
-f_{Ay}\\
-\tau_{A}\\
-f_{Bx}\\
-f_{By}\\
-\tau_{B}
-\end{bmatrix} & =\left[\begin{array}{ccc}
-G_{f\left[1:3\right]} & \left\{ \begin{array}{c}
--c_{AB}\\
--s_{AB}\\
--\mathbf{x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}
-\end{array}\right\}  & 0\\
-0 & \left\{ \begin{array}{c}
-c_{AB}\\
-s_{AB}\\
-\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}
-\end{array}\right\}  & G_{f\left[4:6\right]}
-\end{array}\right]\begin{bmatrix}f_{1}\\
-f_{2}\\
-f_{3}\\
-f_{AB}\\
-f_{4}\\
-f_{5}\\
-f_{6}
-\end{bmatrix}=\nonumber \\
-= & \begin{bmatrix}G_{f\left[1:3\right]} & 0 & \left\{ \begin{array}{c}
--c_{AB}\\
--s_{AB}\\
-\mathbf{-x}_{AB}^{A}\times\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}
-\end{array}\right\} \\
-0 & G_{f\left[4:6\right]} & \left\{ \begin{array}{c}
-c_{AB}\\
-s_{AB}\\
-\mathbf{x}_{AB}^{B}\times\begin{bmatrix}c_{AB}\\
-s_{AB}
-\end{bmatrix}
-\end{array}\right\} 
-\end{bmatrix}\begin{bmatrix}f_{1}\\
-f_{2}\\
-f_{3}\\
-f_{4}\\
-f_{5}\\
-f_{6}\\
-f_{AB}
-\end{bmatrix}=0
-\end{align}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-It can be stated that the grasp matrix for the given set of objects consists
- of a diagonal blocks and of diagonal columns.
- A system will be in equilibrium if a [non-trivial] set of forces exist
- that solves the equation.
-\end_layout
-
-\begin_layout Standard
-The existence of the solution depends on the rank of the 
-\begin_inset Formula $G$
-\end_inset
-
- matrix.
- Since there are more columns than rows (and therefore there is no unique
- solution) we need to ensure that the rows are linearly independent.
-\end_layout
-
-\begin_layout Standard
-Each 
-\begin_inset Formula $G_{f\left[m:n\right]}$
-\end_inset
-
- block consists of 3 rows and 1:3 columns.When there is one column, third
- row is a linear combination of first 2:
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-G_{f\left[m\right]}=\begin{bmatrix}c_{m}\\
-s_{m}\\
-\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
-s_{m}
-\end{bmatrix}
-\end{bmatrix}=\begin{bmatrix}c_{m}\\
-s_{m}\\
-x_{m}s_{m}-y{}_{m}c_{m}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-In case of 1 finger contact on given body, 3rd row of the big matrix (torque)
- will be linear combination of first 2 only if the finger contact is on
- the same location as other (inter-body) contacts (and has same direction),
- which by definition is neither feasible nor needed.
-\end_layout
-
-\begin_layout Standard
-When there are 2 columns then 3rd row will only be a linear combination
- of first 2 only if both contacts are in the same point
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\begin{equation}
-G_{f\left[m,n\right]}=\begin{bmatrix}c_{m} & c_{n}\\
-s_{m} & s_{n}\\
-\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
-s_{m}
-\end{bmatrix} & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
-s_{n}
-\end{bmatrix}
-\end{bmatrix}=\begin{bmatrix}c_{m} & c_{n}\\
-s_{m} & s_{n}\\
-x_{m}s_{m}-y{}_{m}c_{m} & x_{n}s_{n}-y{}_{n}c_{n}
-\end{bmatrix}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\rightarrow\mathbf{x}_{m}=\mathbf{x}_{n}
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-When there are more columns, same applies: all contacts have to be in the
- same location in order to reduce the rank of the grasp matrix.
-\end_layout
-
-\begin_layout Standard
-We can conclude that each 3 rows for each body are linearly independent
- .
-\end_layout
-
-\begin_layout Standard
-Since the matrix is built with blocks, we can see that there are no (and
- cannot be) 2 linearly dependent block rows.
- 
-\end_layout
-
-\begin_layout Proof
-Assuming that block rows 
-\emph on
-i 
-\emph default
-and 
-\emph on
-j
-\emph default
- are linearly dependent.
- In particular, first 
-\begin_inset Formula $G$
-\end_inset
-
--blocks (that corresponds to set of forces applied by fingers) on these
- rows are at the same columns.
- That means that same forces act on different bodies, while acting at the
- same point.
- Which is impossible, since by definition each finger contacts one body
- only.
-\end_layout
-
-\begin_layout Standard
-Therefore, if given matrix has full rank, there exists a non-trivial (but
- not unique) set of forces that will keep the system in equilibrium.
-\end_layout
-
 \begin_layout Proposition
-A set of 
+A set of
 \begin_inset Formula $N$
 \end_inset
 
- polygonal objects in 
+ polygonal objects in
 \begin_inset Formula $\mathbb{R}^{2}$
 \end_inset
 
  in stable ( what is stable contact ???) contact one with another can be
- immobilized by at most 
+ immobilized by at most
 \begin_inset Formula $3N$
 \end_inset
 
  fingers assuming first order non-frictional contacts.
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:3N_fingers"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
 Given connected set of objects, for each object at least one contact exist.
- For an object in 
+ For an object in
 \begin_inset Formula $\mathbb{R}^{2}$
 \end_inset
 
  to be first order immobilized minimum 4 constraints required.
  Knowing that at least one constraint already exists because the set is
- connected, for each object 3 external constrains are needed, yielding 
+ connected, for each object 3 external constrains are needed, yielding
 \begin_inset Formula $3N$
 \end_inset
 
@@ -4109,11 +3927,11 @@ Given connected set of objects, for each object at least one contact exist.
 \end_layout
 
 \begin_layout Proposition
-A set of 
+A set of
 \begin_inset Formula $N$
 \end_inset
 
- polygonal objects in 
+ polygonal objects in
 \begin_inset Formula $\mathbb{R}^{2}$
 \end_inset
 
@@ -4129,7 +3947,6 @@ Assuming optimal configuration of the objects where each of them is immobilized
 \end_inset
 
 ) the total amount of external constraints for the set immobilization is
- 
 \begin_inset Formula $\max\left(4,\left|EC\right|\right)$
 \end_inset
 
@@ -4181,10 +3998,17 @@ Given a polygonal object and 3 parallel frictionless contacts on the object
 \end_layout
 
 \begin_layout Proof
-As SOMEONE (Nguyen) showed, to construct a first order immobilizing grasp
- with 4 frictionless contacts the contacts have to not to intersect in one
- point.
- 3 parallel contacts are 
+4 contacts of a frictionless grasp have to not to intersect in one point,
+ as showed
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Nguyen1986"
+literal "false"
+
+\end_inset
+
+.
+ 3 parallel contacts are
 \begin_inset Quotes eld
 \end_inset
 
@@ -4197,12 +4021,348 @@ intersecting
  point.
 \end_layout
 
-\begin_layout Proof
+\begin_layout Example
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/solutions_existence.svg
+	lyxscale 30
+	width 55text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Solution existence example.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Two bodies in contact at one point.
+ Contact forces shown in red, finger forces shown in blue.
+ Each force
+\begin_inset Formula $f_{i}$
+\end_inset
+
+ acts at point
+\begin_inset Formula $\mathbf{x}_{i}$
+\end_inset
+
+ located at body boundary, with direction
+\begin_inset Formula $\theta_{i}$
+\end_inset
+
+ which vector is
+\begin_inset Formula $\begin{bmatrix}\cos\theta_{i}\\
+\sin\theta_{i}
+\end{bmatrix}=\begin{bmatrix}c_{i}\\
+s_{i}
+\end{bmatrix}$
+\end_inset
+
+.
+ The inter-body contact force
+\begin_inset Formula $f_{AB}$
+\end_inset
+
+ selected to act in direction
+\begin_inset Formula $\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}$
+\end_inset
+
+ at point
+\begin_inset Formula $\mathbf{x}_{AB}$
+\end_inset
+
+.
+ The objects are immobilized by 3 fingers, according to the
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "prop:3N_fingers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Defining a grasp matrix for fingers
+\emph on
+m
+\emph default
+ to
+\emph on
+n
+\emph default
+ (note the linear independence of the rows in a matrix):
+\begin_inset Formula 
+\begin{equation}
+G_{f\left[m:n\right]}=\begin{bmatrix}c_{m} & ... & c_{n}\\
+s_{m} & ... & s_{n}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix} & ... & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
+s_{n}
+\end{bmatrix}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+such that in case of isolated 2D object
+\begin_inset Formula 
+\begin{equation}
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}
+\end{bmatrix}=\begin{bmatrix}c_{1} & c_{2} & c_{3}\\
+s_{1} & s_{2} & s_{3}\\
+\mathbf{x}_{1}\times\begin{bmatrix}c_{1}\\
+s_{1}
+\end{bmatrix} & \mathbf{x}_{2}\times\begin{bmatrix}c_{2}\\
+s_{2}
+\end{bmatrix} & \mathbf{x}_{3}\times\begin{bmatrix}c_{3}\\
+s_{3}
+\end{bmatrix}
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}
+\end{bmatrix}=G_{f\left[1:3\right]}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+When there are 2 or more columns, 3rd row will only be a linear combination
+ of first 2 only if all contacts are in the same point:
+\begin_inset Formula 
+\begin{equation}
+G_{f\left[m,n\right]}=\begin{bmatrix}c_{m} & c_{n}\\
+s_{m} & s_{n}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix} & \mathbf{x}_{n}\times\begin{bmatrix}c_{n}\\
+s_{n}
+\end{bmatrix}
+\end{bmatrix}=\begin{bmatrix}c_{m} & c_{n}\\
+s_{m} & s_{n}\\
+x_{m}s_{m}-y{}_{m}c_{m} & x_{n}s_{n}-y{}_{n}c_{n}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\rightarrow\mathbf{x}_{m}=\mathbf{x}_{n}
+\]
+
+\end_inset
+
+Each
+\begin_inset Formula $G_{f\left[m:n\right]}$
+\end_inset
+
+ block consists of 3 rows and 1:3 columns.When there is one column, third
+ row is a linear combination of first 2:
+\begin_inset Formula 
+\begin{equation}
+G_{f\left[m\right]}=\begin{bmatrix}c_{m}\\
+s_{m}\\
+\mathbf{x}_{m}\times\begin{bmatrix}c_{m}\\
+s_{m}
+\end{bmatrix}
+\end{bmatrix}=\begin{bmatrix}c_{m}\\
+s_{m}\\
+x_{m}s_{m}-y{}_{m}c_{m}
+\end{bmatrix}
+\end{equation}
+
+\end_inset
+
+In case of 1 finger contact on given body, 3rd row of the grasp matrix (torque)
+ will be linear combination of first 2 only if the finger contacts is on
+ the same locations as other (inter-body) contacts (and has same direction),
+ which by definition is neither feasible nor needed.
+\end_layout
+
+\begin_layout Standard
+We can summarize the forces action on 2 bodies:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}\\
+f_{Bx}\\
+f_{By}\\
+\tau_{B}
+\end{bmatrix} & =\left[\begin{array}{ccc}
+G_{f\left[1:3\right]} & \left\{ \begin{array}{c}
+-c_{AB}\\
+-s_{AB}\\
+-\mathbf{x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & 0\\
+0 & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\}  & G_{f\left[4:6\right]}
+\end{array}\right]\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{AB}\\
+f_{4}\\
+f_{5}\\
+f_{6}
+\end{bmatrix}=\nonumber \\
+= & \begin{bmatrix}G_{f\left[1:3\right]} & 0 & \left\{ \begin{array}{c}
+-c_{AB}\\
+-s_{AB}\\
+\mathbf{-x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} \\
+0 & G_{f\left[4:6\right]} & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} 
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{4}\\
+f_{5}\\
+f_{6}\\
+f_{AB}
+\end{bmatrix}=0\label{eq:Full-GM}
+\end{align}
+
+\end_inset
+
+As seen in the
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:Full-GM"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ above, the grasp matrix for the given set of objects consists of a diagonal
+ blocks and off diagonal columns.
+ A system will be in equilibrium if a non-trivial set of forces exist that
+ solves the equation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Check the following, what is this? Do I need it at all? }
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+
+\emph on
+The existence of the solution depends on the rank of the
+\begin_inset Formula $G$
+\end_inset
+
+ matrix.
+ Since there are more columns than rows (and therefore there is no unique
+ solution) we need to ensure that the rows are linearly independent.
+\end_layout
+
+\begin_layout Plain Layout
+
+\emph on
+Since the matrix is built with blocks, we can see that there are no (and
+ cannot be) 2 linearly dependent block rows.
+\end_layout
+
+\begin_layout Plain Layout
+
+\emph on
+Assuming that block rows i and j are linearly dependent.
+ In particular, first
+\begin_inset Formula $G$
+\end_inset
+
+-blocks (that corresponds to set of forces applied by fingers) on these
+ rows are at the same columns.
+ That means that same forces act on different bodies, while acting at the
+ same point.
+ Which is impossible, since by definition each finger contacts one body
+ only.
+\end_layout
+
+\begin_layout Plain Layout
+
+\emph on
+Therefore, if given matrix has full rank, there exists a non-trivial (but
+ not unique) set of forces that will keep the system in equilibrium.
+\end_layout
+
+\begin_layout Plain Layout
+
+\emph on
 3 Frictionless contacts that intersecting at one point.
 \end_layout
 
-\begin_layout Proof
-Direction of contacts should 
+\begin_layout Plain Layout
+
+\emph on
+Direction of contacts should
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -4212,110 +4372,6 @@ Edge generalized wrench
 \begin_layout Standard
 The evaluation of possible contact positions on an edged can be simplified
  by introducing an edge generalized wrench:
-\end_layout
-
-\begin_layout Definition
-Given a polygon's edge 
-\emph on
-e
-\emph default
- and a reference point 
-\emph on
-o
-\emph default
- the set of all possible wrenches 
-\begin_inset Formula $w_{e}$
-\end_inset
-
- can can be defined by a two-dimensional convex cone in a vertical plane
- of a wrench space.
- 
-\end_layout
-
-\begin_layout Definition
-Denote the edge's normal by 
-\begin_inset Formula $\hat{n}$
-\end_inset
-
- and edge's ends by 
-\begin_inset Formula $\vec{e}_{1},\vec{e}_{2}$
-\end_inset
-
- relative to 
-\emph on
-o
-\emph default
-, the edge is parameterized by parameter 
-\begin_inset Formula $s\in[0,1]$
-\end_inset
-
- the wrench of a contact along the edge can vary between:
-\begin_inset Formula 
-\begin{equation}
-\left(1-s\right)\begin{bmatrix}\hat{n}\\
-\vec{e}_{1}\times\hat{n}
-\end{bmatrix}+s\begin{bmatrix}\hat{n}\\
-\vec{e}_{2}\times\hat{n}
-\end{bmatrix},\qquad s\in[0,1]
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Definition
-which is exactly a linear combination of two marginal wrenches.
- In a geometrical representation, it is a planar angle contained in a vertical
- plane (plane's normal direction has no torsional component) in the wrench
- space.
- Illustration shows an example of a generalized edge wrench.
- An edge of polygonal object B has inward normal direction 
-\begin_inset Formula $n_{ab}$
-\end_inset
-
-.
- Two marginal contacts 
-\begin_inset Formula $a,b$
-\end_inset
-
- are shown in violet, with locations defined by vectors 
-\begin_inset Formula $p_{a},p_{b}$
-\end_inset
-
- respectively.
- Wrenches induced by these contacts are calculated by:
-\begin_inset Formula 
-\[
-w_{a}=\begin{bmatrix}\hat{n}_{a}\\
-\vec{p}_{a}\times\hat{n}_{a}
-\end{bmatrix},\;w_{b}=\begin{bmatrix}\hat{n}_{b}\\
-\vec{p}_{b}\times\hat{n}_{b}
-\end{bmatrix}.
-\]
-
-\end_inset
-
-As can be seen from the figure, contact 
-\begin_inset Formula $a$
-\end_inset
-
- induces positive torque about the selected reference point, while contact
- 
-\begin_inset Formula $b$
-\end_inset
-
- induces negative torque.
- Hence, the 3-rd components of a wrench have opposite signs and are located
- on different sides of the 
-\emph on
-xy
-\emph default
--plane.
- 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -4351,6 +4407,192 @@ EGW.
 
 \end_layout
 
+\begin_layout Definition
+Given a polygon's edge
+\emph on
+e
+\emph default
+ and a reference point
+\emph on
+o,
+\emph default
+ the set of all possible wrenches
+\begin_inset Formula $w_{e}$
+\end_inset
+
+ can can be defined by a two-dimensional convex cone in a vertical plane
+ of a wrench space.
+\end_layout
+
+\begin_layout Definition
+Denote the edge's normal by
+\begin_inset Formula $\hat{n}$
+\end_inset
+
+ and edge's ends by
+\begin_inset Formula $\vec{e}_{1},\vec{e}_{2}$
+\end_inset
+
+ relative to
+\emph on
+o
+\emph default
+, the edge is parameterized by parameter
+\begin_inset Formula $s\in[0,1]$
+\end_inset
+
+ the wrench of a contact along the edge can vary between:
+\begin_inset Formula 
+\begin{equation}
+\left(1-s\right)\begin{bmatrix}\hat{n}\\
+\vec{e}_{1}\times\hat{n}
+\end{bmatrix}+s\begin{bmatrix}\hat{n}\\
+\vec{e}_{2}\times\hat{n}
+\end{bmatrix},\qquad s\in[0,1]\label{eq:Edge-GW-parameterization}
+\end{equation}
+
+\end_inset
+
+which is exactly a linear combination of two marginal wrenches.
+ In a geometrical representation, it is a planar angle contained in a vertical
+ plane (plane's normal direction has no torsional component) in the wrench
+ space.
+ Illustration shows an example of a generalized edge wrench.
+ An edge of polygonal object B has inward normal direction
+\begin_inset Formula $n_{ab}$
+\end_inset
+
+.
+ Two marginal contacts
+\begin_inset Formula $a,b$
+\end_inset
+
+ are shown in violet, with locations defined by vectors
+\begin_inset Formula $p_{a},p_{b}$
+\end_inset
+
+ respectively.
+ Wrenches induced by these contacts are calculated by:
+\begin_inset Formula 
+\[
+w_{a}=\begin{bmatrix}\hat{n}_{a}\\
+\vec{p}_{a}\times\hat{n}_{a}
+\end{bmatrix},\;w_{b}=\begin{bmatrix}\hat{n}_{b}\\
+\vec{p}_{b}\times\hat{n}_{b}
+\end{bmatrix}.
+\]
+
+\end_inset
+
+As can be seen from the FIGURE , contact
+\begin_inset Formula $a$
+\end_inset
+
+ induces positive torque about the selected reference point, while contact
+\begin_inset Formula $b$
+\end_inset
+
+ induces negative torque.
+ Hence, the 3-rd components of a wrench have opposite signs and are located
+ on different sides of the
+\emph on
+xy
+\emph default
+-plane.
+ The expression for the edge generalized wrench can be rewritten to a form
+ of:
+\begin_inset Formula 
+\begin{align}
+w_{e}\left(s\right) & =\left(1-s\right)\begin{bmatrix}\hat{n}\\
+\vec{e}_{1}\times\hat{n}
+\end{bmatrix}+s\begin{bmatrix}\hat{n}\\
+\vec{e}_{2}\times\hat{n}
+\end{bmatrix}=\begin{bmatrix}\hat{n}\\
+\left(\left(1-s\right)\cdot\vec{e}_{1}+s\cdot\vec{e}_{2}\right)\times\hat{n}
+\end{bmatrix},\qquad s\in[0,1]\nonumber \\
+ & =\left[\begin{array}{c}
+n_{x}\\
+n_{y}\\
+\left(x_{1}\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\left(n_{y}\left(x_{2}-x_{1}\right)+n_{x}\left(y_{1}-y_{2}\right)\right)
+\end{array}\right]\label{eq:EGW-parameterization}
+\end{align}
+
+\end_inset
+
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Formula 
+\[
+\begin{bmatrix}\hat{n}\\
+\left(\left(1-s\right)\cdot\vec{e}_{1}+s\cdot\vec{e}_{2}\right)\times\hat{n}
+\end{bmatrix}=\begin{bmatrix}\begin{bmatrix}n_{x}\\
+n_{y}
+\end{bmatrix}\\
+\left(\left(1-s\right)\cdot\begin{bmatrix}x_{1}\\
+y_{1}
+\end{bmatrix}+s\cdot\begin{bmatrix}x_{2}\\
+y_{2}
+\end{bmatrix}\right)\times\hat{\begin{bmatrix}n_{x}\\
+n_{y}
+\end{bmatrix}}
+\end{bmatrix}=
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{align*}
+=\begin{bmatrix}\begin{bmatrix}n_{x}\\
+n_{y}
+\end{bmatrix}\\
+\begin{bmatrix}\left(1-s\right)\cdot x_{1}+s\cdot x_{2}\\
+\left(1-s\right)\cdot y_{1}+s\cdot y_{2}
+\end{bmatrix}\times\hat{\begin{bmatrix}n_{x}\\
+n_{y}
+\end{bmatrix}}
+\end{bmatrix} & =\begin{bmatrix}\begin{bmatrix}n_{x}\\
+n_{y}
+\end{bmatrix}\\
+\left(\left(1-s\right)\cdot x_{1}+s\cdot x_{2}\right)n_{y}-\left(\left(1-s\right)\cdot y_{1}+s\cdot y_{2}\right)n_{x}
+\end{bmatrix}=\begin{bmatrix}\begin{bmatrix}n_{x}\\
+n_{y}
+\end{bmatrix}\\
+x\cdot n_{y}-s\cdot x_{1}\cdot n_{y}+s\cdot x_{2}\cdot n_{y}-y_{1}\cdot n_{x}-s\cdot y_{1}\cdot n_{x}+s\cdot y_{2}\cdot n_{x}
+\end{bmatrix}\\
+= & \begin{bmatrix}\begin{bmatrix}n_{x}\\
+n_{y}
+\end{bmatrix}\\
+\left(x\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\cdot\left(x_{2}\cdot n_{y}-x_{1}\cdot n_{y}-y_{1}\cdot n_{x}+y_{2}\cdot n_{x}\right)
+\end{bmatrix}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+We can note that only the torque component of the wrench vector changes
+ along the edge, and hence the edge generalized wrench is strictly
+\begin_inset Quotes eld
+\end_inset
+
+vertical
+\begin_inset Quotes erd
+\end_inset
+
+ in the wrench space, and that it is linear along the parameter
+\emph on
+s
+\emph default
+.
+\end_layout
+
 \begin_layout Subsection
 Inverted cone test
 \begin_inset CommandInset label
@@ -4368,114 +4610,6 @@ As stated above, a convex hull of the contact wrenches should contain the
  Given several contacts, and corresponding wrenches in the wrench space
  that do not contain the origin, a simple test can show whether additional
  vector will make total convex hull to contain the origin or not.
- 
-\end_layout
-
-\begin_layout Proposition
-Given a set of 3 contacts, whose wrenches do not span the wrench space (the
- origin of the wrench space is not inside the convex hull of these wrenches)
- while not being in the same plane and additional contact, the contact can
- complete the force closure grasp of the object if the contact's wrench
- lies within the inverted cone of the given contacts' wrenches.
-\begin_inset CommandInset label
-LatexCommand label
-name "prop:InvCone-interior"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-Each couple of wrenches along with the origin point form a plane, 
-\end_layout
-
-\begin_layout Proof
-Equilibrium condition for a grasp is that the total wrench for all contacts
- equals to zero:
-\begin_inset Formula 
-\begin{equation}
-\sum_{i=1}^{4}G_{i}f_{i}=0\label{eq:Total-Wrench}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-Where 
-\begin_inset Formula $G_{i}$
-\end_inset
-
- is 
-\begin_inset Formula $\begin{bmatrix}n_{i}\\
-p_{c_{i}}\times n_{i}
-\end{bmatrix}$
-\end_inset
-
- 
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "$n_{i}$"
-description "i's contact inward normal direction \\nomunit{[unitless]}"
-literal "true"
-
-\end_inset
-
- 
-\begin_inset CommandInset nomenclature
-LatexCommand nomenclature
-symbol "$p_{c_{i}}$"
-description "i's contact location in object's frame  \\nomunit{[m]}"
-literal "true"
-
-\end_inset
-
- for each contact.
- Rewriting the 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "eq:Total-Wrench"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-:
-\end_layout
-
-\begin_layout Proof
-\begin_inset Formula 
-\begin{equation}
-G_{4}f_{4}=-\sum_{i=1}^{3}G_{i}f_{i}
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-Given the fact that 
-\begin_inset Formula $G$
-\end_inset
-
- columns are wrench space vectors, and 
-\begin_inset Formula $f$
-\end_inset
-
- are scalar values, this allows the representation of a 4th wrench space
- vector as a linear combination of other wrench vectors, which is exactly
- the cone formed by these wrenches.
- If the 4th vector lies outside the cone then it cannot be represented as
- a linear combination of other wrenches and hence will not allow equilibrium
- grasp.
- 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -4498,7 +4632,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Inverted Cone, with vector 
+Inverted Cone, with vector
 \emph on
 
 \begin_inset Formula $a$
@@ -4506,7 +4640,7 @@ Inverted Cone, with vector
 
 
 \emph default
- inside and vector 
+ inside and vector
 \emph on
 
 \begin_inset Formula $b$
@@ -4514,7 +4648,14 @@ Inverted Cone, with vector
 
 
 \emph default
- outside
+ outside.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:inv_cone_001"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -4528,16 +4669,451 @@ Inverted Cone, with vector
 \end_layout
 
 \begin_layout Proposition
-Given a set of 3 contacts, the 4th contact that will yield highest volume
- of InscribedSphere grasp quality measure is the one that has a wrench space
- vector that lies along the axis of the anti-cone of wrench vectors of other
- contacts.
+Given a set of 3 contacts, whose wrenches do not span the wrench space (the
+ origin of the wrench space is not inside the convex hull of these wrenches)
+ while not being in the same plane and additional contact, the contact can
+ complete the force closure grasp of the object if the contact's wrench
+ lies within the inverted cone of the given contacts' wrenches.
+\begin_inset CommandInset label
+LatexCommand label
+name "prop:InvCone-interior"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Proof
-As seen in proposition 
+Each couple of wrenches along with the origin point form a plane, Equilibrium
+ condition for a grasp is that the total wrench for all contacts equals
+ to zero:
+\begin_inset Formula 
+\begin{equation}
+\sum_{i=1}^{4}G_{i}f_{i}=0\label{eq:Total-Wrench}
+\end{equation}
+
+\end_inset
+
+Where
+\begin_inset Formula $G_{i}$
+\end_inset
+
+ is
+\begin_inset Formula $\begin{bmatrix}n_{i}\\
+p_{c_{i}}\times n_{i}
+\end{bmatrix}$
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$n_{i}$"
+description "i's contact inward normal direction \\nomunit{[unitless]}"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$p_{c_{i}}$"
+description "i's contact location in object's frame  \\nomunit{[m]}"
+literal "true"
+
+\end_inset
+
+ for each contact.
+ Rewriting the
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
+reference "eq:Total-Wrench"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\begin{equation}
+G_{4}f_{4}=-\sum_{i=1}^{3}G_{i}f_{i}
+\end{equation}
+
+\end_inset
+
+Given the fact that
+\begin_inset Formula $G$
+\end_inset
+
+ columns are wrench space vectors, and
+\begin_inset Formula $f$
+\end_inset
+
+ are scalar values, this allows the representation of a 4th wrench space
+ vector as a linear combination of other wrench vectors, which is exactly
+ the cone formed by these wrenches.
+ If the 4th vector lies outside the cone then it cannot be represented as
+ a linear combination of other wrenches and hence will not allow equilibrium
+ grasp.
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset label
+LatexCommand label
+name "exa::-A-square"
+
+\end_inset
+
+A square object with 3 contacts
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inverted_cone_placement.svg
+	lyxscale 30
+	width 45text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A square object with 3 contacts.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:inv_cone_002"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Each contact is located 1 unit length from an edge.
+ The contacts are described by the direction and the position as follows:
+\begin_inset Formula 
+\[
+C_{a}=\left\{ n_{a}=\begin{bmatrix}1\\
+0
+\end{bmatrix},p_{a}=\begin{bmatrix}-2\\
+1
+\end{bmatrix}\right\} 
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+C_{b}=\left\{ n_{b}=\begin{bmatrix}0\\
+-1
+\end{bmatrix},p_{b}=\begin{bmatrix}-1\\
+2
+\end{bmatrix}\right\} 
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+C_{c}=\left\{ n_{c}=\begin{bmatrix}0\\
+1
+\end{bmatrix},p_{c}=\begin{bmatrix}1\\
+-2
+\end{bmatrix}\right\} 
+\]
+
+\end_inset
+
+Corresponding wrenches are:
+\begin_inset Formula 
+\[
+w_{a}=\begin{bmatrix}\hat{n}_{a}\\
+\vec{p}_{a}\times\hat{n}_{a}
+\end{bmatrix}=\begin{bmatrix}1\\
+0\\
+\begin{bmatrix}-2\\
+1
+\end{bmatrix}\times\begin{bmatrix}1\\
+0
+\end{bmatrix}
+\end{bmatrix}=\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+w_{b}=\begin{bmatrix}\hat{n}_{b}\\
+\vec{p}_{b}\times\hat{n}_{b}
+\end{bmatrix}=\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+w_{c}=\begin{bmatrix}\hat{n}_{c}\\
+\vec{p}_{c}\times\hat{n}_{c}
+\end{bmatrix}=\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}
+\]
+
+\end_inset
+
+Convex cone of these wrenches along with it's inverse are shown in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:inv_cone_003"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inv_cone_01.svg
+	lyxscale 30
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Contact wrenches, convex cone and inverted convex cone.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:inv_cone_003"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The distance of some point from 3 faces of the inverted cone is calculated
+ by projecting the point onto the face normal.
+ Face normal directions are:
+\begin_inset Formula 
+\[
+\hat{n}_{ab}=\frac{w_{a}\times w_{b}}{\left|w_{a}\times w_{b}\right|}=\frac{\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}\times\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}}{\left|\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}\times\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}\right|}=-\frac{\sqrt{3}}{3}\left[\begin{array}{c}
+1\\
+1\\
+1
+\end{array}\right]
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\hat{n}_{bc}=\frac{w_{b}\times w_{c}}{\left|w_{b}\times w_{c}\right|}=\frac{\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}\times\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}}{\left|\begin{bmatrix}0\\
+-1\\
+1
+\end{bmatrix}\times\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}\right|}=\begin{bmatrix}-1\\
+0\\
+0
+\end{bmatrix}
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+\hat{n}_{ca}=\frac{w_{c}\times w_{a}}{\left|w_{c}\times w_{a}\right|}=\frac{\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}\times\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}}{\left|\begin{bmatrix}0\\
+1\\
+1
+\end{bmatrix}\times\begin{bmatrix}1\\
+0\\
+-1
+\end{bmatrix}\right|}=\frac{\sqrt{3}}{3}\left[\begin{array}{c}
+-1\\
+1\\
+-1
+\end{array}\right]
+\]
+
+\end_inset
+
+ Building generalized edge wrenches for each edge:
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inv_cone_02.svg
+	lyxscale 30
+	width 75text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Edge Generalized wrenches for 4 edges of the object.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Edge-Generalized-wrenches"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+As can be seen from
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Edge-Generalized-wrenches"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, only the eastern edge wrench has the common intersection with the inverted
+ cone.
+ Visual examination of the object confirms intuitively that placement of
+ a finger on the eastern edge only could immobilized the object.
+ It can be seen that only a wrench vector from the eastern edge can complete
+ the convex cone of 3 given contacts' wrenches and form a convex hull which
+ contains the origin in it's interior.
+ Further development shown in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Algorithms-for-finger"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Maximizing the Inscribed Sphere
+\end_layout
+
+\begin_layout Standard
+One of the proposed quality measures is a volume/radius of the sphere inscribed
+ in the convex hull of grasp map basis vectors.
+ Maximizing the sphere radius can be done by increasing the minimal of the
+ distances between the origin end the faces of the convex hull.
+ Since the hull is convex, some of the faces will be tangent to the sphere,
+ and in no case a edge will be tangent.
+ In cases where several contacts act on the object, it is always possible
+ to construct a
+\emph on
+convex
+\emph default
+ hull and thus eliminate redundant wrench vectors.
+\end_layout
+
+\begin_layout Proposition
+Given a set of k-1 contacts, and their corresponding wrench vectors, convex
+ cone and it's inverse cone; for a generalized wrench that has a segment
+ in the interior of the inverse convex cone an optimal k-th contact can
+ be found by examining distances of the convex hull faces from the origin.
+\end_layout
+
+\begin_layout Proof
+As seen in
+\begin_inset CommandInset ref
+LatexCommand ref
 reference "prop:InvCone-interior"
 plural "false"
 caps "false"
@@ -4545,172 +5121,354 @@ noprefix "false"
 
 \end_inset
 
-, the 
-\begin_inset Formula $w_{4}$
+, the
+\begin_inset Formula $w_{k}$
 \end_inset
 
  has to lie inside of the Anti-Cone.
- If 
-\begin_inset Formula $w_{4}$
+ If
+\begin_inset Formula $w_{k}$
 \end_inset
 
  lies on a cone boundary then it and 2 vectors that form that boundary (denoted
- by 
+ by
 \begin_inset Formula $w_{1},w_{2}$
 \end_inset
 
 ), will form a surface that contains the origin of the wrench space.
- To maximize the distance of said surface from the origin (which is equivalent
- to maximizing the sphere of origin centered inscribe sphere of the convex
- polyhedron) the 
-\emph on
+ To maximize the distance of said surface from the origin we first parameterize
+ the wrench vector end point location segment by using the
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:EGW-parameterization"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_inset Formula $w_{4}$
 \end_inset
 
-
-\emph default
- point ought to be farthest as possible from the surface formed by 
-\begin_inset Formula $w_{1},w_{2}$
-\end_inset
-
- and the origin.
-\end_layout
-
-\begin_layout Proof
-Given 3 unit wrench vectors 
-\begin_inset Formula $w_{1},w_{2},w_{3}$
-\end_inset
-
-, we define a 
+.
+ For each face of the convex hull, the distance of the face from the origin
+ can be calculated by projecting a point on the plane on the plane's normal.
+ We define a
 \emph on
 central axis
 \emph default
  of their convex cone as:
 \begin_inset Formula 
-\begin{equation}
-a=\frac{w_{1}+w_{2}+w_{3}}{\left|w_{1}+w_{2}+w_{3}\right|}
-\end{equation}
+\[
+a=\frac{\sum_{i=1}^{k-1}w_{i}}{\left|\sum_{i=1}^{k-1}w_{i}\right|}
+\]
 
 \end_inset
 
-Assuming a counterclockwise arrangement of the vectors around 
-\begin_inset Formula $a$
-\end_inset
-
-, respective distances from the boundary planes to the 
-\begin_inset Formula $w_{4}$
-\end_inset
-
- point can be written as:
-\begin_inset Formula 
-\begin{equation}
-d_{12}=\begin{bmatrix}x_{4}\\
-y_{4}\\
-z_{4}
-\end{bmatrix}\cdot\left(\begin{bmatrix}x_{1}\\
-y_{1}\\
-z_{1}
-\end{bmatrix}\times\begin{bmatrix}x_{2}\\
-y_{2}\\
-z_{2}
-\end{bmatrix}\right)
-\end{equation}
-
-\end_inset
-
-where cross product selected to yield a vector pointing inside the cone.
- Since origin centered inscribed sphere radius is a minimal of the distances
- to the planes, of convex polyhedra, we select the minimal distance from
- any and all surfaces to be:
-\begin_inset Formula 
-\begin{equation}
-D=\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-And hence, the 
-\begin_inset Formula $w_{4}$
-\end_inset
-
- vector to yield such a distance will be
-\begin_inset Formula 
-\begin{equation}
-w_{4}=\underset{\left[x_{4},y_{4},z_{4}\right]^{T}}{\mathrm{argmax}}\left(\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)\right)
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-Since the vectors normal to the cone faces projected on the 
-\begin_inset Quotes eld
-\end_inset
-
-base
-\begin_inset Quotes erd
-\end_inset
-
- of the cone are positively spanning the plane that the 
-\begin_inset Quotes eld
-\end_inset
-
-base
-\begin_inset Quotes erd
-\end_inset
-
- is on, any change of a 
-\begin_inset Formula $w_{4}$
-\end_inset
-
- point will increase some of the distances while decreasing other.
- Maximized minimal selected distance will be where all 3 distances are equal,
- and can be presented as shown below.
- This can be extended to cases for more complex convex cones, analogously
- to inscribing a circle in a polygon.
- In a way similar to such circle inscribed in a irregular polygon, the maximized
- minimal distance from the faces of a cone will lie along a central axis.
- Reader can refer to 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Icking2001,Delaunay1934"
-literal "true"
-
-\end_inset
-
-.
- 
+Assuming that the
 \emph on
-Note
+k-1
 \emph default
-: The derivation above treated the vectors to be unit vectors, including
- the 
-\begin_inset Formula $w_{4}$
+ wrenches are sorted in counter-clock-wise direction about the cone axis,
+ meaning that
+\begin_inset Formula 
+\[
+a\cdot\left(w_{i}\times w_{i+1}\right)>0\;\forall i\in\left[1:k-1\right],
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+a\cdot\left(w_{k-1}\times w_{1}\right)>0.
+\]
+
+\end_inset
+
+The equation for the normal direction of a plane formed by
+\begin_inset Formula $w_{i},w_{i+1},w_{k}$
+\end_inset
+
+ is:
+\begin_inset Formula 
+\[
+n_{p}=\left(w_{i}-w_{k}\right)\x{}\left(w_{i+1}-w_{k}\right).
+\]
+
+\end_inset
+
+If the
+\begin_inset Formula $w_{k}$
+\end_inset
+
+ lies inside the inverted convex cone of first
+\emph on
+k-1
+\emph default
+ contacts, then the normal direction will point from the plane towards the
+ origin.
+ Consequently, the distance of the plane from the origin can be expressed
+ as:
+\begin_inset Formula 
+\[
+d_{i}=-w_{k}\cdot\left(w_{i}-w_{k}\right)\x{}\left(w_{i+1}-w_{k}\right),
+\]
+
+\end_inset
+
+note the
+\begin_inset Quotes eld
+\end_inset
+
+-
+\begin_inset Quotes erd
+\end_inset
+
+ sign to obtain positive distance
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+MATLAB has polyshapes stored with vertices in clockwise direction, hence
+ no minus sign in the code.
+\end_layout
+
 \end_inset
 
 .
- In case where the 
-\begin_inset Formula $w_{4}$
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Proof
+\begin_inset Formula 
+\[
+=w_{k}\cdot\left(w_{i}-w_{k}\right)\x{}\left(w_{i+1}-w_{k}\right)
+\]
+
 \end_inset
 
- point lies further from the origin (along the central axis of the convex
- cone), the inscribed sphere radius will increase as well.
+
+\end_layout
+
+\begin_layout Proof
+\begin_inset Formula 
+\begin{align*}
+ & =\left[\begin{array}{c}
+n_{x}\\
+n_{y}\\
+\left(x\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\cdot\left(x_{2}\cdot n_{y}-x_{1}\cdot n_{y}-y_{1}\cdot n_{x}+y_{2}\cdot n_{x}\right)
+\end{array}\right]\\
+ & \cdot\left(\left[\begin{array}{c}
+n_{x}^{i}-n_{x}^{k}\\
+n_{y}^{i}-n_{y}^{k}\\
+\tau_{w_{i}}-\left(\left(x\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\cdot\left(x_{2}\cdot n_{y}-x_{1}\cdot n_{y}-y_{1}\cdot n_{x}+y_{2}\cdot n_{x}\right)\right)
+\end{array}\right]\right)\\
+ & \x{}\left(\left[\begin{array}{c}
+n_{x}^{i+1}-n_{x}^{k}\\
+n_{y}^{i+1}-n_{y}^{k}\\
+\tau_{w_{i+1}}-\left(\left(x\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\cdot\left(x_{2}\cdot n_{y}-x_{1}\cdot n_{y}-y_{1}\cdot n_{x}+y_{2}\cdot n_{x}\right)\right)
+\end{array}\right]\right)
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ Substituting the expression for wrench vectors (shown in Appendix) leaves
+ the distance of plane
+\emph on
+i
+\emph default
+ (contacts
+\emph on
+i,i+1
+\emph default
+ and parameter
+\emph on
+s
+\emph default
+along an edge) to be a function of that parameter only:
+\begin_inset Formula 
+\[
+d_{i}=f\left(s\right),
+\]
+
+\end_inset
+
+Ultimately, distance from every face can be expressed as a function of edge
+ parameter
+\emph on
+s
+\emph default
+ and thus a compound function of minimal distance can be built.
+\begin_inset Formula 
+\[
+d=\min\left\{ d_{i}\right\} \;i\in\left[1,\right].
+\]
+
+\end_inset
+
+Since projection is a linear transformation, and EGW endpoints segment being
+ parameterized uniformly, the distance function will be linearly dependent
+ on on
+\emph on
+s
+\emph default
+ parameter.
+ Meaning that the distance function will be either constant or monotonically
+ increasing/decreasing along the change in
+\emph on
+s
+\emph default
+.
+ Solution can be found by examining
+\emph on
+k-1
+\emph default
+ 1st order polynomials and finding the maximized minimal value.
+ Since the functions are 1st order polynomials, there either will be 1 such
+ solution or infinite number of solutions (in case where there is a plane
+ parallel to the EGW endpoints segment and hence the distance is constant).
 \end_layout
 
 \begin_layout Standard
-Example: A polygonal object with 3 The #ADDFIG shows 3 surfaces corresponding
- to distances 
-\begin_inset Formula $d_{12},d_{23},d_{31}$
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inv_cone_03.svg
+	lyxscale 30
+	width 45col%
+
 \end_inset
 
- with intersection points, marked with red vertical lines.
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Distance from convex cone faces.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/example_inv_cone_04.svg
+	lyxscale 30
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Object with added contact
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Selecting the contact based on Inscribed Sphere Radius.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Selecting-the-contact"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Elaborating on the
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "exa::-A-square"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+,
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Selecting-the-contact"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents distances from convex hull faces as function of the parameter
+\emph on
+s
+\emph default
+.
+ In this case, due to the symmetry of the object and the contact locations,
+\begin_inset Formula $d_{1}$
+\end_inset
+
+ and
+\begin_inset Formula $d_{3}$
+\end_inset
+
+ are equal, while
+\begin_inset Formula $d_{2}$
+\end_inset
+
+ is constant.
+ In this case one of the distances is constant, and it is minimal at some
+ part of the domain.
+ Contact point selected to be furthest from the brink.
+ Additional examples provided in Appendix.
 \end_layout
 
 \begin_layout Subsection
@@ -4721,14 +5479,18 @@ Connectivity graph search
 When a object arrangement is given (or obtained) and desired amount of external
  constraints is found by proposed solution, there is no guarantee that there
  is no sub-set of objects which is not immobilized.
- Example of such unconstrained sub-set is shown below:
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Example of such unconstrained sub-set is shown below in FIG.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -4760,19 +5522,24 @@ Not immobilized object set while each object is immobilized individually.
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Despite the fact that each object is immobilized relative to others, a sub-set
  A is able to move, being held by 2 constraints only.
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
-This leads to a grasp assessment regarding sub-sets of the given arrangement.
+This leads to a need of grasp assessment for sub-sets of the given arrangement.
  Each connected sub-set should be tested and ensured to be first order immobiliz
 ed.
  Representing the objects arrangement as a connected graph one can find
  all connected sub-graphs.
  Several methods available for sub-graphs extractions based on different
- criteria, such as 
+ criteria, such as
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Ullmann1976,Bron1973,Gouda2010"
@@ -4789,7 +5556,6 @@ status open
 
 \begin_layout Plain Layout
 An adjacency matrix for the given graph is built.
- 
 \end_layout
 
 \end_inset
@@ -4798,64 +5564,1500 @@ Recursively excluding nodes and checking whether connected graphs exist.
  If so - add them to the connected sub-graphs list.
  This can be implemented both as Depth First Search and as Breadth First
  Search.
- 
 \end_layout
 
 \begin_layout Standard
-The algorithm is a depth first tree search.
- ?????? The algorithm is a simple iteration over given graph, excluding
- nodes and checking whether the graph is still connected.
- If it is, the sub-graph is added to the set of connected sub-graphs, and
- the algorithm is called recursively.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/graph_example_a.svg
+	lyxscale 30
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Full graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/graph_example_b.svg
+	lyxscale 30
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+B node removed
+\begin_inset Newline newline
+\end_inset
+
+no connected subgraphs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/graph_example_c.svg
+	lyxscale 30
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+C node removed
+\begin_inset Newline newline
+\end_inset
+
+AB subgraph is connected
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Graph, connected and disconnected subgraphs
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Grasp quality measure for a set of objects
+\end_layout
+
+\begin_layout Standard
+Assessment of the Grasp Quality Measure can be performed for given subset.
+ Note that Grasp Quality Measure for single object and for constellation
+ of several object may have different trends at given finger configuration:
+ the grasp may be optimal for the object, but for the constellation it will
+ yield not the highest value.
+\end_layout
+
+\begin_layout Example
+2 objects in contact.
+ each object is immobilized individually, and the whole constellation is
+ immobilized as well.
+ Examining the grasps by computing GQMs shows that individual GQMs are high
+ (maximal values) but total GQM (due to external contact vectors only) is
+ low due to the directions of the external fingers contacts.
+\end_layout
+
+\begin_layout Example
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:GQMs-difference."
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows two polygonal objects immobilized by 4 external contacts.
+ External contact direction vectors have relatively low
+\emph on
+y
+\emph default
+-components, and hence limit the GQM inscribed sphere radius to be at most
+ as large as the
+\emph on
+y
+\emph default
+-component of the wrench vectors.
+ The individual convex hulls are significantly larger the the convex hull
+ for the both objects together.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/GQMs.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Immobilized objects.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/GQM_set_vs_one.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Convex Hull for each object and for the set (red).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+GQMs differences.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:GQMs-difference."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
-Polygonal object evaluation
+Determining new configuration for objects
+\end_layout
+
+\begin_layout Subsection
+Description
+\end_layout
+
+\begin_layout Subsection
+Pseudocode
 \end_layout
 
 \begin_layout Standard
-Each polygonal object is defined by a set of vertices ordered in counterclockwis
-e (????) order.
- Each one of the objects is evaluated and several properties saved for future
- use:
+
 \end_layout
 
-\begin_layout Itemize
-Vertices locations
+\begin_layout Standard
+Given an unordered set of objects, each object is scanned and classified:
+ number of edges, concave vertices, edges' lengths.
+ Scanned and classified objects allow assessment of different constellations
+ for future grasping.
+ Based on the algorithms and inter-object contacts classification as presented
+ above, several strategies for object rearrangement can be implemented.
 \end_layout
 
-\begin_layout Itemize
-Concave vertices if exist
-\end_layout
+\begin_layout Standard
+\align block
+The approach for objects rearrangement is to stack objects in configuration
+ that will require amount of minimal fingers for each object, maximizing
+ number of inter-object effective contacts.
+ Objects in the set in the new configuration can be described by a tree,
+ where the root is some selected object, and all other objects described
+ as children in a way similar to URDF style
+\begin_inset CommandInset citation
+LatexCommand citep
+key "ros.org2009"
+literal "false"
 
-\begin_layout Itemize
-Vertex angles
-\end_layout
+\end_inset
 
-\begin_layout Itemize
-Edges inward normal directions
-\end_layout
-
-\begin_layout Itemize
-Edges lengths
-\end_layout
-
-\begin_layout Itemize
-Normalized cumulative length along the boundary
-\end_layout
-
-\begin_layout Itemize
-Polygon center of area / Pole of inaccessibility for concave polygons
-\end_layout
-
-\begin_layout Itemize
-Combinations of edge pairs 
-\strikeout on
-and triplets
-\strikeout default
 .
- Complexity 
-\begin_inset Formula $O(n^{k})\;for\;k=2,3$
+\end_layout
+
+\begin_layout Standard
+First of all, we need to know how many polygons with concave vertices exist,
+ and how many exist with vertex angles less than 
+\begin_inset Formula $90\text{°}$
+\end_inset
+
+.
+ Additionally, how many angles are smaller than concave angles if any.
+\end_layout
+
+\begin_layout Standard
+Recapping the inter object contact types along with the additional contacts
+ needed for the immobilization, we assume that the parent object is immobilized
+ and inducing contact forces on a child object, which has to be immobilized
+ by additional fingers.
+ In the following paragraphs, term
+\begin_inset Quotes eld
+\end_inset
+
+fixation
+\begin_inset Quotes erd
+\end_inset
+
+ refers to the contacts of the parent object acting on the child object.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Edge-to-edge
+\series default
+ fixation provides two parallel contacts, their convex cone can be seen
+ as infinite 
+\begin_inset Quotes eld
+\end_inset
+
+corridor
+\begin_inset Quotes erd
+\end_inset
+
+, formed by the contact region swept along the contacts' normal direction.
+ The interaction can be considered useful in cases where some other 2 different
+ edges provide normal directions that are crossing in the parallel contacts'
+ 
+\begin_inset Quotes eld
+\end_inset
+
+corridor
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Simple example would be a case with a vertex inside of the 
+\begin_inset Quotes eld
+\end_inset
+
+corridor
+\begin_inset Quotes erd
+\end_inset
+
+, where normal directions of 2 adjacent edges induce opposite wrenches about
+ the edge with two contacts.
+ This requires at least 2 additional external contacts for each object to
+ complete the fixture.
+\end_layout
+
+\begin_layout Standard
+One way of finding such configuration is checking whether there exists an
+ object with a vertex (concave or convex) that is projected on the interior
+ of some non-adjacent edge (base edge), the edge can be used as a base of
+ edge-to-edge contact, and the vertex's adjacent edges will serve as locations
+ for 2 additional fingers.
+ The grasp will be feasible if normal directions from the adjacent edges
+ and from the base edge will positively span 
+\begin_inset Formula $\rtwo$
+\end_inset
+
+.
+ Example of feasible and non feasible grasps are shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Edge-infinite-projection"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_e2e.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Spanning vectors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_e2e_02.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Not spanning vectors
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Edge infinite projection and vertex with adjacent normal vectors.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Edge-infinite-projection"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vertex-to-inner-vertex
+\series default
+fixation provides 2 edges normal directions, which yield a convex cone with
+ distinct vertex (unlike two parallel contacts which can be considered as
+ convex cone with a vertex at infinity).
+\end_layout
+
+\begin_layout Standard
+This fixation allows use of single edge to complete the fixture, given that
+ the edge's inner normal direction is a negative combination of the given
+ contacts' directions, and the edge allows two distinct contacts with opposing
+ wrenches about the vertex (i.e.
+ vertex is projected on the inner of the edge segment), as shown in 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "fig:In-v-a"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ In case no such edge exist, two different edges provide normal directions
+ which form a convex cone that mutually overlap(have a common region) the
+ given convex cone (or their anti-cones), and the line connecting the vertices
+ of the cones is in the interior of the overlapping region.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_v2iv.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:In-v-a"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_v2iv_ce.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:In-v-b"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Inner vertex immobilization.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Inner-vertex."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Vertex-to-inner-vertex with contiguous edge
+\series default
+fixation contributes 3 effective contacts and needs only one external finger
+ contact in the optimal case.
+ For this there should exist an edge which projection along it's normal
+ direction has 2-contact vertex inside it's interior and a there exists
+ an intersecting segment of that projection and the 3rd normal direction
+ that lies inside the convex cone of first 2 normals.
+ Example of such configuration is shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:In-v-b"
+
+\end_inset
+
+.
+ If no such edge exists, 2 external contacts are required to immobilize
+ this grasp by a method presented above
+\end_layout
+
+\begin_layout Standard
+Vertex-to-inner-vertex with 2 contiguous edges fixation provides a optimal
+ configuration which requires sole external contact for the immobilization
+ of the object.
+ Since objects are polygonal objects with non intersection edges and non-zero
+ thickness, there will always exist an edge with a normal direction that
+ will complete the form closure.
+\end_layout
+
+\begin_layout Standard
+Vertex-to-inner-vertex with a contiguous edge and a contact point fixation
+ is similar to the previous one except for the normal direction, and hence
+ in certain cases can be self immobilizing.
+\end_layout
+
+\begin_layout Standard
+Vertex-to-inner-vertex with additional contact points are equivalent to
+ the vertex-to-inner-vertex with contiguous edges formations.
+ The provide same amount of contacts, but the normal directions can differ.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Contiguous edge with vertex point contact
+\series default
+ fixation forms a case with 3 contacts, which allows fixation with one additiona
+l finger under certain conditions: there should exist an edge, which projections
+ common segment with the point contact's normal has a part lying inside
+ the edge contact's infinite projection and also the new edge, point and
+ given edge normal directions should span 
+\begin_inset Formula $\rtwo$
+\end_inset
+
+.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Contiguous-edge-with"
+
+\end_inset
+
+ shows an example of possible contact locations for this fixation.
+\end_layout
+
+\begin_layout Standard
+Example on 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:2-Contiguous-edges."
+
+\end_inset
+
+ describes 2 contiguous edges, which can be seen as sub case for the described
+ fixation and any contact with normal direction which is negative linear
+ combination of the normals of 2 edges will immobilize the object.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_c2_p.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Contiguous edge with point contact.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Contiguous-edge-with"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/OP_cc2.svg
+	lyxscale 30
+	width 35text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+2 Contiguous edges.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:2-Contiguous-edges."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example of preferred edge contacts.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\SpecialChar allowbreak
+Given all these considerations, presented set of objects can be arranged
+ to require the minimal amount of external fingers for each object and hence
+ minimal amount of fingers in total.
+\end_layout
+
+\begin_layout Standard
+\align block
+The order of the stacking is suitable for the one-by-one object manipulation.
+ Possible inter-object fixations can be ordered by amount and restrictions
+ on additional contacts that are to be applied.
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Object-placement-priority."
+
+\end_inset
+
+ describes the order of preferable inter-object relations, based on amount
+ of external fingers needed for the immobilization of child object relative
+ to the parent.
+\end_layout
+
+\begin_layout Standard
+\align block
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagramset{set color list={green,green,green,yellow,orange,red},
+\end_layout
+
+\begin_layout Plain Layout
+
+back arrow disabled=true}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagram[descriptive diagram]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 2 contiguous edges}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 1 contiguous edge with point contact}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {1,{Vertex-to-inner-vertex
+\backslash
+
+\backslash
+ 1 contiguous edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2, {Edge to edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2, {Vertex-to-inner-vertex}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {2+, {Vertex to edge}},
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Object placement priority.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Object-placement-priority."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Basically, last option (vertex to edge) will never be selected intentionally
+ since if there is an option to place an vertex on an edge, there also is
+ an option to place edge on edge.
+ Vertex-to-inner vertex option also exists but for stability it is preferred
+ to rotate the child object so it will have more parent contacts - vertex-to-inn
+er-vertex with a contiguous edge.
+\end_layout
+
+\begin_layout Standard
+First step is to define a root object, which will serve as base for further
+ object stacking.
+ This is done either by selecting a polygon with concave vertex, or stacking
+ together two objects to form a concavity.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Defining the root object}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwData{Set of polygons $P = {p_i}
+\backslash
+;i
+\backslash
+in 
+\backslash
+left[ 1,K 
+\backslash
+right]$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwResult{Tree of objects including the root object and possibly one child;
+ defining the root concavity.}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+eIf{$
+\backslash
+exists$ 1+ concave vertices}
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	Root object = $p_i$ with widest concave vertex
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+{ % No concave vertices
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+eIf{$
+\backslash
+exists$ 2 vertices with inner angles $
+\backslash
+geq 90 
+\backslash
+textdegree$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Root = $p$ with greatest angle
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Root.Child(k) = $p$ with second greatest angle
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Align vertices to conctact, child leans on longest adjacent edge of the
+ parent
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Root = $p$ with longest edge
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Root.Child(k) = $p$ with second longest edge
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Align longest edges to be collinear, vertex on child's longest edge coincident
+ with midpoint of parent's longest edge.
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When root object is determined, further stacking can be done.
+ If there are objects with vertex angles less than the concavity angle,
+ they are stacked together inside the concavity, possibly forming multiple
+ concavities.
+ If no such object exists, an object that will form a new concavity is stacked
+ inside the root concavity.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Objects stacking}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwData{Set of polygons $P = {p_i}
+\backslash
+;i
+\backslash
+in 
+\backslash
+left[ 1,K 
+\backslash
+right]$, Object tree $T$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwResult{Complete tree defining the configuration of the set of of objects.}
+\end_layout
+
+\begin_layout Plain Layout
+
+$C = 
+\backslash
+textrm{list of concavities}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+initialize C with the root concavity
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+L = $
+\backslash
+left
+\backslash
+{ v
+\backslash
+right
+\backslash
+}  $ sorted list of polygon vertices
+\backslash
+; % with $
+\backslash
+angle v 
+\backslash
+leq 
+\backslash
+angle 
+\backslash
+left( C 
+\backslash
+right)  $
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ForEach{$v 
+\backslash
+in L$}
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+eIf{$
+\backslash
+angle 
+\backslash
+left( v 
+\backslash
+right) 
+\backslash
+leq 
+\backslash
+angle 
+\backslash
+left( c_i  
+\backslash
+in C 
+\backslash
+right)$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Stack the child object in the $c_i$, 
+\backslash
+emph{vertex to innter vertex}, edge aligned preferrably to a edge with non
+ equal length
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$
+\backslash
+textrm{move } L.v 
+\backslash
+textrm{ to } T.v $ and save child location and orientation
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$C.c_i = 
+\backslash
+textrm{reduced concavity}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		$C = 
+\backslash
+textrm{new formed concavities}$
+\backslash
+tcc*[r]{Upd.
+ concavities list}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Find smallest concavity that allows 
+\backslash
+emph{contiguous edge with vertex contact} interaction, stack object there.
+\end_layout
+
+\begin_layout Plain Layout
+
+		$C = 
+\backslash
+textrm{new formed concavities}$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What if there are no concavities after several stacking steps?}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After the desired configuration is obtained, finger contact locations can
+ be obtained using the algorithms in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Algorithms-for-finger"
+
+\end_inset
+
+.
+ The locations that are found should be tested to complete a form closure
+ grasp, 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What about:
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Description
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Completeness
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+Complexity
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -4874,12 +7076,28 @@ Given a set of polygonal objects, first step is to find the contacts between
  Due to the complexity of the process, it is split to 2 parts: specific
  point on polygon evaluation and contact search for the polygons.
  
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Add part where regions allowed for finger placement are saved as well.}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 The algorithm # detects whether a given point belongs to a boundary of given
  polygon, whether along the edge or on one of the vertices.
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -4894,7 +7112,7 @@ begin{algorithm}[H]
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 caption{$
 \backslash
@@ -4909,14 +7127,14 @@ qquad$}    % Determine whether a point is on polygon boundary
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
-KwData{Point $p$, polygon $P$}  
+KwData{Point $p$, polygon $P$}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 KwResult{Boolean True if the point lies on polygon boundary}
 \end_layout
@@ -4927,9 +7145,9 @@ KwResult{Boolean True if the point lies on polygon boundary}
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-For{$e_1,e_2$ = adjacent veritces of $P$}
+For{$e_1,e_2$ = adjacent vertices of $P$}
 \end_layout
 
 \begin_layout Plain Layout
@@ -4939,7 +7157,7 @@ For{$e_1,e_2$ = adjacent veritces of $P$}
 
 \begin_layout Plain Layout
 
-%		
+%
 \backslash
 If{$
 \backslash
@@ -4956,7 +7174,7 @@ right)$}
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 If{$p_i$ is on segment $e_{12}$}
 \end_layout
@@ -4977,7 +7195,7 @@ KwRet{True}
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 KwRet{False}
 \backslash
@@ -4996,6 +7214,11 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 The algorithm # is used to perform an inspection of contact points for given
  2 polygons.
@@ -5003,6 +7226,9 @@ The algorithm # is used to perform an inspection of contact points for given
  all contacts both the location and direction of the contact and the polygons
  IDs (numbers) that the contact relates to.
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -5017,14 +7243,14 @@ begin{algorithm}[H]
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 label{alg:C_from_2P}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 caption{$
 \backslash
@@ -5039,43 +7265,43 @@ qquad$}    % Find contact points between 2 polygons
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-KwData{Polygons $P_1$, $P_2$}  
+KwData{Polygons $P_1$, $P_2$}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
-KwResult{C: Set of contacts between 2 polygons}  
+KwResult{C: Set of contacts between 2 polygons}
 \end_layout
 
 \begin_layout Plain Layout
 
 	C $
 \backslash
-longleftarrow 
+longleftarrow
 \backslash
 {
 \backslash
 varnothing
 \backslash
-}$ 
+}$
 \backslash
 tcp*{Initialize empty contact set}
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{$p_i$ = vertex of $P_1$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 If{$
 \backslash
@@ -5092,21 +7318,21 @@ right)$}{
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 eIf{$p_i$ is a vertex of  $P_2$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 uIf{$p_i$ is inner vertex of $P_2$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-					$V_1$ = normal at $p_i$ to adjacent edge 
+					$V_1$ = normal at $p_i$ to adjacent edge
 \backslash
 #1 of $P_2$
 \backslash
@@ -5115,7 +7341,7 @@ uIf{$p_i$ is inner vertex of $P_2$}{
 
 \begin_layout Plain Layout
 
-					$V_2$ = normal at $p_i$ to adjacent edge 
+					$V_2$ = normal at $p_i$ to adjacent edge
 \backslash
 #2 of $P_2$
 \backslash
@@ -5126,7 +7352,7 @@ uIf{$p_i$ is inner vertex of $P_2$}{
 
 					C $
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
 {id
 \backslash
@@ -5147,7 +7373,7 @@ right), p_i,V_1
 
 					C $
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
 {id
 \backslash
@@ -5171,14 +7397,14 @@ right), p_i,V_2
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 ElseIf{$p_i$ is inner vertex of $P_1$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-					$V_1$ = normal at $p_i$ to adjacent edge 
+					$V_1$ = normal at $p_i$ to adjacent edge
 \backslash
 #1 of $P_1$
 \backslash
@@ -5187,7 +7413,7 @@ ElseIf{$p_i$ is inner vertex of $P_1$}{
 
 \begin_layout Plain Layout
 
-					$V_2$ = normal at $p_i$ to adjacent edge 
+					$V_2$ = normal at $p_i$ to adjacent edge
 \backslash
 #2 of $P_1$
 \backslash
@@ -5198,7 +7424,7 @@ ElseIf{$p_i$ is inner vertex of $P_1$}{
 
 					C $
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
 {id
 \backslash
@@ -5219,7 +7445,7 @@ right), p_i,V_1
 
 					C $
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
 {id
 \backslash
@@ -5243,7 +7469,7 @@ right), p_i,V_2
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 tcc{append the contact to contact set TWICE, for each normal direction,
  along with with polygons' IDs}
@@ -5270,7 +7496,7 @@ tcc{append the contact to contact set TWICE, for each normal direction,
 
 				C $
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
 {id
 \backslash
@@ -5289,7 +7515,7 @@ right), p_i,V
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 tcc{append the contact to contact set, along with polygons' IDs}
 \end_layout
@@ -5301,7 +7527,7 @@ tcc{append the contact to contact set, along with polygons' IDs}
 
 \begin_layout Plain Layout
 
-		}	
+		}
 \end_layout
 
 \begin_layout Plain Layout
@@ -5311,7 +7537,7 @@ tcc{append the contact to contact set, along with polygons' IDs}
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{$p_i$ = vertex of $P_2$}
 \end_layout
@@ -5323,7 +7549,7 @@ For{$p_i$ = vertex of $P_2$}
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 If{$
 \backslash
@@ -5335,7 +7561,7 @@ _Polygon}
 \backslash
 left(p_i,P_1
 \backslash
-right)$ 
+right)$
 \backslash
 textrm{and} $p_i$ is not a vertex of $P_1$}
 \end_layout
@@ -5356,7 +7582,7 @@ textrm{and} $p_i$ is not a vertex of $P_1$}
 
 				C $
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
 {id
 \backslash
@@ -5375,14 +7601,13 @@ right), p_i,V
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 tcc{append the contact to contact set, along with polygons' IDs}
 \end_layout
 
 \begin_layout Plain Layout
 
-			
 \end_layout
 
 \begin_layout Plain Layout
@@ -5400,6 +7625,11 @@ tcc{append the contact to contact set, along with polygons' IDs}
 
 \backslash
 end{algorithm}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5420,11 +7650,116 @@ Given a polygon, and a set of contacts acting on that polygon, a remaining
 \begin_layout Standard
 The methods relies on a fact that 4 frictionless contacts is a minimum for
  immobilization of a two dimensional object.
- 
 \end_layout
 
 \begin_layout Section
-Algorithms for finger placement
+Fingers placement
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Algorithms-for-finger"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Description
+\end_layout
+
+\begin_layout Standard
+Given a configuration of objects in contact (single group, each object has
+ at least one contact), the configuration is parameterized by contact types.
+ Each inter-object interaction is classified according to the variants defined
+ above in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Relationship-between-polygons"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ When all contacts are found, each object is checked and an amount of additional
+ contacts for first order form closure is derived.
+ For every object all missing fingers are found.
+\end_layout
+
+\begin_layout Standard
+Several methods for single object finger placement were developed (presented
+ in
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Literature-Review"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+).
+ For the purposes of this work 2 (??) methods were compared: moment-labeling
+ based contact point derivation and grasp quality measure assessed random
+ contact point placement with constraints.
+\end_layout
+
+\begin_layout Standard
+Next step is to perform a check, whether any group of objects is not immobilized.
+ A connectivity graph is build for given configuration.
+ Connected sub-graphs are extracted from the given graph, and corresponding
+ object constellations are tested for 1st order immobilization.
+ If the constellation is not immobilized (see examples #ADDFIG) additional
+ fingers are placed while the constellation is treated like a single object.
+\end_layout
+
+\begin_layout Standard
+After all the variants are checked we can conclude that the group of objects
+ is immobilized.
+\end_layout
+
+\begin_layout Standard
+Steps of the algorithm.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+ref{alg:C_from_2P}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What about masking the edges that are not available for grasp?
+\end_layout
+
+\begin_layout Plain Layout
+
+Formal description?
+\end_layout
+
+\begin_layout Plain Layout
+
+Flowchart}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -5432,11 +7767,15 @@ The global finger placement process is divided to several cases of polygon
  contact combinations.
  Cases of existing 3,2 and 1 inter-object contacts are addressed.
  When possible, contact locations selected to yield highest grasp quality
- measure, namely origin centered inscribed sphere radius..
+ measure, namely origin centered inscribed sphere radius.
+\end_layout
+
+\begin_layout Subsection
+Pseudocode
 \end_layout
 
 \begin_layout Paragraph
-Finding 1 finger contact given 3 contacts on an object
+Finding 1 finger contact given 3+ contacts on an object
 \end_layout
 
 \begin_layout Standard
@@ -5448,9 +7787,9 @@ Given 3 contacts on an object, the viable regions for the 4th finger can
  For a convex hull of 4 wrenches to span the origin of the wrench space,
  any 3 of the vectors should be linearly independent (not lying in one plane)
  and the 4th vector should be a negative combination of first 3, as shown
- in 
+ in
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "subsec:Inverted-cone-test"
 
 \end_inset
@@ -5459,9 +7798,9 @@ reference "subsec:Inverted-cone-test"
  If there exists such wrench, corresponding contact location can be selected
  to be a complementary finger contact.
  Since on every edge could exist variety of possible contacts, simple quality
- measure presented in 
+ measure presented in
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "subsec:Inverted-cone-test"
 
 \end_inset
@@ -5469,6 +7808,9 @@ reference "subsec:Inverted-cone-test"
  is used to select the most promising contact location.
  The algorithm is presented below:
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -5483,14 +7825,14 @@ begin{algorithm}[H]
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 label{alg:contact4}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 caption{$
 \backslash
@@ -5509,29 +7851,28 @@ qquad$}    % Determine the region for 4th contact given 3
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 KwData{Polygon: $P$, 3 contacts: $C_i
 \backslash
 ,,
 \backslash
-; i=1,2,3$}  
+; i=1,2,3$}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 KwResult{$CP_4 =
 \backslash
-{ p_i, GQM_i 
+{ p_i, GQM_i
 \backslash
 }$: a set of locations for 4th contact to form desired grasp}
 \end_layout
 
 \begin_layout Plain Layout
 
-	
 \end_layout
 
 \begin_layout Plain Layout
@@ -5540,15 +7881,15 @@ KwResult{$CP_4 =
 \backslash
 cdot Cone
 \backslash
-left( 
+left(
 \backslash
-{ w_{C_i} 
+{ w_{C_i}
 \backslash
-},i=1,2,3 
+},i=1,2,3
 \backslash
 right)$
 \backslash
-; 
+;
 \end_layout
 
 \begin_layout Plain Layout
@@ -5562,19 +7903,18 @@ sum_{i=1}^3 w_{C_i} $
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 tcc{Form a cone of given contacts}
 \end_layout
 
 \begin_layout Plain Layout
 
-	
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{$e_i$ = edge of $P$}
 \end_layout
@@ -5595,7 +7935,7 @@ tcp*{Create a generalized wrench for the edge}
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 tcc{Create a generalized wrench for the edge}
 \end_layout
@@ -5609,18 +7949,18 @@ tcc{Create a generalized wrench for the edge}
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 tcc{Find a part of the generalized wrench that is inside of the Anti Cone}
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 If{$CS
 \backslash
-neq 
+neq
 \backslash
 varnothing$}
 \end_layout
@@ -5632,7 +7972,7 @@ varnothing$}
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 tcc{If there are wrenches that lie inside of Anti Cone determine the loci
  of possible contacts that will form a grasp}
@@ -5644,7 +7984,7 @@ tcc{If there are wrenches that lie inside of Anti Cone determine the loci
 
 \begin_layout Plain Layout
 
-			$w_{optimal} = Projection(ConeAxis, GW)$ 
+			$w_{optimal} = Projection(ConeAxis, GW)$
 \backslash
 ;
 \end_layout
@@ -5653,20 +7993,20 @@ tcc{If there are wrenches that lie inside of Anti Cone determine the loci
 
 			$GQM_i = GraspQualityMeasure
 \backslash
-left( 
+left(
 \backslash
 left.w_{C_{k}}
 \backslash
-right|_{k=1:3},w_{optimal} 
+right|_{k=1:3},w_{optimal}
 \backslash
-right)$ 
+right)$
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 tcc{A vector that yields highest GRASP QUALITY MEASURE is the one that has
  highest projected length on the central axis of the AntiCone}
@@ -5674,17 +8014,17 @@ tcc{A vector that yields highest GRASP QUALITY MEASURE is the one that has
 
 \begin_layout Plain Layout
 
-			$CP_4 
+			$CP_4
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
-{ 
+{
 \backslash
 mathtt{locationFromWrench}
 \backslash
 left(w_{optimal}
 \backslash
-right), GQM_i 
+right), GQM_i
 \backslash
 }$
 \backslash
@@ -5713,12 +8053,17 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 The algorithms gives a solution for cases where 3 given contacts' wrench
  space vectors are linearly independent.
  If one of the contacts is a combination of other two - 2 marginal vectors
  that form the convex cone that includes the 3rd one should be chosen and
- passed to algorithm 
+ passed to algorithm
 \begin_inset Formula $\mathtt{c3,c4\_for\_P\_given\_2c}$
 \end_inset
 
@@ -5737,31 +8082,57 @@ Set some error margins for placement uncertainty.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Note Note
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-Given 3 distinct contacts on a polygonal object a search is done whether
+
+
+\backslash
+z{Given 3 distinct contacts on a polygonal object a search is done whether
  it is possible to immobilize the object by one finger.
+\backslash
+
+\backslash
+
 \end_layout
 
 \begin_layout Plain Layout
+
 If 3 contacts are parallel or intersect at one point - it is impossible
  to form an immobilizing grasp by 1 additional finger as mentioned above
  (REF).
+\backslash
+
+\backslash
+
 \end_layout
 
 \begin_layout Plain Layout
+
 Assuming that 3 contacts are valid, the possible areas for placing a 4-th
  contact can be done in the following way:
+\backslash
+
+\backslash
+
 \end_layout
 
 \begin_layout Plain Layout
+
 Selecting two (non-parallel) contacts and form a cone along with anti-cone.
  Check whether a 3rd contact has a segment inside the cone or the anti-cone
  or both.
  Check whether that segment(s) has normal projections on edges of the polygon.
- For every edge that got a real projection of the segment on it form a 
+ For every edge that got a real projection of the segment on it form a }
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -5792,17 +8163,14 @@ Given inter-object contacts will form a convex cone of wrench vectors.
 \end_layout
 
 \begin_layout Standard
-Example: 
+Example:
 \begin_inset CommandInset ref
-LatexCommand formatted
+LatexCommand ref
 reference "fig:4-contacts"
 
 \end_inset
 
  shows 2 bodies in contact, 4 distinct contact forces act on each body.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -5842,16 +8210,12 @@ name "fig:4-contacts"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Adding one finger to each object will immobilized it but the whole configuration
  will no be immobilized having only 2 external contacts.
- Assessment of such cases is discussed in 
+ Assessment of such cases is discussed in
 \begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:Alg-for-multiO-eval"
+LatexCommand ref
+reference "sec:MultiO-eval-n-grasp-secur"
 
 \end_inset
 
@@ -5861,15 +8225,25 @@ reference "sec:Alg-for-multiO-eval"
 \begin_layout Paragraph
 Finding 2 contacts for a case of 2 given contacts or for a flat wrench convex
  cone of 3+ contacts.
- 
 \end_layout
 
 \begin_layout Standard
-O(n log(n)) or O(n^2) ? Given 2 contacts, or 3 contacts that form a flat
- wrench cone, additional contacts can be found be examining wrench space
- vectors.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{$O(n log(n))$ or $O(n^2)$ ? }
+\end_layout
+
+\end_inset
+
+Given 2 contacts, or 3 contacts that form a flat wrench cone, additional
+ contacts can be found be examining wrench space vectors.
  For a case with 3 degenerate contacts, 2 marginal vectors are selected.
- Wrench space vectors and the origin form a plane (from now on 
+ Wrench space vectors and the origin form a plane (from now on
 \begin_inset Quotes eld
 \end_inset
 
@@ -5887,6 +8261,9 @@ the plane
 \end_layout
 
 \begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -5899,14 +8276,14 @@ begin{algorithm}[H]
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 label{alg:contacts34}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 caption{$
 \backslash
@@ -5927,14 +8304,14 @@ _A}$}    % Determine the region for 4th contact given 3
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-KwData{Polygon: $P$,  2 contacts: $C_{1},C_{2}$}  
+KwData{Polygon: $P$,  2 contacts: $C_{1},C_{2}$}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 KwResult{$CP_{34}$: a set of location pairs for 3rd and 4th contacts to
  form desired grasp}
@@ -5942,7 +8319,7 @@ KwResult{$CP_{34}$: a set of location pairs for 3rd and 4th contacts to
 
 \begin_layout Plain Layout
 
-	$w_1, w_2 = 
+	$w_1, w_2 =
 \backslash
 mathrm{WrenchesOf}
 \backslash
@@ -5959,7 +8336,7 @@ right)$
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{$e_i$ = edge of $P$}
 \end_layout
@@ -5971,7 +8348,7 @@ For{$e_i$ = edge of $P$}
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 If{ $
 \backslash
@@ -5979,7 +8356,7 @@ mathtt{span}
 \backslash
 left
 \backslash
-{ 
+{
 \backslash
 hat{n}_{C_{1}},
 \backslash
@@ -5996,12 +8373,11 @@ rtwo $ }{
 
 \begin_layout Plain Layout
 
-			
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 tcc{Create a generalized wrench for the edge}
 \end_layout
@@ -6015,14 +8391,14 @@ tcc{Create a generalized wrench for the edge}
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 tcc{Find marginal wrenches of the generalized edge wrench}
 \end_layout
 
 \begin_layout Plain Layout
 
-			$w_a = 
+			$w_a =
 \backslash
 underset{w}{
 \backslash
@@ -6039,7 +8415,7 @@ right)$
 
 \begin_layout Plain Layout
 
-			$w_b = 
+			$w_b =
 \backslash
 underset{w}{
 \backslash
@@ -6056,40 +8432,40 @@ right)$
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 tcc{If marginal wrenches are on different sides of the plane formed by w3,w4}
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 If{$
 \backslash
-left( 
+left(
 \backslash
-left( w_1 
+left( w_1
 \backslash
-times w_2 
+times w_2
 \backslash
-right) 
+right)
 \backslash
-times w_a 
+times w_a
 \backslash
-right) 
+right)
 \backslash
-cdot 
+cdot
 \backslash
-left( 
+left(
 \backslash
-left( w_1 
+left( w_1
 \backslash
-times w_2 
+times w_2
 \backslash
-right) 
+right)
 \backslash
-times w_b 
+times w_b
 \backslash
 right) < 0$}
 \end_layout
@@ -6101,7 +8477,7 @@ right) < 0$}
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 tcc{If the wrenches are on different sides they will form a convex hull
  around the origin, save them as potential contacts}
@@ -6109,28 +8485,28 @@ tcc{If the wrenches are on different sides they will form a convex hull
 
 \begin_layout Plain Layout
 
-				$GQM = GraspQualityMeasure 
+				$GQM = GraspQualityMeasure
 \backslash
-left(w_1, w_2, w_a,w_b 
+left(w_1, w_2, w_a,w_b
 \backslash
-right) $ 
+right) $
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-				$CP_{34} 
+				$CP_{34}
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
-{ 
+{
 \backslash
 mathtt{locationsFromWrenches}
 \backslash
 left(w_a,w_b
 \backslash
-right), GQM 
+right), GQM
 \backslash
 } $
 \backslash
@@ -6144,7 +8520,6 @@ right), GQM
 
 \begin_layout Plain Layout
 
-	
 \end_layout
 
 \begin_layout Plain Layout
@@ -6162,6 +8537,11 @@ right), GQM
 
 \backslash
 end{algorithm}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -6183,6 +8563,9 @@ If no such edge found, or if higher quality measures are desired, variants
 \end_layout
 
 \begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -6195,14 +8578,14 @@ begin{algorithm}[H]
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 label{alg:contacts34}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 caption{$
 \backslash
@@ -6223,14 +8606,14 @@ _B}$}    % Determine the region for 4th contact given 3
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-KwData{Polygon: $P$,  2 contacts: $C_{1},C_{2}$}  
+KwData{Polygon: $P$,  2 contacts: $C_{1},C_{2}$}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 KwResult{$CP_{34}$: a set of location pairs for 3rd and 4th contacts to
  form desired grasp}
@@ -6238,7 +8621,7 @@ KwResult{$CP_{34}$: a set of location pairs for 3rd and 4th contacts to
 
 \begin_layout Plain Layout
 
-	$w_1, w_2 = 
+	$w_1, w_2 =
 \backslash
 mathrm{WrenchesOf}
 \backslash
@@ -6253,7 +8636,7 @@ right)$
 
 	$
 \backslash
-hat{n}_{plane12} = w_1 
+hat{n}_{plane12} = w_1
 \backslash
 times w_2 $
 \backslash
@@ -6262,7 +8645,7 @@ times w_2 $
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{$e_i, e_j$ = edge pairs of $P$ 2-edge variants list}
 \end_layout
@@ -6274,7 +8657,7 @@ For{$e_i, e_j$ = edge pairs of $P$ 2-edge variants list}
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
 If{ $
 \backslash
@@ -6282,7 +8665,7 @@ mathtt{span}
 \backslash
 left
 \backslash
-{ 
+{
 \backslash
 hat{n}_{C_{1}},
 \backslash
@@ -6299,7 +8682,7 @@ rtwo $ }{
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 tcc{Create a generalized wrench for each edge}
 \end_layout
@@ -6320,25 +8703,25 @@ tcc{Create a generalized wrench for each edge}
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 uIf{ $GW_i$ is fully on one side of the plane }{
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 tcc{Select first wrench the farthest from the plane}
 \end_layout
 
 \begin_layout Plain Layout
 
-				$w_a = 
+				$w_a =
 \backslash
 underset{w}{
 \backslash
-argmax} 
+argmax}
 \backslash
 left|w
 \backslash
@@ -6346,29 +8729,29 @@ cdot
 \backslash
 hat{n}_{plane12}
 \backslash
-right|,  
+right|,
 \backslash
-, w 
+, w
 \backslash
 in GW_i $
 \backslash
-;  
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 tcc{Select second wrench the farthest from the plane from the other side}
 \end_layout
 
 \begin_layout Plain Layout
 
-				$w_b = 
+				$w_b =
 \backslash
 underset{w}{
 \backslash
-argmax} 
+argmax}
 \backslash
 left|-
 \backslash
@@ -6386,9 +8769,9 @@ cdot
 \backslash
 hat{n}_{plane12}
 \backslash
-right|,  
+right|,
 \backslash
-, w 
+, w
 \backslash
 in GW_j $
 \backslash
@@ -6397,28 +8780,28 @@ in GW_j $
 
 \begin_layout Plain Layout
 
-				$GQM = GraspQualityMeasure 
+				$GQM = GraspQualityMeasure
 \backslash
-left( w_a,w_b 
+left( w_a,w_b
 \backslash
-right) $ 
+right) $
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-				$CP_{34} 
+				$CP_{34}
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
-{ 
+{
 \backslash
 mathtt{locationFromWrenches}
 \backslash
 left(w_a,w_b
 \backslash
-right), GQM 
+right), GQM
 \backslash
 } $
 \backslash
@@ -6432,27 +8815,27 @@ right), GQM
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
 Else{
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 tcc{Both GW's are on both sides of the plane}
 \end_layout
 
 \begin_layout Plain Layout
 
-				$w_a = 
+				$w_a =
 \backslash
 underset{w}{
 \backslash
-argmax} 
+argmax}
 \backslash
-left( 
+left(
 \backslash
 ,w
 \backslash
@@ -6460,28 +8843,28 @@ cdot
 \backslash
 hat{n}_{plane12}
 \backslash
-right),  
+right),
 \backslash
-, w 
+, w
 \backslash
-in 
+in
 \backslash
 {GW_i, GW_j
 \backslash
 } $
 \backslash
-;  
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-				$w_b = 
+				$w_b =
 \backslash
 underset{w}{
 \backslash
-argmax} 
+argmax}
 \backslash
-left( 
+left(
 \backslash
 ,-w
 \backslash
@@ -6489,50 +8872,50 @@ cdot
 \backslash
 hat{n}_{plane12}
 \backslash
-right),  
+right),
 \backslash
-, w 
+, w
 \backslash
-in 
+in
 \backslash
 {GW_i, GW_j
 \backslash
 } $
-\backslash
-;  
-\end_layout
-
-\begin_layout Plain Layout
-
-				
-\backslash
-tcc{Select maximally distant wrench on each side}
-\end_layout
-
-\begin_layout Plain Layout
-
-				$GQM = GraspQualityMeasure 
-\backslash
-left(w_1, w_2, w_a,w_b 
-\backslash
-right) $ 
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-				$CP_{34} 
+
 \backslash
-twoheadleftarrow 
+tcc{Select maximally distant wrench on each side}
+\end_layout
+
+\begin_layout Plain Layout
+
+				$GQM = GraspQualityMeasure
 \backslash
-{ 
+left(w_1, w_2, w_a,w_b
+\backslash
+right) $
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+				$CP_{34}
+\backslash
+twoheadleftarrow
+\backslash
+{
 \backslash
 mathtt{locationFromWrenches}
 \backslash
 left(w_a,w_b
 \backslash
-right), GQM 
+right), GQM
 \backslash
 } $
 \backslash
@@ -6566,6 +8949,11 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Paragraph
 Finding 3 finger contacts for 1 inter-object contact
 \end_layout
@@ -6575,7 +8963,7 @@ This case is the most undefined and require more decisions as to finger
  placement locations.
  Some of the proposed methods for object immobilization can be applied for
  this case with minor adjustments.
- The method presented below is influenced by methods proposed by 
+ The method presented below is influenced by methods proposed by
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Wu2006"
@@ -6583,7 +8971,7 @@ literal "true"
 
 \end_inset
 
- for IRC evaluation and 
+ for IRC evaluation and
 \begin_inset CommandInset citation
 LatexCommand citep
 key "Nguyen1986a"
@@ -6592,7 +8980,6 @@ literal "true"
 \end_inset
 
  compliance and grasp polygons.
- 
 \end_layout
 
 \begin_layout Standard
@@ -6601,7 +8988,7 @@ First, we define a geometric 2 dimensional convex cone: a planar angle between
  The cone can be fully defined by a vertex point and 2 vectors.Total force
  applied by 2 contacts can be defined to lie in such cone that is formed
  by two contact normal directions.
- This is analogous to friction cone of single frictional contact (see 
+ This is analogous to friction cone of single frictional contact (see
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Nguyen1986"
@@ -6610,14 +8997,12 @@ literal "true"
 \end_inset
 
 ).
-\end_layout
-
-\begin_layout Standard
-The main idea is to form 2 imaginary convex cones each formed by 2 normal
+ The main idea is to form 2 imaginary convex cones each formed by 2 normal
  vectors.
  The line connecting the cones' vertices should lie inside of the intersection
  of 2 cones (or intersection of anti-cones of these 2 cones).
  If the connecting line lies inside - the grasp will be force closure.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -6628,7 +9013,7 @@ For given problem, one contact is given and non movable, other 3 can be
 \begin_inset Formula $\triangleq ConeA$
 \end_inset
 
-) formed by it and so 
+) formed by it and so
 \begin_inset Formula $ConeA$
 \end_inset
 
@@ -6654,6 +9039,9 @@ Two variants of the algorithm presented, where first one is testing simple
 \end_layout
 
 \begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -6666,14 +9054,14 @@ begin{algorithm}[H]
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 label{alg:contacts234}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 caption{$
 \backslash
@@ -6685,7 +9073,7 @@ _P
 \backslash
 _given
 \backslash
-_c 
+_c
 \backslash
 quad Variant
 \backslash
@@ -6696,14 +9084,14 @@ qquad$}    % Determine the region for 4th contact given 3
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-KwData{Polygon: $P$, contact: $C_{1}$}  
+KwData{Polygon: $P$, contact: $C_{1}$}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 KwResult{$CP_{234}$: a set of location triplets for 2nd, 3rd and 4th contacts
  to form desired grasp}
@@ -6715,14 +9103,14 @@ KwResult{$CP_{234}$: a set of location triplets for 2nd, 3rd and 4th contacts
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{$e_i$ = edge of $P$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-		$ p = 
+		$ p =
 \backslash
 mathtt{projection
 \backslash
@@ -6734,9 +9122,9 @@ _b
 \backslash
 _along
 \backslash
-_c}(e_i, 
+_c}(e_i,
 \backslash
-hat{n}_{C_1}, 
+hat{n}_{C_1},
 \backslash
 hat{n}_{e_i}) $
 \backslash
@@ -6745,44 +9133,44 @@ hat{n}_{e_i}) $
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
-For{$e_j$ = edge of $P$, $j 
+For{$e_j$ = edge of $P$, $j
 \backslash
 neq i$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
-If{$ 
+If{$
 \backslash
-vec{0} 
+vec{0}
 \backslash
-in ConvexHull 
+in ConvexHull
 \backslash
-left( 
+left(
 \backslash
 hat{n}_{e_j},
 \backslash
 hat{n}_{e_i},
 \backslash
-hat{n}_{C_1} 
+hat{n}_{C_1}
 \backslash
 right)  $}{
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
 tcc{The edge can possibly provide 2 contacts to form a force closure grasp.}
 \end_layout
 
 \begin_layout Plain Layout
 
-				$ p34 = 
+				$ p34 =
 \backslash
 mathtt{proj
 \backslash
@@ -6794,9 +9182,9 @@ _b
 \backslash
 _along
 \backslash
-_c}(e_i, 
+_c}(e_i,
 \backslash
-hat{n}_{C_1}, 
+hat{n}_{C_1},
 \backslash
 hat{n}_{e_i}) $
 \backslash
@@ -6805,7 +9193,7 @@ hat{n}_{e_i}) $
 
 \begin_layout Plain Layout
 
-				$ p2 = 
+				$ p2 =
 \backslash
 mathtt{proj
 \backslash
@@ -6817,7 +9205,7 @@ _b
 \backslash
 _along
 \backslash
-_c}(p, e_j, 
+_c}(p, e_j,
 \backslash
 hat{n}_{e_j}) $
 \backslash
@@ -6826,31 +9214,31 @@ hat{n}_{e_j}) $
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
-If{$ 
+If{$
 \backslash
-left| p2 
+left| p2
 \backslash
-cup  p34 
+cup  p34
 \backslash
 right| > 1 $} {
 \end_layout
 
 \begin_layout Plain Layout
 
-					
+
 \backslash
 tcc{The projections intersection is more than one point}
 \end_layout
 
 \begin_layout Plain Layout
 
-					$ m = 
+					$ m =
 \backslash
 mathtt{mean}
 \backslash
-left(p2 
+left(p2
 \backslash
 cup  p34
 \backslash
@@ -6861,7 +9249,7 @@ right) $
 
 \begin_layout Plain Layout
 
-					$l_2 =  
+					$l_2 =
 \backslash
 mathtt{proj
 \backslash
@@ -6873,16 +9261,16 @@ _b
 \backslash
 _along
 \backslash
-_c}(m, e_i, 
+_c}(m, e_i,
 \backslash
 hat{n}_{e_i})$
 \backslash
-;		
+;
 \end_layout
 
 \begin_layout Plain Layout
 
-					$ s1,s2 = 
+					$ s1,s2 =
 \backslash
 mathtt{segment
 \backslash
@@ -6901,7 +9289,7 @@ right) $
 
 \begin_layout Plain Layout
 
-					$l_3 =  
+					$l_3 =
 \backslash
 mathtt{proj
 \backslash
@@ -6921,7 +9309,7 @@ mathtt{mean}
 \backslash
 left(s1
 \backslash
-right), e_j, 
+right), e_j,
 \backslash
 hat{n}_{e_j}
 \backslash
@@ -6932,7 +9320,7 @@ right)$
 
 \begin_layout Plain Layout
 
-					$l_4 =  
+					$l_4 =
 \backslash
 mathtt{proj
 \backslash
@@ -6952,7 +9340,7 @@ mathtt{mean}
 \backslash
 left(s2
 \backslash
-right), e_j, 
+right), e_j,
 \backslash
 hat{n}_{e_j}
 \backslash
@@ -6963,22 +9351,22 @@ right)$
 
 \begin_layout Plain Layout
 
-					$GQM = GraspQualityMeasure 
+					$GQM = GraspQualityMeasure
 \backslash
-left(w_{C_1}, w_{l_2}, w_{l_3}, w_{l_4} 
+left(w_{C_1}, w_{l_2}, w_{l_3}, w_{l_4}
 \backslash
-right) $ 
+right) $
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-					$CP_{234} 
+					$CP_{234}
 \backslash
-twoheadleftarrow 
+twoheadleftarrow
 \backslash
-{ l_2, l_3, l_4, GQM 
+{ l_2, l_3, l_4, GQM
 \backslash
 } $
 \backslash
@@ -7017,10 +9405,18 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 If no suitable combinations found by the algorithm presented above, following
  algorithm can be used:
 \end_layout
+
+\begin_layout Standard
+\begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
@@ -7035,14 +9431,14 @@ begin{algorithm}[H]
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 label{alg:contacts234}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 caption{$
 \backslash
@@ -7054,7 +9450,7 @@ _P
 \backslash
 _given
 \backslash
-_c 
+_c
 \backslash
 quad Variant
 \backslash
@@ -7065,14 +9461,14 @@ qquad$}    % Determine the region for 4th contact given 3
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
-KwData{Polygon: $P$, contact: $C_{1}$}  
+KwData{Polygon: $P$, contact: $C_{1}$}
 \end_layout
 
 \begin_layout Plain Layout
 
-    
+
 \backslash
 KwResult{$CP_{234}$: a set of location triplets for 2nd, 3rd and 4th contacts
  to form desired grasp}
@@ -7084,14 +9480,14 @@ KwResult{$CP_{234}$: a set of location triplets for 2nd, 3rd and 4th contacts
 
 \begin_layout Plain Layout
 
-	
+
 \backslash
 For{$e_i$ = edge of $P$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-		$ p = 
+		$ p =
 \backslash
 mathtt{projection
 \backslash
@@ -7103,9 +9499,9 @@ _b
 \backslash
 _along
 \backslash
-_c}(e_i, 
+_c}(e_i,
 \backslash
-hat{n}_{C_1}, 
+hat{n}_{C_1},
 \backslash
 hat{n}_{e_i}) $
 \backslash
@@ -7114,41 +9510,41 @@ hat{n}_{e_i}) $
 
 \begin_layout Plain Layout
 
-		
+
 \backslash
-For{$e_j$ = edge of $P$, $j 
+For{$e_j$ = edge of $P$, $j
 \backslash
 neq i$}{
 \end_layout
 
 \begin_layout Plain Layout
 
-			
+
 \backslash
-For{$e_k$ = edge of $P$, $k 
+For{$e_k$ = edge of $P$, $k
 \backslash
-neq i 
+neq i
 \backslash
 ;
 \backslash
 mathrm{ and }
 \backslash
-; k 
+; k
 \backslash
 neq j $}{
 \end_layout
 
 \begin_layout Plain Layout
 
-				
+
 \backslash
-If{$ 
+If{$
 \backslash
-vec{0} 
+vec{0}
 \backslash
-in ConvexHull 
+in ConvexHull
 \backslash
-left( 
+left(
 \backslash
 hat{n}_{e_i},
 \backslash
@@ -7156,14 +9552,14 @@ hat{n}_{e_j},
 \backslash
 hat{n}_{e_k},
 \backslash
-hat{n}_{C_1} 
+hat{n}_{C_1}
 \backslash
 right)  $}{
 \end_layout
 
 \begin_layout Plain Layout
 
-					
+
 \backslash
 tcc{Since 3 edges along given contact can form a convex hull that containts
  the origin, we can proceed to determine preferred locations along these
@@ -7172,19 +9568,19 @@ tcc{Since 3 edges along given contact can form a convex hull that containts
 
 \begin_layout Plain Layout
 
-					$ p_{e_i} = 
+					$ p_{e_i} =
 \backslash
-underset{p 
+underset{p
 \backslash
 in e_i}{
 \backslash
-argmin} 
+argmin}
 \backslash
-left(p 
+left(p
 \backslash
-cdot 
+cdot
 \backslash
-hat{n}_{C_1} 
+hat{n}_{C_1}
 \backslash
 right)  $
 \backslash
@@ -7193,19 +9589,19 @@ right)  $
 
 \begin_layout Plain Layout
 
-					$ p_{e_j} = 
+					$ p_{e_j} =
 \backslash
-underset{p 
+underset{p
 \backslash
 in e_j}{
 \backslash
-argmin} 
+argmin}
 \backslash
-left(p 
+left(p
 \backslash
-cdot 
+cdot
 \backslash
-hat{n}_{e_k} 
+hat{n}_{e_k}
 \backslash
 right)  $
 \backslash
@@ -7214,19 +9610,19 @@ right)  $
 
 \begin_layout Plain Layout
 
-					$ p_{e_k} = 
+					$ p_{e_k} =
 \backslash
-underset{p 
+underset{p
 \backslash
 in e_k}{
 \backslash
-argmin} 
+argmin}
 \backslash
-left(p 
+left(p
 \backslash
-cdot 
+cdot
 \backslash
-hat{n}_{e_j} 
+hat{n}_{e_j}
 \backslash
 right)  $
 \backslash
@@ -7235,7 +9631,7 @@ right)  $
 
 \begin_layout Plain Layout
 
-					
+
 \backslash
 tcc{Find bounding points that yield maximum cone intersection area}
 \end_layout
@@ -7248,7 +9644,7 @@ left( p_{C_1}+
 \backslash
 hat{n}_{C_1}, p_{e_i}+
 \backslash
-hat{n}_{e_i} 
+hat{n}_{e_i}
 \backslash
 right) $
 \backslash
@@ -7263,7 +9659,7 @@ left( p_{e_j} +
 \backslash
 hat{n}_{e_j}, p_{e_k}+
 \backslash
-hat{n}_{e_k} 
+hat{n}_{e_k}
 \backslash
 right) $
 \backslash
@@ -7274,11 +9670,11 @@ right) $
 
 					$ConeA = ConvexCone
 \backslash
-left(v=v_1, n_a = 
+left(v=v_1, n_a =
 \backslash
 hat{n}_{C_1}, n_b=
 \backslash
-hat{n}_{e_i} 
+hat{n}_{e_i}
 \backslash
 right)$
 \backslash
@@ -7289,11 +9685,11 @@ right)$
 
 					$ConeB = ConvexCone
 \backslash
-left(v=v_2, n_a = 
+left(v=v_2, n_a =
 \backslash
 hat{n}_{e_j}, n_b=
 \backslash
-hat{n}_{e_k} 
+hat{n}_{e_k}
 \backslash
 right)$
 \backslash
@@ -7302,34 +9698,34 @@ right)$
 
 \begin_layout Plain Layout
 
-					
+
 \backslash
-If{$ 
+If{$
 \backslash
 left(v_1 - v_2
 \backslash
-right) 
+right)
 \backslash
-in 
+in
 \backslash
-left(ConeA 
+left(ConeA
 \backslash
-cap ConeB 
+cap ConeB
 \backslash
-right) 
+right)
 \backslash
-cup 
+cup
 \backslash
-left(-ConeA 
+left(-ConeA
 \backslash
-cap -ConeB 
+cap -ConeB
 \backslash
 right) $}{
 \end_layout
 
 \begin_layout Plain Layout
 
-						
+
 \backslash
 tcc{The line connecting cone vertices is inside the cone or anti-cone intersecti
 on means that the grasp is force closure / torque closure.
@@ -7338,7 +9734,7 @@ on means that the grasp is force closure / torque closure.
 
 \begin_layout Plain Layout
 
-						$l_2 =  
+						$l_2 =
 \backslash
 mathtt{proj
 \backslash
@@ -7354,99 +9750,99 @@ _c}
 \backslash
 left(0.3
 \backslash
-cdot 
+cdot
 \backslash
 left(v_1 - v_2
 \backslash
-right), e_i, 
+right), e_i,
 \backslash
-hat{n}_{e_i} 
-\backslash
-right)$
-\backslash
-;		
-\end_layout
-
-\begin_layout Plain Layout
-
-						$l_3 =  
-\backslash
-mathtt{proj
-\backslash
-_a
-\backslash
-_on
-\backslash
-_b
-\backslash
-_along
-\backslash
-_c}
-\backslash
-left(0.3
-\backslash
-cdot 
-\backslash
-left(v_2 - v_1
-\backslash
-right), e_j, 
-\backslash
-hat{n}_{e_j} 
+hat{n}_{e_i}
 \backslash
 right)$
-\backslash
-;		
-\end_layout
-
-\begin_layout Plain Layout
-
-						$l_4 =  
-\backslash
-mathtt{proj
-\backslash
-_a
-\backslash
-_on
-\backslash
-_b
-\backslash
-_along
-\backslash
-_c}
-\backslash
-left(0.3
-\backslash
-cdot 
-\backslash
-left(v_2 - v_1
-\backslash
-right), e_k, 
-\backslash
-hat{n}_{e_k} 
-\backslash
-right)$
-\backslash
-;		
-\end_layout
-
-\begin_layout Plain Layout
-
-						$GQM = GraspQualityMeasure 
-\backslash
-left(w_{C_1}, w_{l_2}, w_{l_3}, w_{l_4} 
-\backslash
-right) $ 
 \backslash
 ;
 \end_layout
 
 \begin_layout Plain Layout
 
-						$CP_{234} 
+						$l_3 =
 \backslash
-twoheadleftarrow 
+mathtt{proj
 \backslash
-{ l_2, l_3, l_4, GQM 
+_a
+\backslash
+_on
+\backslash
+_b
+\backslash
+_along
+\backslash
+_c}
+\backslash
+left(0.3
+\backslash
+cdot
+\backslash
+left(v_2 - v_1
+\backslash
+right), e_j,
+\backslash
+hat{n}_{e_j}
+\backslash
+right)$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+						$l_4 =
+\backslash
+mathtt{proj
+\backslash
+_a
+\backslash
+_on
+\backslash
+_b
+\backslash
+_along
+\backslash
+_c}
+\backslash
+left(0.3
+\backslash
+cdot
+\backslash
+left(v_2 - v_1
+\backslash
+right), e_k,
+\backslash
+hat{n}_{e_k}
+\backslash
+right)$
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+						$GQM = GraspQualityMeasure
+\backslash
+left(w_{C_1}, w_{l_2}, w_{l_3}, w_{l_4}
+\backslash
+right) $
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+						$CP_{234}
+\backslash
+twoheadleftarrow
+\backslash
+{ l_2, l_3, l_4, GQM
 \backslash
 } $
 \backslash
@@ -7490,11 +9886,16 @@ end{algorithm}
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 Once all polygons are treated, desired contacts should be selected.
  Since all contact positions are saved along with grasp quality measure
  values, it is possible to select the contacts that provide better grasp.
- While maintaining 
+ While maintaining
 \end_layout
 
 \begin_layout Standard
@@ -7507,70 +9908,6 @@ What about a restrictions on finger placement that arise from close objects?
 \end_layout
 
 \begin_layout Standard
-DEAL WITH THIS PART LATER
-\end_layout
-
-\begin_layout Subsection
-Description
-\end_layout
-
-\begin_layout Standard
-Given a configuration of objects in contact (single group, each object has
- at least one contact), the configuration is parameterized by contact types.
- Each inter-object interaction is classified according to the variants defined
- above in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "subsec:Relationship-between-polygons"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- When all contacts are found, each object is checked and an amount of additional
- contacts for first order form closure is derived.
- For every object all missing fingers are found.
- 
-\end_layout
-
-\begin_layout Standard
-Several methods for single object finger placement were developed (presented
- in 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "sec:Literature-Review"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-).
- For the purposes of this work 2 (??) methods were compared: moment-labeling
- based contact point derivation and grasp quality measure assessed random
- contact point placement with constraints.
-\end_layout
-
-\begin_layout Standard
-Next step is to perform a check, whether any group of objects is not immobilized.
- A connectivity graph is build for given configuration.
- Connected sub-graphs are extracted from the given graph, and corresponding
- object constellations are tested for 1st order immobilization.
- If the constellation is not immobilized (see examples #ADDFIG) additional
- fingers are placed while the constellation is treated like a single object.
- 
-\end_layout
-
-\begin_layout Standard
-After all the variants are checked we can conclude that the group of objects
- is immobilized.
-\end_layout
-
-\begin_layout Standard
-Steps of the algorithm.
- 
 \begin_inset ERT
 status open
 
@@ -7578,7 +9915,7 @@ status open
 
 
 \backslash
-ref{alg:C_from_2P}
+z{DEAL WITH THIS PART LATER}
 \end_layout
 
 \end_inset
@@ -7586,27 +9923,27 @@ ref{alg:C_from_2P}
 
 \end_layout
 
-\begin_layout Standard
-Formal description?
-\end_layout
-
-\begin_layout Standard
-Flowchart
-\end_layout
-
 \begin_layout Subsection
 Completeness
+\end_layout
+
+\begin_layout Standard
+t
 \end_layout
 
 \begin_layout Subsection
 Complexity
 \end_layout
 
+\begin_layout Standard
+t
+\end_layout
+
 \begin_layout Section
-Algorithm for multi object grasp evaluation
+Multi object grasp evaluation and grasp securing
 \begin_inset CommandInset label
 LatexCommand label
-name "sec:Alg-for-multiO-eval"
+name "sec:MultiO-eval-n-grasp-secur"
 
 \end_inset
 
@@ -7616,22 +9953,20 @@ name "sec:Alg-for-multiO-eval"
 \begin_layout Standard
 Once every given object is immobilized by other objects and fingers, the
  constellation still might be not fully immobilized.
- Example: 
+ Example:
 \begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:2-Objects-not-immobilized"
+LatexCommand ref
+reference "fig:2-of-3-objects-not-immobilized"
 
 \end_inset
 
- shows 3 objects.
- Black object immobilized by 4 contacts from red and blue objects.
- Red and and blue are immobilized by two additional fingers each one.
- Noting the contacts that act on blue and black objects (shown as red arrows)
- intersect at same point and hence do not immobilize these two objects together.
- 
-\end_layout
-
-\begin_layout Standard
+ shows 3 objects: black object is immobilized by 4 contacts from red and
+ blue objects while red and and blue are immobilized by two additional fingers
+ each one.
+ The contacts that act on blue and black objects (shown as red arrows) intersect
+ at same point and hence do not immobilize these two objects together –
+ namely, these two objects can rotate together about the contact intersection
+ point.
 \begin_inset Float figure
 wide false
 sideways false
@@ -7643,7 +9978,7 @@ status open
 \begin_inset Graphics
 	filename images/constellation_evaluation.svg
 	lyxscale 30
-	width 65text%
+	width 45text%
 
 \end_inset
 
@@ -7654,10 +9989,10 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-2 Objects not immobilized 
+2 of 3 objects are not immobilized.
 \begin_inset CommandInset label
 LatexCommand label
-name "fig:2-Objects-not-immobilized"
+name "fig:2-of-3-objects-not-immobilized"
 
 \end_inset
 
@@ -7671,58 +10006,12 @@ name "fig:2-Objects-not-immobilized"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Total immobilization can be achieved by ensuring that every possible subset
  of objects is immobilized.
  This requires extraction of all possible connected subsets from the given
- set object and evaluation whether it is or is not immobilized.
+ set object and evaluation whether they are or are not immobilized.
  Each constellation ought to have at least 4 external contacts.
- If there are less - additional contacts required to immobilize it (Example
- #ADDFIG).
-\end_layout
-
-\begin_layout Standard
-If the amount of external contacts is higher than 4, assessment of intersection
- of contacts external to the subset can show whether the subset is immobilized
- or not.
- If the contacts intersect at one point, contact positions of added fingers
- can be altered in a regions that was found for that contact (see above
- (what, the regions?) maybe #ADDFIG), example #ADD FIGURE shows 2 objects
- independently immobilized, contact regions and possible corrected finger
- position.
- 
-\end_layout
-
-\begin_layout Standard
-Further assessment of Grasp Quality Measure can be performed for given subset.
- Note that Grasp Quality Measure for single object and for constellation
- of several object may have different trends at given finger configuration:
- the grasp may be optimal for the object, but for the constellation it will
- yield not the highest value.
- Example: 2 objects in contact.
- each object is immobilized individually, and the whole constellation is
- immobilized as well.
- Examining the grasps by computing GQMs shows that individual GQMs are high
- (maximal values) but total GQM (due to external contact vectors only) is
- low due to the directions of the external fingers contacts.
- The vectors have relatively low 
-\emph on
-y
-\emph default
--components, and hence limit the GQM inscribed sphere radius to be at most
- as large as the 
-\emph on
-y
-\emph default
--component of the wrench vectors.
- DEAL WITH THIS LATER.
- ADD EXAMPLE WITH NUMERICAL DATA OF GQM FOR EACH BODY AND FOR CONSTELLLATION.
-\end_layout
-
-\begin_layout Standard
+ If there are less - additional contacts required to immobilize it.
 \begin_inset Float figure
 wide false
 sideways false
@@ -7732,9 +10021,9 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename images/GQMs.pdf
+	filename images/not_immobilized_object_set.svg
 	lyxscale 30
-	width 55text%
+	width 30text%
 
 \end_inset
 
@@ -7745,7 +10034,387 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-GQMs
+2 objects set is not immobilized.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+If the amount of external contacts is higher than 4, assessment of intersection
+ of contacts external to the subset can show whether the subset is immobilized
+ or not.
+ If the contacts intersect at one point, contact positions of added fingers
+ can be altered in a allowed regions that were found for that contact.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[H]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Multi object grasp evaluation}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwData{Set of polygons $P = {p_i}
+\backslash
+;i
+\backslash
+in 
+\backslash
+left[ 1,K 
+\backslash
+right]$ including locations and orientations, Set of contacts $C = 
+\backslash
+left
+\backslash
+{c_i
+\backslash
+right
+\backslash
+}$ with allowed regions}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwResult{Set of contact adjustments if needed, set of additional contacts
+ if needed }
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+ForEach{subset of object configuration}
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	L = $
+\backslash
+left
+\backslash
+{lc_i
+\backslash
+right
+\backslash
+}$ -- set of external contact lines
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+If{$
+\backslash
+left| L 
+\backslash
+right| < 4$}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Treat the subset as one object
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{$
+\backslash
+left| L 
+\backslash
+right| = 3 $ and $ 
+\backslash
+exists
+\backslash
+, x 
+\backslash
+in lc_i
+\backslash
+quad 
+\backslash
+forall lc_i 
+\backslash
+in L $}
+\end_layout
+
+\begin_layout Plain Layout
+
+		{
+\end_layout
+
+\begin_layout Plain Layout
+
+			Move 1 finger in allowed region
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		Add missing contacts (max 2)
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+%%	N = $
+\backslash
+left
+\backslash
+{nc_i
+\backslash
+right
+\backslash
+}$ -- set of normal directions of external contacts
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+uIf{$ 
+\backslash
+exists
+\backslash
+, x 
+\backslash
+in lc_i
+\backslash
+quad 
+\backslash
+forall lc_i 
+\backslash
+in L $}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		Intersection point between contact lines exists
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		Build 2 EGWs for 2 non-collinear contacts and adjust positions
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+uElseIf{$ 
+\backslash
+exists
+\backslash
+, x_1 
+\backslash
+in lc_j
+\backslash
+quad j={1,2,3} $}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{	
+\end_layout
+
+\begin_layout Plain Layout
+
+		3 of the contacts are intersecting
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+If{$ 
+\backslash
+exists
+\backslash
+, x_2 
+\backslash
+in lc_k , 
+\backslash
+notin lc_j
+\backslash
+quad 
+\backslash
+left|
+\backslash
+left
+\backslash
+{lc_k
+\backslash
+right
+\backslash
+}
+\backslash
+right|>1$}
+\end_layout
+
+\begin_layout Plain Layout
+
+		{
+\end_layout
+
+\begin_layout Plain Layout
+
+			Exists another point where two or more contact lines intersect
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+			
+\backslash
+textbf{
+\backslash
+textit{continue}}
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+		}
+\end_layout
+
+\begin_layout Plain Layout
+
+		Build 2 EGWs for 2 non-collinear $lc_j$ and adjust positions
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+Else
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+textbf{
+\backslash
+textit{continue}}
+\backslash
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+	}	
+\end_layout
+
+\begin_layout Plain Layout
+
+]
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
 \end_layout
 
 \end_inset
@@ -7759,276 +10428,20 @@ GQMs
 \end_layout
 
 \begin_layout Section
-Algorithm for objects placement
-\end_layout
-
-\begin_layout Standard
-Given an unordered set of objects, each object is scanned and classified:
- number of edges, concave vertices, edges' lengths.
- Scanned and classified objects allow assessment of different constellations
- for future grasping.
- Based on the algorithms and inter-object contacts classification as presented
- above, several strategies for object rearrangement can be implemented.
-\end_layout
-
-\begin_layout Standard
-First, we classify possible configurations of 2 adjacent bodies based on
- the amount of fingers needed for each body to complete the fixture.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Edge-to-edge
-\series default
- fixation provides two parallel contacts which are useful in cases where
- some other 2 different edges provide normal directions that are crossing
- in the parallel contacts' 
-\begin_inset Quotes eld
-\end_inset
-
-corridor
-\begin_inset Quotes erd
-\end_inset
-
-.
- Simple example would be a case with a vertex inside of the 
-\begin_inset Quotes eld
-\end_inset
-
-corridor
-\begin_inset Quotes erd
-\end_inset
-
- , where normal directions of the adjacent edges induce opposite wrenches
- about the edge with two contacts.
- This requires at least 2 additional external contacts for each object to
- complete the fixture.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-Example here: 2 contacts on an edge.
- Outer vertex with 2 edges that provide desired wrenches.
- Outer vertex that do not have opposite wrenches.
- Inner Vertex with opposite wrenches.
- 
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Vertex-to-inner-vertex 
-\series default
-fixation provides 2 edges normal directions, which yield a convex cone with
- distinct vertex (unlike two parallel contacts which can be considered as
- convex cone with a vertex at infinity).
- This fixation allows use of single edge to complete the fixture, given
- that the edge's inner normal direction is a negative combination of the
- given contacts' directions, and the edge allows two distinct contacts with
- opposing wrenches about the vertex (i.e.
- vertex is projected on the inner of the edge segment).
- In case no such edge exist, two different edges provide normal directions
- which form a convex cone that mutually overlap(have a common region) the
- given convex cone (or their anti-cones), and the line connecting the vertices
- of the cones is in the interior of the overlapping region.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Vertex-to-inner-vertex with contiguous edge 
-\series default
-fixation contributes 3 effective contacts and needs only one external finger
- contact in the optimal case.
- For this there should exist edge which projection along it's normal direction
- has 2-contact vertex inside it's interior and a there exists an intersecting
- segment of that projection and the 3rd normal direction that lies inside
- the convex cone of first 2 normals.
- If no such edge exists, 2 external contacts (for example ?) are required
- to immobilize this grasp by a method presented above
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Vertex-to-inner-vertex with 2 contiguous edges 
-\series default
-fixation provides a optimal configuration which requires sole external contact
- for the immobilization of the object.
- Since objects are polygonal objects with non intersection edges and non-zero
- thickness, there will always exist an edge with a normal direction that
- will complete the form closure.
- 
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-
-\series bold
-Vertex-to-inner-vertex with a contiguous edge and a contact point
-\series default
- fixation is similar to the previous one except for the normal direction,
- and hence in certain cases can be self immobilizing.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Vertex-to-inner-vertex with additional contact points are equivalent to
- the v2iv with contiguous edges formations.
- The provide same amount of contacts, but the normal directions can differ.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Contiguous edge with point contact
-\series default
- fixation forms a case with 3 contacts, which has to be divided to 2 sub-cases:
- where the contact can slip and where it cannot, namely - whether the point
- contact projection lies in the interior of the contiguous edge (OR IS IT
- if the point contact normal induces opposite wrenches about contiguous
- edge's vertices ?).
- Examples of such cases show below.
- Case B allows fixture with one additional finger, while Case A does not.
-\end_layout
-
-\begin_layout Standard
-Given all this considerations, presented set of objects can be arranged
- to require the minimal amount of external fingers for each object and hence
- minimal amount of fingers in total.
-\end_layout
-
-\begin_layout Standard
-The approach for objects rearrangement has several variants: a case where
- at least one object has one inner vertex (concave), a case where more than
- one inner vertex exist, and a case where no inner vertices - all objects
- are convex.
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-Case I, One Inner Vertex: 
-\series default
-The angle of the vertex is saved and combinations of vertex angles of other
- objects are selected to yield a sum that is less or equal to the inner
- vertex angle.
-\begin_inset Formula 
-\begin{equation}
-\underset{\left\{ v_{k}\right\} }{\argmax\;}K;\qquad\sum_{k}^{K}\angle v_{k}\leq\angle IntVert
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-This way the number of objects that are stuffed inside the concavity is
- maximized.
- Optimally, either all objects are aligned with their sharpest vertices
- and stacked inside the concavity, or the concavity is filled with several
- objects.
-\end_layout
-
-\begin_layout Standard
-Another options is if some objects is quite small, and being stacked in
- the concavity form 2 additional inner vertices of the combined super-object.
-\end_layout
-
-\begin_layout Standard
-If there are no concave objects, a pair of objects can be stacked to form
- a concavity.
- In this case, an object with longest edge is selected to be a base and
- another object with an edge that is shorter than the first one and capable
- to be immobilized with 2 additional fingers apart from 2 parallel inter-object
- contacts is stacked so the edges are contiguous are in contact.
- One of the vertices of the shorter edge will be a concavity, and from here
- the algorithm for the concavities can be applied.
-\end_layout
-
-\begin_layout Standard
-Polygonal objects analyzed and selected in the following order: Objects
- with inner vertices are searched for and selected to be base objects, which
- other objects are going to lean on.
- Inner vertex can provide beneficial inter-object contacts for one or more
- additional polygonal objects.
- 
-\end_layout
-
-\begin_layout Standard
-If several objects with inner vertices exists they can be stacked in non
- exclusive way and pro
-\end_layout
-
-\begin_layout Standard
-VARIANT A: No concave objects: select two with longest edges, and stack
- them together.
- Form a concavity, insert small objects from smallest to largest.
-\end_layout
-
-\begin_layout Standard
-VARIANT B: Some concave object(s).
- Starting with one, proceeding with stacking other convex, and then other
- concave to form continuity.
-\end_layout
-
-\begin_layout Standard
-Sum of angles == 180 degrees
-\end_layout
-
-\begin_layout Standard
-Sum of angles == 360 degrees
-\end_layout
-
-\begin_layout Subsection
-Description
-\end_layout
-
-\begin_layout Subsection
-Completeness 
-\end_layout
-
-\begin_layout Subsection
-Complexity
-\end_layout
-
-\begin_layout Section
-Rearranging the objects
+Objects rearrangement
 \end_layout
 
 \begin_layout Standard
 Once desired configuration is found the rearrangement planning is needed.
-\end_layout
-
-\begin_layout Standard
-On object selected to stay in place, while others ought to move.
- 
+ Many algorithms for single object manipulations were developed, but in
+ this case due to several objects to be moved.
+ Objects placement algorithms are designed in a way that will allow stacking
+ the objects in the defined order.
 \end_layout
 
 \begin_layout Standard
 Objects can be moved individually by executing any planning algorithm for
  single object.
- 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Akella1998,Bernheisel2004,Lynch1992,Lynch1999"
@@ -8036,17 +10449,94 @@ literal "true"
 
 \end_inset
 
-
+ present methods for moving objects in assemblies in plane.
+ Simultaneous manipulation of several objects is out of the scope of this
+ research, and it is assumed that there is a way to rearrange the objects
+ from given configuration to the desired one.
 \end_layout
 
 \begin_layout Standard
-OR Objects are moved by stable pushing which allows translation and rotation
+For the purposes of simulations and experiments, objects are scattered in
+ the workspace at distances that allow for each object to be repositioned
+ at desired location.
+ Each manipulation is defined by base object and moved object.
+ Objects are grasped and moved individually while maintaining finger positions
+ that will not interfere with adjacent objects.
+ Alternatively, if no such option exists, the object can be positioned at
+ a pre-pose and pushed from there.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Should I mention this ?:}
+\end_layout
+
+\end_inset
+
+ Objects are moved by stable pushing which allows translation and rotation
  of the object.
- Geometric center assumed
+ Geometric center assumed to be the center of rotation.
+\end_layout
+
+\begin_layout Standard
+Base object is an object or a set of objects that serve as a base for a
+ moved object to be placed in contact to.
+\end_layout
+
+\begin_layout Section
+Complexity
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What in hell do I write here?}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Limitations
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{What can I write here?}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Limitations of the finger placement? Finger sizes, proximity to the vertex
+ – dealing with uncertainty.
+ While rearranging:
+\end_layout
+
+\begin_layout Standard
+Limitation of the multiobject evaluation? Object placement?
 \end_layout
 
 \begin_layout Standard
@@ -8060,6 +10550,19 @@ Results
 
 \begin_layout Standard
 The chapter presents the results of the algorithms performance.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Duh!}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -8087,7 +10590,7 @@ MATLAB computing environment was used for the purpose of geometrical simulations
 status open
 
 \begin_layout Plain Layout
-The programs are available at 
+The programs are available at
 \begin_inset CommandInset href
 LatexCommand href
 name "https://github.com/yossioo/MSc-Research"
@@ -8102,7 +10605,6 @@ literal "false"
 \end_inset
 
 .
- 
 \end_layout
 
 \begin_layout Subsection
@@ -8114,19 +10616,17 @@ V-REP environment was used for physical simulation of the performance of
  the algorithms.
  The software incorporated several common physics engines which allow testing
  of different scenarios of computer simulations.
- 
 \end_layout
 
 \begin_layout Standard
 Delta-robot model of && was used to perform as the main manipulator, custom
  end effector was added to the model to perform grasping of desired object
  sets.
- 
 \end_layout
 
 \begin_layout Standard
 The end-effector consists of 10 individually actuated fingers, which can
- move in the 
+ move in the
 \begin_inset Quotes eld
 \end_inset
 
@@ -8234,13 +10734,63 @@ Executions of the steps can be controlled from the UI.
 Results
 \end_layout
 
+\begin_layout Standard
+A simple case of 3 equilateral triangles presented in the 
+\emph on
+SIMULATIONS.
+ The designed configuration and designed grasp are presented above.
+ 3D printed end effector is presented on the FIGURE.
+ Due to 
+\end_layout
+
+\begin_layout Standard
+A case of 6 equilateral triangles
+\end_layout
+
+\begin_layout Standard
+A case of 3 squares
+\end_layout
+
+\begin_layout Standard
+A case of 4 squares
+\end_layout
+
+\begin_layout Standard
+A case of 3 hexagons
+\end_layout
+
+\begin_layout Standard
+Cases of 3-4-5-...
+ irregular triangles.
+\end_layout
+
+\begin_layout Standard
+A case of 3-4-5 octagons?
+\end_layout
+
 \begin_layout Section
 Experiments
 \end_layout
 
 \begin_layout Standard
 Bring a 3D printed set of objects and designed gripper to the defense.
- Include the results in the Appendix, and in the presentation 
+ Include the results in the Appendix, and in the presentation
+\end_layout
+
+\begin_layout Standard
+The results of the algorithms' performance were tested in experimental setups.
+ Robotic manipulator with 6DOF was equipped with an end effector designed
+ according to the algorithm's output.
+ The robot is controlled by a laptop with Robot Operating System (ROS) hosted
+ in Ubuntu.
+ Several polygonal objects were selected to be stacked, and after the verificati
+on by the algorithm a custom-made end effector with stationary fingers was
+ manufactured by 3D printing.
+ The end effector was tested and confirmed to immobilize the desired set
+ of objects both in simulation and in experiments.
+ Due to the real world imperfections, the fingers of the designed end effectors
+ are made with chamfers, this allowed grasping of the arranged set of items
+ despite small perturbations of item locations and robotic arm performance.
 \end_layout
 
 \begin_layout Subsection
@@ -8248,21 +10798,31 @@ Experimental Setup
 \end_layout
 
 \begin_layout Standard
-The performance of the algorithms was tested in experimental setups in the
- laboratory.
-\end_layout
-
-\begin_layout Standard
-The objects are known and only the location of objects is obtained via RGBD
- camera.
- The robot is equipped with an end-effector designed according to the algorithm'
-s output.
- Robotic arm used is ROBOTIS Manipulator H, controlled by laptop with Robot
- Operating System (ROS) hosted in Ubuntu.
+For several examined cases of polygon sets, 
 \end_layout
 
 \begin_layout Subsection
 Experimental Results
+\end_layout
+
+\begin_layout Standard
+A simple case of 3 equilateral triangles presented in the SIMULATIONS.
+ The designed configuration and designed grasp are presented above.
+ 3D printed end effector is presented on the FIGURE.
+ Fingers - 1 joint finger - touches 2 triangles.
+\end_layout
+
+\begin_layout Standard
+A case of 6 equilateral triangles
+\end_layout
+
+\begin_layout Standard
+A case of 3 hexagons
+\end_layout
+
+\begin_layout Standard
+Cases of 3-4-5-...
+ irregular triangles.
 \end_layout
 
 \begin_layout Chapter
@@ -8282,9 +10842,17 @@ Written before the Introduction
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "main,IEEEfull"
+btprint "btPrintCited"
+bibfiles "main"
 options "bibtotoc,apalike"
 
 \end_inset
@@ -8292,9 +10860,451 @@ options "bibtotoc,apalike"
 
 \end_layout
 
-\begin_layout Chapter
+\begin_layout Chapter*
 \start_of_appendix
-Appendix A
+Appendix
+\end_layout
+
+\begin_layout Chapter
+Algorithms
+\end_layout
+
+\begin_layout Standard
+This section presents more elaborate representation of the algorithms presented
+ in the paper.
+\end_layout
+
+\begin_layout Chapter
+Software
+\end_layout
+
+\begin_layout Standard
+Source code is available at
+\begin_inset CommandInset href
+LatexCommand href
+name "https://github.com/yossioo/MSc-Research"
+target "https://github.com/yossioo/MSc-Research"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Additional videos are available at Youtube channel: &&&
+\end_layout
+
+\begin_layout Standard
+The software used for the research is:
+\end_layout
+
+\begin_layout Standard
+MATLAB r2018a
+\end_layout
+
+\begin_layout Standard
+V-REP 3.5.0 Educational Version
+\end_layout
+
+\begin_layout Standard
+ROS Kinetic on Ubuntu 16.04
+\end_layout
+
+\begin_layout Chapter
+Examples of calculated grasps
+\end_layout
+
+\begin_layout Standard
+3 fingers - 1 found
+\end_layout
+
+\begin_layout Chapter
+Examples of rearranged object sets
+\end_layout
+
+\begin_layout Chapter
+Examples of finger combinations found for sets
+\end_layout
+
+\begin_layout Chapter
+Simulations
+\end_layout
+
+\begin_layout Standard
+V-REP
+\end_layout
+
+\begin_layout Chapter
+Experiments
+\end_layout
+
+\begin_layout Standard
+Real robot
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{test}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Junk
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw (0,0) to [R=1<
+\backslash
+kilo
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,0) to [ I , i=50<
+\backslash
+milli
+\backslash
+ampere>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,0) to [R=516<
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,3) to [V,v=50<V>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,3) to [diode ]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,3) to [ ospst=S]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagram[descriptive diagram]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Style,{Define shapes, colors, shading,
+\end_layout
+
+\begin_layout Plain Layout
+
+          and line styles for nodes and arrows}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Position, {Place nodes using a matrix,
+\end_layout
+
+\begin_layout Plain Layout
+
+              relative or absolute positioning}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Relation, Insert edges or arrows
+\end_layout
+
+\begin_layout Plain Layout
+
+             between selected nodes},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Label, Add labels on edges or arrows}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Preview
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scope}[blend group = soft light]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[red!30!white]   ( 90:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[green!30!white] (210:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[blue!30!white]  (330:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at ( 90:2)    {Typography};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at ( 210:2)   {Writing};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at ( 330:2)   {Coding};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [font=
+\backslash
+Large] {
+\backslash
+LaTeX};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+222
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+———–
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+[grid=major,samples=100,mark=none]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[red,very thick ,domain=-180:180]{x*sin(x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+XY example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\xymatrix{\text{Some text here}\ar[dr] & \cos\left(\theta\right) & e\\
+c\ar[ur]\ar[rr]_{Under}^{Over} &  & f
+}
+\]
+
+\end_inset
+
+
 \end_layout
 
 \end_body

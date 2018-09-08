@@ -5,7 +5,102 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+% set fonts for nicer pdf view
+\IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
+
+
+\DeclareMathOperator*{\argmax}{argmax}
+\DeclareMathOperator*{\argmin}{argmin}
+
+% Algorithms
+\usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
+
+
+
+\newcommand*{\blankpage}{%
+  \par\vspace*{0.25\textheight}%
+  {\centering \emph{This page intentionally left blank.}\par}
+  \vspace{\fill}%
+}
+%\makeatletter
+%\renewcommand*{\cleardoubleoddstandardpage}{%
+%  \clearpage
+%  \if@twoside
+%    \ifodd\c@page
+%    \else
+%      \blankpage
+%      \thispagestyle{empty}%
+%      \newpage
+%      \if@twocolumn\hbox{}\newpage\fi
+%    \fi
+%  \fi
+%}
+%\makeatother
+
+\usepackage{scrlayer}
+\DeclareNewLayer[
+    foreground,
+    textarea,
+    contents=\blankpage
+  ]{blankpage.fg}
+\DeclarePageStyleByLayers{blank}{blankpage.fg}
+\KOMAoptions{cleardoublepage=blank}
+
+
+% Allow nomenclature entries with units
+\newcommand{\nomunit}[1]{%
+% \renewcommand{\nomentryend}{\hspace*{\fill}#1}}
+\renewcommand{\nomentryend}{\dotfill#1}}
+
+
+
+% avoids that floats are placed above its sections
+%\let\mySection\section\renewcommand{\section}{\suppressfloats[t]\mySection}
+
+% Use this for naming ref types when referencing.
+\providecommand{\thmautorefname}{Theorem}
+\providecommand{\corautorefname}{Corollary}
+\providecommand{\lemautorefname}{Lemma}
+\providecommand{\propautorefname}{Proposition}
+\providecommand{\eqautorefname}{Equation}
+
+
+\AtBeginDocument{%
+\let\ref\autoref
+%\renewcommand\equationautorefname{\@gobble}
+}
+
+
+
+% Flowcharts
+\usepackage{tikz}
+\usepackage[siunitx]{circuitikz}
+\usetikzlibrary{shapes,arrows,matrix}
+
+
+\usepackage{pgfplots}
+\usepackage{smartdiagram}
+
+
+\usepackage{environ}
+
+\newsavebox{\measure@tikzpicture}
+\NewEnviron{scaletikzpicturetowidth}[1]{%
+  \def\tikz@width{#1}%
+  \def\tikzscale{1}\begin{lrbox}{\measure@tikzpicture}%
+  \BODY
+  \end{lrbox}%
+  \pgfmathparse{#1/\wd\measure@tikzpicture}%
+  \edef\tikzscale{\pgfmathresult}%
+  \BODY
+}
+\end_preamble
 \use_default_options true
+\begin_modules
+theorems-ams
+theorems-ams-extended
+\end_modules
 \maintain_unincluded_children false
 \language english
 \language_package default
@@ -29,6 +124,7 @@
 \bibtex_command default
 \index_command default
 \paperfontsize default
+\spacing single
 \use_hyperref false
 \papersize default
 \use_geometry false
@@ -75,6 +171,1406 @@
 \end_header
 
 \begin_body
+
+\begin_layout Standard
+———–
+\end_layout
+
+\begin_layout Standard
+TiKZ example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw (0,0) to [R=1<
+\backslash
+kilo 
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,0) to [ I , i=50<
+\backslash
+milli 
+\backslash
+ampere>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,0) to [R=516<
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,3) to [V,v=50<V>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,3) to [diode ]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,3) to [ ospst=S]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,0)
+\end_layout
+
+\begin_layout Plain Layout
+
+;
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagram[descriptive diagram]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Style,{Define shapes, colors, shading,
+\end_layout
+
+\begin_layout Plain Layout
+
+          and line styles for nodes and arrows}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Position, {Place nodes using a matrix,
+\end_layout
+
+\begin_layout Plain Layout
+
+              relative or absolute positioning}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Relation, Insert edges or arrows
+\end_layout
+
+\begin_layout Plain Layout
+
+             between selected nodes},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Label, Add labels on edges or arrows}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Preview
+
+\begin_layout Standard
+\align center
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{scope}[blend group = soft light]
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[red!30!white]   ( 90:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[green!30!white] (210:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+fill[blue!30!white]  (330:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 90:2)    {Typography};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 210:2)   {Design};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node at ( 330:2)   {Sleeping};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+node [font=
+\backslash
+Large] {
+\backslash
+LaTeX};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+222
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{center}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scaletikzpicturetowidth}{
+\backslash
+textwidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}[scale=
+\backslash
+tikzscale,
+\end_layout
+
+\begin_layout Plain Layout
+
+    every path/.style = {},
+\end_layout
+
+\begin_layout Plain Layout
+
+    every node/.append style = {font=
+\backslash
+sffamily}
+\end_layout
+
+\begin_layout Plain Layout
+
+  ]
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[right color=green, left color=white, opacity=0.7]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,-0.5) rectangle (0,6.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[rotate=90, above] at (0,3) {Non-Negative Gold};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[top color=yellow, bottom color=white, opacity=0.7]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,-0.5) rectangle (8.5,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[below] at (4,0) {Non-Negative Bills};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[left color=red, bottom color=red, right color=white, opacity=0.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,5.5) -- (8.5,3) -- (8.5,6.5) -- (-0.5,6.5) -- cycle;
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+path (-0.5,5.5) -- node[pos=0.23, sloped, above] {Volume Constraint}
+\end_layout
+
+\begin_layout Plain Layout
+
+      (8.5,3);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[left color=blue, right color=white, opacity=0.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (2.5,6.5) -- (8.5,6.5) -- (8.5,0) -- (5,0) -- cycle;
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+path (5,0) -- node[pos=0.3, sloped, above] {Weight Constraint} (2.5,6.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[text width=7em, align=center] at (2,2)
+\end_layout
+
+\begin_layout Plain Layout
+
+      {Feasible Region of the Linear Relaxation};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw[->] (-0.5,0) -- (8.5,0) node[below] {Gold bars};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw[->] (0,-0.5) -- (0,6.5) node[above] {Bill stacks};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[rotate=-45, above, text width=9em, align=center] at (7.25,5.25)
+\end_layout
+
+\begin_layout Plain Layout
+
+      {Level Curves of the Objective Function};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+path[clip] (-0.5,-0.5) rectangle (8.5,6.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0.5,3,...,13} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+draw[help lines] (-0.5,
+\backslash
+i) -- +(-45:15);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+draw[very thick, ->] (9,3.25) -- node[above, text width=4cm, align=center]
+\end_layout
+
+\begin_layout Plain Layout
+
+    {
+\backslash
+Large
+\backslash
+bfseries Add Integrality Constraints} (13,3.25);
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+begin{scope}[shift={(14,0)}]
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[right color=green, left color=white, opacity=0.7]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,-0.5) rectangle (0,6.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[top color=yellow, bottom color=white, opacity=0.7]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,-0.5) rectangle (8.5,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+shade[left color=red, bottom color=red, right color=white, opacity=0.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+      (-0.5,5.5) -- (8.5,3) -- (8.5,6.5) -- (-0.5,6.5) -- cycle;
+\end_layout
+
+\begin_layout Plain Layout
+
+   
+\backslash
+shade[left color=blue, right color=white, opacity=0.5]
+\end_layout
+
+\begin_layout Plain Layout
+
+     (2.5,6.5) -- (8.5,6.5) -- (8.5,0) -- (5,0) -- cycle;
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw[->] (-0.5,0) -- (8.5,0) node[below] {Gold bars};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+draw[->] (0,-0.5) -- (0,6.5) node[above] {Bill stacks};
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,1,...,6.5} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+draw[help lines] (-0.5,
+\backslash
+i) -- (8.5,
+\backslash
+i);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {2,4,...,8.5} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+draw[help lines] (
+\backslash
+i,6.5) -- (
+\backslash
+i,-0.5);
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,1,...,5} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+node[draw,cross out,label={left:
+\backslash
+i}] at (0,
+\backslash
+i) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,1,...,4} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+node[draw,cross out] at (2,
+\backslash
+i) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,1,...,2} {
+\end_layout
+
+\begin_layout Plain Layout
+
+            
+\backslash
+node[draw,cross out] at (4,
+\backslash
+i) {};
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+foreach 
+\backslash
+i in {0,2,...,6} {
+\end_layout
+
+\begin_layout Plain Layout
+
+      
+\backslash
+node[below] at (
+\backslash
+i,0) {
+\backslash
+pgfmathparse{int(
+\backslash
+i/2)}
+\backslash
+pgfmathresult};
+\end_layout
+
+\begin_layout Plain Layout
+
+    }
+\end_layout
+
+\begin_layout Plain Layout
+
+    
+\backslash
+node[very thick, draw=black, fill=white, rectangle, rounded corners,
+\end_layout
+
+\begin_layout Plain Layout
+
+      text width=8em, align=center] at (6,5)
+\end_layout
+
+\begin_layout Plain Layout
+
+      {Feasible solutions of the integer program are the crosses};
+\end_layout
+
+\begin_layout Plain Layout
+
+  
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scaletikzpicturetowidth}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{center}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+fff
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+———–
+\end_layout
+
+\begin_layout Standard
+XY example
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\[
+\xymatrix{\text{Some text here}\ar[drr] & \cos\left(\theta\right) & e\\
+c\ar[rr]_{Under}^{Over} &  & f
+}
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+———–
+\end_layout
+
+\begin_layout Standard
+Polygonal object evaluation
+\end_layout
+
+\begin_layout Standard
+Polygonal object is defined by a set of vertices ordered in counterclockwise
+ order, which is the initial data given for a polygon.
+ For every and each one of the objects that are to be grasped following
+ properties are of interest:
+\end_layout
+
+\begin_layout Standard
+For the grasp planning on a single object:
+\end_layout
+
+\begin_layout Itemize
+Edges inward normal directions
+\end_layout
+
+\begin_layout Itemize
+Edges lengths
+\end_layout
+
+\begin_layout Itemize
+Normalized cumulative length along the boundary
+\end_layout
+
+\begin_layout Itemize
+Polygon center of area 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+/ Pole of inaccessibility for concave polygons
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Combinations of edge pairs 
+\strikeout on
+and triplets
+\strikeout default
+.
+ Complexity 
+\begin_inset Formula $O(n^{k})\;for\;k=2,3$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Additionally, for objects placement planning:
+\end_layout
+
+\begin_layout Itemize
+Vertex angles
+\end_layout
+
+\begin_layout Itemize
+Concave vertices if exist
+\end_layout
+
+\begin_layout Standard
+—–
+\end_layout
+
+\begin_layout Proposition
+Given a set of k contacts, the (k+1)-th contact that will yield highest
+ volume of InscribedSphere grasp quality measure is the one that has a wrench
+ space vector that lies along the axis of the InvertedCone of wrench vectors
+ of other contacts.
+\end_layout
+
+\begin_layout Proof
+As seen in proposition 
+\begin_inset CommandInset ref
+LatexCommand formatted
+reference "prop:InvCone-interior"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ has to lie inside of the Anti-Cone.
+ If 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ lies on a cone boundary then it and 2 vectors that form that boundary (denoted
+ by 
+\begin_inset Formula $w_{1},w_{2}$
+\end_inset
+
+), will form a surface that contains the origin of the wrench space.
+ To maximize the distance of said surface from the origin (which is equivalent
+ to maximizing the sphere of origin centered inscribe sphere of the convex
+ polyhedron) the 
+\emph on
+
+\begin_inset Formula $w_{4}$
+\end_inset
+
+
+\emph default
+ point ought to be farthest as possible from the surface formed by 
+\begin_inset Formula $w_{1},w_{2}$
+\end_inset
+
+ and the origin.
+ Alternatively, the surface built by 3 points will be farthest from the
+ origin when some point projected on the surface's normal direction will
+ yield higher
+\end_layout
+
+\begin_layout Proof
+Given 3 unit wrench vectors 
+\begin_inset Formula $w_{1},w_{2},w_{3}$
+\end_inset
+
+, we define a 
+\emph on
+central axis
+\emph default
+ of their convex cone as:
+\begin_inset Formula 
+\begin{equation}
+a=\frac{w_{1}+w_{2}+w_{3}}{\left|w_{1}+w_{2}+w_{3}\right|}
+\end{equation}
+
+\end_inset
+
+Assuming a counterclockwise arrangement of the vectors around 
+\begin_inset Formula $a$
+\end_inset
+
+, respective distances from the boundary planes to the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point can be written as:
+\begin_inset Formula 
+\begin{equation}
+d_{12}=\begin{bmatrix}x_{4}\\
+y_{4}\\
+z_{4}
+\end{bmatrix}\cdot\left(\begin{bmatrix}x_{1}\\
+y_{1}\\
+z_{1}
+\end{bmatrix}\times\begin{bmatrix}x_{2}\\
+y_{2}\\
+z_{2}
+\end{bmatrix}\right)
+\end{equation}
+
+\end_inset
+
+where cross product selected to yield a vector pointing inside the cone.
+ Since origin centered inscribed sphere radius is a minimal of the distances
+ to the planes, of convex polyhedra, we select the minimal distance from
+ any and all surfaces to be:
+\begin_inset Formula 
+\begin{equation}
+D=\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+And hence, the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ vector to yield such a distance will be
+\begin_inset Formula 
+\begin{equation}
+w_{4}=\underset{\left[x_{4},y_{4},z_{4}\right]^{T}}{\mathrm{argmax}}\left(\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+Since the vectors normal to the cone faces projected on the 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+ of the cone are positively spanning the plane that the 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+ is on, any change of a 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point will increase some of the distances while decreasing other.
+ Maximized minimal selected distance will be where all 3 distances are equal,
+ and can be presented as shown below.
+ This can be extended to cases for more complex convex cones, analogously
+ to inscribing a circle in a polygon.
+ In a way similar to such circle inscribed in a irregular polygon, the maximized
+ minimal distance from the faces of a cone will lie along a central axis.
+ Reader can refer to 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Icking2001,Delaunay1934"
+literal "true"
+
+\end_inset
+
+.
+ 
+\emph on
+Note
+\emph default
+: The derivation above treated the vectors to be unit vectors, including
+ the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+.
+ In case where the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point lies further from the origin (along the central axis of the convex
+ cone), the inscribed sphere radius will increase as well.
+ ———-
+\end_layout
+
+\begin_layout Standard
+—————
+\end_layout
+
+\begin_layout Proof
+
+\family sans
+(which is equivalent to maximizing the sphere of origin centered inscribe
+ sphere of the convex polyhedron) the 
+\emph on
+
+\begin_inset Formula $w_{4}$
+\end_inset
+
+
+\emph default
+ point ought to be farthest as possible from the surface formed by 
+\begin_inset Formula $w_{1},w_{2}$
+\end_inset
+
+ and the origin.
+ Alternatively, the surface built by 3 points will be farthest from the
+ origin when some point projected on the surface's normal direction will
+ yield higher
+\end_layout
+
+\begin_layout Proof
+
+\family sans
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Given 3 unit wrench vectors 
+\begin_inset Formula $w_{1},w_{2},w_{3}$
+\end_inset
+
+, we define a 
+\emph on
+central axis
+\emph default
+ of their convex cone as:
+\begin_inset Formula 
+\begin{equation}
+a=\frac{w_{1}+w_{2}+w_{3}}{\left|w_{1}+w_{2}+w_{3}\right|}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Assuming a counterclockwise arrangement of the vectors around 
+\begin_inset Formula $a$
+\end_inset
+
+, respective distances from the boundary planes to the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point can be written as:
+\begin_inset Formula 
+\begin{equation}
+d_{12}=\begin{bmatrix}x_{4}\\
+y_{4}\\
+z_{4}
+\end{bmatrix}\cdot\left(\begin{bmatrix}x_{1}\\
+y_{1}\\
+z_{1}
+\end{bmatrix}\times\begin{bmatrix}x_{2}\\
+y_{2}\\
+z_{2}
+\end{bmatrix}\right)
+\end{equation}
+
+\end_inset
+
+where cross product selected to yield a vector pointing inside the cone.
+ Since origin centered inscribed sphere radius is a minimal of the distances
+ to the planes, of convex polyhedra, we select the minimal distance from
+ any and all surfaces to be:
+\begin_inset Formula 
+\begin{equation}
+D=\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+
+\family sans
+And hence, the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ vector to yield such a distance will be
+\begin_inset Formula 
+\begin{equation}
+w_{4}=\underset{\left[x_{4},y_{4},z_{4}\right]^{T}}{\mathrm{argmax}}\left(\min\left(\left\{ d_{12},d_{23},d_{31}\right\} \right)\right)
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+
+\family sans
+Since the vectors normal to the cone faces projected on the 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+ of the cone are positively spanning the plane that the 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+ is on, any change of a 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point will increase some of the distances while decreasing other.
+ Maximized minimal selected distance will be where all 3 distances are equal,
+ and can be presented as shown below.
+ This can be extended to cases for more complex convex cones, analogously
+ to inscribing a circle in a polygon.
+ In a way similar to such circle inscribed in a irregular polygon, the maximized
+ minimal distance from the faces of a cone will lie along a central axis.
+ Reader can refer to 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Icking2001,Delaunay1934"
+literal "true"
+
+\end_inset
+
+.
+ 
+\emph on
+Note
+\emph default
+: The derivation above treated the vectors to be unit vectors, including
+ the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+.
+ In case where the 
+\begin_inset Formula $w_{4}$
+\end_inset
+
+ point lies further from the origin (along the central axis of the convex
+ cone), the inscribed sphere radius will increase as well.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\emph on
+First, we need to find edges, whose generalized wrenches intersect with
+ the inverted cone.
+ After such edge is found, we can parameterize the location along the edge
+ and get a vertical line in the wrench space.
+ The distance from each edge can be written as a function of the location
+ along the edge.
+ 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\emph on
+We wish to maximize the minimal of the distances.
+ Since the function is not smooth (it is 
+\begin_inset Formula $\mathrm{C}^{0}$
+\end_inset
+
+), derivation of the maximum is impossible in explicit way but it can be
+ done numerically.
+ ALGORITHM 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\emph on
+Insert a picture here, with abscissa is the parameter along an edge, and
+ ordinate is the distance from an edge.
+ show 3 functions - for each edge, end the minimal among them.
+ Select the maximal point.
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+Alternatively, we can express the radius of the inscribed sphere to be parameter
+ized by a location along an edge.
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\emph on
+Maximizing the minimum of several functions can be done by finding the intersect
+ion points between them (Is this valid in general) What about cases where
+ functions are not monotonic?.
+ In case of 3D space, 3 functions, in 2D also can be 3? What if the minima
+ is higher at some other point? Find intersection points, find piece-wise
+ the minimal function.
+ Check for maximum higher than at the intersection point.
+ Something about periodical functions and frequency ratios.
+ What does it mean that the line of possible wrench vector end points is
+ straight, and that the minimal distance from a plane will by or at some
+ edge or along the whole line.
+ If a line is parallel to the plane (projection on the plane's normal is
+ 0) than the distance from that plane can be discarded.
+ This happens if one of the planes is vertical, because in our cases such
+ lines are vertical (normal direction is the same, but the torque component
+ of the wrench is changing) 
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\emph on
+& For a vector, the distance of the end-point from a plane will monotonically
+ increase or decrease ...
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+\shape italic
+\emph on
+\color green
+MAYBE ALL THIS SHOULD BE IN THE SOLUTION CHAPTER?
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+\series bold
+\shape italic
+\emph on
+\color green
+MAYBE
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+In addition, we can examine the distances of some general unit vector from
+ the convex cone faces.
+\end_layout
+
+\begin_layout Standard
+
+\family sans
+Unit vector in 
+\begin_inset Formula $\rthree$
+\end_inset
+
+ can be parameterized by 2 values, we can select polar coordinates: azimuth
+ from the positive 
+\emph on
+x-
+\emph default
+axis and angle from zenith (
+\emph on
+z
+\emph default
+-axis) 
+\begin_inset Formula $\left[\varphi,\theta\right]$
+\end_inset
+
+ to be such angles, and hence a general vector can be expressed as
+\begin_inset Formula 
+\[
+v=\begin{bmatrix}x\\
+y\\
+z
+\end{bmatrix}=\begin{bmatrix}\cos\varphi\cdot\sin\theta\\
+\sin\varphi\cdot\sin\theta\\
+\cos\theta
+\end{bmatrix}
+\]
+
+\end_inset
+
+Central axis of the convex cone is: 
+\begin_inset Formula $Ax=\left[\begin{array}{ccc}
+\frac{\sqrt{2}}{2} & 0 & \frac{\sqrt{2}}{2}\end{array}\right]^{T},$
+\end_inset
+
+which expressed in azimuth and elevation from the positive 
+\emph on
+x
+\emph default
+ axis is 
+\begin_inset Formula $\left[0,\pi/4\right].$
+\end_inset
+
+ Examining all possible directions of a unit vector in 
+\begin_inset Formula $\rthree$
+\end_inset
+
+, we can calculate the distance of the vector end point from a given plane
+ passing through the origin by projecting the vector on the plane normal.
+\end_layout
+
+\begin_layout Standard
+——————
+\end_layout
 
 \begin_layout Standard
 \begin_inset Note Note
