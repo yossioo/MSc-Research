@@ -30,15 +30,20 @@ if DEBUG
     quiver3(0*cone3d(1,:),0*cone3d(1,:),0*cone3d(1,:), ...
         cone3d(1,:), cone3d(2,:), cone3d(3,:),'k-','AutoScale','off')
     hold on;
-%     quiver3(0*cone3d(1,:),0*cone3d(1,:),0*cone3d(1,:), ...
-%         -cone3d(1,:), -cone3d(2,:), -cone3d(3,:),'-','Color',[.5 .5 .5], 'AutoScale','off')
+    %     quiver3(0*cone3d(1,:),0*cone3d(1,:),0*cone3d(1,:), ...
+    %         -cone3d(1,:), -cone3d(2,:), -cone3d(3,:),'-','Color',[.5 .5 .5], 'AutoScale','off')
     % XY_CH.plot()
     quiver3(0*cone2d(1,:),0*cone2d(1,:),0*cone2d(1,:), ...
         cone2d(1,:), cone2d(2,:), cone2d(3,:),'r-','AutoScale','off')
-    % quiver3(0*n_cone3d(1,:),0*n_cone3d(1,:),0*n_cone3d(1,:), ...
-    %     n_cone3d(1,:), n_cone3d(2,:), n_cone3d(3,:),'b-','AutoScale','off')
+    quiver3(0*n_cone3d(1,:),0*n_cone3d(1,:),0*n_cone3d(1,:), ...
+        n_cone3d(1,:), n_cone3d(2,:), n_cone3d(3,:),'b-','AutoScale','off')
     % quiver3(0*n_cone3d(1,:),0*n_cone3d(1,:),0*n_cone3d(1,:), ...
     %     -n_cone3d(1,:), -n_cone3d(2,:), -n_cone3d(3,:),'b-','AutoScale','off')
+    
+    TR = delaunayTriangulation([cone3d'; 0 0 0]);
+    if size(TR) > 0
+        tetramesh(TR,'FaceAlpha',.2)
+    end
     axis equal
     grid on
     zlabel('\tau_z','FontSize',20)
@@ -62,13 +67,15 @@ if in
     
     ind_top_min = find(proj_top == min(proj_top));
     ind_bot_min = find(proj_bot == min(proj_bot));
-    if  ind_bot_min == ind_top_min
+    if  ind_bot_min == ind_top_min 
+        % Commented this to prevent  skipping when EGW is above a edge
+        % of CH
         % The EGW is outside the inverse cone
-        return
+        if (proj_top < 1e-4) & (proj_bot < 1e-4 )
+            return
+        end
     end
-    if (proj_top < 1e-4) & (proj_bot < 1e-4 )
-        return
-    end
+    
     if proj_top(ind_top_min(1))<0
         new_top = cross(n_cone3d(:,ind_top_min(1)),n_cone2d);
         new_top = new_top./norm(new_top(1:2));

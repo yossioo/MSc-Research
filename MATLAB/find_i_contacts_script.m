@@ -23,7 +23,7 @@ for p_i = ALL
     %
     others = ALL ~= p_i;
     Unified = Polygon_mkII(get_unified_poly(PolyList(others)));
-    Unified.Name = Unified.Name + " - w/o " + num2str(p_i);
+    Unified.Name = "w/o " + num2str(p_i);
     p = PolyList{p_i};
     
     % Have to search separately for v2e contacts, e2e end contacts,

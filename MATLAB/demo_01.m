@@ -38,7 +38,7 @@ find_fingers_script
 
 %% Evaluate grasp and Move fingers (if needed)
 
-% evaluate_script
+evaluate_script
 
 %% Display results
 %
@@ -54,7 +54,7 @@ t = linspace(0,2*pi);
 x = finger_d/2*cos(t); y = finger_d/2*sin(t);
 axis manual
 
-if 1 %Show all results
+if 0 %Show all results
     finger_centers = zeros(numel(Fingers(:,6)),2);
     for i = 1:numel(Fingers(:,7))
         f = Fingers{i,7};
@@ -67,24 +67,25 @@ if 1 %Show all results
         finger_centers(i,:) = f.get_finger_center(finger_d);
         f_c = fill(finger_centers(i,1)+x,finger_centers(i,2)+y,'b','FaceAlpha',.2);
         % s = scatter(p(1),p(2),100,'b', 'filled','MarkerFaceAlpha',0.2);
-        % f.draw_inf_line('k')
+        f.draw_inf_line('k')
     end
 else % show only selected results
-    
-    for p_i = 1:numel(PolyList) 
-        p_ind = Fingers.PolygonNum == p_i;
-        p_Fingers = Fingers(p_ind,:);
-        groups = max(Fingers.ContactGroup(p_ind));
-        GQM_max_ind = max_ind(p_Fingers.Group_GQM(:));
-        for f = p_Fingers.ContactVector(GQM_max_ind)'
-            f.plot_contact('b')
-            finger_center = f.get_finger_center(finger_d);
-%             axis auto
-            f_c = fill(finger_center(1)+x,finger_center(2)+y,'b','FaceAlpha',.2);
-%             f.draw_inf_line('k')
-        end
+    finger_centers = zeros(numel(BestFingersGroup(:,6)),2);
+    for i = 1:numel(BestFingersGroup(:,7))
+        f = BestFingersGroup{i,7};
+        f.plot_contact('b')
+        allowed_reg = [PolyList{BestFingersGroup.PolygonNum(i)}.point_from_edgePosition(...
+            BestFingersGroup.EdgeNum(i), BestFingersGroup.EdgeRange(i,1));
+            PolyList{BestFingersGroup.PolygonNum(i)}.point_from_edgePosition(...
+            BestFingersGroup.EdgeNum(i), BestFingersGroup.EdgeRange(i,2))];
+        plot(allowed_reg(:,1),allowed_reg(:,2),'c','LineWidth',2);
+        finger_centers(i,:) = f.get_finger_center(finger_d);
+        f_c = fill(finger_centers(i,1)+x,finger_centers(i,2)+y,'b','FaceAlpha',.2);
+        % s = scatter(p(1),p(2),100,'b', 'filled','MarkerFaceAlpha',0.2);
+        f.draw_inf_line('k')
     end
 end
+
 % for i = 1:numel(Fingers(:,7))
 %     f = Fingers{i,7};
 %     f.plot_contact('b')

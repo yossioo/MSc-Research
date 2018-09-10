@@ -27,7 +27,12 @@ elseif strcmp(class(Contacts),'ContactVector')
             moment_normalization];
     end
 end
-K = convhulln(W');
-W_CH = W(:,unique(K));
+try
+    K = convhulln(W');
+    
+    W_CH = W(:,unique(K));
+catch
+    W_CH = W;
+end
 end
 

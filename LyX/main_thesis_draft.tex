@@ -34,6 +34,7 @@
  pdfauthor={Yossi Ovcharik},
  pdfsubject={Grasping of Multiple Object with Minimum Fingers},
  breaklinks,linkcolor=black,citecolor=blue, urlcolor=blue}
+\usepackage{breakurl}
 
 \makeatletter
 
@@ -78,6 +79,12 @@
 \newtheorem{defn}{\protect\definitionname}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%% User specified LaTeX commands.
+% Algorithms
+\usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
+%\PassOptionsToPackage{linesnumbered}{algorithm2e}
+%\PassOptionsToPackage{algoruled}{algorithm2e}
+%\PassOptionsToPackage{boxed}{algorithm2e}
+
 % set fonts for nicer pdf view
 \IfFileExists{lmodern.sty}{\usepackage{lmodern}}{}
 %\usepackage{myModule}
@@ -85,8 +92,6 @@
 \DeclareMathOperator*{\argmax}{argmax}
 \DeclareMathOperator*{\argmin}{argmin}
 
-% Algorithms
-\usepackage[linesnumbered,algoruled,boxed]{algorithm2e}
 
 
 \newcommand*{\blankpage}{%
@@ -348,50 +353,51 @@ Should mention ICRA here, and the book that could be published.
 \section{Literature Review\label{sec:Literature-Review}}
 
 Important contribution to the future development of robotics in general
-and grasping in particular belongs to\citet{Reuleaux1876,Landau1982}
+and grasping in particular belongs to \citet{Reuleaux1876,Landau1982}
 for bringing the basics of mechanics and mechanism kinematics, which
-serve as foundation for every analytical approach of robotics study.\citet{Lozano-Perez1983}
-for the introduction of Configuration Space use which contributed
-in vast majority of fields. Use of the Configuration Space representation
-has been a major interest for the simultaneous multi-body manipulation,
-yet because of high computation cost and lack of explicit analytical
-formulations was not fully incorporated in this research.
+serve as foundation for every analytical approach of robotics study.
+\citet{Lozano-Perez1983} for the introduction of Configuration Space
+use which contributed in vast majority of fields. Use of the Configuration
+Space representation has been a major interest for the simultaneous
+multi-body manipulation, yet because of high computation cost and
+lack of explicit analytical formulations was not fully incorporated
+in this research.
 
 \citet{Ball1998} introduces an essential ideas of screw theory which
 allows use of wrench and wrench space concepts, tools that take major
-part in the contemporary robotics.\citet{Murray1994} presents concise
+part in the contemporary robotics. \citet{Murray1994} presents concise
 and yet thorough survey on appliance of the mathematical tools for
 the description of manipulations. With general tools for mechanisms
 and manipulators in particular, interaction of such manipulators with
 the environment can be formulated using Coulomb's friction, categorizing
-contacts for frictional, frictionless, hard or soft contacts\citet{Murray1994}.\citet{Rimon1995}
-proposed bounds on number of frictionless fingers for 2D polygonal
-object immobilization.
+contacts for frictional, frictionless, hard or soft contacts \citet{Murray1994}.
+\citet{Rimon1995} proposed bounds on number of frictionless fingers
+for 2D polygonal object immobilization.
 
 Given broad mathematical basics, grasping becomes of particular interest
-with\citet{Mishra1987} showing existence of positive grasps, and
-allowing following grasp synthesis development:\citet{Bunis2018,Borst2004}.
+with \citet{Mishra1987} showing existence of positive grasps, and
+allowing following grasp synthesis development: \citet{Bunis2018,Borst2004}.
 Derivations would not be possible without defining form and force
-closure by\citet{Asada1989}\citet{Rimon1996}.\citet{Nguyen1986}
+closure by \citet{Asada1989}\citet{Rimon1996}. \citet{Nguyen1986}
 proposes a viable methods for constructing force closure grasps.
 
 More methods on grasp construction include synthesizing grasps evolved
-from predefined configurations\citet{Pollard1996}, mimicking human
+from predefined configurations \citet{Pollard1996}, mimicking human
 behavior in grasping tasks: using predefined shapes and modes for
 closure grasps are planned with numerical computations of trajectories
-intersections\citet{Wren1995}.
+intersections \citet{Wren1995}.
 
-Contact modeling\citet{Xydas1999}
+Contact modeling \citet{Xydas1999}
 
 \citet{Rimon1998} propose a novel idea of mobility index based on
 second order curvature of bodies in contact, intended for multi-finger
 grasping.
 
-Grasp evaluation takes a long way with\citet{Mishra1989} discussing
-the stability of grasps,\citet{Ferrari1992} introducing quality measures
-based on wrenches,\citet{Roa2015} surveying several methods of grasp
-quality measure, while\citet{Lin1997} extend the measures for complaint
-grasps.
+Grasp evaluation takes a long way with \citet{Mishra1989} discussing
+the stability of grasps, \citet{Ferrari1992} introducing quality
+measures based on wrenches, \citet{Roa2015} surveying several methods
+of grasp quality measure, while\citet{Lin1997} extend the measures
+for complaint grasps.
 
 Grasp generation can be addressed with different approach, with randomized
 grasp generation\citet{Borst2003} where grasp candidates are generated,
@@ -498,7 +504,7 @@ illustrates coordinate frames:\emph{$O$} - object coordinate frame,\emph{$C$}
 - contact coordinate frame together with vector$r_{c}$ which defines
 the location of contact point in object coordinate frame.\nomenclature{$r_{c}$}{distance between coordinate systems origins \nomunit{[mm]}}
 \begin{figure}[tbh]
-\noindent \centering{}\includegraphics[width=0.25\textwidth]{\string"images/object w contact\string".pdf}\caption{\label{fig:Coordinate-frames}Coordinate frames.}
+\noindent \centering{}\includegraphics[width=0.25\textwidth]{\string"images/object w contact\string".eps}\caption{\label{fig:Coordinate-frames}Coordinate frames.}
 \end{figure}
 Contact type would describe the interaction between the surface of
 the object and the surface of the finger. Common cases are: normal
@@ -541,7 +547,7 @@ and the bisector lies along the normal direction. The half angle of
 the aforementioned vertex is defined by$\alpha=\arctan\left(\mu\right).$
 
 \begin{figure}[tbh]
-\noindent \centering{}\includegraphics{\string"images/friction cone\string".pdf}\caption{\label{fig:Friction-cone}Friction cone.}
+\noindent \centering{}\includegraphics{\string"images/friction cone\string".eps}\caption{\label{fig:Friction-cone}Friction cone.}
 \end{figure}
 
 
@@ -551,7 +557,7 @@ is the most``capable'' contact, able to apply both normal and tangent
 forces, and a torque about the contact normal as well. In$\rtwo$
 the concept is not used since rotations only possible around 1 axis.
 
-INSERT CONTACT TYPES SUMMARIZING FIGURE HERE
+\z{INSERT CONTACT TYPES SUMMARIZING FIGURE HERE}
 
 \subsubsection*{Grasp and Grasp Matrix}
 
@@ -581,8 +587,8 @@ F_{o}=\begin{bmatrix}f_{o}\\
 \tau_{c}
 \end{bmatrix}
 \end{equation}
-where$R_{c}$ represents\z{WHAT?} Grasp map for this example is given
-by:
+where$R_{c}$ represents\z{WHAT?}. Grasp map for this example is
+given by:
 \begin{equation}
 G=\begin{bmatrix}0 & 1 & 0 & -1\\
 -1 & 0 & 1 & 0\\
@@ -821,7 +827,9 @@ several ways. Classification of the relations between the polygonal
 allows more thorough state analysis and further planning. After the
 classification is presented, an algorithm for finger placement given
 configuration of polygons is proposed, and then an algorithm for polygons
-placement is proposed.\z{The idea can be expanded for various tasks, such as home assistant robot that brings several items in one run.
+placement is proposed.
+
+\z{The idea can be expanded for various tasks, such as home assistant robot that brings several items in one run.
  This should go to Motivation.}
 
 Thus, the solution can be subdivided into 2 parts: determining the
@@ -866,7 +874,9 @@ to$p_{2}$ can be defined as$\dot{x}_{12}=\left(v_{12},\omega_{12}\right)^{T}$.
 Polygons can maintain contact but not penetrate one another.
 
 \z{Let $IP$ denote the set of interaction points common to both polygons.
-Let $C=\left\{ c_{i}\right\} $ be a set of contact descriptions between these polygons. }Let$\hat{n}_{i}^{j}$ denote the inward normal direction of the boundary
+Let $C=\left\{ c_{i}\right\} $ be a set of contact descriptions between these polygons. } 
+
+Let$\hat{n}_{i}^{j}$ denote the inward normal direction of the boundary
 of polygon\emph{j} at contact point\emph{i}.
 
 The contact between the polygons can be described using one or more
@@ -1219,27 +1229,7 @@ that solves the equation.
 
 \z{Check the following, what is this? Do I need it at all? }
 
-\emph{The existence of the solution depends on the rank of the$G$
-matrix. Since there are more columns than rows (and therefore there
-is no unique solution) we need to ensure that the rows are linearly
-independent.}
-
-\emph{Since the matrix is built with blocks, we can see that there
-are no (and cannot be) 2 linearly dependent block rows.}
-
-\emph{Assuming that block rows i and j are linearly dependent. In
-particular, first$G$-blocks (that corresponds to set of forces applied
-by fingers) on these rows are at the same columns. That means that
-same forces act on different bodies, while acting at the same point.
-Which is impossible, since by definition each finger contacts one
-body only.}
-
-\emph{Therefore, if given matrix has full rank, there exists a non-trivial
-(but not unique) set of forces that will keep the system in equilibrium.}
-
-\emph{3 Frictionless contacts that intersecting at one point.}
-
-\emph{Direction of contacts should}
+\emph{}
 
 \subsection{Edge generalized wrench}
 
@@ -1282,7 +1272,7 @@ w_{a}=\begin{bmatrix}\hat{n}_{a}\\
 \vec{p}_{b}\times\hat{n}_{b}
 \end{bmatrix}.
 \]
-As can be seen from the figure, contact$a$ induces positive torque
+As can be seen from the FIGURE , contact$a$ induces positive torque
 about the selected reference point, while contact$b$ induces negative
 torque. Hence, the 3-rd components of a wrench have opposite signs
 and are located on different sides of the\emph{xy}-plane. The expression
@@ -1658,6 +1648,247 @@ hull for the both objects together.
 \end{figure}
 
 
+\section{Determining new configuration for objects}
+
+\subsection{Description}
+
+\subsection{Pseudocode}
+
+Given an unordered set of objects, each object is scanned and classified:
+number of edges, concave vertices, edges' lengths. Scanned and classified
+objects allow assessment of different constellations for future grasping.
+Based on the algorithms and inter-object contacts classification as
+presented above, several strategies for object rearrangement can be
+implemented.
+
+The approach for objects rearrangement is to stack objects in configuration
+that will require amount of minimal fingers for each object, maximizing
+number of inter-object effective contacts. Objects in the set in the
+new configuration can be described by a tree, where the root is some
+selected object, and all other objects described as children in a
+way similar to URDF style\citep{ros.org2009}.
+
+First of all, we need to know how many polygons with concave vertices
+exist, and how many exist with vertex angles less than $90\text{°}$.
+Additionally, how many angles are smaller than concave angles if any.
+
+Recapping the inter object contact types along with the additional
+contacts needed for the immobilization, we assume that the parent
+object is immobilized and inducing contact forces on a child object,
+which has to be immobilized by additional fingers. In the following
+paragraphs, term``fixation'' refers to the contacts of the parent
+object acting on the child object.
+
+\textbf{Edge-to-edge} fixation provides two parallel contacts, their
+convex cone can be seen as infinite ``corridor'', formed by the
+contact region swept along the contacts' normal direction. The interaction
+can be considered useful in cases where some other 2 different edges
+provide normal directions that are crossing in the parallel contacts'
+``corridor''. Simple example would be a case with a vertex inside
+of the ``corridor'', where normal directions of 2 adjacent edges
+induce opposite wrenches about the edge with two contacts. This requires
+at least 2 additional external contacts for each object to complete
+the fixture.
+
+One way of finding such configuration is checking whether there exists
+an object with a vertex (concave or convex) that is projected on the
+interior of some non-adjacent edge (base edge), the edge can be used
+as a base of edge-to-edge contact, and the vertex's adjacent edges
+will serve as locations for 2 additional fingers. The grasp will be
+feasible if normal directions from the adjacent edges and from the
+base edge will positively span $\rtwo$. Example of feasible and non
+feasible grasps are shown in \ref{fig:Edge-infinite-projection}.
+\begin{figure}[tbh]
+\noindent \centering{}\subfloat[Spanning vectors]{\noindent \begin{centering}
+\includegraphics[width=0.35\textwidth]{images/OP_e2e}
+\par\end{centering}
+}\subfloat[Not spanning vectors]{\noindent \begin{centering}
+\includegraphics[width=0.35\textwidth]{images/OP_e2e_02}
+\par\end{centering}
+}\caption{Edge infinite projection and vertex with adjacent normal vectors.\label{fig:Edge-infinite-projection}}
+\end{figure}
+
+\textbf{Vertex-to-inner-vertex}fixation provides 2 edges normal directions,
+which yield a convex cone with distinct vertex (unlike two parallel
+contacts which can be considered as convex cone with a vertex at infinity).
+
+This fixation allows use of single edge to complete the fixture, given
+that the edge's inner normal direction is a negative combination of
+the given contacts' directions, and the edge allows two distinct contacts
+with opposing wrenches about the vertex (i.e. vertex is projected
+on the inner of the edge segment), as shown in \figref{In-v-a}. In
+case no such edge exist, two different edges provide normal directions
+which form a convex cone that mutually overlap(have a common region)
+the given convex cone (or their anti-cones), and the line connecting
+the vertices of the cones is in the interior of the overlapping region.
+\begin{figure}[tbh]
+\noindent \begin{centering}
+\subfloat[\label{fig:In-v-a}]{\noindent \begin{centering}
+\includegraphics[width=0.35\textwidth]{images/OP_v2iv}
+\par\end{centering}
+}\subfloat[\label{fig:In-v-b}]{\noindent \begin{centering}
+\includegraphics[width=0.35\textwidth]{images/OP_v2iv_ce}
+\par\end{centering}
+}
+\par\end{centering}
+\noindent \centering{}\caption{Inner vertex immobilization.\label{fig:Inner-vertex.}}
+\end{figure}
+
+\textbf{Vertex-to-inner-vertex with contiguous edge}fixation contributes
+3 effective contacts and needs only one external finger contact in
+the optimal case. For this there should exist an edge which projection
+along it's normal direction has 2-contact vertex inside it's interior
+and a there exists an intersecting segment of that projection and
+the 3rd normal direction that lies inside the convex cone of first
+2 normals. Example of such configuration is shown in \ref{fig:In-v-b}.
+If no such edge exists, 2 external contacts are required to immobilize
+this grasp by a method presented above
+
+Vertex-to-inner-vertex with 2 contiguous edges fixation provides a
+optimal configuration which requires sole external contact for the
+immobilization of the object. Since objects are polygonal objects
+with non intersection edges and non-zero thickness, there will always
+exist an edge with a normal direction that will complete the form
+closure.
+
+Vertex-to-inner-vertex with a contiguous edge and a contact point
+fixation is similar to the previous one except for the normal direction,
+and hence in certain cases can be self immobilizing.
+
+Vertex-to-inner-vertex with additional contact points are equivalent
+to the vertex-to-inner-vertex with contiguous edges formations. The
+provide same amount of contacts, but the normal directions can differ.
+
+\textbf{Contiguous edge with vertex point contact} fixation forms
+a case with 3 contacts, which allows fixation with one additional
+finger under certain conditions: there should exist an edge, which
+projections common segment with the point contact's normal has a part
+lying inside the edge contact's infinite projection and also the new
+edge, point and given edge normal directions should span $\rtwo$.\ref{fig:Contiguous-edge-with}
+shows an example of possible contact locations for this fixation.
+
+Example on \ref{fig:2-Contiguous-edges.} describes 2 contiguous edges,
+which can be seen as sub case for the described fixation and any contact
+with normal direction which is negative linear combination of the
+normals of 2 edges will immobilize the object.
+\begin{figure}[tbh]
+\begin{centering}
+\subfloat[Contiguous edge with point contact.\label{fig:Contiguous-edge-with}]{\noindent \begin{centering}
+\includegraphics[width=0.35\textwidth]{images/OP_c2_p}
+\par\end{centering}
+}\subfloat[2 Contiguous edges.\label{fig:2-Contiguous-edges.}]{\noindent \begin{centering}
+\includegraphics[width=0.35\textwidth]{images/OP_cc2}
+\par\end{centering}
+}
+\par\end{centering}
+\caption{Example of preferred edge contacts.}
+\end{figure}
+
+\LyXZeroWidthSpace Given all these considerations, presented set of
+objects can be arranged to require the minimal amount of external
+fingers for each object and hence minimal amount of fingers in total.
+
+The order of the stacking is suitable for the one-by-one object manipulation.
+Possible inter-object fixations can be ordered by amount and restrictions
+on additional contacts that are to be applied.\ref{fig:Object-placement-priority.}
+describes the order of preferable inter-object relations, based on
+amount of external fingers needed for the immobilization of child
+object relative to the parent.
+
+\begin{figure}[H]
+\begin{centering}
+\begin{center}
+\smartdiagramset{set color list={green,green,green,yellow,orange,red},
+back arrow disabled=true}
+\smartdiagram[descriptive diagram]{
+  {1,{Vertex-to-inner-vertex\\ 2 contiguous edges}},
+  {1,{Vertex-to-inner-vertex\\ 1 contiguous edge with point contact}},
+  {1,{Vertex-to-inner-vertex\\ 1 contiguous edge}},
+  {2, {Edge to edge}},
+  {2, {Vertex-to-inner-vertex}},
+  {2+, {Vertex to edge}},
+}
+\end{center}
+\par\end{centering}
+\caption{Object placement priority.\label{fig:Object-placement-priority.}}
+\end{figure}
+
+Basically, last option (vertex to edge) will never be selected intentionally
+since if there is an option to place an vertex on an edge, there also
+is an option to place edge on edge. Vertex-to-inner vertex option
+also exists but for stability it is preferred to rotate the child
+object so it will have more parent contacts - vertex-to-inner-vertex
+with a contiguous edge.
+
+First step is to define a root object, which will serve as base for
+further object stacking. This is done either by selecting a polygon
+with concave vertex, or stacking together two objects to form a concavity.
+
+\begin{algorithm}[H]
+\caption{Defining the root object}   
+\KwData{Set of polygons $P = {p_i}\;i\in \left[ 1,K \right]$}
+\KwResult{Tree of objects including the root object and possibly one child; defining the root concavity.}
+\eIf{$\exists$ 1+ concave vertices}
+{
+	Root object = $p_i$ with widest concave vertex\;
+}
+{ % No concave vertices
+	\eIf{$\exists$ 2 vertices with inner angles $\geq 90 \textdegree$}
+	{
+		Root = $p$ with greatest angle\;
+		Root.Child(k) = $p$ with second greatest angle\;
+		Align vertices to conctact, child leans on longest adjacent edge of the parent\;
+	}
+	{
+		Root = $p$ with longest edge\;
+		Root.Child(k) = $p$ with second longest edge\;
+		Align longest edges to be collinear, vertex on child's longest edge coincident with midpoint of parent's longest edge.\;
+	}
+}
+\end{algorithm}
+
+When root object is determined, further stacking can be done. If there
+are objects with vertex angles less than the concavity angle, they
+are stacked together inside the concavity, possibly forming multiple
+concavities. If no such object exists, an object that will form a
+new concavity is stacked inside the root concavity.
+
+\begin{algorithm}[H]
+\caption{Objects stacking}   
+\KwData{Set of polygons $P = {p_i}\;i\in \left[ 1,K \right]$, Object tree $T$}
+\KwResult{Complete tree defining the configuration of the set of of objects.}
+$C = \textrm{list of concavities}$\;
+initialize C with the root concavity\;
+L = $\left\{ v\right\}  $ sorted list of polygon vertices\; % with $\angle v \leq \angle \left( C \right)  $
+\ForEach{$v \in L$}
+{
+	\eIf{$\angle \left( v \right) \leq \angle \left( c_i  \in C \right)$}
+	{
+		Stack the child object in the $c_i$, \emph{vertex to innter vertex}, edge aligned preferrably to a edge with non equal length\;
+		$\textrm{move } L.v \textrm{ to } T.v $ and save child location and orientation\;
+		$C.c_i = \textrm{reduced concavity}$\;
+		$C = \textrm{new formed concavities}$\tcc*[r]{Upd. concavities list}
+	}
+	{
+		Find smallest concavity that allows \emph{contiguous edge with vertex contact} interaction, stack object there.
+		$C = \textrm{new formed concavities}$\;
+	}
+}
+\end{algorithm}
+
+\z{What if there are no concavities after several stacking steps?}
+
+After the desired configuration is obtained, finger contact locations
+can be obtained using the algorithms in \ref{sec:Algorithms-for-finger}.
+The locations that are found should be tested to complete a form closure
+grasp, 
+
+\z{What about:\\
+Description\\
+Completeness\\
+Complexity\\
+}
+
 \section{Contacts search}
 
 Given a set of polygonal objects, first step is to find the contacts
@@ -1666,7 +1897,7 @@ polygon pairs. The polygon interactions assessed by simple algorithm
 that checks whether vertices of one polygon lie on edges or on vertices
 of another one. Due to the complexity of the process, it is split
 to 2 parts: specific point on polygon evaluation and contact search
-for the polygons.
+for the polygons. \z{Add part where regions allowed for finger placement are saved as well.}
 
 The algorithm \# detects whether a given point belongs to a boundary
 of given polygon, whether along the edge or on one of the vertices.
@@ -1742,13 +1973,48 @@ amount of fingers needed can be determined.
 The methods relies on a fact that 4 frictionless contacts is a minimum
 for immobilization of a two dimensional object.
 
-\section{Algorithms for finger placement\label{sec:Algorithms-for-finger}}
+\section{Fingers placement\label{sec:Algorithms-for-finger}}
+
+\subsection{Description}
+
+Given a configuration of objects in contact (single group, each object
+has at least one contact), the configuration is parameterized by contact
+types. Each inter-object interaction is classified according to the
+variants defined above in\ref{subsec:Relationship-between-polygons}.
+When all contacts are found, each object is checked and an amount
+of additional contacts for first order form closure is derived. For
+every object all missing fingers are found.
+
+Several methods for single object finger placement were developed
+(presented in\ref{sec:Literature-Review}). For the purposes of this
+work 2 (??) methods were compared: moment-labeling based contact point
+derivation and grasp quality measure assessed random contact point
+placement with constraints.
+
+Next step is to perform a check, whether any group of objects is not
+immobilized. A connectivity graph is build for given configuration.
+Connected sub-graphs are extracted from the given graph, and corresponding
+object constellations are tested for 1st order immobilization. If
+the constellation is not immobilized (see examples \#ADDFIG) additional
+fingers are placed while the constellation is treated like a single
+object.
+
+After all the variants are checked we can conclude that the group
+of objects is immobilized.
+
+Steps of the algorithm.\ref{alg:C_from_2P}
+
+\z{What about masking the edges that are not available for grasp?
+Formal description?
+Flowchart}
 
 The global finger placement process is divided to several cases of
 polygon contact combinations. Cases of existing 3,2 and 1 inter-object
 contacts are addressed. When possible, contact locations selected
 to yield highest grasp quality measure, namely origin centered inscribed
 sphere radius.
+
+\subsection{Pseudocode}
 
 \paragraph{Finding 1 finger contact given 3+ contacts on an object}
 
@@ -1838,7 +2104,7 @@ contact forces act on each body.
 \end{figure}
 Adding one finger to each object will immobilized it but the whole
 configuration will no be immobilized having only 2 external contacts.
-Assessment of such cases is discussed in\ref{sec:Alg-for-multiO-eval}.
+Assessment of such cases is discussed in\ref{sec:MultiO-eval-n-grasp-secur}.
 
 \paragraph{Finding 2 contacts for a case of 2 given contacts or for a flat wrench
 convex cone of 3+ contacts.}
@@ -1938,19 +2204,18 @@ between two vectors. The cone can be fully defined by a vertex point
 and 2 vectors.Total force applied by 2 contacts can be defined to
 lie in such cone that is formed by two contact normal directions.
 This is analogous to friction cone of single frictional contact (see\citet{Nguyen1986}).
-
 The main idea is to form 2 imaginary convex cones each formed by 2
 normal vectors. The line connecting the cones' vertices should lie
 inside of the intersection of 2 cones (or intersection of anti-cones
 of these 2 cones). If the connecting line lies inside - the grasp
-will be force closure.
+will be force closure. 
 
 For given problem, one contact is given and non movable, other 3 can
 be placed anywhere desired. Contact 2 is placed on arbitrary edge
 in a position that ensures that the cone ($\triangleq ConeA$) formed
 by it and so$ConeA$ will have the most area of intersection with
 the polygon. Afterwards other edges tested to form a cone that will
-have a common intersection with$ConeA$, and this way it will complete
+have a common intersection with $ConeA$, and this way it will complete
 the grasp. If there is no intersection between two cones, intersection
 between anti-cones is tested.
 
@@ -2037,44 +2302,15 @@ objects? Should it be discussed and treated?? \#
 
 \z{DEAL WITH THIS PART LATER}
 
-\subsection{Description}
-
-Given a configuration of objects in contact (single group, each object
-has at least one contact), the configuration is parameterized by contact
-types. Each inter-object interaction is classified according to the
-variants defined above in\ref{subsec:Relationship-between-polygons}.
-When all contacts are found, each object is checked and an amount
-of additional contacts for first order form closure is derived. For
-every object all missing fingers are found.
-
-Several methods for single object finger placement were developed
-(presented in\ref{sec:Literature-Review}). For the purposes of this
-work 2 (??) methods were compared: moment-labeling based contact point
-derivation and grasp quality measure assessed random contact point
-placement with constraints.
-
-Next step is to perform a check, whether any group of objects is not
-immobilized. A connectivity graph is build for given configuration.
-Connected sub-graphs are extracted from the given graph, and corresponding
-object constellations are tested for 1st order immobilization. If
-the constellation is not immobilized (see examples \#ADDFIG) additional
-fingers are placed while the constellation is treated like a single
-object.
-
-After all the variants are checked we can conclude that the group
-of objects is immobilized.
-
-Steps of the algorithm.\ref{alg:C_from_2P}
-
-Formal description?
-
-Flowchart
-
 \subsection{Completeness}
+
+t
 
 \subsection{Complexity}
 
-\section{Algorithm for multi object grasp evaluation\label{sec:Alg-for-multiO-eval}}
+t
+
+\section{Multi object grasp evaluation and grasp securing\label{sec:MultiO-eval-n-grasp-secur}}
 
 Once every given object is immobilized by other objects and fingers,
 the constellation still might be not fully immobilized. Example:\ref{fig:2-of-3-objects-not-immobilized}
@@ -2105,263 +2341,53 @@ contacts required to immobilize it.
 If the amount of external contacts is higher than 4, assessment of
 intersection of contacts external to the subset can show whether the
 subset is immobilized or not. If the contacts intersect at one point,
-contact positions of added fingers can be altered in a regions that
-was found for that contact (see above (what, the regions?) maybe \#ADDFIG)
+contact positions of added fingers can be altered in a allowed regions
+that were found for that contact. 
 
-\section{Algorithm for objects placement}
+\begin{algorithm}[H]
+\caption{Multi object grasp evaluation}   
+\KwData{Set of polygons $P = {p_i}\;i\in \left[ 1,K \right]$ including locations and orientations, Set of contacts $C = \left\{c_i\right\}$ with allowed regions}
+\KwResult{Set of contact adjustments if needed, set of additional contacts if needed }
+\ForEach{subset of object configuration}
+{
+	L = $\left\{lc_i\right\}$ -- set of external contact lines\;
+	\If{$\left| L \right| < 4$}
+	{
+		Treat the subset as one object\;
+		\If{$\left| L \right| = 3 $ and $ \exists\, x \in lc_i\quad \forall lc_i \in L $}
+		{
+			Move 1 finger in allowed region\;
+		}
+		Add missing contacts (max 2)\;
+	}
+%%	N = $\left\{nc_i\right\}$ -- set of normal directions of external contacts\;
+	\uIf{$ \exists\, x \in lc_i\quad \forall lc_i \in L $}
+	{
+		Intersection point between contact lines exists\;
+		Build 2 EGWs for 2 non-collinear contacts and adjust positions\;
+	}
+	\uElseIf{$ \exists\, x_1 \in lc_j\quad j={1,2,3} $}
+	{	
+		3 of the contacts are intersecting\;
+		\If{$ \exists\, x_2 \in lc_k , \notin lc_j\quad \left|\left\{lc_k\right\}\right|>1$}
+		{
+			Exists another point where two or more contact lines intersect\;
+			\textbf{\textit{continue}}\;
+		}
+		Build 2 EGWs for 2 non-collinear $lc_j$ and adjust positions\;
+	}
+	\Else
+	{
+		\textbf{\textit{continue}}\;
+	}	
+]
 
-Given an unordered set of objects, each object is scanned and classified:
-number of edges, concave vertices, edges' lengths. Scanned and classified
-objects allow assessment of different constellations for future grasping.
-Based on the algorithms and inter-object contacts classification as
-presented above, several strategies for object rearrangement can be
-implemented.
 
-The approach for objects rearrangement is to stack objects in configuration
-that will require amount of minimal fingers for each object, maximizing
-number of inter-object effective contacts. Objects in the set in the
-new configuration can be described by a tree, where the root is some
-selected object, and all other objects described as children in a
-way similar to URDF style\citep{ros.org2009}.
 
-First of all, we need to know how many polygons with concave vertices
-exist, and how many exist with vertex angles less than$90\text{°}$.
-Additionally, how many angles are smaller than concave angles if any.
-
-Recapping the inter object contact types along with the additional
-contacts needed for the immobilization, we assume that the parent
-object is immobilized and inducing contact forces on a child object,
-which has to be immobilized by additional fingers. In the following
-paragraphs, term``fixation'' refers to the contacts of the parent
-object acting on the child object.
-
-\textbf{Edge-to-edge} fixation provides two parallel contacts, their
-convex cone can be seen as infinite``corridor'', formed by the contact
-region swept along the contacts' normal direction. The interaction
-can be considered useful in cases where some other 2 different edges
-provide normal directions that are crossing in the parallel contacts'``corridor''.
-Simple example would be a case with a vertex inside of the``corridor'',
-where normal directions of 2 adjacent edges induce opposite wrenches
-about the edge with two contacts. This requires at least 2 additional
-external contacts for each object to complete the fixture.
-
-One way of finding such configuration is checking whether there exists
-an object with a vertex (concave or convex) that is projected on the
-interior of some non-adjacent edge (base edge), the edge can be used
-as a base of edge-to-edge contact, and the vertex's adjacent edges
-will serve as locations for 2 additional fingers. The grasp will be
-feasible if normal directions from the adjacent edges and from the
-base edge will positively span$\rtwo$. Example of feasible and non
-feasible grasps are shown in\ref{fig:Edge-infinite-projection}.
-\begin{figure}[tbh]
-\noindent \centering{}\subfloat[Spanning vectors]{\noindent \begin{centering}
-\includegraphics[width=0.35\textwidth]{images/OP_e2e}
-\par\end{centering}
-}\subfloat[Not spanning vectors]{\noindent \begin{centering}
-\includegraphics[width=0.35\textwidth]{images/OP_e2e_02}
-\par\end{centering}
-}\caption{Edge infinite projection and vertex with adjacent normal vectors.\label{fig:Edge-infinite-projection}}
-\end{figure}
-
-\textbf{Vertex-to-inner-vertex}fixation provides 2 edges normal directions,
-which yield a convex cone with distinct vertex (unlike two parallel
-contacts which can be considered as convex cone with a vertex at infinity).
-
-This fixation allows use of single edge to complete the fixture, given
-that the edge's inner normal direction is a negative combination of
-the given contacts' directions, and the edge allows two distinct contacts
-with opposing wrenches about the vertex (i.e. vertex is projected
-on the inner of the edge segment), as shown in\figref{In-v-a}. In
-case no such edge exist, two different edges provide normal directions
-which form a convex cone that mutually overlap(have a common region)
-the given convex cone (or their anti-cones), and the line connecting
-the vertices of the cones is in the interior of the overlapping region.
-\begin{figure}[tbh]
-\noindent \begin{centering}
-\subfloat[\label{fig:In-v-a}]{\noindent \begin{centering}
-\includegraphics[width=0.35\textwidth]{images/OP_v2iv}
-\par\end{centering}
-}\subfloat[\label{fig:In-v-b}]{\noindent \begin{centering}
-\includegraphics[width=0.35\textwidth]{images/OP_v2iv_ce}
-\par\end{centering}
 }
-\par\end{centering}
-\noindent \centering{}\caption{Inner vertex.\label{fig:Inner-vertex.}}
-\end{figure}
+\end{algorithm}
 
-\textbf{Vertex-to-inner-vertex with contiguous edge}fixation contributes
-3 effective contacts and needs only one external finger contact in
-the optimal case. For this there should exist an edge which projection
-along it's normal direction has 2-contact vertex inside it's interior
-and a there exists an intersecting segment of that projection and
-the 3rd normal direction that lies inside the convex cone of first
-2 normals. Example of such configuration is shown in\figref{In-v-b}.
-If no such edge exists, 2 external contacts are required to immobilize
-this grasp by a method presented above
-
-Vertex-to-inner-vertex with 2 contiguous edges fixation provides a
-optimal configuration which requires sole external contact for the
-immobilization of the object. Since objects are polygonal objects
-with non intersection edges and non-zero thickness, there will always
-exist an edge with a normal direction that will complete the form
-closure.
-
-Vertex-to-inner-vertex with a contiguous edge and a contact point
-fixation is similar to the previous one except for the normal direction,
-and hence in certain cases can be self immobilizing.
-
-Vertex-to-inner-vertex with additional contact points are equivalent
-to the vertex-to-inner-vertex with contiguous edges formations. The
-provide same amount of contacts, but the normal directions can differ.
-
-\textbf{Contiguous edge with vertex point contact} fixation forms
-a case with 3 contacts, which allows fixation with one additional
-finger under certain conditions: there should exist an edge, which
-projections common segment with the point contact's normal has a part
-lying inside the edge contact's infinite projection and also the new
-edge, point and given edge normal directions should span$\rtwo$.\ref{fig:Contiguous-edge-with}
-shows an example of possible contact locations for this fixation.
-
-Example on\ref{fig:2-Contiguous-edges.} describes 2 contiguous edges,
-which can be seen as sub case for the described fixation and any contact
-with normal direction which is negative linear combination of the
-normals of 2 edges will immobilize the object.
-\begin{figure}[tbh]
-\subfloat[Contiguous edge with point contact.\label{fig:Contiguous-edge-with}]{\noindent \begin{centering}
-\includegraphics[width=0.35\textwidth]{images/OP_c2_p}
-\par\end{centering}
-}\subfloat[2 Contiguous edges.\label{fig:2-Contiguous-edges.}]{\noindent \begin{centering}
-\includegraphics[width=0.35\textwidth]{images/OP_cc2}
-\par\end{centering}
-}
-
-\caption{Example of preferred edge contacts.}
-\end{figure}
-
-\LyXZeroWidthSpace Given all these considerations, presented set of
-objects can be arranged to require the minimal amount of external
-fingers for each object and hence minimal amount of fingers in total.
-
-The order of the stacking is suitable for the one-by-one object manipulation.
-Possible inter-object fixations can be ordered by amount and restrictions
-on additional contacts that are to be applied.\ref{fig:Object-placement-priority.}
-describes the order of preferable inter-object relations, based on
-amount of external fingers needed for the immobilization of child
-object relative to the parent.
-
-\begin{figure}[H]
-\begin{centering}
-\begin{center}
-\smartdiagramset{set color list={green,green,green,yellow,orange,red},
-back arrow disabled=true}
-\smartdiagram[descriptive diagram]{
-  {1,{Vertex-to-inner-vertex\\ 2 contiguous edges}},
-  {1,{Vertex-to-inner-vertex\\ 1 contiguous edge with point contact}},
-  {1,{Vertex-to-inner-vertex\\ 1 contiguous edge}},
-  {2, {Edge to edge}},
-  {2, {Vertex-to-inner-vertex}},
-  {2+, {Vertex to edge}},
-}
-\end{center}
-\par\end{centering}
-\caption{Object placement priority.\label{fig:Object-placement-priority.}}
-\end{figure}
-
-Basically, last option (vertex to edge) will never be selected intentionally
-since if there is an option to place an vertex on an edge, there also
-is an option to place edge on edge. Vertex-to-inner vertex option
-also exists but for stability it is preferred to rotate the child
-object so it will have more parent contacts - vertex-to-inner-vertex
-with a contiguous edge.
-
-Algorithm 1:
-\begin{enumerate}
-\item Scan the objects
-\item If There exist several object with concave vertices -
-\begin{enumerate}
-\item select one with largest angle to be base object or the one with longest
-edges next to the concave vertex
-\end{enumerate}
-\item ElseIf 1 such object
-\begin{enumerate}
-\item - select it to be base
-\end{enumerate}
-\item Else (no concave angles)
-\begin{enumerate}
-\item assess angles sum == 180/360 deg
-\begin{enumerate}
-\item if such exist - they can be stacked together. Maybe some of them will
-form a
-\end{enumerate}
-\item Find 2 objects with longest edges, align 1 vertex of the object with
-2nd longest edge to the middle of the another object's longest edge
-and the edges are collinear
-\end{enumerate}
-\item Now there exists a concavity - either from one object
-\item Find objects with smallest angles (smaller than the concavity angle),
-sort\textbf{descending}/ascending ?
-\begin{enumerate}
-\item select the object and stick it in the concavity.
-\item continue along the list or until an object cannot fill in. Use one
-additional item to stick not until the end - form edge+vertex contact.
-\begin{itemize}
-\item Optional -- each time reassess the configurations, and find concavities.
-Check whether some of them give longer common edge segements, and
-stick objects there
-\end{itemize}
-\end{enumerate}
-\item Items that did not fit in any concavity v2v type -- check e-v type
-\item Place fingers on each item. (Can we stick more items to bound these?)
-\end{enumerate}
-\z{CONTINUE HERE}
-
-\z{See whether this is relevant:}
-
-This way the number of objects that are stuffed inside the concavity
-is maximized. Optimally, either all objects are aligned with their
-sharpest vertices and stacked inside the concavity, or the concavity
-is filled with several objects.
-
-Another options is if some objects is quite small, and being stacked
-in the concavity form 2 additional inner vertices of the combined
-super-object.
-
-If there are no concave objects, a pair of objects can be stacked
-to form a concavity. In this case, an object with longest edge is
-selected to be a base and another object with an edge that is shorter
-than the first one and capable to be immobilized with 2 additional
-fingers apart from 2 parallel inter-object contacts is stacked so
-the edges are contiguous are in contact. One of the vertices of the
-shorter edge will be a concavity, and from here the algorithm for
-the concavities can be applied.
-
-Polygonal objects analyzed and selected in the following order: Objects
-with inner vertices are searched for and selected to be base objects,
-which other objects are going to lean on. Inner vertex can provide
-beneficial inter-object contacts for one or more additional polygonal
-objects.
-
-If several objects with inner vertices exists they can be stacked
-in non exclusive way and pro
-
-VARIANT A: No concave objects: select two with longest edges, and
-stack them together. Form a concavity, insert small objects from smallest
-to largest.
-
-VARIANT B: Some concave object(s). Starting with one, proceeding with
-stacking other convex, and then other concave to form continuity.
-
-Sum of angles == 180 degrees
-
-Sum of angles == 360 degrees
-
-\z{What about:\\
-Description\\
-Completeness\\
-Complexity\\
-}
-
-\section{Rearranging the objects}
+\section{Objects rearrangement}
 
 Once desired configuration is found the rearrangement planning is
 needed. Many algorithms for single object manipulations were developed,
@@ -2482,23 +2508,56 @@ Executions of the steps can be controlled from the UI.
 
 \subsection{Results}
 
+A simple case of 3 equilateral triangles presented in the \emph{SIMULATIONS.
+The designed configuration and designed grasp are presented above.
+3D printed end effector is presented on the FIGURE. Due to }
+
+A case of 6 equilateral triangles
+
+A case of 3 squares
+
+A case of 4 squares
+
+A case of 3 hexagons
+
+Cases of 3-4-5-... irregular triangles.
+
+A case of 3-4-5 octagons?
+
 \section{Experiments}
 
 Bring a 3D printed set of objects and designed gripper to the defense.
 Include the results in the Appendix, and in the presentation
 
+The results of the algorithms' performance were tested in experimental
+setups. Robotic manipulator with 6DOF was equipped with an end effector
+designed according to the algorithm's output. The robot is controlled
+by a laptop with Robot Operating System (ROS) hosted in Ubuntu. Several
+polygonal objects were selected to be stacked, and after the verification
+by the algorithm a custom-made end effector with stationary fingers
+was manufactured by 3D printing. The end effector was tested and confirmed
+to immobilize the desired set of objects both in simulation and in
+experiments. Due to the real world imperfections, the fingers of the
+designed end effectors are made with chamfers, this allowed grasping
+of the arranged set of items despite small perturbations of item locations
+and robotic arm performance.
+
 \subsection{Experimental Setup}
 
-The performance of the algorithms was tested in experimental setups
-in the laboratory.
-
-The objects are known and only the location of objects is obtained
-via RGBD camera. The robot is equipped with an end-effector designed
-according to the algorithm's output. Robotic arm used is ROBOTIS Manipulator
-H, controlled by laptop with Robot Operating System (ROS) hosted in
-Ubuntu.
+For several examined cases of polygon sets, 
 
 \subsection{Experimental Results}
+
+A simple case of 3 equilateral triangles presented in the SIMULATIONS.
+The designed configuration and designed grasp are presented above.
+3D printed end effector is presented on the FIGURE. Fingers - 1 joint
+finger - touches 2 triangles.
+
+A case of 6 equilateral triangles
+
+A case of 3 hexagons
+
+Cases of 3-4-5-... irregular triangles.
 
 \chapter{Discussion}
 
@@ -2553,7 +2612,6 @@ V-REP
 
 Real robot
 
-\z{test}
 
 \chapter{Junk}
 

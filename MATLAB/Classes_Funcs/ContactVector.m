@@ -8,10 +8,11 @@ classdef ContactVector
         length = 1;
         default_color = [1 0 0];
         polygon_num
+        acting_polygon_num
     end
     
     methods
-        function obj = ContactVector(point, direction, length, polygon_num)
+        function obj = ContactVector(point, direction, length, polygon_num, acting_polygon_num)
             %VECTOR Construct an instance of this class
             %   Detailed explanation goes here
             switch nargin
@@ -32,6 +33,12 @@ classdef ContactVector
                     obj.point_on_the_line = point(:).';
                     obj.direction_vector = direction(:).' ./ norm(direction);
                     obj.polygon_num = polygon_num;
+                case 5
+                    obj.length = length;
+                    obj.point_on_the_line = point(:).';
+                    obj.direction_vector = direction(:).' ./ norm(direction);
+                    obj.polygon_num = polygon_num;
+                    obj.acting_polygon_num = acting_polygon_num;
             end
         end
         
@@ -94,7 +101,7 @@ classdef ContactVector
             end
             points = obj.point_on_the_line + obj.length*[[0 0]; obj.direction_vector];
             thickness = 2;
-            head_size = 1;
+            head_size = 3;
             pA = points(1,:);
             pB = points(2,:);
             v = pB-pA;

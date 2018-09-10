@@ -2,17 +2,17 @@ warning('off', 'MATLAB:polyshape:repairedBySimplify')
 
 Noise = 0;
 %% N Random M-shapes
-% 
-N = 7; % number of objects
-M = 3; % - number of vertices in polygons
-t = 0: 2*pi/M :(2*pi-eps*1e5);
-vert = [cos(t(:)), sin(t(:))];
-colors = jet(N);
-R = normrnd(20, Noise, numel(t),N);
-for i=1:N
-    name = "p" + char(65+floor(i/26)) +char(64+mod(i,26));
-    P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:)); %#ok<*SAGROW>
-end
+% % 
+% N = 4; % number of objects
+% M = 3; % - number of vertices in polygons
+% t = 0: 2*pi/M :(2*pi-eps*1e5);
+% vert = [cos(t(:)), sin(t(:))];
+% colors = jet(N);
+% R = normrnd(20, Noise, numel(t),N);
+% for i=1:N
+%     name = "p" + char(65+floor(i/26)) +char(64+mod(i,26));
+%     P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:)); %#ok<*SAGROW>
+% end
 
 %% Simple v2iv contact
 % R = 30;
@@ -20,12 +20,12 @@ end
 % P{2} = Polygon_mkII([0 0; 30 30; 25 -5; -25 -10; -30 30],"Concave");
 
 %% some 4 shapes
-% R = 30;
-% % 
-% P{1} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_A");
-% P{2} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_B");
-% P{3} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_C");
-% P{4} = Polygon_mkII([0 0; 30 30; 25 -5; -25 -10; -30 30],"Concave");
+R = 30;
+colors = jet(4);
+P{1} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_A", colors(1,:));
+P{2} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_B", colors(2,:));
+P{3} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_C", colors(3,:));
+P{4} = Polygon_mkII([0 0; 30 30; 25 -5; -25 -10; -30 30],"Concave",  colors(4,:));
 % P{4} = Polygon_mkII([0 0; 30 30;
 %     40 -10; 25 -5; -25 -10; -40 -10; -30 30],"Concave");
 % P{4} = Polygon_mkII([0 0; 30 30; 40 0; 25 -5; -25 -10; -40 0; -30 30],"Concave");
@@ -102,7 +102,7 @@ end
 % Filtered_Contacts_poly_ind=[1 1 1];
 
 %% Triangle with 2 contacts
-
+% 
 % M = 3; N = 1;
 % t = 0: 2*pi/M :(2*pi-eps*1e5);
 % vert = 30*[cos(t(:)), sin(t(:))];
