@@ -114,7 +114,7 @@ classdef Polygon_mkII < handle
                     obj.Cum_length ./ obj.Cum_length(obj.N_e);
                 obj.Norm_cum_len = ...
                     [0; obj.Norm_cum_len(:)];
-                obj.Center = mean(obj.Shape.Vertices);
+                obj.Center = mean(obj.Shape.Vertices(~isnan(obj.Shape.Vertices(:,1)),: ));
             end
             obj.E_norm_lengths = obj.E_lengths/obj.Cum_length(end);
         end
@@ -167,12 +167,16 @@ classdef Polygon_mkII < handle
             end
         end
         
-        function plot(obj, color)
-            if nargin == 1
+        function plot(obj, color,show_text)
+            if nargin <2
                 color = obj.Polygon_color;
+                show_text = 1;
             end
+            
             plot(obj.Shape, 'FaceColor',color,'FaceAlpha',.4);
-            text(obj.Center(1),obj.Center(2),obj.Name);
+            if show_text
+                text(obj.Center(1),obj.Center(2),obj.Name);
+            end
         end
         
         function plot_vertex(obj, vertex_id, color)

@@ -1,5 +1,5 @@
 % clc;
-clearvars -except DEBUG Fingers finger_d PolyList TableVarNames
+clearvars -except DEBUG Fingers finger_d PolyList TableVarNames DEBUG PolyList Filtered_Contacts Filtered_Contacts_poly_ind finger_d
 Move_from_vertex_ratio = 0.05; % set to positive if want to stay away from the vertices
 %% This scripts evaluates grasps obtained in previous steps
 % The script iterates over finger groups and checks for feasible
@@ -12,7 +12,7 @@ N_p_i = numel(PolyList);
 Groups_num_per_p = zeros(1,N_p_i);
 
 for p_i = 1:N_p_i
-    Groups_num_per_p(p_i) = max(Fingers.ContactGroup(Fingers.PolygonNum == p_i));
+    Groups_num_per_p(p_i) = max([1; Fingers.ContactGroup(Fingers.PolygonNum == p_i)]);
 end
 
 TotalGroups = prod(Groups_num_per_p);
@@ -21,7 +21,7 @@ if TotalGroups > 1
     for p_i = 1:N_p_i
         %     Groups_num(p_i) = max(Fingers.ContactGroup(Fingers.PolygonNum == p_i));
         groups = Fingers.ContactGroup(Fingers.PolygonNum == p_i);
-        GroupCombinations(:,p_i) = repmat(groups,TotalGroups/numel(groups),1);
+        GroupCombinations(:,p_i) = repmat(unique(groups),TotalGroups/numel(unique(groups)),1);
     end
 end
 clear p_i groups

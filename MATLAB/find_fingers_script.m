@@ -3,7 +3,7 @@ clearvars -except DEBUG PolyList Filtered_Contacts Filtered_Contacts_poly_ind fi
 warning off MATLAB:polyshape:boolOperationFailed
 %#ok<*AGROW>
 global DEBUG
-Move_from_vertex_ratio = 0.05; % set to positive if want to stay away from the vertices
+Move_from_vertex_ratio = 0.1; % set to positive if want to stay away from the vertices
 %%
 TableVarNames = {'PolygonNum','ContactGroup','EdgeNum','EdgeRange','OptimalPosition','Group_GQM','ContactVector'};
 Fingers = table([],[],[],[],[],[],[],...
@@ -211,127 +211,127 @@ for p_i = 1:numel(PolyList)
                 
             end
         end
-        % Try searching edge combinations
-        if sum(Fingers.PolygonNum==p_i) == 0
-            fprintf("No single edge found to grasp polygon #%d.\nTrying 2-contact combinations\n",p_i);
+    end
+    % Try searching edge combinations
+    if sum(Fingers.PolygonNum==p_i) == 0
+        fprintf("No single edge found to grasp polygon #%d.\nTrying 2-contact combinations\n",p_i);
+        
+        % Iterate over all variants or over all edges?
+        % Going for variants:
+        for var_i = p.Variants2'
+            n1 = p.Inner_normals(var_i(1),:);
+            n2 = p.Inner_normals(var_i(2),:);
+            polygon = [W_CH(1:2,:), n1(:), n2(:)];
+            try
+                K = convhull(polygon');
+            catch
+                % The edge normals do not form a convex hull with given
+                % contacts. Continue to next variant.
+                continue
+            end
+            %                     K = convhull(polygon');
+            polygon = polygon(:,K);
+            [in,on] = inpolygon(Qx(:), Qy(:), polygon(1,:), polygon(2,:));
             
-            % Iterate over all variants or over all edges?
-            % Going for variants:
-            for var_i = p.Variants2'
-                n1 = p.Inner_normals(var_i(1),:);
-                n2 = p.Inner_normals(var_i(2),:);
-                polygon = [W_CH(1:2,:), n1(:), n2(:)];
-                try
-                    K = convhull(polygon');
-                catch
-                    % The edge normals do not form a convex hull with given
-                    % contacts. Continue to next variant.
-                    continue
+            if in
+                % origin is inside
+                if 1 % set to use Mode1
+                    
+                    d = -ones(10,10);
+                    pos_range = linspace(Move_from_vertex_ratio,1-Move_from_vertex_ratio,10);
+                    DEBUG = false
+                    for pos1_ind = 1:10
+                        for pos2_ind = 1:10
+                            p1 = p.point_from_edgePosition(var_i(1),pos_range(pos1_ind));
+                            p2 = p.point_from_edgePosition(var_i(2),pos_range(pos2_ind));
+                            W_combined = [W_CH,...
+                                [n1(:);cross2d(p1-p.Center,n1)./sqrt(p.Area)] ,...
+                                [n2(:);cross2d(p2-p.Center,n2)./sqrt(p.Area)]];
+                            d(pos1_ind,pos2_ind) = GQM_from_W(W_combined');
+                        end
+                    end
+                    DEBUG = true
+                    max_d = max(d(:));
+                    [i,j] = find(d==max_d,1);
+                    pos1 = pos_range(i);
+                    pos2 = pos_range(j);
+                    contact_group_new_index = max([1 1+max(Fingers.ContactGroup(Fingers.PolygonNum==p_i))]);
+                    f1 = ContactVector(p.point_from_edgePosition(var_i(1),pos1), n1,finger_d/2, p_i);
+                    f2 = ContactVector(p.point_from_edgePosition(var_i(2),pos2), n2,finger_d/2, p_i);
+                    Fingers = [Fingers;table(p_i,contact_group_new_index,...
+                        var_i(1), [0 0], pos1, max_d, f1, 'VariableNames', TableVarNames)];
+                    Fingers = [Fingers;table(p_i,contact_group_new_index,...
+                        var_i(2), [0 0], pos2, max_d, f2, 'VariableNames', TableVarNames)]
                 end
-                %                     K = convhull(polygon');
-                polygon = polygon(:,K);
-                [in,on] = inpolygon(Qx(:), Qy(:), polygon(1,:), polygon(2,:));
                 
-                if in
-                    % origin is inside
-                    if 1 % set to use Mode1
-                        
-                        d = -ones(10,10);
-                        pos_range = linspace(Move_from_vertex_ratio,1-Move_from_vertex_ratio,10);
-                        DEBUG = false
-                        for pos1_ind = 1:10
-                            for pos2_ind = 1:10
-                                p1 = p.point_from_edgePosition(var_i(1),pos_range(pos1_ind));
-                                p2 = p.point_from_edgePosition(var_i(2),pos_range(pos2_ind));
-                                W_combined = [W_CH,...
-                                    [n1(:);cross2d(p1-p.Center,n1)./sqrt(p.Area)] ,...
-                                    [n2(:);cross2d(p2-p.Center,n2)./sqrt(p.Area)]];
-                                d(pos1_ind,pos2_ind) = GQM_from_W(W_combined');
-                            end
-                        end
-                        DEBUG = true
-                        max_d = max(d(:));
-                        [i,j] = find(d==max_d,1);
-                        pos1 = pos_range(i);
-                        pos2 = pos_range(j);
-                        contact_group_new_index = max([1 1+max(Fingers.ContactGroup(Fingers.PolygonNum==p_i))]);
-                        f1 = ContactVector(p.point_from_edgePosition(var_i(1),pos1), n1,finger_d/2, p_i);
-                        f2 = ContactVector(p.point_from_edgePosition(var_i(2),pos2), n2,finger_d/2, p_i);
-                        Fingers = [Fingers;table(p_i,contact_group_new_index,...
-                            var_i(1), [0 0], pos1, max_d, f1, 'VariableNames', TableVarNames)];
-                        Fingers = [Fingers;table(p_i,contact_group_new_index,...
-                            var_i(2), [0 0], pos2, max_d, f2, 'VariableNames', TableVarNames)]
-                    end
+                
+                if 0 % Set to use Mode2
+                    n1 = p.Inner_normals( var_i(1),:);
+                    e11 = (1-Move_from_vertex_ratio)*p.Edges( var_i(1),:) +...
+                        Move_from_vertex_ratio * p.Edges( var_i(1)+1,:);
+                    e21 = Move_from_vertex_ratio*p.Edges( var_i(1),:) +...
+                        (1-Move_from_vertex_ratio) * p.Edges( var_i(1)+1,:);
+                    % Suggested EGW
+                    EGW_1 = [n1, cross2d(e11-p.Center,n1)/p.Area^0.5;
+                        n1, cross2d(e21-p.Center,n1)/p.Area^0.5]';
+                    
+                    n2 = p.Inner_normals( var_i(2),:);
+                    e12 = (1-Move_from_vertex_ratio)*p.Edges( var_i(2),:) +...
+                        Move_from_vertex_ratio * p.Edges( var_i(2)+1,:);
+                    e22 = Move_from_vertex_ratio*p.Edges( var_i(2),:) +...
+                        (1-Move_from_vertex_ratio) * p.Edges( var_i(2)+1,:);
+                    % Suggested EGW
+                    EGW_2 = [n2, cross2d(e12-p.Center,n2)/p.Area^0.5;
+                        n2, cross2d(e22-p.Center,n2)/p.Area^0.5]';
                     
                     
-                    if 0 % Set to use Mode2
-                        n1 = p.Inner_normals( var_i(1),:);
-                        e11 = (1-Move_from_vertex_ratio)*p.Edges( var_i(1),:) +...
-                            Move_from_vertex_ratio * p.Edges( var_i(1)+1,:);
-                        e21 = Move_from_vertex_ratio*p.Edges( var_i(1),:) +...
-                            (1-Move_from_vertex_ratio) * p.Edges( var_i(1)+1,:);
-                        % Suggested EGW
-                        EGW_1 = [n1, cross2d(e11-p.Center,n1)/p.Area^0.5;
-                            n1, cross2d(e21-p.Center,n1)/p.Area^0.5]';
+                    if DEBUG
+                        fprintf("Edges %d,%d can possibly complete the grasp:\n",...
+                            var_i(1),var_i(2));
+                        fprintf("\tNormal directions are: [%2.2f,%2.2f] and [%2.2f,%2.2f].\n",...
+                            n1(1),n1(2),n2(1),n2(2));
+                        figure(99);clf
+                        quiver(0*W_CH(1,:), 0*W_CH(1,:), ...
+                            W_CH(1,:), W_CH(2,:), 'k')
+                        hold on; axis equal; grid on;
+                        quiver([0 0], [0 0], [n1(1) n2(1)], [n1(2) n2(2)], 'b')
+                        title(sprintf("Edges %d,%d",  var_i(1),var_i(2)));
                         
-                        n2 = p.Inner_normals( var_i(2),:);
-                        e12 = (1-Move_from_vertex_ratio)*p.Edges( var_i(2),:) +...
-                            Move_from_vertex_ratio * p.Edges( var_i(2)+1,:);
-                        e22 = Move_from_vertex_ratio*p.Edges( var_i(2),:) +...
-                            (1-Move_from_vertex_ratio) * p.Edges( var_i(2)+1,:);
-                        % Suggested EGW
-                        EGW_2 = [n2, cross2d(e12-p.Center,n2)/p.Area^0.5;
-                            n2, cross2d(e22-p.Center,n2)/p.Area^0.5]';
-                        
-                        
-                        if DEBUG
-                            fprintf("Edges %d,%d can possibly complete the grasp:\n",...
-                                var_i(1),var_i(2));
-                            fprintf("\tNormal directions are: [%2.2f,%2.2f] and [%2.2f,%2.2f].\n",...
-                                n1(1),n1(2),n2(1),n2(2));
-                            figure(99);clf
-                            quiver(0*W_CH(1,:), 0*W_CH(1,:), ...
-                                W_CH(1,:), W_CH(2,:), 'k')
-                            hold on; axis equal; grid on;
-                            quiver([0 0], [0 0], [n1(1) n2(1)], [n1(2) n2(2)], 'b')
-                            title(sprintf("Edges %d,%d",  var_i(1),var_i(2)));
-                            
-                            figure(101); clf
-                            quiver3(0*W(1,:),0*W(1,:),0*W(1,:),...
-                                W(1,:), W(2,:), W(3,:),'k-','AutoScale','off');
-                            hold on; axis equal; grid on;
-                            quiver3(0*W(1,:),0*W(1,:),0*W(1,:),...
-                                -W(1,:), -W(2,:), -W(3,:),'Color',[.6 .6 .6],'AutoScale','off');
-                            EGW_N = 10;
-                            EGW_1_plot = [linspace(EGW_1(1,1),EGW_1(1,2),EGW_N);
-                                linspace(EGW_1(2,1),EGW_1(2,2),EGW_N);
-                                linspace(EGW_1(3,1),EGW_1(3,2),EGW_N)];
-                            EGW_2_plot = [linspace(EGW_2(1,1),EGW_2(1,2),EGW_N);
-                                linspace(EGW_2(2,1),EGW_2(2,2),EGW_N);
-                                linspace(EGW_2(3,1),EGW_2(3,2),EGW_N)];
-                            quiver3(0*EGW_1_plot(1,:),0*EGW_1_plot(1,:),0*EGW_1_plot(1,:),...
-                                EGW_1_plot(1,:), EGW_1_plot(2,:), EGW_1_plot(3,:),...
-                                'Color',[255 150 0]/255,'AutoScale','off')
-                            quiver3(0*EGW_2_plot(1,:),0*EGW_2_plot(1,:),0*EGW_2_plot(1,:),...
-                                EGW_2_plot(1,:), EGW_2_plot(2,:), EGW_2_plot(3,:),...
-                                'Color',[255 69 0]/255,'AutoScale','off')
-                            zlabel('\tau_z','FontSize',20)
-                            xlabel('f_x','FontSize',20)
-                            ylabel('f_y','FontSize',20)
-                        end
-                        
+                        figure(101); clf
+                        quiver3(0*W(1,:),0*W(1,:),0*W(1,:),...
+                            W(1,:), W(2,:), W(3,:),'k-','AutoScale','off');
+                        hold on; axis equal; grid on;
+                        quiver3(0*W(1,:),0*W(1,:),0*W(1,:),...
+                            -W(1,:), -W(2,:), -W(3,:),'Color',[.6 .6 .6],'AutoScale','off');
+                        EGW_N = 10;
+                        EGW_1_plot = [linspace(EGW_1(1,1),EGW_1(1,2),EGW_N);
+                            linspace(EGW_1(2,1),EGW_1(2,2),EGW_N);
+                            linspace(EGW_1(3,1),EGW_1(3,2),EGW_N)];
+                        EGW_2_plot = [linspace(EGW_2(1,1),EGW_2(1,2),EGW_N);
+                            linspace(EGW_2(2,1),EGW_2(2,2),EGW_N);
+                            linspace(EGW_2(3,1),EGW_2(3,2),EGW_N)];
+                        quiver3(0*EGW_1_plot(1,:),0*EGW_1_plot(1,:),0*EGW_1_plot(1,:),...
+                            EGW_1_plot(1,:), EGW_1_plot(2,:), EGW_1_plot(3,:),...
+                            'Color',[255 150 0]/255,'AutoScale','off')
+                        quiver3(0*EGW_2_plot(1,:),0*EGW_2_plot(1,:),0*EGW_2_plot(1,:),...
+                            EGW_2_plot(1,:), EGW_2_plot(2,:), EGW_2_plot(3,:),...
+                            'Color',[255 69 0]/255,'AutoScale','off')
+                        zlabel('\tau_z','FontSize',20)
+                        xlabel('f_x','FontSize',20)
+                        ylabel('f_y','FontSize',20)
                     end
+                    
                 end
             end
-            
-            
         end
+        
+        
     end
-    
-    if sum(Fingers.PolygonNum==p_i) == 0
-        % Meaning no fingers found to complete the grasp
-        fprintf('No fingers for polygon %d\n',p_i)
-        warning("YOSSI:NoEdgeOppositeToCH",...
-            "No edge to complete the grasp.\nIterating over a polygon #%d in the PolyList to find an edge with normal direction to complete the ConvexHull formed by given contacts",p_i)
-    end
+end
+
+if sum(Fingers.PolygonNum==p_i) == 0
+    % Meaning no fingers found to complete the grasp
+    fprintf('No fingers for polygon %d\n',p_i)
+    warning("YOSSI:NoEdgeOppositeToCH",...
+        "No edge to complete the grasp.\nIterating over a polygon #%d in the PolyList to find an edge with normal direction to complete the ConvexHull formed by given contacts",p_i)
 end

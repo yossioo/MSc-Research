@@ -136,7 +136,8 @@ for p_i = 1:numel(PolyList)
 end
 
 %% Can draw filtered contacts
-if false
+if DEBUG && 0
+    figure(94)
     for p_i = 1:numel(PolyList) %#ok<*UNRCH>
         p = PolyList{p_i};
         Contacts = Filtered_Contacts(Filtered_Contacts_poly_ind == p_i);
