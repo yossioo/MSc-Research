@@ -41,7 +41,7 @@ for p_i = ALL
                 continue
             end
             for in_i = 1:size(in,1)
-                C{end+1} = ContactVector(in(in_i,:),n,finger_d/2,p_i);
+                C{end+1} = ContactVector(in(in_i,:),n,finger_d*2,p_i);
                 C_poly_inds(end+1) = p_i;
             end
         end
@@ -61,7 +61,7 @@ for p_i = ALL
                 continue
             end
             for in_i = 1:size(in,1)
-                C{end+1} = ContactVector(in(in_i,:),n,finger_d/2,p_i);
+                C{end+1} = ContactVector(in(in_i,:),n,finger_d*2,p_i);
                 C_poly_inds(end+1) = p_i;
             end
         end
@@ -78,7 +78,7 @@ for p_i = ALL
         for n_i = 1:size(n,1)
             if n(n_i,:)
             end
-            C{end+1} = ContactVector(point,n(n_i,:),finger_d/2,p_i);
+            C{end+1} = ContactVector(point,n(n_i,:),finger_d*2,p_i);
             C_poly_inds(end+1) = p_i;
         end
     end
@@ -89,12 +89,13 @@ for p_i = ALL
         point = points(pt_i,:);
         n = p.find_normal_at_point(point);
         for n_i = 1:size(n,1)
-            C{end+1} = ContactVector(point,n(n_i,:),finger_d/2,p_i);
+            C{end+1} = ContactVector(point,n(n_i,:),finger_d*2,p_i);
             C_poly_inds(end+1) = p_i;
         end
     end
     if DEBUG
-        f = figure(p_i);clf
+        f = figure(15);clf  %p_i
+        f.Name = "Inter-object contacts search";
         f.Name = PolyList{p_i}.Name;
         Unified.plot();
         axis equal; grid on; hold on;
@@ -104,6 +105,8 @@ for p_i = ALL
             cont = c{1};
             cont.plot_contact()
         end
+%         drawnow
+%         pause(0.5)
     end
 end
 

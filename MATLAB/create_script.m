@@ -3,8 +3,8 @@ warning('off', 'MATLAB:polyshape:repairedBySimplify')
 Noise = 0;
 %% N Random M-shapes
 % 
-N = 3; % number of objects
-M = 6; % - number of vertices in polygons
+N = 6 ; % number of objects
+M = 3; % - number of vertices in polygons
 t = 0: 2*pi/M :(2*pi-eps*1e5);
 vert = [cos(t(:)), sin(t(:))];
 colors = jet(N);

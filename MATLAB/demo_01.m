@@ -9,20 +9,12 @@ addpath('Classes_Funcs')
 
 global DEBUG
 DEBUG = true;
-finger_d = 20;
+finger_d = 10;
 %% Create objects
 % The script creates a cell array P, which contains the polygonal
 % objects.
 
 create_script
-
-% figure(1); clf
-% P{1}.plot(); hold on;
-% for i = 2:numel(P)
-%     P{i}.plot()
-% end
-% axis equal
-% grid on
 
 %% Rearrange the objects
 
@@ -31,7 +23,6 @@ rearrange_script
 %% Find inter-object contacts
 
 find_i_contacts_script
-
 %% Find fingers
 
 find_fingers_script
@@ -54,7 +45,17 @@ axis manual
 finger_d = 5;
 t = linspace(0,2*pi);
 x = finger_d/2*cos(t); y = finger_d/2*sin(t);
+for p_i = 1:numel(PolyList) %#ok<*UNRCH>
+        Contacts = Filtered_Contacts(Filtered_Contacts_poly_ind == p_i);
+        for c_i = 1:numel(Contacts)
 
+            Contacts{c_i}.plot('r')
+            %             Contacts{f}.plot_contact()
+        end
+end
+
+
+    
 if 1 %Show all results
     finger_centers = zeros(numel(Fingers(:,6)),2);
     for i = 1:numel(Fingers(:,7))
@@ -91,22 +92,15 @@ end
 
 % Can draw filtered contacts
 if DEBUG
-    for p_i = 1:numel(PolyList) %#ok<*UNRCH>
-        Contacts = Filtered_Contacts(Filtered_Contacts_poly_ind == p_i);
-        for c_i = 1:numel(Contacts)
-
-            Contacts{c_i}.plot('r')
-            %             Contacts{f}.plot_contact()
-        end
-    end
+    
 end
-% if 1
+if 0 % Draw selected contact group
     for f = Fingers{Fingers.ContactGroup == 2,7}'
         finger_centers(i,:) = f.get_finger_center(finger_d);
         f_c = fill(finger_centers(i,1)+x,finger_centers(i,2)+y,'b','FaceAlpha',.8);
         
         f.plot('b')
     end
-% end
+end
 %%
 toc

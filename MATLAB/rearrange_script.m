@@ -147,8 +147,6 @@ P2={};
 %     fprintf("P{%d}: %s\n",i,P{i}.Name)
 % end
 
-f = figure(19);
-f.Name = 'Rearranged result';
 while ~isempty(P)
     % Unify the shape
     uni = get_unified_poly(PolyList);
@@ -229,8 +227,9 @@ while ~isempty(P)
             fprintf("P{%d}: %s\n",i,P{i}.Name)
         end
     end
-    
-    clf;
+    if DEBUG
+    f = figure(14);     clf;
+    f.Name = "Stacking process"
     PolyList{1}.plot(); hold on;
     for i = 2:numel(PolyList)
         PolyList{i}.plot()
@@ -238,8 +237,9 @@ while ~isempty(P)
     axis equal
     grid on
     hold off
-    pause(0.5)
-    
+    %     drawnow
+    %     pause(0.5)
+    end
 end
 
 while ~isempty(P2)

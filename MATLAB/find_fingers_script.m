@@ -2,7 +2,7 @@
 clearvars -except DEBUG PolyList Filtered_Contacts Filtered_Contacts_poly_ind finger_d
 warning off MATLAB:polyshape:boolOperationFailed
 %#ok<*AGROW>
-global DEBUG
+
 Move_from_vertex_ratio = 0.1; % set to positive if want to stay away from the vertices
 %%
 TableVarNames = {'PolygonNum','ContactGroup','EdgeNum','EdgeRange','OptimalPosition','Group_GQM','ContactVector'};
@@ -31,13 +31,13 @@ for p_i = 1:numel(PolyList)
         [~,P] = freeBoundary(TR);
         FullTR = delaunayTriangulation(P);
         origin_is_already_in_the_CH  = pointLocation(FullTR,[0 0 0]);
-        if origin_is_already_in_the_CH
+        if origin_is_already_in_the_CH && GQM_from_W(W) > 1e-2
             continue
         end
     catch
     end
     if DEBUG
-        figure(200+p_i);clf;
+        figure(16);clf; %
         p.plot(); hold on; axis equal; grid on;
         for c_i = 1:N
             I_contacts{c_i}.plot_contact()
@@ -142,11 +142,13 @@ for p_i = 1:numel(PolyList)
                     p.find_normal_at_point(contact_point),finger_d,p_i);
                 
                 if DEBUG
-                    figure(200+p_i)
+                    figure(16)
                     f.plot_contact('b')
                     % DT = delaunayTriangulation([1e-3 1e-3 0; -1e-3 2.5e-3 1e-4 ; w]);
                     % tetramesh(DT,'FaceAlpha',0.1,'FaceColor','y');
                     % quiver3(0*w(:,1),0*w(:,1),0*w(:,1),w(:,1),w(:,2),w(:,3),'AutoScale','off')
+%                     drawnow
+%                     pause(0.2)
                 end
                 
                 Fingers = [Fingers;table(p_i,...
@@ -181,6 +183,9 @@ for p_i = 1:numel(PolyList)
                     W(1,:), W(2,:), W(3,:),'k-','AutoScale','off')
                 hold on;axis equal; grid on;
                 quiver3(0*w(1,:),0*w(1,:),0*w(1,:),w(1,:),w(2,:),w(3,:),'b')
+%                 drawnow
+%                 pause(0.2)
+
             end
             proj_1 = dot(w(:,1),norm_WCH);
             proj_2 = dot(w(:,2),norm_WCH);
@@ -239,7 +244,7 @@ for p_i = 1:numel(PolyList)
                     
                     d = -ones(10,10);
                     pos_range = linspace(Move_from_vertex_ratio,1-Move_from_vertex_ratio,10);
-                    DEBUG = false
+                    
                     for pos1_ind = 1:10
                         for pos2_ind = 1:10
                             p1 = p.point_from_edgePosition(var_i(1),pos_range(pos1_ind));
@@ -250,7 +255,6 @@ for p_i = 1:numel(PolyList)
                             d(pos1_ind,pos2_ind) = GQM_from_W(W_combined');
                         end
                     end
-                    DEBUG = true
                     max_d = max(d(:));
                     [i,j] = find(d==max_d,1);
                     pos1 = pos_range(i);

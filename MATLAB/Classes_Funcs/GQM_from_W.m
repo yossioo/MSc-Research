@@ -29,7 +29,7 @@ for t_i = F'
     min_dist = min([min_dist abs(dot(n,v1))]);
 end
 
-if DEBUG
+if DEBUG && 0 
     figure(98); clf
     quiver3(0*W(:,1),0*W(:,1),0*W(:,1),W(:,1),W(:,2),W(:,3),'Color','b','AutoScale','off')
     hold on; axis equal; grid on
