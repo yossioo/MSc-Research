@@ -100,13 +100,13 @@ for p_i = ALL
         Unified.plot();
         axis equal; grid on; hold on;
         plot(polybuffer(Unified.Shape,d))
-        p.plot();
+        p.plot(p.Polygon_color,false);
         for c = C(C_poly_inds == p_i)
             cont = c{1};
             cont.plot_contact()
         end
 %         drawnow
-%         pause(0.5)
+        pause(0.5)
     end
 end
 

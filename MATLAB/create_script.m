@@ -14,12 +14,7 @@ for i=1:N
     P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:)); %#ok<*SAGROW>
 end
 
-%% Simple v2iv contact
-% R = 30;
-% P{1} = Polygon_mkII([0 0; R*[cosd(80) sind(80)]; R*1 0],"Tri_A");
-% P{2} = Polygon_mkII([0 0; 30 30; 25 -5; -25 -10; -30 30],"Concave");
-
-%% some 4 shapes
+%% 4 shapes 3 triang and 1 convex - used in paper
 % R = 30;
 % colors = jet(4);
 % P{1} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_A", colors(1,:));

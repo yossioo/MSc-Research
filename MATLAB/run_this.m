@@ -54,8 +54,7 @@ for p_i = 1:numel(PolyList) %#ok<*UNRCH>
         end
 end
 
-
-    
+Fingers.ContactVector(4).point_on_the_line = PolyList{Fingers.PolygonNum(4)}.point_from_edgePosition(Fingers.EdgeNum(4),0.9);
 if 1 %Show all results
     finger_centers = zeros(numel(Fingers(:,6)),2);
     for i = 1:numel(Fingers(:,7))

@@ -228,17 +228,24 @@ while ~isempty(P)
         end
     end
     if DEBUG
-    f = figure(14);     clf;
-    f.Name = "Stacking process"
-    PolyList{1}.plot(); hold on;
-    for i = 2:numel(PolyList)
-        PolyList{i}.plot()
-    end
-    axis equal
-    grid on
-    hold off
-    %     drawnow
-    %     pause(0.5)
+        f = figure(14);     clf;
+        f.Name = "Stacking process";
+        PolyList{1}.plot(PolyList{1}.Polygon_color,false); hold on;
+        
+        axis equal
+        grid on
+        pause(0.5)
+        for i = 2:numel(PolyList)
+            PolyList{i}.plot(PolyList{i}.Polygon_color,false)
+            
+            axis equal
+            grid on
+            pause(0.5)
+        end
+        axis equal
+        grid on
+        hold off
+        %     drawnow
     end
 end
 
