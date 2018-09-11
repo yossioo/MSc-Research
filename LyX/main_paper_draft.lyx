@@ -148,15 +148,25 @@ small ashapiro@bgu.ac.il}
 \end_layout
 
 \begin_layout Abstract
-Here goes the abstract
-\begin_inset Newline newline
-\end_inset
-
-another line
+The paper presents novel methods for rearrangement of polygonal object sets
+ to obtain a multi-fingered grasp of this objects with minimal amount of
+ required fingers.
+ That is achieved by exploiting the geometry of the boundaries of the objects.
+ Classification of inter-object contacts is presented, along with simple
+ way of finding complementing fingers locations in order to immobilize each
+ object.
+ Rearrangement algorithm proposed to stack objects together in configurations
+ that will ensure minimal number of required additional contacts.
+ Assessment of obtained objects and grasp configuration along with and correctio
+n method are suggested.
+ Proposed algorithms are evaluated in simulations, and the product of the
+ algorithms tested in experimental setup.
 \end_layout
 
 \begin_layout Abstract
-more line
+Keywords: 
+\emph on
+multi-fingered grasping, form closure, multi-object immobilization, 
 \end_layout
 
 \begin_layout Standard
@@ -211,209 +221,89 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-What's the motivation, what exists and what do I do.
- What is the contribution of the work done.
- Paper structure
+Despite the advancement in robotic grasping and manipulation in last decades,
+ multi-object grasping still haven't been addressed properly.
+ While for humans grasping several items at once is quite ordinary (e.g.
+ wallet and cellphone), robots are not usually programmed for such task
+ and when performing treat each item individually.
+ The subject may be not required at assembly lines but it can be of interest
+ in fields of warehouse stacking, home assisting robots, etc.
+ – in particular where the environment has not been adapted for automatic
+ robotics.
+ In the Amazon Robotics Challenge 2017, teams from across the world were
+ tasked to program robots to transfer items, and classical approach is to
+ move items one by one.
+ Optimization of the process during the preparations for the challenge was
+ the foundation for the research of simultaneous grasping, and this paper
+ presents basic approach for assessment and grasping of multiple objects
+ at once.
 \end_layout
 
 \begin_layout Standard
-Idea
-\end_layout
+Next section summarizes related research and presents the foundations that
+ serve as basis for this work.
+ Followed by section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Problem-definition"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Standard
-AMAZON RC
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Home assisted robotics
-\end_layout
+, which presents the mathematical basis and geometrical considerations for
+ the proposed solution.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Algorithms"
 
-\begin_layout Standard
-Who done what
-\end_layout
+\end_inset
 
-\begin_layout Standard
-What we show in the paper
-\end_layout
+ presents the algorithms for the objects rearrangement and consecutive finger
+ placement.
+ Assessment of obtained results is described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:MultiO-eval-n-grasp-secur"
+plural "false"
+caps "false"
+noprefix "false"
 
-\begin_layout Standard
-The remainder is structured as follows
-\end_layout
+\end_inset
 
-\begin_layout Subsection
-Problem Statement
-\end_layout
-
-\begin_layout Standard
-Given.
+.
+ Finally the results of the algorithms performance is presented in section
  
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Results"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ and discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Conclusions"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
 \end_layout
 
-\begin_layout Standard
-Problem.
-\end_layout
-
-\begin_layout Standard
-Restrictions / Assumptions, etc.
-\end_layout
-
-\begin_layout Subsection
+\begin_layout Section
 Related work
 \end_layout
 
 \begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Bernheisel2004"
-literal "false"
-
-\end_inset
-
-- Stable transport assemblies
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Asada1989,Anders2018,Akella1998"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-While methods for 3 finger fixturing are presented 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Bunis2018,Brost1996,Burdick2016,Li2003"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Existence of grasps 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Mishra1987,Mishra1989"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Quality measures 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Lin1997"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Configuration space 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Lozano-Perez1983"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Optimal grasps 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Ferrari1992"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Machine learning optimal grasps 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Le2010"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Pushing of objects - object-edge interaction 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Lynch1992,Lynch1999"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Anders2018"
-literal "false"
-
-\end_inset
-
- present methods to rearrange objects into desired configuration.
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Mason1991"
-literal "false"
-
-\end_inset
-
- presents graphical methods for multi-contact friction cone generalizations.
-\end_layout
-
-\begin_layout Standard
-Convex hulls 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Bonnice1963,Gale1952"
-literal "false"
-
-\end_inset
-
- 
-\end_layout
-
-\begin_layout Standard
-Further planning shown by 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Kerr1986"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
+Object grasping and manipulations rely on basics summarized by 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Montana1988"
@@ -421,31 +311,169 @@ literal "false"
 
 \end_inset
 
- presents descriptions of motion of points of contact of two contacting
- objects.
-\end_layout
-
-\begin_layout Standard
+, who describes motion of point of contact of two contacting objects.
+ Nowadays common approach of configuration space presented by 
 \begin_inset CommandInset citation
-LatexCommand citet
-key "Nguyen1986"
+LatexCommand cite
+key "Lozano-Perez1983"
 literal "false"
 
 \end_inset
 
- Shows method for constructing force closure grasps.
+, which can be extended to wrench space, force and form closure 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rimon1996,Bicchi1995"
+literal "false"
+
+\end_inset
+
+.
+ Quantitative measures 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lin1997,Trinkle1992"
+literal "false"
+
+\end_inset
+
+
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lin1997,Trinkle1992,Trinkle1992a"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ were introduced to optimize grasping 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ferrari1992"
+literal "false"
+
+\end_inset
+
+ in general, and serve as basis for finger placement in this work as well.
+ Planning of grasps is summarized by 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "LaValle2006"
+literal "false"
+
+\end_inset
+
+ which served as one of the starting points for this work.
+ 
+\end_layout
+
+\begin_layout Standard
+The main approach is to use 4-contact grasps, as shown to be minimum required
+ number to grasp 2D objects 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Markenscoff1990"
+literal "false"
+
+\end_inset
+
+.
+ Despite the fact that 3 fingers can successfully grasp polygonal objects
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bunis2018,Li2003"
+literal "false"
+
+\end_inset
+
+ or even less when the geometry of the objects give such options as show
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rimon1995"
+literal "false"
+
+\end_inset
+
+.
+ Proposed method relies on concepts of convex hulls 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gale1952"
+literal "false"
+
+\end_inset
+
+, object-edge interactions 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lynch1992"
+literal "false"
+
+\end_inset
+
+ and on generalized ideas of graphical methods presented by 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mason1991,Bernheisel2004"
+literal "false"
+
+\end_inset
+
+.
+ Opposite to common approach treating other objects in cluttered environment
+ as obstacles 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Elliott2016"
+literal "false"
+
+\end_inset
+
+, this approach utilizes advantages that other objects can provide.
+ While the work presents a way of obtaining a desired configuration of objects,
+ rearrangement process itself is not part of this work, and other methods
+ like 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Anders2018"
+literal "false"
+
+\end_inset
+
+ may be utilized to rearrange objects into desired configuration.
+ 
 \end_layout
 
 \begin_layout Section
-Definitions
+Problem definition
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Problem-definition"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Problem formulation
 \end_layout
 
 \begin_layout Standard
-Formal definitions, verbal description
-\end_layout
-
-\begin_layout Standard
-bla bla bla grasp map, force closure form closure
+Given set of fully defined polygonal objects, we wish to find a: 1) A new
+ configuration that will require a grasp with minimal amount of fingers
+ to immobilize all and every object, 2) A set of finger locations for said
+ immobilizing grasp.
 \end_layout
 
 \begin_layout Subsection
@@ -476,6 +504,10 @@ where
 \end_inset
 
  is the contact normal direction inward the polygon B.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
  An example of inter-object contact description shown on 
 \begin_inset CommandInset ref
 LatexCommand formatted
@@ -515,7 +547,7 @@ status open
 \begin_inset Graphics
 	filename images/cont_description.svg
 	lyxscale 30
-	width 35col%
+	width 30col%
 
 \end_inset
 
@@ -546,6 +578,11 @@ name "fig:Contact-desription-example."
 
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Solution existence for combination of internal and external contacts
 \end_layout
@@ -553,8 +590,8 @@ Solution existence for combination of internal and external contacts
 \begin_layout Standard
 Given a set of polygonal objects, where some of the objects are in contact
  one with another.
- Each object has at least 4 contacts: some of them are fingers and some
- are inter-object contacts.
+ Assuming each object has at least 4 contacts: some of them are fingers
+ and some are inter-object contacts.
  The equilibrium equation for each object is written in form of total wrench:
 \begin_inset Formula 
 \begin{equation}
@@ -568,13 +605,13 @@ where:
 f_{f1} & f_{f2} & f_{p12} & f_{p13} & \dots & f_{pMN}\end{array}\right]^{T}$
 \end_inset
 
- is a set of forces between fingers and bodies, and between bodies and other
- bodies in contact.
+ is a set of forces between fingers and objects, and between objects and
+ other objects in contact.
  Grasp map matrix 
 \begin_inset Formula $G$
 \end_inset
 
- can be obtained by as shows 
+ can be obtained in a way similar to 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Murray1994"
@@ -583,10 +620,10 @@ literal "false"
 \end_inset
 
 .
- The matrix will be block diagonal with some cross-block columns which correspon
-d to body-to-body contacts.
+ The matrix for all objects can be arranged to be block diagonal with some
+ cross-block columns which correspond to body-to-body contacts.
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Lemma
 Given an edge of a polygonal object and a frictionless point contact, the
@@ -628,15 +665,73 @@ All possible contacts on the edge will have the same direction and hence
 
 \end_inset
 
+ Example of such matrix for 2 objects with 3 external contacts on each one,
+ and one inter-object contact is shown in 
+\begin_inset CommandInset ref
+LatexCommand eqref
+reference "eq:GraspMap-full-set"
+
+\end_inset
+
+.
+ Since each block for each object is linearly independent, the whole matrix
+ will be linearly independent and there is a solution (set of solutions)
+ for immobilization of several objects.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{align}
+\begin{bmatrix}f_{Ax}\\
+f_{Ay}\\
+\tau_{A}\\
+f_{Bx}\\
+f_{By}\\
+\tau_{B}
+\end{bmatrix} & =\begin{bmatrix}G_{f\left[1:3\right]} & 0 & \left\{ \begin{array}{c}
+-c_{AB}\\
+-s_{AB}\\
+\mathbf{-x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} \\
+0 & G_{f\left[4:6\right]} & \left\{ \begin{array}{c}
+c_{AB}\\
+s_{AB}\\
+\mathbf{x}_{AB}\times\begin{bmatrix}c_{AB}\\
+s_{AB}
+\end{bmatrix}
+\end{array}\right\} 
+\end{bmatrix}\begin{bmatrix}f_{1}\\
+f_{2}\\
+f_{3}\\
+f_{4}\\
+f_{5}\\
+f_{6}\\
+f_{AB}
+\end{bmatrix}=0\label{eq:GraspMap-full-set}
+\end{align}
+
+\end_inset
+
 
 \end_layout
 
 \begin_layout Standard
 Caratheodory's theorem 
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Caratheodory1907"
 literal "false"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -673,10 +768,16 @@ literal "false"
 \end_layout
 
 \begin_layout Definition
-A contact between two objects is called stable if for small perturbations
- in contact's location (movement of one object in respect to another) and
- applying same set of forces that kept two objects in equilibrium, the contact
- will either slip to the previous location or stay in the new location.
+A contact between two objects is called 
+\series bold
+\emph on
+stable
+\series default
+\emph default
+ if for small perturbations in contact's location (movement of one object
+ in respect to another) and applying same set of forces that kept two objects
+ in equilibrium, the contact will either slip to the previous location or
+ stay in the new location.
  Given 2 objects 
 \begin_inset Formula $A,B$
 \end_inset
@@ -693,32 +794,25 @@ A contact between two objects is called stable if for small perturbations
 \begin_inset Formula $C=\left\{ p,\hat{n},A,B\right\} $
 \end_inset
 
- and small perturbation 
+ and given a small perturbation 
 \begin_inset Formula $\varepsilon$
 \end_inset
 
-:
-\begin_inset Formula 
-\begin{equation}
-\forall\varepsilon\quad C=\left\{ p+\varepsilon,\hat{n},A,B\right\} ,
-\end{equation}
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Definition
-and applying same set of forces 
+ while applying same set of forces 
 \begin_inset Formula $F$
 \end_inset
 
 , new location of the objects will stay in the vicinity of the previous
- locations: 
-\begin_inset Formula $\left|\left[x_{new},y_{new}\right]-\left[x_{old},y_{old}\right]\right|\leq\varepsilon$
+ locations :
+\begin_inset Formula 
+\begin{align}
+\forall\varepsilon\quad C & =\left\{ p+\varepsilon,\hat{n},A,B\right\} \\
+\rightarrow & \left|\left[x_{new},y_{new}\right]-\left[x_{old},y_{old}\right]\right|\leq\varepsilon,
+\end{align}
+
 \end_inset
 
-.
+
 \end_layout
 
 \begin_layout Proposition
@@ -785,9 +879,10 @@ Assuming optimal configuration of the objects where each of them is immobilized
 \end_inset
 
 .
- Example: jigsaw puzzle which once assembled can be immobilized by 4 fingers.
+ Example: egg-like shape cut like jigsaw puzzle which, once assembled, can
+ be immobilized by 4 fingers.
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Proposition
 Given a polygonal object and 3 parallel frictionless contacts on the object
@@ -900,14 +995,14 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename images/cont_v2e.svg
 	lyxscale 30
-	width 40col%
+	width 30col%
 
 \end_inset
 
@@ -934,14 +1029,14 @@ Vertex-to-Edge.
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename images/cont_e2e.svg
 	lyxscale 30
-	width 40col%
+	width 30col%
 
 \end_inset
 
@@ -967,14 +1062,14 @@ Edge-to-Edge
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename images/cont_v2iv.svg
 	lyxscale 30
-	width 40col%
+	width 30col%
 
 \end_inset
 
@@ -1001,14 +1096,14 @@ Vertex-to-Inner-Vertex
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
 	filename images/cont_v2iv_e.svg
 	lyxscale 30
-	width 40col%
+	width 30col%
 
 \end_inset
 
@@ -1061,7 +1156,7 @@ the contact is a continuous contact between two bodies along a continuous
  Since the vertices lie along the same edge, the contact normal directions
  are the same in this case.
  The set of contacts for this variant consists of two contacts: 
-\begin_inset Formula $C=\{c_{1},c_{2}\},\;c_{i}=\left\{ r_{i},\hat{n}\right\} $
+\begin_inset Formula $C=\{c_{1},c_{2}\},\;c_{i}=\left\{ r_{i},\hat{n},\dots\right\} $
 \end_inset
 
 , where 
@@ -1072,7 +1167,7 @@ the contact is a continuous contact between two bodies along a continuous
 \begin_inset Formula $\hat{n}$
 \end_inset
 
- stands for the normal direction of the edge.
+ stands for the normal direction of the edge and the polygon names are omitted.
  
 \end_layout
 
@@ -1092,7 +1187,7 @@ is another type of discrete contact with multiple point-normal parameters.
  In this case, since the movement of polygon 1 relative to polygon 2 is
  restricted in 2 directions, 2 normal directions exist at same contact point.
  The set of contacts for this variant consists of two contacts: 
-\begin_inset Formula $C=\{c_{1},c_{2}\},\;c_{i}=\left\{ r,\hat{n_{i}}\right\} $
+\begin_inset Formula $C=\{c_{1},c_{2}\},\;c_{i}=\left\{ r,\hat{n_{i}},\dots\right\} $
 \end_inset
 
 , where
@@ -1103,7 +1198,8 @@ is another type of discrete contact with multiple point-normal parameters.
 \begin_inset Formula $\hat{n}$
 \end_inset
 
- stands for the normal directions of the edges.
+ stands for the normal directions of the edges and the polygon names are
+ omitted.
 \end_layout
 
 \begin_layout Standard
@@ -1125,6 +1221,16 @@ The interaction between several objects can be qualitatively described by
  between the objects.
  For the purposes of multi-object grasp evaluation graphs allow search of
  connected sub-sets and their correspondent contacts.
+ Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Objects-set-and"
+
+\end_inset
+
+ shows an example of 4 polygonal objects, with contact points shown in red
+ and the qualitatively descriptive graph.
 \end_layout
 
 \begin_layout Standard
@@ -1177,8 +1283,18 @@ Edge Generalized Wrench
 \begin_layout Standard
 EGW is a graphical way of describing possible contact wrenches for a given
  linear edge of some 2D object.
- The evaluation of possible contact positions on an edged can be simplified
- by introducing an edge generalized wrench:
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+The evaluation of possible contact positions on given edge can be simplified
+ by introducing an Edge Generalized Wrench:
+\end_layout
+
+\end_inset
+
+
 \begin_inset Float figure
 wide false
 sideways false
@@ -1202,6 +1318,13 @@ status open
 
 \begin_layout Plain Layout
 Edge with inner normal (left), Edge Generalized Wrench (right).
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:EEGW"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1291,7 +1414,15 @@ w_{a}=\begin{bmatrix}\hat{n}_{a}\\
 
 \end_inset
 
-As can be seen from the FIGURE , contact 
+As can be seen from the fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:EEGW"
+
+\end_inset
+
+, contact 
 \begin_inset Formula $a$
 \end_inset
 
@@ -1327,7 +1458,7 @@ n_{y}\\
 
 
 \begin_inset Note Note
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \begin_inset Formula 
@@ -1530,7 +1661,7 @@ Where
 \begin_inset Formula $G_{i}$
 \end_inset
 
- is
+ is 
 \begin_inset Formula $\begin{bmatrix}n_{i}\\
 p_{c_{i}}\times n_{i}
 \end{bmatrix}$
@@ -1597,8 +1728,8 @@ Maximizing the Inscribed Sphere
 \end_layout
 
 \begin_layout Standard
-One of the proposed quality measures is a volume/radius of the sphere inscribed
- in the convex hull of grasp map basis vectors.
+One of the proposed quality measures is a volume/radius of the origin centered
+ sphere inscribed in the convex hull of grasp map basis vectors.
  Maximizing the sphere radius can be done by increasing the minimal of the
  distances between the origin end the faces of the convex hull.
  Since the hull is convex, some of the faces will be tangent to the sphere,
@@ -1609,209 +1740,17 @@ One of the proposed quality measures is a volume/radius of the sphere inscribed
  convex
 \emph default
  hull and thus eliminate redundant wrench vectors.
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Proposition
-Given a set of k-1 contacts, and their corresponding wrench vectors; convex
- cone and it's inverse cone; for a generalized wrench segment in the interior
- of the inverse convex cone an optimal k-th contact can be found by examining
- distances of the convex hull faces from the origin.
-\end_layout
-
-\begin_layout Proof
-As seen in 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "prop:InvCone-interior"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-, the wrench 
-\begin_inset Formula $w_{k}$
-\end_inset
-
- has to lie inside of the Anti-Cone.
- If 
-\begin_inset Formula $w_{k}$
-\end_inset
-
- lies on a cone boundary then it and 2 vectors that form that boundary (denoted
- by 
-\begin_inset Formula $w_{1},w_{2}$
-\end_inset
-
-), will form a surface that contains the origin of the wrench space.
- To maximize the distance of said surface from the origin we first parameterize
- the wrench vector end point location segment by using the 
-\begin_inset CommandInset ref
-LatexCommand eqref
-reference "eq:EGW-parameterization"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-.
- For each face of the convex hull, the distance of the face from the origin
- can be calculated by projecting a point on the plane on the plane's normal.
- The equation for the normal direction of a plane formed by 
-\begin_inset Formula $w_{i},w_{i+1},w_{k}$
-\end_inset
-
- is:
-\begin_inset Formula 
-\begin{equation}
-n_{p}=\left(w_{i}-w_{k}\right)\x\left(w_{i+1}-w_{k}\right).
-\end{equation}
-
-\end_inset
-
-If the 
-\begin_inset Formula $w_{k}$
-\end_inset
-
- lies inside the inverted convex cone of first
-\emph on
-k-1
-\emph default
- contacts, then the normal direction will point from the plane towards the
- origin.
- Consequently, the distance of the plane from the origin can be expressed
- as:
-\begin_inset Formula 
-\begin{equation}
-d_{i}=-w_{k}\cdot\left(w_{i}-w_{k}\right)\x\left(w_{i+1}-w_{k}\right),
-\end{equation}
-
-\end_inset
-
-note the 
-\begin_inset Quotes eld
-\end_inset
-
-–
-\begin_inset Quotes erd
-\end_inset
-
- sign to obtain positive distance
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-MATLAB has polyshapes stored with vertices in clockwise direction, hence
- no minus sign in the code.
-\end_layout
-
-\end_inset
-
-.
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Proof
-\begin_inset Formula 
-\[
-=w_{k}\cdot\left(w_{i}-w_{k}\right)\x{}\left(w_{i+1}-w_{k}\right)
-\]
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Proof
-\begin_inset Formula 
-\begin{align*}
- & =\left[\begin{array}{c}
-n_{x}\\
-n_{y}\\
-\left(x\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\cdot\left(x_{2}\cdot n_{y}-x_{1}\cdot n_{y}-y_{1}\cdot n_{x}+y_{2}\cdot n_{x}\right)
-\end{array}\right]\\
- & \cdot\left(\left[\begin{array}{c}
-n_{x}^{i}-n_{x}^{k}\\
-n_{y}^{i}-n_{y}^{k}\\
-\tau_{w_{i}}-\left(\left(x\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\cdot\left(x_{2}\cdot n_{y}-x_{1}\cdot n_{y}-y_{1}\cdot n_{x}+y_{2}\cdot n_{x}\right)\right)
-\end{array}\right]\right)\\
- & \x{}\left(\left[\begin{array}{c}
-n_{x}^{i+1}-n_{x}^{k}\\
-n_{y}^{i+1}-n_{y}^{k}\\
-\tau_{w_{i+1}}-\left(\left(x\cdot n_{y}-y_{1}\cdot n_{x}\right)+s\cdot\left(x_{2}\cdot n_{y}-x_{1}\cdot n_{y}-y_{1}\cdot n_{x}+y_{2}\cdot n_{x}\right)\right)
-\end{array}\right]\right)
-\end{align*}
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
- Substituting the expression for wrench vectors (shown in Appendix) leaves
- the distance of plane
-\emph on
- i
-\emph default
- (contacts
-\emph on
- i,i+1
-\emph default
- and parameter
-\emph on
- s
-\emph default
- along an edge) to be a function of that parameter only: 
-\begin_inset Formula $d_{i}=f\left(s\right)$
-\end_inset
-
-.
- Ultimately, distance from every face can be expressed as a function of
- edge parameter
-\emph on
-s
-\emph default
- and thus a compound function of minimal distance can be built.
-\begin_inset Formula 
-\begin{equation}
-d=\min\left\{ d_{i}\right\} \;i\in\left[1,\right].
-\end{equation}
-
-\end_inset
-
-Since projection is a linear transformation, and EGW endpoints segment being
- parameterized uniformly, the distance function will be linearly dependent
- on on
-\emph on
- s
-\emph default
- parameter.
- Meaning that the distance function will be either constant or monotonically
- increasing/decreasing along the change in
-\emph on
-s
-\emph default
-.
- Solution can be found by examining
-\emph on
-k-1
-\emph default
- 1st order polynomials and finding the maximized minimal value.
- Since the functions are 1st order polynomials, there either will be 1 such
- solution or infinite number of solutions (in case where there is a plane
- parallel to the EGW endpoints segment and hence the distance is constant).
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Section
-Algorithms
+Algorithms 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Algorithms"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1842,15 +1781,13 @@ Algorithm for objects rearrangement
 \begin_layout Standard
 First step for the object stacking is to define a root object, which all
  others will lean on.
-\end_layout
-
-\begin_layout Standard
-The algorithm searches among the objects for either one with biggest concavity,
+ The algorithm searches among the objects for either one with biggest concavity,
  or for a couple of objects to form a concavity together.
+ When root object is selected, further stacking can be done by iteratively
+ selecting objects and stacking them in concavities including newly formed
+ concavities from previously stacked objects.
+ Algorithms 1 and 2 present pseudo-code for the objects rearrangement.
  
-\end_layout
-
-\begin_layout Standard
 \begin_inset Preview
 
 \begin_layout Standard
@@ -2028,12 +1965,6 @@ end{algorithm}
 \end_layout
 
 \begin_layout Standard
-When root object is selected, further stacking can be done by iteratively
- selecting objects and stacking them in concavities including newly formed
- concavities from previously stacked objects.
-\end_layout
-
-\begin_layout Standard
 \begin_inset Preview
 
 \begin_layout Standard
@@ -2197,8 +2128,7 @@ textrm{reduced concavity}$
 \backslash
 textrm{new formed concavities}$
 \backslash
-tcc*[r]{Upd.
- concavities list}
+;
 \end_layout
 
 \begin_layout Plain Layout
@@ -2259,15 +2189,12 @@ Algorithm for complementing fingers placement
 \end_layout
 
 \begin_layout Standard
-When all objects rearrangement is proposed, a search for fingers need to
- complete the immobilize the objects can be performed.
-\end_layout
-
-\begin_layout Standard
-The search is done by iterating over each object and testing for immobilization.
+When rearrangement of desired objects is proposed, a search for fingers
+ need to complete the immobilize the objects can be performed.
+ The search is done by iterating over each object and testing for immobilization.
  If the object is not immobilized, required number of fingers is found by
  examining the convex hull of existing wrenches and testing EGWs for all
- edges.
+ edges until suitable grasp is found.
 \end_layout
 
 \begin_layout Standard
@@ -2295,7 +2222,7 @@ label{alg:contact4}
 
 
 \backslash
-caption{Complementing fingesr search}    % Determine the region for 4th
+caption{Search of complementing fingers}    % Determine the region for 4th
  contact given 3
 \end_layout
 
@@ -2515,164 +2442,166 @@ name "sec:MultiO-eval-n-grasp-secur"
 \end_layout
 
 \begin_layout Standard
-Once every given object is immobilized by other objects and fingers, the
- constellation still might be not fully immobilized.
- Example: 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:2-of-3-objects-not-immobilized"
-
-\end_inset
-
- shows 3 objects: black object is immobilized by 4 contacts from red and
- blue objects while red and and blue are immobilized by two additional fingers
- each one.
- The contacts that act on blue and black objects (shown as red arrows) intersect
- at same point and hence do not immobilize these two objects together –
- namely, these two objects can rotate together about the contact intersection
- point.
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/constellation_evaluation.svg
-	lyxscale 30
-	width 40col%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-2 of 3 objects are not immobilized.
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:2-of-3-objects-not-immobilized"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset space \hspace{}
-\length 20col%
-\end_inset
-
-
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Graphics
-	filename images/not_immobilized_object_set.svg
-	lyxscale 30
-	width 30col%
-
-\end_inset
-
-
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-2 objects set is not immobilized.
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-Total immobilization can be achieved by ensuring that every possible subset
+Once every given object is immobilized by other objects or/and fingers,
+ the constellation still might be not fully immobilized.
+ Total immobilization can be achieved by ensuring that every possible subset
  of objects is immobilized.
  This requires extraction of all possible connected subsets from the given
  set object and evaluation whether they are or are not immobilized.
  Each constellation ought to have at least 4 external contacts.
  If there are less - additional contacts required to immobilize it.
-\end_layout
-
-\begin_layout Standard
-If the amount of external contacts is higher than 4, assessment of intersection
+ If the amount of external contacts is higher than 4, assessment of intersection
  of contacts external to the subset can show whether the subset is immobilized
  or not.
  If the contacts intersect at one point, contact positions of added fingers
  can be altered in a allowed regions that were found for that contact.
- 
+\begin_inset Preview
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{algorithm}[]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+label{alg:contact4}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+caption{Grasp evaluation}   
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwData{Polygons: $P=
+\backslash
+{p_i
+\backslash
+}$, Finger contacts set: $F=
+\backslash
+{f_i
+\backslash
+}
+\backslash
+; i=1,..N3$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+KwResult{$CF =
+\backslash
+{ f_i, GQM
+\backslash
+}$}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+For{ subset $P' 
+\backslash
+in P$}
+\end_layout
+
+\begin_layout Plain Layout
+
+{
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+uIf{contacts intersect in one point 
+\backslash
+textbf{and} more than 4 contacts}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+eIf{some contacts can be moved}
+\end_layout
+
+\begin_layout Plain Layout
+
+		{move them to obtain a valid grasp}
+\end_layout
+
+\begin_layout Plain Layout
+
+		{add more contacts}
+\end_layout
+
+\begin_layout Plain Layout
+
+	}
+\end_layout
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{algorithm}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Results
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Results"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
 Simulations
-\end_layout
-
-\begin_layout Standard
-The algorithms were tested in MATLAB environment for consistence, and and
- performance.
- The calculations are performed offline, and the performance is tested in
- Intel i7-6700K with 32gB RAM.
-\end_layout
-
-\begin_layout Standard
-Several cases of planned grasps for various number polygonal objects are
- presented below if 
-\begin_inset CommandInset ref
-LatexCommand formatted
-reference "fig:Generated-object-configurations"
-plural "false"
-caps "false"
-noprefix "false"
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Simulations"
 
 \end_inset
 
-.
- Polygonal objects are shown in colors; inter-object contacts are shown
- in red; selected finger combination with normal direction lines are shown
- by dark blue circles with arrows; allowed regions if exist marked with
- cyan.
+
 \end_layout
 
 \begin_layout Standard
@@ -2748,7 +2677,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2777,7 +2706,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \align center
@@ -2825,7 +2754,14 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-3 triangles and a convcave object
+3 triangles and a concave object
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:3-triangles-Concave"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2889,9 +2825,123 @@ name "fig:Generated-object-configurations"
 \end_inset
 
 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/comp_time_comparison.svg
+	lyxscale 30
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Computation time
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/fingers_needed_comparison.svg
+	lyxscale 30
+	width 50col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Number of fingers
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison of algorithm results and performance for different sets.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Comparison-of-algorithm"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+The algorithms were tested in MATLAB environment for consistence, and performanc
+e.
+ The calculations are performed offline, and the execution is tested on
+ Intel i7-6700K with 32gB RAM in MATLAB r2018a.
 \end_layout
 
 \begin_layout Standard
+Several cases of planned grasps for various number polygonal objects are
+ presented below in fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Generated-object-configurations"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Polygonal objects are shown in colors; inter-object contacts are shown
+ in red; selected finger combination with normal direction lines are shown
+ by dark blue circles with arrows; allowed regions if exist marked with
+ cyan.
+ 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
 Show several examples of the algorithm performance:
 \end_layout
 
@@ -2919,26 +2969,687 @@ Several objects clustered in sets and then moved together
 Computation time / memory for these simulations 
 \end_layout
 
+\begin_layout Plain Layout
+The execution time comparison for different size sets:
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+#
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Triangles
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Squares
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4 – 1.64
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 – 1.93
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 – 1.87
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7 – 2.69
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6 – 2.26
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9 – 4.47
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8 – 3.16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+14 – 5.63
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+13 – 5.71
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24 – 7.69
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Number of fingers needed vs Processing time [s] for different number of
+ primitive shapes.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Comparison-of-algorithm"
+
+\end_inset
+
+ shows some of the results for different sets of primitive shapes.
+ It is easily seen that the execution time does grow with the increase of
+ the number of objects, and with increase of number of edges of polygons.
+\end_layout
+
 \begin_layout Subsection
 Experiments
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Experiments"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Experiments were conducted to physically test the performance of the algorithms.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/gripper-side-view.png
+	lyxscale 30
+	width 50col%
+	clip
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Experimental setup: part of robotic manipulator (1), gripper (2), set of
+ objects (3).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.44.jpg
+	lyxscale 30
+	width 40col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Starting position
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 10col%
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.48-2.jpg
+	lyxscale 30
+	width 40col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Intermediate step
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.49.jpg
+	lyxscale 30
+	width 40col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Intermediate step
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 10col%
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.50.jpg
+	lyxscale 30
+	width 40col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Final position
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Translation and counter-clockwise rotation by 
+\begin_inset Formula $180^{\circ} $
+\end_inset
+
+ of 6 equilateral triangles.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Experiment-with-6"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/3tri_Concave-1.tif
+	lyxscale 30
+	width 40col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Starting position
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 10col%
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/3tri_Concave-2.tif
+	lyxscale 30
+	width 40col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Intermediate step
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/3tri_Concave-3.tif
+	lyxscale 30
+	width 40col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Intermediate step
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \hspace{}
+\length 10col%
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/3tri_Concave-4.tif
+	lyxscale 30
+	width 40col%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Final position
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Translation and clockwise rotation by 
+\begin_inset Formula $90^{\circ} $
+\end_inset
+
+ of 3 isosceles triangles and one concave object.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Experiment-with-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+Experiments were conducted to physically test the output of the algorithms.
+ Two model sets were tested to move along with the custom made gripper.
+ The griper consists of several static fingers which constitute a form closure
+ grasp.
+ For both models insignificant relative motion of objects in the set was
+ captured, the motion results from imperfections of the 3D printed parts,
+ and the set remains caged.
+ Fig.
  
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Experiment-with-6"
+
+\end_inset
+
+ shows 4 frames of a footage of manipulation of 6 equilateral triangles.
+ The images show bottom view, where red gripper grasps 6 triangles color
+ in white, gray and dark blue.
+ Translation with simultaneous rotation are applied by the robotic manipulator
+ which results on translation and rotation of the set of objects altogether.
+ Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Experiment-with-3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ presents a setup of 3 isosceles triangles and one concave object which
+ were shown in fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:3-triangles-Concave"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Section
 Conclusions
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusions"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-In this work we -introduced, -to-exploit? -model-presented, -algorithms-proposed
-, -validated
+In this work we introduced a novel method for object set rearrangement and
+ grasp planning while exploiting the geometrical properties of polygonal
+ objects.
+ The descriptions of inter-object contacts presented and classified as to
+ the advantages they give for multi-object configurations.
+ Algorithms for object stacking and finger placement proposed and validated
+ in simulations ans experiments.
 \end_layout
 
 \begin_layout Standard
-In future we plan to -build, -assess, –more-complex, -online
+In future we plan to extend the methods for objects with curvilinear boundaries,
+ incorporating methods for exploiting such boundaries to lower the amount
+ of fingers needed for the grasp as 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Rimon1995"
+literal "false"
+
+\end_inset
+
+ proposed.
+ 
 \end_layout
 
 \begin_layout Appendix

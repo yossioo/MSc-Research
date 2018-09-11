@@ -51,16 +51,18 @@ for combination = GroupCombinations'
         [W_CH,W] = W_CH_from_Contacts(contact_set,U.Center,sqrt(U.Area));
         %         K = convhull([W_CH'; [0 0 0]]);
         TR = delaunayTriangulation(W_CH');
-        figure(300), clf
-        quiver3(0*W(1,:),0*W(1,:),0*W(1,:),W(1,:),W(2,:),W(3,:),'AutoScale','off');
-        hold on, grid on;
-        quiver3(0*W_CH(1,:),0*W_CH(1,:),0*W_CH(1,:),W_CH(1,:),W_CH(2,:),W_CH(3,:),'AutoScale','off');
-        tetramesh(TR,'FaceAlpha',.2)
-        axis equal
-        grid on
-        zlabel('\tau_z','FontSize',20)
-        xlabel('f_x','FontSize',20)
-        ylabel('f_y','FontSize',20)
+        if DEBUG
+            figure(300), clf
+            quiver3(0*W(1,:),0*W(1,:),0*W(1,:),W(1,:),W(2,:),W(3,:),'AutoScale','off');
+            hold on, grid on;
+            quiver3(0*W_CH(1,:),0*W_CH(1,:),0*W_CH(1,:),W_CH(1,:),W_CH(2,:),W_CH(3,:),'AutoScale','off');
+            tetramesh(TR,'FaceAlpha',.2)
+            axis equal
+            grid on
+            zlabel('\tau_z','FontSize',20)
+            xlabel('f_x','FontSize',20)
+            ylabel('f_y','FontSize',20)
+        end
         points = [1 0 0; -1 0 0; 0 1 0; 0 -1 0; 0 0 1; 0 0 -1]*1e-3;
         if find(isnan(TR.pointLocation(points))) %ismember(size(W_CH,2)+1,K)
             % the C-Hull did not contain the origin
@@ -118,8 +120,8 @@ for combination = GroupCombinations'
                     optimal_pos = pos_range(find(d == max(d),1));
                     optimal_pos(optimal_pos>max(modified_EGW_range)) = max(modified_EGW_range);
                     optimal_pos(optimal_pos<min(modified_EGW_range)) = min(modified_EGW_range);
-%                     optimal_pos(optimal_pos>max(edgeRange)) = max(edgeRange);
-%                     optimal_pos(optimal_pos<min(edgeRange)) = min(edgeRange);
+                    %                     optimal_pos(optimal_pos>max(edgeRange)) = max(edgeRange);
+                    %                     optimal_pos(optimal_pos<min(edgeRange)) = min(edgeRange);
                     
                     
                     if max(d) > Best_Group_GQM
@@ -140,10 +142,10 @@ for combination = GroupCombinations'
         else
             BestFingersGroup = SelectedFingers;% The origin is inside
             Best_Group_GQM = GQM_from_W(W_CH_from_Contacts(contact_set));
-
+            
         end
     else
-        % There are less then 4 contacts; we need to find some more 
+        % There are less then 4 contacts; we need to find some more
         
     end
     % less then 4
@@ -170,7 +172,7 @@ if DEBUG
         p(c_i,:) = f.get_finger_center(finger_d);
         c = fill(p(c_i,1)+x,p(c_i,2)+y,'b','FaceAlpha',.2);
         %     s = scatter(p(1),p(2),100,'b', 'filled','MarkerFaceAlpha',0.2);
-%         f.draw_inf_line('k')
+        %         f.draw_inf_line('k')
     end
 end
 

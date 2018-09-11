@@ -83,6 +83,23 @@
   url      = {http://www.sciencedirect.com/science/article/pii/S1877705814031439},
 }
 
+@Article{Bicchi1995,
+  author   = {Antonio Bicchi},
+  title    = {On the Closure Properties of Robotic Grasping},
+  journal  = {The International Journal of Robotics Research},
+  year     = {1995},
+  volume   = {14},
+  number   = {4},
+  pages    = {319-334},
+  doi      = {10.1177/027836499501400402},
+  eprint   = {https://doi.org/10.1177/027836499501400402},
+  url      = { 
+        https://doi.org/10.1177/027836499501400402
+    
+},
+  abstract = { The form-closure and force-closure properties of robotic grasp ing are investigated. Loosely speaking, these properties are related to the capability of the robot to inhibit motions of the workpiece in spite of externally applied forces. In this article, form-closure is considered as a purely geometric property of a set of unilateral (contact) constraints, such as those applied on a workpiece by a mechanical fixture, while force-closure is related to the capability of the particular robotic device being considered to apply forces through contacts. The concepts of partial form- and force-closure properties are introduced and discussed, and an algorithm is proposed to obtain a synthetic geometric description of partial form-closure constraints. Al though the literature abounds with form-closure tests, proposed algorithms for testing force-closure are either approximate or computationally expensive. This article proves the equiva lence of force-closure analysis with the study of the equilibria of an ordinary differential equation, to which Lyapunov's di rect method is applied. This observation leads to an efficient algorithm for assessing the force-closure property of the grasp. },
+}
+
 @InProceedings{Bicchi2000,
   author = {Antonio Bicchi and Vijay Kumar},
   title  = {Robotic Grasping and Contact: A Review},
@@ -259,6 +276,18 @@
   citeulike-article-id = {12792239},
   citeulike-linkout-0  = {http://www.mathnet.ru/php/archive.phtml?wshow=paper\&\#38;jrnid=im\&\#38;paperid=4937\&\#38;option\_lang=eng},
   posted-at            = {2013-11-17 23:15:24},
+}
+
+@InProceedings{Elliott2016,
+  author    = {S. Elliott and M. Valente and M. Cakmak},
+  title     = {Making objects graspable in confined environments through push and pull manipulation with a tool},
+  booktitle = {2016 IEEE International Conference on Robotics and Automation (ICRA)},
+  year      = {2016},
+  month     = {May},
+  pages     = {4851-4858},
+  doi       = {10.1109/ICRA.2016.7487689},
+  abstract  = {Grasping objects in confined environments, such as shelves, fridges, or drawers, is challenging due to the difficulty of avoiding gripper and arm collisions with the surfaces surrounding the object. In this paper we explore the use of a tool to reconfigure objects in such environments so as to make them graspable. The proposed tool has a simple form that allows it to be used in confined environments and a high friction tool tip that enables not only pushing objects but also pulling them. Our approach involves learning predictive models of pre-defined object-directed tool actions from experience. For each action, we train a multi-modal regressor that maps the initial state of an object to changes in that state, such that future states of the object can be estimated. These allow the robot to choose a sequence of tool actions that yield graspable configurations. We demonstrate that our approach enables a PR2 robot to grasp five different objects from different, initially ungraspable, configurations on a shelf.},
+  keywords  = {collision avoidance;grippers;learning (artificial intelligence);manipulators;regression analysis;push-and-pull manipulation;object grasping;gripper-arm collision avoidance;object reconfiguration;predictive models;predefined object-directed tool actions;multimodal regressor;PR2 robot;Grippers;Grasping;Planning;Three-dimensional displays;Predictive models;Robot sensing systems},
 }
 
 @InProceedings{Ferrari1992,
@@ -478,6 +507,23 @@
   doi      = {10.1109/70.760353},
   abstract = {When a polygonal object is pushed with line contact along an edge, the push is called stable if the object remains fixed to the pusher. The object is small-time locally controllable by stable pushing if, by switching among pushing edges, it can be pushed to follow any path arbitrarily closely. Since the pushes are stable by the frictional mechanics, pushing plans can be executed without position feedback of the object. We derive a necessary and sufficient condition for a polygon to be small-time locally controllable by stable pushing: the pushing friction coefficient must be nonzero and the set of feasible pure forces (forces applied through a polygon edge and passing through the center of friction) must positively span the plane. We interpret this condition in terms of the polygon shape, the location of the center of friction, and the pushing friction coefficient, allowing us to characterize classes of polygons with this fundamental “manoeuvrability” property},
   keywords = {computational geometry;controllability;friction;manipulator dynamics;motion control;optimisation;controllability;frictional mechanics;manoeuvrability;minimum friction algorithm;necessary condition;polygon edge;robotic manipulation;stable pushing;sufficient condition;Controllability;Feedback;Force control;Friction;Grippers;Hardware;Motion control;Robots;Space exploration;Sufficient conditions},
+}
+
+@Article{Lynch1996,
+  author   = {Kevin M. Lynch and Matthew T. Mason},
+  title    = {Stable Pushing: Mechanics, Controllability, and Planning},
+  journal  = {The International Journal of Robotics Research},
+  year     = {1996},
+  volume   = {15},
+  number   = {6},
+  pages    = {533-556},
+  doi      = {10.1177/027836499601500602},
+  eprint   = {https://doi.org/10.1177/027836499601500602},
+  url      = { 
+        https://doi.org/10.1177/027836499601500602
+    
+},
+  abstract = { We would like to give robots the ability to position and orient parts in the plane by pushing, particularly when the parts are too large or heavy to be grasped and lifted. Unfortunately, the motion of a pushed object is generally unpredictable due to unknown support friction forces. With multiple pushing contact points, however, it is possible to find pushing directions that cause the object to remain fixed to the manipulator. These are called stable pushing directions. In this article we consider the problem of planning pushing paths using stable pushes. Pushing imposes a set of nonholonomic velocity constraints on the motion of the object, and we study the issues of local and global controllability during pushing with point contact or stable line contact. We describe a planner for finding stable pushing paths among obstacles, and the planner is demon strated on several manipulation tasks. },
 }
 
 @Article{Markenscoff1990,
@@ -753,6 +799,8 @@
   journal = {2007 IEEE/RSJ International Conference on Intelligent Robots and Systems},
   year    = {2007},
   pages   = {3283-3288},
+  url     = {https://iocnet.upc.edu/usuaris/raulsuarez/papers/iros07.pdf
+},
 }
 
 @Article{Roa2015,
@@ -882,6 +930,34 @@ feasibility of the approach.
   numpages   = {18},
   publisher  = {Pergamon Press, Inc.},
   url        = {http://dx.doi.org/10.1016/j.rcim.2013.09.004},
+}
+
+@Article{Trinkle1992,
+  author   = {J. C. Trinkle},
+  title    = {On the stability and instantaneous velocity of grasped frictionless objects},
+  journal  = {IEEE Transactions on Robotics and Automation},
+  year     = {1992},
+  volume   = {8},
+  number   = {5},
+  month    = {Oct},
+  pages    = {560-572},
+  issn     = {1042-296X},
+  doi      = {10.1109/70.163781},
+  abstract = {An efficient quantitative test for form closure valid for any number of contact points is formulated as a linear program, the optimal objective value of which provides a measure of how far a grasp is from losing form closure. When the grasp does not have form closure, manipulation planning requires a means for predicting the object's stability and instantaneous velocity, given the joint velocities of the hand. The classical approach to computing these quantities is to solve the systems of kinematic inequalities corresponding to all possible combinations of separating or sliding at the contacts. All combinations resulting in the interpenetration of bodies or the infeasibility of the equilibrium equations are rejected. The remaining combination is consistent with all the constraints and is used to compute the velocity of the manipulated object and the contact forces, which indicate whether or not the object is stable. A linear program whose solution yields the same information as the classical approach, usually without explicit testing of all possible combinations of contact interactions, is formulated.<<ETX>>},
+  keywords = {kinematics;linear programming;manipulators;stability;frictionless object grasping;manipulators;robots;form closure;linear program;manipulation planning;stability;instantaneous velocity;kinematic inequalities;sliding;contact forces;Stability;Testing;Space technology;Wheels;Terminology;Robotics and automation;Kinematics;Equations;Geometry;NASA},
+}
+
+@InProceedings{Trinkle1992a,
+  author    = {J. C. Trinkle},
+  title     = {A Quantitative Test For Form Closure Grasps},
+  booktitle = {Proceedings of the IEEE/RSJ International Conference on Intelligent Robots and Systems},
+  year      = {1992},
+  volume    = {3},
+  month     = {July},
+  pages     = {1670-1677},
+  doi       = {10.1109/IROS.1992.594246},
+  issn      = {1},
+  keywords  = {Testing;Wheels;Terminology;Computer science;Computational geometry;Robots;Helium;Equations;Upper bound},
 }
 
 @Article{Ullmann1976,

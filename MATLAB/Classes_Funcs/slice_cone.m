@@ -26,7 +26,7 @@ Qx = dx*cosd([0;120;240]);
 Qy = dx*sind([0;120;240]);
 %% DEBUG
 if DEBUG
-    figure(101); clf
+    figure(17); clf
     quiver3(0*cone3d(1,:),0*cone3d(1,:),0*cone3d(1,:), ...
         cone3d(1,:), cone3d(2,:), cone3d(3,:),'k-','AutoScale','off')
     hold on;
