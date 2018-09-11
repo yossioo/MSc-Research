@@ -166,7 +166,7 @@ n method are suggested.
 \begin_layout Abstract
 Keywords: 
 \emph on
-multi-fingered grasping, form closure, multi-object immobilization, 
+multi-fingered grasping, form closure, multi-object immobilization 
 \end_layout
 
 \begin_layout Standard
@@ -3387,7 +3387,7 @@ Final position
 
 \begin_layout Plain Layout
 Translation and counter-clockwise rotation by 
-\begin_inset Formula $180^{\circ} $
+\begin_inset Formula $180^{\circ}$
 \end_inset
 
  of 6 equilateral triangles.
@@ -3552,7 +3552,7 @@ Final position
 
 \begin_layout Plain Layout
 Translation and clockwise rotation by 
-\begin_inset Formula $90^{\circ} $
+\begin_inset Formula $90^{\circ}$
 \end_inset
 
  of 3 isosceles triangles and one concave object.
@@ -3655,26 +3655,14 @@ literal "false"
 Accompanying code with MATLAB simulations is presented at 
 \begin_inset CommandInset href
 LatexCommand href
-name "https://github.com/yossioo/MSc-Research"
-target "https://github.com/yossioo/MSc-Research"
+name "https://github.com/yossioo/SGMO"
+target "https://github.com/yossioo/SGMO"
 literal "true"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Video complementing the submissions available at 
-\begin_inset CommandInset href
-LatexCommand href
-name "https://YouTube"
-target "https://YouTube"
-literal "true"
-
-\end_inset
-
-
+.
+ 
 \end_layout
 
 \begin_layout Standard
