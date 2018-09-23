@@ -4,9 +4,11 @@
 */*.bak
 */*.sav
 */*.aux
+*/*.toc
 */*.bbl
 */*.blg
 */*.lof
+*/*.emergency
 */*.lot
 */*.nlo
 */*.out
@@ -14,11 +16,3 @@ LyX/images/*.pdf
 LyX/images/*.eps
 LyX/Resources/*
 ~\$*\.SLD*
-
-*.bak
-
-*.aux
-
-*.toc
-
-*.asv
