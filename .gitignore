@@ -16,3 +16,5 @@ LyX/images/*.pdf
 LyX/images/*.eps
 LyX/Resources/*
 ~\$*\.SLD*
+
+*.asv

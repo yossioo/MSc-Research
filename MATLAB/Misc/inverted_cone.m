@@ -14,9 +14,9 @@ C1 = p.find_contacts_for_positions(3/16);
 C2 = p.find_contacts_for_positions(5/16);
 C3 = p.find_contacts_for_positions(13/16);
 
-c1 = Vector(C1(1:2),C1(3:4),1);
-c2 = Vector(C2(1:2),C2(3:4),1);
-c3 = Vector(C3(1:2),C3(3:4),1);
+c1 = ContactVector(C1(1:2),C1(3:4),1);
+c2 = ContactVector(C2(1:2),C2(3:4),1);
+c3 = ContactVector(C3(1:2),C3(3:4),1);
 
 c1.plot_contact();
 c2.plot_contact();
@@ -58,7 +58,7 @@ tetramesh(iDT,'FaceAlpha',0.1,'FaceColor','b');
 view(-35,25)
 legend({'$w_a$','$w_b$','$w_c$',...
     'Convex Cone','Inverted C.Cone','Cone Axis'},'Location','northeast','Interpreter','latex')
-saveas(gcf,'../LyX/images/example_inv_cone_01.svg')
+saveas(gcf,'../../LyX/images/example_inv_cone_01.svg')
 
 %%
 figure(3); clf;
@@ -68,7 +68,7 @@ edge_names = {'West edge','North edge','East edge','South edge'};
 for i = 1:p.N_e
     subplot(cr,cr,i)
     tetramesh(iDT,'FaceAlpha',0.1,'FaceColor','b');
-    hold on; grid on; axis equal;
+    hold on; grid on; %axis equal;
 %     a = gca;
 %     a.Position = [0.1+(1-mod(i,2))*0.5, 0.6-0.475*(i>2), .35, .35];
     view(-35,15)
@@ -86,7 +86,7 @@ for i = 1:p.N_e
     quiver3(0*w(:,1),0*w(:,1),0*w(:,1),w(:,1),w(:,2),w(:,3),'AutoScale','off')
 
 end
-saveas(gcf,'../LyX/images/example_inv_cone_02.svg')
+saveas(gcf,'../../LyX/images/example_inv_cone_02.svg')
 
 %%
 figure(4); clf;
