@@ -54,6 +54,22 @@
   url       = {https://books.google.co.il/books?id=5WBh2K5Rmw4C},
 }
 
+@Article{Baraff1997,
+  author   = {Baraff, D. and Mattikalli, R. and Khosla, P.},
+  title    = {Minimal Fixturing of Frictionless Assemblies: Complexity and Algorithms},
+  journal  = {Algorithmica},
+  year     = {1997},
+  volume   = {19},
+  number   = {1},
+  month    = {Sep},
+  pages    = {4--39},
+  issn     = {1432-0541},
+  doi      = {10.1007/PL00014419},
+  url      = {https://doi.org/10.1007/PL00014419},
+  abstract = {In many assembly tasks it is necessary to ensure the stability of a subcollection of contacting objects. To achieve stability, it is often necessary to introduce fixture elements (also called ``fingers'' in some work) to help hold objects in place. In this paper the complexity of stabilizing multiple contacting bodies with the fewest number of fixture elements possible is considered. Standard fixture elements of the type explored in previous single-object grasping work are considered, along with a generalized variant of fixture elements. Both form-closure (complete immobility of the assembly), and first-order stability (stability of an assembly in the neighborhood of a specific external force and torque on each body) are considered. The major result is that for three of the four combinations of fixture element varieties and stability considered, achieving an optimal solution (that is, finding a smallest set of fixture elements yielding stability) is NP-hard. However, for many fixturing problems it seems likely that suboptimal, yet acceptably small solutions can be found in polynomial time, and some candidate algorithms are presented.},
+  day      = {01},
+}
+
 @Article{Bernheisel2004,
   author   = {J. D. Bernheisel and K. M. Lynch},
   title    = {Stable transport of assemblies: pushing stacked parts},
@@ -169,6 +185,30 @@
   publisher  = {ACM},
 }
 
+@InProceedings{Brost1991,
+  author    = {R. C. Brost},
+  title     = {Computing the possible rest configurations of two interacting polygons},
+  booktitle = {Proceedings. 1991 IEEE International Conference on Robotics and Automation},
+  year      = {1991},
+  month     = {April},
+  pages     = {686-693 vol.1},
+  doi       = {10.1109/ROBOT.1991.131663},
+  abstract  = {An algorithm that constructs the set of all possible equilibrium configurations for two interacting polygonal objects is described. Given two polygons, associated friction properties, and an applied force, the algorithm constructs the set of all configurations where the contact reaction force can balance the applied force, obeying friction constraints. The algorithm explicitly includes uncertainty in friction, applied force, and mass properties of the polygons. The algorithm has been implemented, and physical experiments have been performed to test the validity of the algorithm's predictions. The algorithm may be applied to a variety of physical systems to determine the possible rest states: examples include a part falling into a fixture and an object being pushed by a robot end-effector.<<ETX>>},
+  keywords  = {computational geometry;planning (artificial intelligence);planning;computational geometry;falling part;pushed object;rest configurations;interacting polygons;equilibrium configurations;friction properties;applied force;contact reaction force;friction constraints;uncertainty;physical systems;robot end-effector;Friction;Prediction algorithms;Robots;Laboratories;Uncertainty;Performance evaluation;Testing;Motion control;Control systems;Fixtures},
+}
+
+@InProceedings{Brost1994,
+  author    = {R. C. Brost and K. Y. Goldberg},
+  title     = {A complete algorithm for synthesizing modular fixtures for polygonal parts},
+  booktitle = {Proceedings of the 1994 IEEE International Conference on Robotics and Automation},
+  year      = {1994},
+  month     = {May},
+  pages     = {535-542 vol.1},
+  doi       = {10.1109/ROBOT.1994.351243},
+  abstract  = {Commercially-available modular fixturing systems typically include a square lattice of tapped and bushed holes with precise spacing and an assortment of precision locating and clamping elements that can be rigidly attached to the lattice using dowel pins or expanding mandrels. Currently, human expertise is required to synthesize a suitable arrangement of these elements to hold a given part. Besides being time consuming, if the set of alternatives is not systematically explored, the designer may fail to find an acceptable fixture or may settle upon a suboptimal fixture. The authors consider a class of modular fixtures that prevent a part from translating or rotating in the plane using four point contacts on the part's boundary. These fixtures are based on three round locators, each centered on a lattice point, and one translating clamp. The authors present an algorithm that accepts a polygonal part shape as input and synthesizes the set of all fixture designs that achieve form closure for the given part. The algorithm also allows the user to specify geometric access constraints on fixtures. If the part has n edges and its maximal diameter is d lattice units, the asymptotic running time of the algorithm is O(n/sup 5/d/sup 5/). The authors have implemented the algorithm and present example fixtures that it has synthesized. This implementation includes a metric to rank fixtures based on their ability to resist applied forces. The authors believe this is the first fixture synthesis algorithm that is complete in the sense that it is guaranteed to find an admissible fixture if one exists. Furthermore, the algorithm is guaranteed to find the optimal fixture, relative to any well-defined quality metric.<<ETX>>},
+  keywords  = {assembling;production engineering computing;modular fixturing systems;polygonal parts;suboptimal fixture;lattice point;fixture designs synthesis;geometric access constraints;asymptotic running time;quality metric;Fixtures;Lattices;Clamps;Interference constraints;Shape;Algorithm design and analysis;Kinematics;Laboratories;Pins;Humans},
+}
+
 @Article{Brost1996,
   author   = {R. C. Brost and K. Y. Goldberg},
   title    = {A complete algorithm for designing planar fixtures using modular components},
@@ -278,6 +318,19 @@
   posted-at            = {2013-11-17 23:15:24},
 }
 
+@InProceedings{Donald2000,
+  author    = {B. Donald and L. Gariepy and D. Rus},
+  title     = {Distributed manipulation of multiple objects using ropes},
+  booktitle = {Proceedings 2000 ICRA. Millennium Conference. IEEE International Conference on Robotics and Automation. Symposia Proceedings (Cat. No.00CH37065)},
+  year      = {2000},
+  volume    = {1},
+  month     = {April},
+  pages     = {450-457 vol.1},
+  doi       = {10.1109/ROBOT.2000.844096},
+  issn      = {1050-4729},
+  keywords  = {materials handling;mobile robots;multi-robot systems;cooperative systems;distributed manipulation;multiple object manipulation;rope tying;multiple robot cooperation;boxes;constrained prehensile manipulation mode;rotation;flossing manipulation gait;translations;ratcheting manipulation gait;Wrapping;Orbital robotics;Protocols;Distributed computing;Mobile robots;Computational geometry;Robot sensing systems;Computer science;Numerical analysis;Kinematics},
+}
+
 @InProceedings{Elliott2016,
   author    = {S. Elliott and M. Valente and M. Cakmak},
   title     = {Making objects graspable in confined environments through push and pull manipulation with a tool},
@@ -323,6 +376,20 @@
   author = {Karam Gouda and Mosab Hassaan},
   title  = {A Fast Algorithm for Subgraph Search Problem},
   year   = {2010},
+}
+
+@Article{Harada2002,
+  author   = {K. Harada and M. Kaneko},
+  title    = {A sufficient condition for manipulation of Envelope Family},
+  journal  = {IEEE Transactions on Robotics and Automation},
+  year     = {2002},
+  volume   = {18},
+  number   = {4},
+  month    = {Aug},
+  pages    = {597-607},
+  issn     = {1042-296X},
+  doi      = {10.1109/TRA.2002.802167},
+  keywords = {industrial manipulators;position control;torque control;force control;mobile robots;Envelope Family;sufficient condition;object manipulation;multiple contacts;position controlled chain;torque controlled chain;object motion;torque commands;fixed environment;simulations;enveloping grasp;robotic hand;legged robot;humanoid robot;three-faced polyhedral cone;total force/moment set;Sufficient conditions;Humanoid robots;Torque control;Legged locomotion;Grasping;Robustness;Gravity;International trade;Systems engineering and theory;Fingers},
 }
 
 @Article{Hartuv2000,
@@ -600,6 +667,21 @@
   isbn      = {0-262-13396-2},
 }
 
+@Article{Mattikalli1995,
+  author   = {R. Mattikalli and D. Baraff and P. Khosla and B. Repetto},
+  title    = {Gravitational stability of frictionless assemblies},
+  journal  = {IEEE Transactions on Robotics and Automation},
+  year     = {1995},
+  volume   = {11},
+  number   = {3},
+  month    = {June},
+  pages    = {374-388},
+  issn     = {1042-296X},
+  doi      = {10.1109/70.388779},
+  abstract = {The stability of an assemblage of contacting rigid bodies without friction is investigated. A method is presented for finding an orientation of the assembly so that the assembly remains motionless under gravity. If no stable orientation exists for an assembly, the method finds the "least" unstable orientation. The metric used to measure stability is based on the second time-rate of change of the gravitational potential energy, and the desired orientation for an assembly is expressed in terms of an optimization problem involving changes in potential energy. The problem of finding stable or maximally-stable orientations is formulated as a constrained maximin problem. The maximin problem is shown to be a variant of standard zero-sum matrix games, and can be solved using linear programming. The method is the first general method for automatically determining stable orientations. Example assemblies are presented.<<ETX>>},
+  keywords = {production control;assembling;game theory;minimax techniques;linear programming;stability;frictionless assemblies;gravitational stability;gravitational potential energy;optimization;constrained maximin problem;zero-sum matrix games;linear programming;Stability;Assembly;Gravity;Design engineering;Potential energy;Robotics and automation;Grippers;Friction;Energy measurement;Linear programming},
+}
+
 @Article{Mishra1987,
   author    = {B. Mishra and Schwartz, {J. T.} and M. Sharir},
   title     = {On the existence and synthesis of multifinger positive grips},
@@ -875,6 +957,21 @@
   keywords   = {caging, grasping, grasping function, squeezing, stretching},
   numpages   = {15},
   publisher  = {Sage Publications, Inc.},
+}
+
+@InBook{Romney1997,
+  author    = {Romney, Bruce},
+  title     = {Atlas: An Automatic Assembly Sequencing and Fixturing System},
+  booktitle = {Geometric Modeling: Theory and Practice: The State of the Art},
+  year      = {1997},
+  editor    = {Strasser, Wolfgang and Klein, Reinhard and Rau, Ren{\'e}},
+  publisher = {Springer Berlin Heidelberg},
+  isbn      = {978-3-642-60607-6},
+  pages     = {397--415},
+  doi       = {10.1007/978-3-642-60607-6_26},
+  url       = {https://doi.org/10.1007/978-3-642-60607-6_26},
+  abstract  = {We present a method to generate automatically both an assembly sequence and a fixture to hold all the intermediate subassemblies, given only a geometric description of the product. The main contribution here is that the sequence and fixture are generated concurrently rather than sequentially, unlike in previous assembly-planning work. Also, the representation of possible fixturing locations is more complete. This method has been implemented for the planar case, and we present experimental results below. We also discuss some of the key issues involved in the concurrent design of assembly sequences and fixtures. The long-term vision for this work is a CAD tool which can provide immediate feedback to a product designer about the ease of assembling the proposed product.},
+  address   = {Berlin, Heidelberg},
 }
 
 @Electronic{ros.org2009,

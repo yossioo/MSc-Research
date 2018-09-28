@@ -1823,6 +1823,74 @@ literal "true"
 \end_layout
 
 \begin_layout Standard
+Envelope grasping introduced by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Harada2002"
+literal "false"
+
+\end_inset
+
+ uses similar ideas fro constructing enveloping grasps, which induce multiple
+ contacts between polygonal and polyhedral objects and chained fingers –
+ not dissimilar to interaction of couple of polygonal objects
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Shapiro2010"
+literal "false"
+
+\end_inset
+
+ present an assessment of passive forces in grasping fingers developed reacting
+ to external perturbations acting on the 
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Sintov2013"
+literal "false"
+
+\end_inset
+
+ show a method for generation of common robotic grasps for set of objects.
+ The objects are grasp individually by the same end-effector.
+ This could be extended to simultaneous grasping in case of planar objects
+ stacked one above another or for cases where spatial objects have planar
+ (frictional) grasp.
+\end_layout
+
+\begin_layout Standard
+Stability of frictionless assemblies is studied by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Mattikalli1995"
+literal "false"
+
+\end_inset
+
+.
+ The paper deals with orientations of assemblies for immobilization under
+ gravity.
+ 
+\end_layout
+
+\begin_layout Standard
+Fixture of single part with 4 contacts in lattice points 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Brost1994"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Most methods for grasp construction are searching for force closure grasps,
  some of them for optimal grasps.
  Usually the complexity of the computations depends on the number of edges
@@ -1842,6 +1910,20 @@ literal "true"
 \end_layout
 
 \begin_layout Standard
+Polygons interaction is reviewed by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Brost1991"
+literal "false"
+
+\end_inset
+
+, who describes algorithm for construction of equilibrium configurations
+ for two polygonal objects.
+ 
+\end_layout
+
+\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -1858,7 +1940,147 @@ z{Put more info on CONFIGURATION SPACE approach to grasping}
 \end_layout
 
 \begin_layout Standard
-What about Stable pushing of stacked parts
+Multiple robot cooperation to move multiple objects was presented by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Donald2000"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A research with some common ideas is done by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Bernheisel2004"
+literal "true"
+
+\end_inset
+
+ who describe methods to determine stable pushing motions for planar stack
+ of polygonal parts as alternative to grasping and carrying the whole assembly.
+\end_layout
+
+\begin_layout Standard
+Minimal Fixturing of Frictionless Assemblies: Complexity and Algorithms
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Baraff1997"
+literal "false"
+
+\end_inset
+
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{WHAT?????? It's quite similar!!!}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Assembly fixturing 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Romney1997"
+literal "false"
+
+\end_inset
+
+ present methods for assembly sequence generation and fixture determination
+ which is more oriented on CAD assemblies planning and design and uses assembly-
+by-disassembly strategy.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{This is similar as well}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Main difference of the presented work relative to the similar papers shown
+ above is generation of optimal grasps while maximizing the grasp quality
+ measure and online algorithms for optimal configuration construction.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Elaborate here?}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Various methods for assembly manipulations by pushing developed in past
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Akella1998,Bernheisel2004,Lynch1992,Lynch1999"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+in past by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Akella1998,Bernheisel2004,Lynch1992,Lynch1999"
+literal "true"
+
+\end_inset
+
+.
+ The most suitable solution for this case seems to be the one proposed by
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Anders2018"
+literal "false"
+
+\end_inset
+
+, and in presence of suitable gripper the final step will overcome uncertainties
+ should they rise.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+For the purposes of simulations and experiments, objects are rearranged
+ manually into desired configuration.
 \end_layout
 
 \begin_layout Section
@@ -1941,7 +2163,7 @@ A generalized force, acting on the body is described as a
 \emph on
  wrench
 \emph default
-- force/moment pair, which consists from a linear component and an angular
+ – force/moment pair, which consists from a linear component and an angular
  component acting on a point.
 \begin_inset Formula 
 \begin{equation}
@@ -1955,7 +2177,7 @@ F=\begin{bmatrix}f\\
 Combination of wrench and twist define power: the dot product of twist and
  wrench yield instantaneous power.
  Reciprocal wrenches and twist are combinations that have instantaneous
- zero power:
+ zero power: 
 \begin_inset Formula $F\cdot V=0$
 \end_inset
 
@@ -2183,7 +2405,7 @@ reference "fig:Coordinate-frames"
 
 
 \emph default
- - object coordinate frame,
+ – object coordinate frame,
 \emph on
  
 \begin_inset Formula $C$
@@ -2191,7 +2413,7 @@ reference "fig:Coordinate-frames"
 
 
 \emph default
- - contact coordinate frame together with vector
+ – contact coordinate frame together with vector 
 \begin_inset Formula $r_{c}$
 \end_inset
 
@@ -2246,11 +2468,20 @@ Contact type would describe the interaction between the surface of the object
  is low; normal and tangent forces, in cases where friction is significant;
  normal and tangent forces along with normal torque (torsional friction).
  Typical examples for given contact types are: pressing a pen tip against
- a glass - normal force only; pressing a pencil tip against rubber - can
+ a glass – normal force only; pressing a pencil tip against rubber - can
  provide normal and tangent forces; pressing a hand against a paper sheet
  laid on a table: friction coefficient between a sheet and a table is considerab
 ly lower than this between the hand and the sheet, this way we could move
  the sheet aside and rotate it about axis normal to the table surface.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Contact-types"
+
+\end_inset
+
+ shows modeling of different contact types, with descriptions presented
+ below: 
 \end_layout
 
 \begin_layout Subparagraph*
@@ -2302,11 +2533,11 @@ literal "true"
 
 \end_inset
 
- written as
+ written as 
 \begin_inset Formula $f_{n}$
 \end_inset
 
- and
+ and 
 \begin_inset Formula $f_{t}$
 \end_inset
 
@@ -2339,14 +2570,11 @@ literal "true"
  In 2 dimensional space it takes a form of an isosceles triangle with a
  vertex between two equal edges located at the contact point, and the bisector
  lies along the normal direction.
- The half angle of the aforementioned vertex is defined by
+ The half angle of the aforementioned vertex is defined by 
 \begin_inset Formula $\alpha=\arctan\left(\mu\right).$
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Float figure
 wide false
 sideways false
@@ -2389,7 +2617,7 @@ Soft finger
 \end_layout
 
 \begin_layout Standard
-is the most
+is the most 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2399,7 +2627,7 @@ capable
 
  contact, able to apply both normal and tangent forces, and a torque about
  the contact normal as well.
- In
+ In 
 \begin_inset Formula $\rtwo$
 \end_inset
 
@@ -2407,14 +2635,38 @@ capable
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
 
 \begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/contact_modeling.svg
+	lyxscale 30
+	width 60col%
+
+\end_inset
 
 
-\backslash
-z{INSERT CONTACT TYPES SUMMARIZING FIGURE HERE}
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Contact types
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Contact-types"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2885,6 +3137,18 @@ noprefix "false"
 \end_inset
 
  can be presented.
+ Given the fact that vector describing inward direction of object boundary
+ is typically normalized, it is easily seen that inscribed sphere radius
+ will never by higher than 1.
+ Example of force closure with 2 point contacts with friction is shown on
+ right in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Form-Force-closure"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Paragraph*
@@ -2903,22 +3167,60 @@ geometrical
 \end_inset
 
  immobilization of an object, discarding friction forces etc.
+ Example of form closure configurations shown in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Form-Force-closure"
+
+\end_inset
+
+ with blue frictionless fingers; left variant is first order form closure
+ and middle one is second order form closure as introduced by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Rimon1995"
+literal "false"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-Form closure: Constrain the movement of the object
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
+\begin_inset Float figure
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/form-force-closure.svg
+	lyxscale 50
+	width 60col%
+
+\end_inset
 
 
-\backslash
-z{INSERT IMAGES ON FORM AND FORCE CLOSURE, EQUILIBRIUM GRASP, MANIPULABLE
- GRASP}
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Form-Force-closure"
+
+\end_inset
+
+Form closure and Force closure.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -2966,7 +3268,8 @@ reference "fig:Convex-hull"
 
 \end_inset
 
-
+.
+ 
 \end_layout
 
 \begin_layout Subsubsection*
@@ -3143,8 +3446,10 @@ name "fig:Grasp-planning-Nguyen"
 The methods uses geometric relations between object's edges and corresponding
  normal directions to construct polygons and determine edge regions suitable
  for finger placement.
- Method can be used both for frictional and frictionless contacts (2 fingers
- needed for frictional grasp).
+ Method can be used both for frictional and frictionless contacts (only
+ 2 fingers needed for frictional grasp).
+ The resemblence between couple of contacts and frictional contact allows
+ treatment of contact couples in a way similar to frictional contact.
 \end_layout
 
 \begin_layout Standard
@@ -9833,19 +10138,26 @@ If{$GQM^*_{1,2} > F_{1,2}.GQM$}
 
 				
 \backslash
+State{$p^*_{1,2} = 
+\backslash
+mathtt{locationsFromWrenches}
+\backslash
+left(w^*_{1,2}
+\backslash
+right) $}
+\end_layout
+
+\begin_layout Plain Layout
+
+				
+\backslash
 State{ $F_{1,2}
 \backslash
 twoheadleftarrow 
 \backslash
 left
 \backslash
-{ 
-\backslash
-mathtt{locationsFromWrenches}
-\backslash
-left(w^*_{1,2}
-\backslash
-right), 
+{p^*_{1,2} , 
 \backslash
 hat{n}_{e_a}, 
 \backslash
@@ -11669,14 +11981,6 @@ z{DEAL WITH THIS PART LATER}
 
 \end_layout
 
-\begin_layout Subsection
-Completeness
-\end_layout
-
-\begin_layout Standard
-———
-\end_layout
-
 \begin_layout Section
 Multi object grasp evaluation and securing 
 \begin_inset CommandInset label
@@ -12200,7 +12504,7 @@ EndIf
 \backslash
 State{Add fingers according to 
 \backslash
-ref{alg:add2cont}}
+autoref{alg:add2cont}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -12685,31 +12989,14 @@ Objects rearrangement
 \end_layout
 
 \begin_layout Standard
-Once desired configuration is found the rearrangement planning is needed.
- Many algorithms for single object manipulations were developed, but in
- this case several objects to be moved.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{Continue here}
-\end_layout
-
-\end_inset
-
-Algorithms for determination of optimal object configuration are designed
- in a way that will allow stacking the objects in the defined order.
- 
-\end_layout
-
-\begin_layout Standard
-Objects can be moved individually by executing any planning algorithm for
- single object.
- While 
+Though object manipulation and movement of assemblies is not in the scope
+ of the work, the solution takes into account the need for the desired arrangeme
+nt to be feasible, and hence the output of the stacking algorithm is arranged
+ in a way that will allow consecutive stacking of objects in the presented
+ order.
+ This eliminates the need of multi-object simultaneous manipulation.
+ That being said, solutions for moving object assemblies in plane were proposed
+ in past by 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Akella1998,Bernheisel2004,Lynch1992,Lynch1999"
@@ -12717,10 +13004,8 @@ literal "true"
 
 \end_inset
 
- present methods for moving objects in assemblies in plane, simultaneous
- manipulation of several objects is out of the scope of this research, and
- it is assumed that there is a way to rearrange the objects from given configura
-tion to the desired one.
+.
+ The most suitable solution for this case seems to be the one proposed by
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -12729,110 +13014,13 @@ literal "false"
 
 \end_inset
 
- present a way for object arrangement of several objects in joint workspace.
+, and in presence of suitable gripper the final step will overcome uncertainties
+ should they rise.
 \end_layout
 
 \begin_layout Standard
-For the purposes of simulations and experiments, objects are scattered in
- the workspace at distances that allow for each object to be re-positioned
- at desired location.
- Each manipulation is defined by base object and moved object.
- Objects are grasped and moved individually while maintaining finger positions
- that will not interfere with adjacent objects.
- Alternatively, if no such option exists, the object can be positioned at
- a pose adjacent to the constellation and then pushed from there.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{Should I mention this ?:}
-\end_layout
-
-\end_inset
-
- Objects are moved by stable pushing which allows translation and rotation
- of the object.
- Geometric center assumed to be the center of rotation.
-\end_layout
-
-\begin_layout Standard
-Base object is an object or a set of objects that serve as a base for a
- moved object to be placed in contact to.
- 
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{MUST MENTION: }
-\end_layout
-
-\end_inset
-
- 
-\begin_inset CommandInset citation
-LatexCommand citep
-key "Anders2018"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Limitations
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{This should be in discussion
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-What can I write here?}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Limitations of the finger placement? Finger sizes, proximity to the vertex
- – dealing with uncertainty.
- While rearranging:
-\end_layout
-
-\begin_layout Standard
-Limitation of the multi-object evaluation? Object placement?
-\end_layout
-
-\begin_layout Standard
-Quality measure contradictions: what's best for one polygon not necessary
- is best for polygon constellation.
+For the purposes of simulations and experiments, objects are rearranged
+ manually into desired configuration.
 \end_layout
 
 \begin_layout Chapter
@@ -13132,6 +13320,50 @@ Discussion
 
 \begin_layout Standard
 Written before Conclusions
+\end_layout
+
+\begin_layout Subparagraph
+Limitations
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{This should be in discussion
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+What can I write here?}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Limitations of the finger placement? Finger sizes, proximity to the vertex
+ – dealing with uncertainty.
+ While rearranging:
+\end_layout
+
+\begin_layout Standard
+Limitation of the multi-object evaluation? Object placement?
+\end_layout
+
+\begin_layout Standard
+Quality measure contradictions: what's best for one polygon not necessary
+ is best for polygon constellation.
 \end_layout
 
 \begin_layout Chapter
