@@ -1,5 +1,6 @@
 % Test STLWRITE
 clc;
+addpath('Classes_Funcs')
 % clear;
 
 
@@ -10,9 +11,13 @@ clc;
 % P{3} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_C", colors(3,:));
 % P{4} = Polygon_mkII([0 0; 30 30; 25 -5; -25 -10; -30 30],"Concave",  colors(4,:));
 % 
+
+stl_folder = "/home/yossi/model_editor_models/simple/";
+ff = mkdir(stl_folder);
+delete(stl_folder+"*.stl")
 for p_cell = PolyList(:)'
     p = p_cell{1};
-    createSTL(p.Shape,p.Name + ".stl",10,1e-3)
+    createSTL(p.Shape, stl_folder+ p.Name + ".stl",10,1e-3)
 end
 
 

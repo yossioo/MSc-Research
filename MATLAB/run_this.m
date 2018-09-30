@@ -8,7 +8,8 @@ warning off YOSSI:NoEdgeOppositeToCH
 addpath('Classes_Funcs')
 
 global DEBUG
-DEBUG = true;
+% DEBUG = true;
+DEBUG = false;
 finger_d = 10;
 %% Create objects
 % The script creates a cell array P, which contains the polygonal

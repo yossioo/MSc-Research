@@ -13036,7 +13036,7 @@ status open
 
 
 \backslash
-z{Duh!}
+z{Duh! ------}
 \end_layout
 
 \end_inset
@@ -13069,7 +13069,7 @@ MATLAB computing environment was used for the purpose of geometrical simulations
 status open
 
 \begin_layout Plain Layout
-The programs are available at 
+The code is available at 
 \begin_inset CommandInset href
 LatexCommand href
 name "https://github.com/yossioo/MSc-Research"

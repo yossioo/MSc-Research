@@ -216,7 +216,8 @@ while ~isempty(P)
             end
         end
         PolyList{end+1} = P{p_i};
-        PolyList{end}.Name = strcat(num2str(numel(PolyList))," - ",PolyList{end}.Name );
+%         PolyList{end}.Name = strcat(num2str(numel(PolyList))," - ",PolyList{end}.Name );
+%         PolyList{end}.Name = strcat(num2str(numel(PolyList))," - ",PolyList{end}.Name );
         P(p_i) = [];
         
     end

@@ -38,10 +38,10 @@ N_e = size(shape.Vertices,1);
 side_tri = zeros(N_e*2,3);
 for e = 1:N_e
     if e<N_e
-        temp_ind = [e e+1 e+N_e;  e+N_e e+1 e+1+N_e];
-        %     temp_ind = temp_ind -2*N_e*(temp_ind-2*N_e>0);
+    temp_ind = [e e+1 e+N_e;  e+N_e e+1 e+1+N_e];
+%     temp_ind = temp_ind -2*N_e*(temp_ind-2*N_e>0);
     else
-        temp_ind = [e 1 e+N_e;  e+N_e 1 e+1];
+    temp_ind = [e 1 e+N_e;  e+N_e 1 e+1];
     end
     side_tri([2*e-1 2*e],:) = temp_ind;
 end
@@ -50,18 +50,9 @@ fv.faces = [good_conn_list; side_tri;fliplr(good_conn_list)+N_e];
 % stlwrite(char(filename),fv,'mode','ascii')        % Save to binary .stl
 
 fileID = fopen(char(filename),'w');
-fprintf(fileID,'solid cube_corner\n');
-for facet = fv.faces'
-    fprintf(fileID,'    facet normal 0 0 0\n');
-    fprintf(fileID,'        outer loop\n');
-    fprintf(fileID,'            vertex %6.6f %6.6f %6.6f\n', fv.vertices(facet(1),:));
-    fprintf(fileID,'            vertex %6.6f %6.6f %6.6f\n', fv.vertices(facet(2),:));
-    fprintf(fileID,'            vertex %6.6f %6.6f %6.6f\n', fv.vertices(facet(3),:));
-    
-    fprintf(fileID,'        endloop\n');
-    fprintf(fileID,'    endfacet\n');
-end
-fprintf(fileID,'endsolid\n');
+fprintf(fileID,'%6s %12s\n','x','exp(x)');
+fprintf(fileID,'%6s %12s\n','x','exp(x)');
+fprintf(fileID,'%6.2f %12.8f\n',A);
 fclose(fileID);
 end
 
