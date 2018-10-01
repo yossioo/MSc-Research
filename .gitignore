@@ -18,3 +18,5 @@ LyX/Resources/*
 ~\$*\.SLD*
 
 *.asv
+
+*.m~

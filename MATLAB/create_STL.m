@@ -1,9 +1,10 @@
 % Test STLWRITE
 clc;
 addpath('Classes_Funcs')
-% clear;
-
-
+clearvars -except PolyList
+rosshutdown
+rosinit
+scale = 1;
 % R = 30;
 % colors = jet(4);
 % P{1} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_A", colors(1,:));
@@ -15,10 +16,19 @@ addpath('Classes_Funcs')
 stl_folder = "/home/yossi/model_editor_models/simple/";
 ff = mkdir(stl_folder);
 delete(stl_folder+"*.stl")
+h = 50;
 for p_cell = PolyList(:)'
+    
     p = p_cell{1};
-    createSTL(p.Shape, stl_folder+ p.Name + ".stl",10,1e-3)
+    full_filename =  stl_folder+ p.Name + ".stl";
+    createSTL(p.Shape, full_filename)
+
+    spawn_sdf_stl(p.Name + ".stl", 1, 1)
+%     spawn_urdf_stl(p.Name + ".stl", 1, 1)
 end
+
+
+
 
 
 % p = P{4};

@@ -2,7 +2,7 @@ function createSTL(shape,filename,h,scale_factor)
 %CREATESTL Summary of this function goes here
 %   Detailed explanation goes here
 if nargin < 4
-    scale_factor = 1;
+    scale_factor = 1e-3;
 end
 if nargin < 3
     h = 10;
@@ -51,7 +51,7 @@ fv.faces = [good_conn_list; side_tri;fliplr(good_conn_list)+N_e];
 
 fileID = fopen(char(filename),'w');
 fprintf(fileID,'solid cube_corner\n');
-for facet = fv.faces'
+for facet = fliplr(fv.faces)'   % check if flip needed (normal will be in other direction
     fprintf(fileID,'    facet normal 0 0 0\n');
     fprintf(fileID,'        outer loop\n');
     fprintf(fileID,'            vertex %6.6f %6.6f %6.6f\n', fv.vertices(facet(1),:));
