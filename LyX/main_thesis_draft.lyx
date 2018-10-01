@@ -447,6 +447,18 @@ Advisor: Prof.
 \end_inset
 
 
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
 \begin_inset Note Note
 status open
 
@@ -6041,7 +6053,16 @@ s
  In this case one of the distances is constant, and it is minimal at some
  part of the domain.
  Contact point selected to be furthest from the edge.
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
  Additional examples provided in Appendix.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -13044,17 +13065,126 @@ z{Duh! ------}
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{--------------------------------}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+What I intend to show in results section?
+\end_layout
+
+\begin_layout Standard
+1.
+ Matlab simulations: rearranging steps
+\end_layout
+
+\begin_layout Standard
+Interobject contact detection
+\end_layout
+
+\begin_layout Standard
+Finger calculation for individual finger
+\end_layout
+
+\begin_layout Standard
+Finger position correction
+\end_layout
+
+\begin_layout Standard
+(Evaluation of subsets)
+\end_layout
+
+\begin_layout Standard
+Designed grasp along with the immobilized set of objects
+\end_layout
+
+\begin_layout Standard
+2.
+ Real world experiments: 
+\end_layout
+
+\begin_layout Standard
+link to video on youtube
+\end_layout
+
+\begin_layout Standard
+images from the video as shown in the RAL paper
+\end_layout
+
+\begin_layout Standard
+3.
+ OPTIONAL: Gazebo simulations – check whether spawn is possible
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{--------------------------------}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Simulations
 \end_layout
 
 \begin_layout Standard
-Geometrical simulations were performed in MATLAB environment.
+Geometrical evaluations 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{SImulations}
+\end_layout
+
+\end_inset
+
+ are performed in MATLAB environment.
  The simulations included assessment of polygonal objects, rearrangement
  algorithm evaluations and finger placement algorithms execution.
  The obtained results are tested for consistency, and mathematically assessed
  for the completeness of the solution.
  Several methods are compared and comparison results are presented.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Evaluated polygons and designed grasp are exported to GAZEBO simulation
+ environment and test to be immobilizing.
+ The simulations are Open Dynamics Engine - physical engine which is a common
+ tool for rigid body dynamics simulations with collision detection.}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -13091,52 +13221,89 @@ Setup
 \end_layout
 
 \begin_layout Standard
-V-REP environment was used for physical simulation of the performance of
- the algorithms.
- The software incorporated several common physics engines which allow testing
- of different scenarios of computer simulations.
+The main program is constructed from several primitives which divide the
+ simulation into modular parts.
 \end_layout
 
-\begin_layout Standard
-Delta-robot model of && was used to perform as the main manipulator, custom
- end-effector was added to the model to perform grasping of desired object
- sets.
+\begin_layout Enumerate
+Objects creation
+\begin_inset Newline newline
+\end_inset
+
+The objects can be either created programmatically, or drawn by mouse clicking
+ on a canvas.
+ Generated objects can include certain level of noise in the vertices locations
+ to make the results more realistic.
+ Ultimately, any 
+\emph on
+polyshape
+\emph default
+ MATLAB object can be used as an object in the set.
 \end_layout
 
-\begin_layout Standard
-The end-effector consists of 10 individually actuated fingers, which can
- move in the
-\begin_inset Quotes eld
+\begin_layout Enumerate
+Objects rearrangement
+\begin_inset Newline newline
 \end_inset
 
-palm
-\begin_inset Quotes erd
+The main part of the algorithm is implemented in this script which includes
+ the root object search and stacking parts.
+\end_layout
+
+\begin_layout Enumerate
+Inter-object contacts search
+\begin_inset Newline newline
 \end_inset
 
- plane freely and have limited movement in Z direction.
- Depending on the found solution, the desired number of fingers can be extended
- to execute the grasp.
+This script evaluates the rearranged objects and finds inter-object contacts
+ according to definitions in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Relationship-between-polygons"
+
+\end_inset
+
+.
+ Contacts are found by assessment of intersections of every polygon with
+ surrounding polygons.
+\end_layout
+
+\begin_layout Enumerate
+Fingers search
+\begin_inset Newline newline
+\end_inset
+
+Each polygon along with relevant inter-object contacts are evaluated and
+ required amount of external fingers is found.
+ The script implements methods presented in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Algorithms-for-finger"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Grasp evaluation
+\begin_inset Newline newline
+\end_inset
+
+This part performs evaluation of the designed grasp, ensuring that for every
+ subset the external contacts form a form closure grasp and in this way
+ making certain that the whole constellation is immobilized.
+ If for any subset some fingers do not form a first order form closure immobiliz
+ing grasp, finger are moved if possible and otherwise additional fingers
+ are added.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
-location and orientation of the Objects are obtained programmatically, while
- in real life scenario can be done by different means (e.g.
- RGB or 3D cameras, tracking cameras, resistive or capacitive surfaces etc.)
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Control of the robot is done in closed loop by internal means of the V-REP
- software, while the control of the algorithm steps is done in the specialized
- GUI.
+while the control of the algorithm steps is done in the specialized GUI.
  The simulation is divided into several steps:
 \end_layout
 
@@ -13214,8 +13381,13 @@ moving to vertical plane and rotating
 \end_layout
 
 \end_deeper
-\begin_layout Standard
+\begin_layout Plain Layout
 Executions of the steps can be controlled from the UI.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -13223,6 +13395,342 @@ Results
 \end_layout
 
 \begin_layout Standard
+This section presents several examples of simple cases of polygonal sets.
+\end_layout
+
+\begin_layout Standard
+3 squares
+\end_layout
+
+\begin_layout Standard
+in this case 3 equal squares are grasped according to the steps defined
+ above:
+\end_layout
+
+\begin_layout Standard
+Objects rearrangement: since no objects have a concavity and no objects
+ couple form a concave angle, 2 objects are stacked together with a longest
+ sides while midpoint of one is the vertex of another.
+ When concavity is formed, 3-rd square is stacked inside the concavity.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Stacking-of-3"
+
+\end_inset
+
+ presents the stacking process steps.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Defining root concavity.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Stacking 3-rd square
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Stacking of 3 squares.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Stacking-of-3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+When the object are stacked, inter-object contact assessment is performed,
+ every object is assessed against the joint shape of all other objects.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Inter-object-contacts-search."
+
+\end_inset
+
+ shows the identified contacts for every square, along with square itself
+ and joint polygonal shape of other objects.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Square 1
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Square 3
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Inter-object contacts search.
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Inter-object-contacts-search."
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Once inter-object contacts are determined for each square, required fingers
+ are determined by assessment of the wrench space convex cones and generalized
+ edge wrenches.
+ In 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Finger-locations-search"
+
+\end_inset
+
+ are shown 
+\series bold
+inverted
+\series default
+ convex cone of the existing contacts, and the Edge Generalized Wrench for
+ tested edge (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Really? Maybe show this in different example?}
+\end_layout
+
+\end_inset
+
+) 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+–
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Finger locations search
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Finger-locations-search"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After the required fingers are determined, grasp can be evaluated by iterating
+ over possible subsets and testing whether they are immobilized by the external
+ contacts.
+ This is done by assessment of the form closure property of the external
+ contacts set.
+ Since every grasp is immobilized, no adjustments are needed and the grasp
+ can be executed.
+\end_layout
+
+\begin_layout Standard
+Next example presents a case of 3 hexagons which undergo similar process,
+ with only difference being the root concavity defined by 2 objects that
+ form concave angle.
+ 
+\end_layout
+
+\begin_layout Standard
+Following example of 6 equilateral triangles again uses the vertex-to-midpoint
+ edge alignment to form root concavity, and next objects are stacked in
+ newly formed concavities.
+\end_layout
+
+\begin_layout Standard
+A case of 3 triangles and one concave shape form a state-of-the-art grasp
+ of four objects with 4 fingers.
+ The grasp was specially designed once the behavior was noted on similar
+ sets of objects.
+ In this case angles of 3 objects perfectly fill the concavity and thus
+ reducing the computational cost and possible need for another finger.
+ The example was selected to be one of the physical experimental sets and
+ is presented in 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Experiments"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Shapes with noised in the vertex positions were assessed as well, and some
+ of the results are presented below ###
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
 A simple case of 3 equilateral triangles presented in the 
 \emph on
 SIMULATIONS.
@@ -13231,38 +13739,54 @@ SIMULATIONS.
  Due to 
 \end_layout
 
-\begin_layout Standard
-A case of 6 equilateral triangles
-\end_layout
-
-\begin_layout Standard
-A case of 3 squares
-\end_layout
-
-\begin_layout Standard
+\begin_layout Plain Layout
 A case of 4 squares
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 A case of 3 hexagons
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Cases of 3-4-5-...
  irregular triangles.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 A case of 3-4-5 octagons?
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
 Experiments
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Experiments"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Bring a 3D printed set of objects and designed gripper to the defense.
- Include the results in the Appendix, and in the presentation
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+z{Bring a 3D printed set of objects and designed gripper to the defense.
+ Include the results in the Appendix, and in the presentation}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -13283,6 +13807,21 @@ on by the algorithm a custom-made end-effector with stationary fingers was
 
 \begin_layout Subsection
 Experimental Setup
+\end_layout
+
+\begin_layout Standard
+Robotic arm by ROBOTIS company was selected due to availability and simplicity
+ of use.
+ The arm is serial 6 DOF manipulator, and for given research was configured
+ to work in a plane.
+ This was done by constraining 3 of the degrees of freedom to keep the end-effec
+tor perpendicular to the workspace plane and inside it.
+ Custom grippers were designed in CAD software and later manufactured by
+ 3D printing techonologies.
+\end_layout
+
+\begin_layout Standard
+The robotic arm that serverd as basic 
 \end_layout
 
 \begin_layout Standard
@@ -13391,7 +13930,8 @@ options "bibtotoc,apalike"
 \end_inset
 
 
-\end_layout
+\begin_inset Note Note
+status collapsed
 
 \begin_layout Chapter*
 \start_of_appendix
@@ -13402,7 +13942,7 @@ Appendix
 Algorithms
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 This section presents more elaborate representation of the algorithms presented
  in the paper.
 \end_layout
@@ -13411,7 +13951,7 @@ This section presents more elaborate representation of the algorithms presented
 Software
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Source code is available at 
 \begin_inset CommandInset href
 LatexCommand href
@@ -13424,23 +13964,23 @@ literal "false"
 .
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Additional videos are available at YouTube channel: &&&
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 The software used for the research is:
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 MATLAB r2018a
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 V-REP 3.5.0 Educational Version
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 ROS Kinetic on Ubuntu 16.04
 \end_layout
 
@@ -13448,7 +13988,7 @@ ROS Kinetic on Ubuntu 16.04
 Examples of calculated grasps
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 3 fingers - 1 found
 \end_layout
 
@@ -13464,7 +14004,7 @@ Examples of finger combinations found for sets
 Simulations
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 V-REP
 \end_layout
 
@@ -13472,11 +14012,11 @@ V-REP
 Experiments
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 Real robot
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Note Note
 status open
 
@@ -13500,340 +14040,6 @@ z{test}
 
 
 \end_layout
-
-\begin_layout Chapter
-Junk
-\end_layout
-
-\begin_layout Standard
-\begin_inset Preview
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-draw (0,0) to [R=1<
-\backslash
-kilo
-\backslash
-ohm>]
-\end_layout
-
-\begin_layout Plain Layout
-
-(3,0) to [ I , i=50<
-\backslash
-milli
-\backslash
-ampere>]
-\end_layout
-
-\begin_layout Plain Layout
-
-(6,0) to [R=516<
-\backslash
-ohm>]
-\end_layout
-
-\begin_layout Plain Layout
-
-(6,3) to [V,v=50<V>]
-\end_layout
-
-\begin_layout Plain Layout
-
-(3,3) to [diode ]
-\end_layout
-
-\begin_layout Plain Layout
-
-(0,3) to [ ospst=S]
-\end_layout
-
-\begin_layout Plain Layout
-
-(0,0);
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\align center
-\begin_inset Preview
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-smartdiagram[descriptive diagram]{
-\end_layout
-
-\begin_layout Plain Layout
-
-  {Style,{Define shapes, colors, shading,
-\end_layout
-
-\begin_layout Plain Layout
-
-          and line styles for nodes and arrows}},
-\end_layout
-
-\begin_layout Plain Layout
-
-  {Position, {Place nodes using a matrix,
-\end_layout
-
-\begin_layout Plain Layout
-
-              relative or absolute positioning}},
-\end_layout
-
-\begin_layout Plain Layout
-
-  {Relation, Insert edges or arrows
-\end_layout
-
-\begin_layout Plain Layout
-
-             between selected nodes},
-\end_layout
-
-\begin_layout Plain Layout
-
-  {Label, Add labels on edges or arrows}}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\begin_inset Preview
-
-\begin_layout Standard
-\align center
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{scope}[blend group = soft light]
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-fill[red!30!white]   ( 90:1.2) circle (2);
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-fill[green!30!white] (210:1.2) circle (2);
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-fill[blue!30!white]  (330:1.2) circle (2);
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{scope}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-node at ( 90:2)    {Typography};
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-node at ( 210:2)   {Writing};
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-node at ( 330:2)   {Coding};
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-node [font=
-\backslash
-Large] {
-\backslash
-LaTeX};
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption Standard
-
-\begin_layout Plain Layout
-222
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-———-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Preview
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{tikzpicture}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-begin{axis}
-\end_layout
-
-\begin_layout Plain Layout
-
-[grid=major,samples=100,mark=none]
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-addplot[red,very thick ,domain=-180:180]{x*sin(x)};
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{axis}
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{tikzpicture}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-X example
-\end_layout
-
-\begin_layout Standard
-\begin_inset Formula 
-\[
-\xymatrix{\text{Some text here}\ar[dr] & \cos\left(\theta\right) & e\\
-c\ar[ur]\ar[rr]_{Under}^{Over} &  & f
-}
-\]
 
 \end_inset
 

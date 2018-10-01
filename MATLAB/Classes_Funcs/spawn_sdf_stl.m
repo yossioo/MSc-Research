@@ -4,9 +4,12 @@ function spawn_sdf_stl(filename, color, scale)
 % file_stub = fopen('urdf_stub');
 sdf_stub = fileread('sdf_stub');
 
-sdf_xml = sprintf(sdf_stub,"part_"+filename,"link"+filename,...
+sdf_xml = string(sprintf(sdf_stub,"part_"+filename,"link"+filename,...
     filename,scale,scale,scale,...
-    filename,scale,scale,scale);
+    filename,scale,scale,scale));
+file_sdf = fopen('temp.sdf','w');
+fprintf(file_sdf,sdf_xml);
+fclose(file_sdf);
 a = rosservice('list');
 spawn_service = '/gazebo/spawn_sdf_model';
 delete_service = '/gazebo/delete_model';
@@ -25,7 +28,7 @@ if ismember(spawn_service, a(:,1))
     spawn_req = rosmessage(spawn_client);
     spawn_req.ReferenceFrame = 'world';
     spawn_req.ModelName = char(name(1));
-    spawn_req.ModelXml = sdf_xml;
+    spawn_req.ModelXml = char(sdf_xml);
     spawn_req.InitialPose.Position.Z = 1.01;
     resp = call(spawn_client,spawn_req,'Timeout',3)
 else

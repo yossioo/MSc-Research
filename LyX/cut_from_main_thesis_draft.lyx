@@ -172,7 +172,372 @@ theorems-ams-extended
 
 \begin_body
 
+\begin_layout Chapter
+
+\lang american
+Junk
+\end_layout
+
 \begin_layout Standard
+
+\lang american
+\begin_inset Preview
+
+\begin_layout Standard
+
+\lang american
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+draw (0,0) to [R=1<
+\backslash
+kilo
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,0) to [ I , i=50<
+\backslash
+milli
+\backslash
+ampere>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,0) to [R=516<
+\backslash
+ohm>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(6,3) to [V,v=50<V>]
+\end_layout
+
+\begin_layout Plain Layout
+
+(3,3) to [diode ]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,3) to [ ospst=S]
+\end_layout
+
+\begin_layout Plain Layout
+
+(0,0);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang american
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+
+\lang american
+\begin_inset Preview
+
+\begin_layout Standard
+
+\lang american
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+smartdiagram[descriptive diagram]{
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Style,{Define shapes, colors, shading,
+\end_layout
+
+\begin_layout Plain Layout
+
+          and line styles for nodes and arrows}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Position, {Place nodes using a matrix,
+\end_layout
+
+\begin_layout Plain Layout
+
+              relative or absolute positioning}},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Relation, Insert edges or arrows
+\end_layout
+
+\begin_layout Plain Layout
+
+             between selected nodes},
+\end_layout
+
+\begin_layout Plain Layout
+
+  {Label, Add labels on edges or arrows}}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Preview
+
+\begin_layout Standard
+\align center
+
+\lang american
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{scope}[blend group = soft light]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[red!30!white]   ( 90:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[green!30!white] (210:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+fill[blue!30!white]  (330:1.2) circle (2);
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{scope}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at ( 90:2)    {Typography};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at ( 210:2)   {Writing};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node at ( 330:2)   {Coding};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+node [font=
+\backslash
+Large] {
+\backslash
+LaTeX};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\lang american
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\lang american
+222
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang american
+———-
+\end_layout
+
+\begin_layout Standard
+
+\lang american
+\begin_inset Preview
+
+\begin_layout Standard
+
+\lang american
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{tikzpicture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+[grid=major,samples=100,mark=none]
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+addplot[red,very thick ,domain=-180:180]{x*sin(x)};
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{axis}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{tikzpicture}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\lang american
+X example
+\end_layout
+
+\begin_layout Standard
+
+\lang american
+\begin_inset Formula 
+\[
+\xymatrix{\text{Some text here}\ar[dr] & \cos\left(\theta\right) & e\\
+c\ar[ur]\ar[rr]_{Under}^{Over} &  & f
+}
+\]
+
+\end_inset
+
+
+\lang english
 ———–
 \end_layout
 
