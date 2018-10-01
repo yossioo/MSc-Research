@@ -24,7 +24,7 @@ for p_cell = PolyList(:)'
     createSTL(p.Shape, full_filename)
 
     spawn_sdf_stl(p.Name + ".stl", 1, 1)
-%     spawn_urdf_stl(p.Name + ".stl", 1, 1)
+    % spawn_urdf_stl(p.Name + ".stl", 1, 1)
 end
 
 
