@@ -147,8 +147,8 @@ for p_i = 1:numel(PolyList)
                     % DT = delaunayTriangulation([1e-3 1e-3 0; -1e-3 2.5e-3 1e-4 ; w]);
                     % tetramesh(DT,'FaceAlpha',0.1,'FaceColor','y');
                     % quiver3(0*w(:,1),0*w(:,1),0*w(:,1),w(:,1),w(:,2),w(:,3),'AutoScale','off')
-%                     drawnow
-%                     pause(0.2)
+                    %                     drawnow
+                    %                     pause(0.2)
                 end
                 
                 Fingers = [Fingers;table(p_i,...
@@ -183,9 +183,9 @@ for p_i = 1:numel(PolyList)
                     W(1,:), W(2,:), W(3,:),'k-','AutoScale','off')
                 hold on;axis equal; grid on;
                 quiver3(0*w(1,:),0*w(1,:),0*w(1,:),w(1,:),w(2,:),w(3,:),'b')
-%                 drawnow
-%                 pause(0.2)
-
+                %                 drawnow
+                %                 pause(0.2)
+                
             end
             proj_1 = dot(w(:,1),norm_WCH);
             proj_2 = dot(w(:,2),norm_WCH);
@@ -261,11 +261,14 @@ for p_i = 1:numel(PolyList)
                     pos2 = pos_range(j);
                     contact_group_new_index = max([1 1+max(Fingers.ContactGroup(Fingers.PolygonNum==p_i))]);
                     f1 = ContactVector(p.point_from_edgePosition(var_i(1),pos1), n1,finger_d/2, p_i);
+                    f1.default_color = [0 0 1];
                     f2 = ContactVector(p.point_from_edgePosition(var_i(2),pos2), n2,finger_d/2, p_i);
+                    f2.default_color = [0 0 1];
                     Fingers = [Fingers;table(p_i,contact_group_new_index,...
                         var_i(1), [0 0], pos1, max_d, f1, 'VariableNames', TableVarNames)];
                     Fingers = [Fingers;table(p_i,contact_group_new_index,...
-                        var_i(2), [0 0], pos2, max_d, f2, 'VariableNames', TableVarNames)];
+                        var_i(2), [0 0], pos2, max_d, f2, 'VariableNames', TableVarNames)]; 
+ 
                 end
                 
                 
@@ -324,8 +327,8 @@ for p_i = 1:numel(PolyList)
                         xlabel('f_x','FontSize',20)
                         ylabel('f_y','FontSize',20)
                     end
-                    
                 end
+                
             end
         end
         

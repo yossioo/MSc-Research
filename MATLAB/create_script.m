@@ -2,25 +2,25 @@ warning('off', 'MATLAB:polyshape:repairedBySimplify')
 
 Noise = 0;
 %% N Random M-shapes
-% % 
-% N = 6 ; % number of objects
-% M = 3; % - number of vertices in polygons
-% t = 0: 2*pi/M :(2*pi-eps*1e5);
-% vert = [cos(t(:)), sin(t(:))];
-% colors = jet(N);
-% R = normrnd(20, Noise, numel(t),N);
-% for i=1:N
-%     name = "p" + char(65+floor(i/26)) +char(64+mod(i,26));
-%     P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:)); %#ok<*SAGROW>
-% end
+% 
+N = 3 ; % number of objects
+M = 6; % - number of vertices in polygons
+t = 0: 2*pi/M :(2*pi-eps*1e5);
+vert = [cos(t(:)), sin(t(:))];
+colors = jet(N);
+R = normrnd(20, Noise, numel(t),N);
+for i=1:N
+    name = "p" + char(65+floor(i/26)) +char(64+mod(i,26));
+    P{i} = Polygon_mkII(R(:,i).*vert,name, colors(i,:)); %#ok<*SAGROW>
+end
 
 %% 4 shapes 3 triang and 1 convex - used in paper
-R = 30;
-colors = jet(4);
-P{1} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_A", colors(1,:));
-P{2} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_B", colors(2,:));
-P{3} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_C", colors(3,:));
-P{4} = Polygon_mkII([0 0; 30 30; 25 -5; -25 -10; -30 30],"Concave",  colors(4,:));
+% R = 30;
+% colors = jet(4);
+% P{1} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_A", colors(1,:));
+% P{2} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_B", colors(2,:));
+% P{3} = Polygon_mkII([0 0; R*[cosd(30) sind(30)]; R*1 0],"Tri_C", colors(3,:));
+% P{4} = Polygon_mkII([0 0; 30 30; 25 -5; -25 -10; -30 30],"Concave",  colors(4,:));
 
 %% Random objects A with concave angles
 % P{1} = Polygon_mkII([0 0; 1 0 ;  .8 .1; .1 .8;0 1],"ConcaveA");

@@ -61,16 +61,16 @@ classdef ContactVector
         
         function plot_contact(obj, color)
             if nargin == 1
-                color = [1 0 0];
+                color = obj.default_color;
             end
             pA = obj.point_on_the_line-obj.direction_vector*obj.length;
             q = quiver(pA(1),pA(2),...
                 obj.direction_vector(1)*obj.length, ...
                 obj.direction_vector(2)*obj.length,...
                 0);
-            q.MaxHeadSize = .5;
+            q.MaxHeadSize = 3;
             q.Color = color;
-            q.LineWidth = 1;
+            q.LineWidth = 4;
         end
         
         function p = get_finger_center(obj, finger_diameter)

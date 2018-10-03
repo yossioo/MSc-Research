@@ -51,7 +51,7 @@ fv.faces = [good_conn_list; side_tri;fliplr(good_conn_list)+N_e];
 
 fileID = fopen(char(filename),'w');
 fprintf(fileID,'solid cube_corner\n');
-for facet = fliplr(fv.faces)'   % check if flip needed (normal will be in other direction
+for facet = fv.faces'   % check if flip needed (normal will be in other direction
     fprintf(fileID,'    facet normal 0 0 0\n');
     fprintf(fileID,'        outer loop\n');
     fprintf(fileID,'            vertex %6.6f %6.6f %6.6f\n', fv.vertices(facet(1),:));

@@ -6,7 +6,7 @@ sdf_stub = fileread('sdf_stub');
 
 sdf_xml = string(sprintf(sdf_stub,"part_"+filename,"link"+filename,...
     filename,scale,scale,scale,...
-    filename,scale,scale,scale);
+    filename,scale,scale,scale));
 file_sdf = fopen('temp.sdf','w');
 fprintf(file_sdf,sdf_xml);
 fclose(file_sdf);
