@@ -1586,16 +1586,16 @@ Deriving an optimal way to arrange the objects in order to minimize the
 \end_layout
 
 \begin_layout Section
-Research contribution and innovation [.5-1 page]
+Research contribution and innovation
 \end_layout
 
 \begin_layout Standard
 The research yielded solid and reproducible results of multiple object immobiliz
 ation that can be integrated in various robotics systems.
-\end_layout
-
-\begin_layout Standard
-The methods described are novel solutions for the problems yet to arise.
+ The work introduces methods similar to some presented in past, but with
+ optimizations and incorporation of various ideas previously found in miscellane
+ous sources.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -1613,7 +1613,40 @@ on in cases where variety of items exist and decisions as to selection of
 \end_layout
 
 \begin_layout Standard
-Should mention ICRA here, and the book that could be published.
+Among the products of the research are:
+\end_layout
+
+\begin_layout Itemize
+\begin_inset Quotes eld
+\end_inset
+
+A Contact Exploitative Approach to the Amazon Robotics Challenge
+\begin_inset Quotes erd
+\end_inset
+
+ published and presented in Warehouse Picking Automation Workshop at Internation
+al Conference of Robotics and Automation 2017, Singapore 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "GMUBGU_ICRA2017"
+literal "false"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Itemize
+Integration of some methods in in the Amazon Robotics Challenge 2017 by
+ joint team of George Mason University of Virginia, US and Ben Gurion University
+ of Negev, Israel.
+ 
+\end_layout
+
+\begin_layout Itemize
+The essence of the work is submitted to the IEEE Robotics and Automation
+ Letters and ICRA 2019.
 \end_layout
 
 \begin_layout Section
@@ -1665,7 +1698,7 @@ literal "true"
 
  introduces an essential ideas of screw theory which allows use of wrench
  and wrench space concepts, tools that take major part in the contemporary
- robotics.
+ robotics studies.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -1679,7 +1712,7 @@ literal "true"
  With general tools for mechanisms and manipulators in particular, interaction
  of such manipulators with the environment can be formulated using Coulomb's
  friction, categorizing contacts for frictional, frictionless, hard or soft
- contacts 
+ contacts as show 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Murray1994"
@@ -1688,21 +1721,19 @@ literal "true"
 \end_inset
 
 .
- 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Rimon1995"
-literal "true"
-
-\end_inset
-
- proposed bounds on number of frictionless fingers for 2D polygonal object
- immobilization.
 \end_layout
 
 \begin_layout Standard
 Given broad mathematical basics, grasping becomes of particular interest
- with 
+ with introduction of contact modeling 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Xydas1999"
+literal "true"
+
+\end_inset
+
+ and grasp basics by 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Mishra1987"
@@ -1738,7 +1769,7 @@ literal "true"
 \end_inset
 
 .
- 
+ With theory being introduced, 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Nguyen1986"
@@ -1747,8 +1778,8 @@ literal "true"
 \end_inset
 
  proposes a viable methods for constructing force closure grasps.
- More methods on grasp construction include synthesizing grasps evolved
- from predefined configurations 
+ More methods on grasp construction include grasp synthesis evolved from
+ predefined configurations 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Pollard1996"
@@ -1767,21 +1798,20 @@ literal "true"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-Contact modeling 
+ 
 \begin_inset CommandInset citation
 LatexCommand citet
-key "Xydas1999"
+key "Rimon1995"
 literal "true"
 
 \end_inset
 
- 
+ introduced bounds on number of frictionless fingers for 2D polygonal object
+ immobilization.
 \end_layout
 
 \begin_layout Standard
+Grasping and immobilizing can be seen as analogous terms, and 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Rimon1998"
@@ -1791,10 +1821,7 @@ literal "true"
 
  propose a novel idea of mobility index based on second order curvature
  of bodies in contact, intended for multi-finger grasping.
-\end_layout
-
-\begin_layout Standard
-Grasp evaluation takes a long way with 
+ Grasp evaluation takes a long way with 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Mishra1989"
@@ -1827,10 +1854,7 @@ literal "true"
 \end_inset
 
  extend the measures for complaint grasps.
-\end_layout
-
-\begin_layout Standard
-Grasp generation can be addressed with different approach, with randomized
+ Grasp generation can be addressed with different approach, with randomized
  grasp generation 
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -1844,8 +1868,66 @@ literal "true"
 \end_layout
 
 \begin_layout Standard
-Integrating methods in real life applications usually require use of vision
- systems as shows 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Shapiro2010"
+literal "false"
+
+\end_inset
+
+ present an assessment of passive forces in grasping fingers developed reacting
+ to external perturbations acting on the immobilization of spatial objects.
+ 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Sintov2013"
+literal "false"
+
+\end_inset
+
+ show a method for generation of common robotic grasps for set of objects.
+ The objects are grasped individually by the same end-effector.
+ This could be extended to simultaneous grasping in case of planar objects
+ stacked one above another or for cases where spatial objects have planar
+ (frictional) grasp.
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+Planar fixture of single part with 4 contacts in lattice points 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Brost1994"
+literal "false"
+
+\end_inset
+
+ defines simple ways to immobilize single object, method that is similar
+ to this work.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Envelope grasping introduced by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Harada2002"
+literal "false"
+
+\end_inset
+
+ uses similar ideas fro constructing enveloping grasps, which induce multiple
+ contacts between polygonal and polyhedral objects and chained fingers –
+ not dissimilar to interaction of multiple polygonal objects
+\end_layout
+
+\begin_layout Standard
+Integrating developed methods in real life applications normally require
+ use of vision systems as shows 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Corke2011"
@@ -1874,99 +1956,13 @@ literal "true"
 
 \end_inset
 
- providing an overview and composition of concepts and techniques in grasp
- synthesis, evaluation and optimization.
+ providing an overview and of concepts and techniques in grasp synthesis,
+ evaluation and optimization.
 \end_layout
 
 \begin_layout Standard
-Envelope grasping introduced by 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Harada2002"
-literal "false"
-
-\end_inset
-
- uses similar ideas fro constructing enveloping grasps, which induce multiple
- contacts between polygonal and polyhedral objects and chained fingers –
- not dissimilar to interaction of couple of polygonal objects
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Shapiro2010"
-literal "false"
-
-\end_inset
-
- present an assessment of passive forces in grasping fingers developed reacting
- to external perturbations acting on the 
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Sintov2013"
-literal "false"
-
-\end_inset
-
- show a method for generation of common robotic grasps for set of objects.
- The objects are grasp individually by the same end-effector.
- This could be extended to simultaneous grasping in case of planar objects
- stacked one above another or for cases where spatial objects have planar
- (frictional) grasp.
-\end_layout
-
-\begin_layout Standard
-Stability of frictionless assemblies is studied by 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Mattikalli1995"
-literal "false"
-
-\end_inset
-
-.
- The paper deals with orientations of assemblies for immobilization under
- gravity.
- 
-\end_layout
-
-\begin_layout Standard
-Fixture of single part with 4 contacts in lattice points 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Brost1994"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Most methods for grasp construction are searching for force closure grasps,
- some of them for optimal grasps.
- Usually the complexity of the computations depends on the number of edges
- / faces of the object to be grasped.
-\end_layout
-
-\begin_layout Standard
-Multiple objects grasping 
-\begin_inset CommandInset citation
-LatexCommand citet
-key "Pajarinen2017,Zeng2017"
-literal "true"
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Polygons interaction is reviewed by 
+Polygon interactions presented in this work resemble the ideas introduced
+ by 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Brost1991"
@@ -1980,23 +1976,26 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{Put more info on CONFIGURATION SPACE approach to grasping}
-\end_layout
+Several ideas similar to the one presented in this work were introduced
+ by: 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Mattikalli1995"
+literal "false"
 
 \end_inset
 
+, who deal with stability of frictional assemblies, and defined immobilization
+ under gravity; manipulations of multiple objects by 
+\begin_inset CommandInset citation
+LatexCommand citet
+key "Pajarinen2017,Zeng2017"
+literal "true"
 
-\end_layout
+\end_inset
 
-\begin_layout Standard
-Multiple robot cooperation to move multiple objects was presented by 
+ present solutions by POMDP method; multiple robot cooperation to move multiple
+ objects was presented by 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Donald2000"
@@ -2004,11 +2003,9 @@ literal "false"
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-A research with some common ideas is done by 
+ though instead of fingers ropes were used; stable pushing of polygonal
+ parts stacks as alternative to grasping and carrying the whole assembly
+ was presented by 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Bernheisel2004"
@@ -2016,12 +2013,7 @@ literal "true"
 
 \end_inset
 
- who describe methods to determine stable pushing motions for planar stack
- of polygonal parts as alternative to grasping and carrying the whole assembly.
-\end_layout
-
-\begin_layout Standard
-Minimal Fixturing of Frictionless Assemblies: Complexity and Algorithms
+.
  
 \begin_inset CommandInset citation
 LatexCommand citet
@@ -2030,20 +2022,9 @@ literal "false"
 
 \end_inset
 
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{WHAT?????? It's quite similar!!!}
-\end_layout
-
-\end_inset
-
-
+ present fixturing of frictionless assemblies, while not dealing with optimizati
+on of grasps and rearranging the object constellations and mostly relying
+ on directional stability analysis and clamping.
 \end_layout
 
 \begin_layout Standard
@@ -2058,20 +2039,17 @@ literal "false"
  present methods for assembly sequence generation and fixture determination
  which is more oriented on CAD assemblies planning and design and uses assembly-
 by-disassembly strategy.
- 
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{This is similar as well}
+ The ideas are in a way similar to the presented in this work, while it
+ does not fully address grasp quality measures or some kind of optimizations
+ and more focused on part insertions and assessment of assemblability of
+ products.
 \end_layout
 
-\end_inset
-
-
+\begin_layout Standard
+Most methods for grasp construction are searching for force closure grasps,
+ some of them for optimal grasps.
+ Usually the complexity of the computations depends on the number of edges
+ / faces of the object to be grasped.
 \end_layout
 
 \begin_layout Standard
@@ -2079,24 +2057,10 @@ Main difference of the presented work relative to the similar papers shown
  above is generation of optimal grasps while maximizing the grasp quality
  measure and online algorithms for optimal configuration construction.
  
-\begin_inset ERT
+\begin_inset Note Note
 status open
 
 \begin_layout Plain Layout
-
-
-\backslash
-z{Elaborate here?}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Various methods for assembly manipulations by pushing developed in past
- 
 \begin_inset CommandInset citation
 LatexCommand citet
 key "Akella1998,Bernheisel2004,Lynch1992,Lynch1999"
@@ -2107,7 +2071,7 @@ literal "true"
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \emph on
 in past by 
@@ -2132,11 +2096,16 @@ literal "false"
  should they rise.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 
 \emph on
 For the purposes of simulations and experiments, objects are rearranged
  manually into desired configuration.
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section

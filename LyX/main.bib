@@ -12,9 +12,9 @@
   pages    = {70-88},
   doi      = {10.1177/027836499801700107},
   eprint   = {https://doi.org/10.1177/027836499801700107},
-  url      = { 
+  url      = {
         https://doi.org/10.1177/027836499801700107
-    
+
 },
   abstract = { This paper studies the use of pushing actions to orient and trans late objects in the plane. The authors use linear normal pushes, which are straight-line pushes in a direction normal to the pushing fence. These pushes are specified by the fence orientation and push distance. The authors show that a set of linear normal pushes can always be found to move any polygonal object from any initial con figuration to any goal configuration in the obstacle-free plane. The object configuration is specified by its pose; that is, its position and orientation. The authors formulate the search for such a sequence of pushes as a linear programming problem. They then describe an implemented pose planner that uses this formulation to identify a sequence of linear normal pushes given any polygonal object, any initial pose, and any goal pose. This planner is proven to be com plete and to have polynomial time complexity. The planner, which uses an analysis of the mechanics of pushing an object, generates open-loop plans that do not require sensing. The authors describe experiments that demonstrate the validity of the generated plans. },
 }
@@ -109,9 +109,9 @@
   pages    = {319-334},
   doi      = {10.1177/027836499501400402},
   eprint   = {https://doi.org/10.1177/027836499501400402},
-  url      = { 
+  url      = {
         https://doi.org/10.1177/027836499501400402
-    
+
 },
   abstract = { The form-closure and force-closure properties of robotic grasp ing are investigated. Loosely speaking, these properties are related to the capability of the robot to inhibit motions of the workpiece in spite of externally applied forces. In this article, form-closure is considered as a purely geometric property of a set of unilateral (contact) constraints, such as those applied on a workpiece by a mechanical fixture, while force-closure is related to the capability of the particular robotic device being considered to apply forces through contacts. The concepts of partial form- and force-closure properties are introduced and discussed, and an algorithm is proposed to obtain a synthetic geometric description of partial form-closure constraints. Al though the literature abounds with form-closure tests, proposed algorithms for testing force-closure are either approximate or computationally expensive. This article proves the equiva lence of force-closure analysis with the study of the equilibria of an ordinary differential equation, to which Lyapunov's di rect method is applied. This observation leads to an efficient algorithm for assessing the force-closure property of the grasp. },
 }
@@ -278,7 +278,7 @@
 }
 
 @Book{Corke2011,
-  title     = {Robotics, Vision and Control - Fundamental Algorithms in MATLAB®},
+  title     = {Robotics, Vision and Control - Fundamental Algorithms in MATLABï¿½},
   publisher = {Springer},
   year      = {2011},
   author    = {Corke, Peter},
@@ -407,7 +407,7 @@
 }
 
 @Article{Icking2001,
-  author   = {Christian Icking and Rolf Klein and Lihong Ma and Stefan Nickel and Ansgar Weißler},
+  author   = {Christian Icking and Rolf Klein and Lihong Ma and Stefan Nickel and Ansgar Weiï¿½ler},
   title    = {On bisectors for different distance functions},
   journal  = {Discrete Applied Mathematics},
   year     = {2001},
@@ -526,9 +526,9 @@
   abstract = { This paper presents an efficient algorithm for computing all n-finger form-closure grasps on a polygonal object based on a new sufficient and necessary condition for form-closure. With this new condition, it is possible to transfer the problem of computing the form-closure grasp in R3 to one in R1. We demonstrate that the non-form-closure grasps consist of two convex polytopes in the space of n parameters representing grasp points on sides of the polygon. The proposed algorithm works efficiently for n ? 3 and takes O(n3n/2) time for n > 3, where n denotes the number of the fingers. The algorithm has been implemented and its efficiency has been confirmed with two examples. },
   doi      = {10.1177/02783640022066798},
   eprint   = {https://doi.org/10.1177/02783640022066798},
-  url      = { 
+  url      = {
         https://doi.org/10.1177/02783640022066798
-    
+
 },
 }
 
@@ -606,7 +606,7 @@
   pages    = {318-327},
   issn     = {1042-296X},
   doi      = {10.1109/70.760353},
-  abstract = {When a polygonal object is pushed with line contact along an edge, the push is called stable if the object remains fixed to the pusher. The object is small-time locally controllable by stable pushing if, by switching among pushing edges, it can be pushed to follow any path arbitrarily closely. Since the pushes are stable by the frictional mechanics, pushing plans can be executed without position feedback of the object. We derive a necessary and sufficient condition for a polygon to be small-time locally controllable by stable pushing: the pushing friction coefficient must be nonzero and the set of feasible pure forces (forces applied through a polygon edge and passing through the center of friction) must positively span the plane. We interpret this condition in terms of the polygon shape, the location of the center of friction, and the pushing friction coefficient, allowing us to characterize classes of polygons with this fundamental “manoeuvrability” property},
+  abstract = {When a polygonal object is pushed with line contact along an edge, the push is called stable if the object remains fixed to the pusher. The object is small-time locally controllable by stable pushing if, by switching among pushing edges, it can be pushed to follow any path arbitrarily closely. Since the pushes are stable by the frictional mechanics, pushing plans can be executed without position feedback of the object. We derive a necessary and sufficient condition for a polygon to be small-time locally controllable by stable pushing: the pushing friction coefficient must be nonzero and the set of feasible pure forces (forces applied through a polygon edge and passing through the center of friction) must positively span the plane. We interpret this condition in terms of the polygon shape, the location of the center of friction, and the pushing friction coefficient, allowing us to characterize classes of polygons with this fundamental ï¿½manoeuvrabilityï¿½ property},
   keywords = {computational geometry;controllability;friction;manipulator dynamics;motion control;optimisation;controllability;frictional mechanics;manoeuvrability;minimum friction algorithm;necessary condition;polygon edge;robotic manipulation;stable pushing;sufficient condition;Controllability;Feedback;Force control;Friction;Grippers;Hardware;Motion control;Robots;Space exploration;Sufficient conditions},
 }
 
@@ -620,9 +620,9 @@
   pages    = {533-556},
   doi      = {10.1177/027836499601500602},
   eprint   = {https://doi.org/10.1177/027836499601500602},
-  url      = { 
+  url      = {
         https://doi.org/10.1177/027836499601500602
-    
+
 },
   abstract = { We would like to give robots the ability to position and orient parts in the plane by pushing, particularly when the parts are too large or heavy to be grasped and lifted. Unfortunately, the motion of a pushed object is generally unpredictable due to unknown support friction forces. With multiple pushing contact points, however, it is possible to find pushing directions that cause the object to remain fixed to the manipulator. These are called stable pushing directions. In this article we consider the problem of planning pushing paths using stable pushes. Pushing imposes a set of nonholonomic velocity constraints on the motion of the object, and we study the issues of local and global controllability during pushing with point contact or stable line contact. We describe a planner for finding stable pushing paths among obstacles, and the planner is demon strated on several manipulation tasks. },
 }
@@ -724,9 +724,9 @@
   pages    = {17-32},
   doi      = {10.1177/027836498800700302},
   eprint   = {https://doi.org/10.1177/027836498800700302},
-  url      = { 
+  url      = {
         https://doi.org/10.1177/027836498800700302
-    
+
 },
   abstract = { The kinematics of contact describe the motion of a point of contact over the surfaces of two contacting objects in response to a relative motion of these objects. Using concepts from differential geometry, I derive a set of equations, called the contact equations, that embody this relationship. I employ the contact equations to design the following applications to be executed by an end-effector with tactile sensing capability: ( 1) determining the curvature form of an unknown object at a point of contact; and (2) following the surface of an unknown object. The contact equations also serve as a basis for an investigation of the kinematics of grasp. I derive the relation ship between the relative motion of two fingers grasping an object and the motion of the points of contact over the object surface. Based on this analysis, we explore the following applications: (1) rolling a sphere between two arbitrarily shaped fingers ; (2) fine grip adjustment ( i.e., having two fingers that grasp an unknown object locally optimize their grip for maximum stability). },
 }
@@ -825,9 +825,9 @@
   abstract = { The throughput of a manipulation process depends upon the arm's speed of operation, but many existing controllers provide accurate trajectory control only at low or moderate velocities. We propose a control method that explicitly compensates for configuration?dependent gravity, acceleration, and velocity forces ? the latter being especially important during rapid simultaneous motions of a number of joints. A tabular form of the equations of motion is used in real?time in conjunction with a configuration space memory organized by positional variables. The contents of the memory are pre?computed only once for each manipulator and are usable for all possible movements. A planned implementation of this method for the Stanford Schienman arm that uses about 250K memory locations and requires about n3 + 3n2 arithmetic operations per evaluation is discussed, where n is the number of degrees of freedom of the device. },
   doi      = {10.1108/eb004494},
   eprint   = {https://doi.org/10.1108/eb004494},
-  url      = { 
+  url      = {
         https://doi.org/10.1108/eb004494
-    
+
 },
 }
 
@@ -894,7 +894,7 @@
 }
 
 @Article{Roa2008,
-  author   = {Máximo A. Roa and Raúl Suárez},
+  author   = {Mï¿½ximo A. Roa and Raï¿½l Suï¿½rez},
   title    = {Determining Fixturing Points for Complex Objects},
   journal  = {IFAC Proceedings Volumes},
   year     = {2008},
@@ -981,6 +981,14 @@
   url    = {http://wiki.ros.org/urdf},
 }
 
+@Electronic{GMUBGU_ICRA2017,
+  author = {Dessalene, Eadom and Georgakis, Georgios  and Reza, Md and Li, Yimeng and Ovcharik, Yossi and Shapiro, Amir and Koseck, Jana and Lofaro,  Daniel},
+  title  = {A Contact Exploitative Approach to the Amazon Robotics Challenge},
+  year   = {2017},
+  url    = {http://docs.wixstatic.com/ugd/71bc4d_4d23fe04dcfb41808ccb165ee91d1f59.pdf},
+}
+
+
 @Article{Shapiro2010,
   author   = {Amir Shapiro and Elon Rimon and Shraga Shoval},
   title    = {On the Passive Force Closure Set of Planar Grasps and Fixtures},
@@ -989,12 +997,12 @@
   volume   = {29},
   number   = {11},
   pages    = {1435-1454},
-  abstract = { In this paper we consider grasps and fixtures whose contacts react according to force—displacement laws consistent with friction constraints at the contacts. The passive force closure set of such grasps and fixtures is the set of external wrenches (forces and torques) that can act on the grasped object and be stably balanced by the contacts. An external wrench belongs to this set if it induces a feasible equilibrium whose basin of attraction contains the initial unperturbed grasp configuration. The paper focuses on planar grasps and fixtures having sharp-tipped fingers or fixels that satisfy linear force displacement laws. Using Morse theory, we characterize the number and stability type of k-contact equilibria induced by a given external wrench. Based on this analysis, we provide closed-form expressions for the passive force closure set of k-contact grasps and fixtures. Computation of the allowed external wrenches is illustrated with examples. Finally, the paper describes experiments verifying the passive force closure set on a spring-loaded grasping system. },
+  abstract = { In this paper we consider grasps and fixtures whose contacts react according to forceï¿½displacement laws consistent with friction constraints at the contacts. The passive force closure set of such grasps and fixtures is the set of external wrenches (forces and torques) that can act on the grasped object and be stably balanced by the contacts. An external wrench belongs to this set if it induces a feasible equilibrium whose basin of attraction contains the initial unperturbed grasp configuration. The paper focuses on planar grasps and fixtures having sharp-tipped fingers or fixels that satisfy linear force displacement laws. Using Morse theory, we characterize the number and stability type of k-contact equilibria induced by a given external wrench. Based on this analysis, we provide closed-form expressions for the passive force closure set of k-contact grasps and fixtures. Computation of the allowed external wrenches is illustrated with examples. Finally, the paper describes experiments verifying the passive force closure set on a spring-loaded grasping system. },
   doi      = {10.1177/0278364910364424},
   eprint   = {https://doi.org/10.1177/0278364910364424},
-  url      = { 
+  url      = {
         https://doi.org/10.1177/0278364910364424
-    
+
 },
 }
 
@@ -1016,7 +1024,7 @@
   number    = {11},
   pages     = {2139 - 2145},
   issn      = {eISSN:1307-6892},
-  abstract  = {Industrial robotic arms utilize multiple end-effectors, each for a specific part and for a specific task. We propose a novel algorithm which will define a single end-effector’s configuration able to grasp a given set of objects with different geometries. The algorithm will have great benefit in production lines allowing a single robot to grasp various parts. Hence, reducing the number of endeffectors needed. Moreover, the algorithm will reduce end-effector design and manufacturing time and final product cost. The algorithm searches for a common grasp over the set of objects. The search algorithm maps all possible grasps for each object which satisfy a quality criterion and takes into account possible external wrenches (forces and torques) applied to the object. The mapped grasps are- represented by high-dimensional feature vectors which describes the shape of the gripper. We generate a database of all possible grasps for each object in the feature space. Then we use a search and
+  abstract  = {Industrial robotic arms utilize multiple end-effectors, each for a specific part and for a specific task. We propose a novel algorithm which will define a single end-effectorï¿½s configuration able to grasp a given set of objects with different geometries. The algorithm will have great benefit in production lines allowing a single robot to grasp various parts. Hence, reducing the number of endeffectors needed. Moreover, the algorithm will reduce end-effector design and manufacturing time and final product cost. The algorithm searches for a common grasp over the set of objects. The search algorithm maps all possible grasps for each object which satisfy a quality criterion and takes into account possible external wrenches (forces and torques) applied to the object. The mapped grasps are- represented by high-dimensional feature vectors which describes the shape of the gripper. We generate a database of all possible grasps for each object in the feature space. Then we use a search and
 classification algorithm for intersecting all possible grasps over all
 parts and finding a single common grasp suitable for all objects.
 We present simulations of planar and spatial objects to validate the
@@ -1120,9 +1128,9 @@ feasibility of the approach.
   pages    = {1308-1324},
   doi      = {10.1177/0278364908098485},
   eprint   = {https://doi.org/10.1177/0278364908098485},
-  url      = { 
+  url      = {
         https://doi.org/10.1177/0278364908098485
-    
+
 },
   abstract = { We study two- and three-finger caging grasps of a given polygonal object with n edges. A grasp is said to cage an object when it is impossible to take the object to a distant location without penetrating a finger. Using a classification into squeezing and stretching cagings, we provide an algorithm that reports all caging grasps of two disk fingers in O (n2 log n) time. Our result extends and improves a recent solution for point fingers (Pipattanasomporn and Sudsang 2006). In addition, we construct a data structure in O (n2 log n) time requiring O (n2) space that can be queried in O (log n) time whether a given two-finger grasp cages the polygon. We also establish a relation between two-finger caging grasps and two-finger immobilizing grasps of polygons without parallel edges. We also study caging grasps with three point fingers. Given the placements of two so-called base fingers, the caging region is the set of all placements of the third finger that jointly with the base fingers forms a caging grasp of a polygonal object. Using the relation between equilibrium grasps and the boundary of the caging region, we present an algorithm that reports the entire caging region in O (n6 log2n) time. Our result extends a previous solution that only applies to convex polygons (Erickson et al. 2007). },
 }
@@ -1170,9 +1178,9 @@ feasibility of the approach.
   pages    = {941-950},
   doi      = {10.1177/02783649922066673},
   eprint   = {https://doi.org/10.1177/02783649922066673},
-  url      = { 
+  url      = {
         https://doi.org/10.1177/02783649922066673
-    
+
 },
   abstract = { A new theory in contact mechanics for modeling of soft fingers is proposed to define the relationship between the normal force and the radius of contact for soft fingers by considering general soft-finger materials, including linearly and nonlinearly elastic materials. The results show that the radius of contact is proportional to the normal force raised to the power of, which ranges from 0 to 1/3. This new theory subsumes the Hertzian contact model for linear elastic materials, where D 1/3. Experiments are conducted to validate the theory using artificial soft fingers made of various materials such as rubber and silicone. Results for human fingers are also compared. This theory provides a basis for numerically constructing friction limit surfaces. The numerical friction limit surface can be approximated by an ellipse, with the major and minor axes as the maximum friction force and the maximum moment with respect to the normal axis of contact, respectively. Combining the results of the contactmechanics model with the contact-pressure distribution, the normalized friction limit surface can be derived for anthropomorphic soft fingers. The results of the contact-mechanics model and the pressure distribution for soft fingers facilitate the construction of numerical friction limit surfaces, and will enable us to analyze and simulate contact behaviors of grasping and manipulation in robotics. },
 }
