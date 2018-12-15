@@ -7698,7 +7698,7 @@ reference "alg:Defining-the-root"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \noindent
@@ -9287,7 +9287,7 @@ The global finger placement process is divided to several cases of polygon
 \end_layout
 
 \begin_layout Subsection
-Finding 1 finger contact given 3+ contacts
+Finding 1 finger contact given 3 or more contacts
 \end_layout
 
 \begin_layout Standard
@@ -9691,7 +9691,7 @@ reference "fig:4-contacts"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \noindent
@@ -9710,7 +9710,7 @@ status collapsed
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-4 non-immobilizing contacts.
+Four non-immobilizing contacts.
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:4-contacts"
