@@ -1685,7 +1685,7 @@ The essence of the work is submitted to the IEEE Robotics and Automation
  Letters and ICRA 2019.
 \end_layout
 
-\begin_layout Section
+\begin_layout Chapter
 Literature Review
 \begin_inset CommandInset label
 LatexCommand label
@@ -2141,7 +2141,7 @@ For the purposes of simulations and experiments, objects are rearranged
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Chapter
 Preliminary Background
 \end_layout
 
@@ -2168,7 +2168,7 @@ Fix this?
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Motion and Forces
 \end_layout
 
@@ -2275,7 +2275,7 @@ In grasping, the wrenches applied to the object act as a set of constraints,
  the object is immobilized.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Grasping and Immobilization
 \end_layout
 
@@ -2420,7 +2420,7 @@ What are examples of external wrenches?
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Contacts
 \end_layout
 
@@ -2564,7 +2564,7 @@ reference "fig:Contact-types"
  below:
 \end_layout
 
-\begin_layout Subparagraph*
+\begin_layout Paragraph*
 Frictionless point contact
 \end_layout
 
@@ -2573,7 +2573,7 @@ is a simplest type of contact which can apply forces only in the direction
  of the surface inward normal.
 \end_layout
 
-\begin_layout Subparagraph
+\begin_layout Paragraph
 Point contact with friction
 \end_layout
 
@@ -2693,7 +2693,7 @@ Friction cone.
 
 \end_layout
 
-\begin_layout Subparagraph
+\begin_layout Paragraph
 Soft finger
 \end_layout
 
@@ -2755,7 +2755,7 @@ name "fig:Contact-types"
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Grasp and Grasp Matrix
 \end_layout
 
@@ -3015,7 +3015,7 @@ The space that is spanned by all contacts is called the Grasp Wrench Space
  grasped object, for example) can be further used to analyze the grasp quality.
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Grasp properties:
 \end_layout
 
@@ -3092,7 +3092,7 @@ ons from the equilibrium grasp the potential function has positive gradient,
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Force Closure
 \end_layout
 
@@ -3240,7 +3240,7 @@ reference "fig:Form-Force-closure"
 .
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Subsubsection*
 Form Closure
 \end_layout
 
@@ -3317,7 +3317,7 @@ Form closure and Force closure.
 
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Quality Measures
 \end_layout
 
@@ -3360,7 +3360,7 @@ reference "fig:Convex-hull"
 .
 \end_layout
 
-\begin_layout Subsubsection*
+\begin_layout Subsection*
 Grasp planning and construction
 \end_layout
 
@@ -3556,7 +3556,7 @@ literal "true"
  measure.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Graphs
 \end_layout
 
@@ -13002,90 +13002,6 @@ For the purposes of simulations and experiments, objects are rearranged
 \end_layout
 
 \begin_layout Chapter
-Results
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-The chapter presents the results of the algorithms performance.
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{Duh! ------}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{--------------------------------}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-Finger position correction
-\end_layout
-
-\begin_layout Plain Layout
-2.
- Real world experiments:
-\end_layout
-
-\begin_layout Plain Layout
-link to video on youtube
-\end_layout
-
-\begin_layout Plain Layout
-images from the video as shown in the RAL paper
-\end_layout
-
-\begin_layout Plain Layout
-3.
- OPTIONAL: Gazebo simulations – check whether spawn is possible
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{--------------------------------}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
 Simulations
 \begin_inset CommandInset label
 LatexCommand label
@@ -13130,7 +13046,7 @@ literal "false"
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Setup
 \end_layout
 
@@ -13479,7 +13395,7 @@ Executions of the steps can be controlled from the UI.
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Results
 \end_layout
 
@@ -13489,7 +13405,7 @@ This section presents several examples of simple cases of polygonal sets.
  vertices locations, and some are perfectly aligned shapes.
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Three squares
 \end_layout
 
@@ -13941,7 +13857,7 @@ Immobilized set of 3 squares.
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Three hexagons 
 \end_layout
 
@@ -14145,7 +14061,7 @@ name "fig:Three-hexagonal-objects."
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Six equilateral triangles 
 \end_layout
 
@@ -14309,7 +14225,7 @@ name "fig:Six-equilateral-triangles."
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Concave shape and 3 isosceles triangles
 \end_layout
 
@@ -14535,7 +14451,7 @@ Four objects.
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Subsubsection
 Random shapes 
 \end_layout
 
@@ -14623,7 +14539,7 @@ Shapes with noise in vertices' locations.
 
 \end_layout
 
-\begin_layout Section
+\begin_layout Chapter
 Experiments
 \begin_inset CommandInset label
 LatexCommand label
@@ -14650,7 +14566,7 @@ on by the algorithm a custom-made end-effector with stationary fingers was
  items despite small perturbations of item locations and robotic arm performance.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Experimental Setup
 \end_layout
 
@@ -14663,16 +14579,13 @@ Robotic arm MANIPULATOR-H by ROBOTIS company was selected due to availability
  end-effector perpendicular to the workspace plane and inside it.
  Control of the arm is done by interfacing the manipulator through serial
  communication and MATLAB Robotics System Toolbox ROS integration components.
-\end_layout
-
-\begin_layout Standard
-Custom grippers were designed in SolidWorks CAD software and later manufactured
+ Custom grippers were designed in SolidWorks CAD software and later manufactured
  by 3D printing technologies.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement H
+placement tbh
 wide false
 sideways false
 status open
@@ -14681,6 +14594,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/gripper-side-view.png
+	width 55col%
 
 \end_inset
 
@@ -14705,7 +14619,7 @@ Experimental setup: part of robotic manipulator (1), gripper (2), set of
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Experimental Results
 \end_layout
 
@@ -14836,7 +14750,7 @@ name "fig:Six-equilateral-triangles"
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \noindent
@@ -14938,7 +14852,7 @@ The gripper is mounted on the robotic arm, and the parts are laid on the
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -15296,7 +15210,7 @@ https://youtu.be/GJVtJyKfkYw
  
 \end_layout
 
-\begin_layout Section
+\begin_layout Chapter
 Conclusions
 \end_layout
 
