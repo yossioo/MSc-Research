@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   width="835.36456"
+   height="420.31229"
+   viewBox="0 0 625.92054 315.00128"
+   overflow="hidden"
+   id="svg163"
+   sodipodi:docname="Picture4.svg"
+   style="overflow:hidden"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)">
+  <metadata
+     id="metadata167">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="3840"
+     inkscape:window-height="2080"
+     id="namedview165"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="2.6104448"
+     inkscape:cx="299.92829"
+     inkscape:cy="303.35561"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="flowfle25zpj" />
+  <defs
+     id="defs47">
+    <linearGradient
+       x1="135.51331"
+       y1="-1102.4071"
+       x2="212.75069"
+       y2="-1102.4071"
+       spreadMethod="pad"
+       id="g-terminatorfle25zpj"
+       gradientTransform="scale(2.0874969,0.47904263)"
+       gradientUnits="userSpaceOnUse">
+      <stop
+         offset="0"
+         stop-color="#FF8787"
+         stop-opacity="1"
+         id="stop2" />
+      <stop
+         offset="1"
+         stop-color="#FFB9B9"
+         stop-opacity="1"
+         id="stop4" />
+    </linearGradient>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       spreadMethod="pad"
+       id="g-decisionfle25zpj">
+      <stop
+         offset="0"
+         stop-color="#FFD287"
+         stop-opacity="1"
+         id="stop7" />
+      <stop
+         offset="1"
+         stop-color="#FFFFB9"
+         stop-opacity="1"
+         id="stop9" />
+    </linearGradient>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       spreadMethod="pad"
+       id="g-processfle25zpj">
+      <stop
+         offset="0"
+         stop-color="#99FF99"
+         stop-opacity="1"
+         id="stop12" />
+      <stop
+         offset="1"
+         stop-color="#CBFFCB"
+         stop-opacity="1"
+         id="stop14" />
+    </linearGradient>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       spreadMethod="pad"
+       id="g-defaultfle25zpj">
+      <stop
+         offset="0"
+         stop-color="#99FF99"
+         stop-opacity="1"
+         id="stop17" />
+      <stop
+         offset="1"
+         stop-color="#CBFFCB"
+         stop-opacity="1"
+         id="stop19" />
+    </linearGradient>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       spreadMethod="pad"
+       id="g-modulefle25zpj">
+      <stop
+         offset="0"
+         stop-color="#77C1E4"
+         stop-opacity="1"
+         id="stop22" />
+      <stop
+         offset="1"
+         stop-color="#A9F3FF"
+         stop-opacity="1"
+         id="stop24" />
+    </linearGradient>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       spreadMethod="pad"
+       id="g-dataiofle25zpj">
+      <stop
+         offset="0"
+         stop-color="#BEBEBE"
+         stop-opacity="1"
+         id="stop27" />
+      <stop
+         offset="1"
+         stop-color="#F0F0F0"
+         stop-opacity="1"
+         id="stop29" />
+    </linearGradient>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       spreadMethod="pad"
+       id="g-preparationfle25zpj">
+      <stop
+         offset="0"
+         stop-color="#BEBEBE"
+         stop-opacity="1"
+         id="stop32" />
+      <stop
+         offset="1"
+         stop-color="#F0F0F0"
+         stop-opacity="1"
+         id="stop34" />
+    </linearGradient>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       spreadMethod="pad"
+       id="g-commentfle25zpj">
+      <stop
+         offset="0"
+         stop-color="#F5F588"
+         stop-opacity="1"
+         id="stop37" />
+      <stop
+         offset="1"
+         stop-color="#FFFFBA"
+         stop-opacity="1"
+         id="stop39" />
+    </linearGradient>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       spreadMethod="pad"
+       id="g-manualfle25zpj">
+      <stop
+         offset="0"
+         stop-color="#9E78FF"
+         stop-opacity="1"
+         id="stop42" />
+      <stop
+         offset="1"
+         stop-color="#D0AAFF"
+         stop-opacity="1"
+         id="stop44" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#g-processfle25zpj"
+       id="linearGradient4679"
+       x1="197.20872"
+       y1="-644.31018"
+       x2="256.49615"
+       y2="-644.31018"
+       spreadMethod="pad"
+       gradientTransform="scale(1.6023631,0.62407827)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#g-processfle25zpj"
+       id="linearGradient4681"
+       x1="176.74086"
+       y1="-809.19745"
+       x2="241.11478"
+       y2="-809.19745"
+       spreadMethod="pad"
+       gradientTransform="scale(1.7398353,0.57476703)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#g-decisionfle25zpj"
+       id="linearGradient4725"
+       x1="82.635914"
+       y1="-571.24512"
+       x2="151.22083"
+       y2="-571.24512"
+       spreadMethod="pad"
+       gradientTransform="scale(1.8515609,0.54008485)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#g-processfle25zpj"
+       id="linearGradient4727"
+       x1="39.755198"
+       y1="-542.02346"
+       x2="124.91387"
+       y2="-542.02346"
+       spreadMethod="pad"
+       gradientTransform="scale(2.3015858,0.43448304)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#g-decisionfle25zpj"
+       id="linearGradient4729"
+       x1="73.05832"
+       y1="-308.04114"
+       x2="139.20749"
+       y2="-308.04114"
+       spreadMethod="pad"
+       gradientTransform="scale(1.7854971,0.56006811)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#g-processfle25zpj"
+       id="linearGradient4731"
+       x1="-0.26674678"
+       y1="-186.50647"
+       x2="69.087417"
+       y2="-186.50647"
+       spreadMethod="pad"
+       gradientTransform="scale(1.8744369,0.53349357)"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#g-processfle25zpj"
+       id="linearGradient4733"
+       x1="153.19612"
+       y1="-52.654727"
+       x2="206.57215"
+       y2="-52.654727"
+       spreadMethod="pad"
+       gradientTransform="scale(1.4425953,0.69319512)"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <g
+     id="flowfle25zpj"
+     transform="translate(0.44896534,314.50129)">
+    <g
+       id="node1"
+       transform="translate(181.44408,213.59872)">
+      <ellipse
+         cx="363.5"
+         cy="-509.60001"
+         rx="80.116402"
+         ry="18"
+         id="ellipse49"
+         style="fill:url(#g-terminatorfle25zpj);stroke:#000000" />
+      <text
+         font-size="10"
+         x="303.5"
+         y="-507.10001"
+         id="text51"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">Polygon P, set of fingers C</text>
+    </g>
+    <g
+       id="node2"
+       transform="translate(115.9864,214.46001)">
+      <path
+         d="M 419,-464.6 H 308 v 36 h 111 z"
+         id="path54"
+         style="fill:url(#linearGradient4681);stroke:#000000"
+         inkscape:connector-curvature="0" />
+      <text
+         font-size="10"
+         x="315"
+         y="-445.10001"
+         id="text56"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">AntiCone = -1</text>
+      <text
+         font-style="italic"
+         font-size="10"
+         x="377"
+         y="-445.10001"
+         id="text58"
+         style="font-style:italic;font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">Cone(w)</text>
+    </g>
+    <g
+       id="edge1"
+       transform="translate(159.91195,212.45034)">
+      <path
+         d="m 363.5,-491.378 c 0,5.049 0,10.655 0,16.144"
+         id="path61"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+      <path
+         d="M 367,-474.999 363.5,-465 360,-475 Z"
+         id="path63"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000" />
+    </g>
+    <g
+       id="node3"
+       transform="translate(71.470267,216.14404)">
+      <path
+         d="m 410.5,-401.6 h -94 v 36 h 94 z"
+         id="path66"
+         style="fill:url(#linearGradient4679);stroke:#000000"
+         inkscape:connector-curvature="0" />
+      <text
+         font-size="10"
+         x="323.5"
+         y="-381.10001"
+         id="text68"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">e = first edge of P</text>
+    </g>
+    <g
+       id="edge2"
+       transform="translate(73.783431,215.32129)">
+      <path
+         d="m 363.5,-428.378 c 0,5.049 0,10.655 0,16.144"
+         id="path71"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+      <path
+         d="M 367,-411.999 363.5,-402 360,-412 Z"
+         id="path73"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000" />
+    </g>
+    <g
+       id="node4"
+       transform="translate(0.86128518,200.39235)">
+      <circle
+         cx="363.5"
+         cy="-336.79999"
+         id="ellipse76"
+         r="1.8"
+         style="fill:#000000;stroke:#000000" />
+      <text
+         font-weight="700"
+         font-size="10"
+         x="359.70001"
+         y="-342.60001"
+         id="text78"
+         style="font-weight:700;font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000" />
+    </g>
+    <g
+       id="edge3"
+       transform="rotate(60.694856,191.3377,-236.51579)">
+      <path
+         d="m 363.5,-365.372 c 0,10.266 0,21.93 0,26.542"
+         id="path81"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+    </g>
+    <g
+       id="node5">
+      <path
+         d="m 216.5,-308 -61.709,18 61.709,18 61.709,-18 z"
+         id="path84"
+         inkscape:connector-curvature="0"
+         style="fill:url(#linearGradient4725);stroke:#000000" />
+      <text
+         font-size="10"
+         x="187.5"
+         y="-287.5"
+         id="text86"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">e &lt; last edge</text>
+    </g>
+    <g
+       id="edge7">
+      <path
+         d="M 364.82497,-136.46469 C 356.10083,-293.06373 295.07,-315.014 256.18,-302.633"
+         id="path89"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000"
+         sodipodi:nodetypes="cc" />
+      <path
+         d="m 256.775,-299.149 -10.591,-0.301 8.467,-6.369 z"
+         id="path91"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000" />
+    </g>
+    <g
+       id="node6">
+      <path
+         d="M 287,-235 H 92 v 36 h 195 z"
+         id="path94"
+         inkscape:connector-curvature="0"
+         style="fill:url(#linearGradient4727);stroke:#000000" />
+      <text
+         font-size="10"
+         x="114"
+         y="-220"
+         id="text96"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">EGW = Edge Generalized wrench</text>
+      <text
+         font-size="10"
+         x="99"
+         y="-209"
+         id="text98"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">CS = Common segment(EGW,AntiCone)</text>
+    </g>
+    <g
+       id="edge4">
+      <path
+         d="m 210.373,-273.435 c -3.141,8.492 -7.05,19.061 -10.633,28.749"
+         id="path101"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+      <path
+         d="m 202.922,-243.198 -6.752,8.165 0.186,-10.593 z"
+         id="path103"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000" />
+      <text
+         font-weight="700"
+         font-size="10"
+         x="205.5"
+         y="-252"
+         id="text105"
+         style="font-weight:700;font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">True </text>
+      <path
+         d="M 233.5,-248 H 201.097"
+         id="path107"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+    </g>
+    <g
+       id="node7">
+      <path
+         d="m 189.5,-172 -57.384,18 57.384,18 57.384,-18 z"
+         id="path110"
+         inkscape:connector-curvature="0"
+         style="fill:url(#linearGradient4729);stroke:#000000" />
+      <text
+         font-size="10"
+         x="163"
+         y="-151.5"
+         id="text112"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">CS is empty</text>
+    </g>
+    <g
+       id="edge5">
+      <path
+         d="m 189.5,-198.778 c 0,5.049 0,10.655 0,16.144"
+         id="path115"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+      <path
+         d="m 193,-182.399 -3.5,9.999 -3.5,-10 z"
+         id="path117"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000" />
+    </g>
+    <g
+       id="node8">
+      <path
+         d="M 129,-99 H 0 v 36 h 129 z"
+         id="path120"
+         inkscape:connector-curvature="0"
+         style="fill:url(#linearGradient4731);stroke:#000000" />
+      <text
+         font-size="10"
+         x="7"
+         y="-84"
+         id="text122"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">find w</text>
+      <text
+         font-style="italic"
+         font-size="10"
+         x="35"
+         y="-84"
+         id="text124"
+         style="font-style:italic;font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">and allowed region</text>
+      <text
+         font-style="italic"
+         font-size="10"
+         x="12"
+         y="-74"
+         id="text126"
+         style="font-style:italic;font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">find FingerContact for w</text>
+    </g>
+    <g
+       id="edge6">
+      <path
+         d="m 169.417,-142.271 c -17.469,10.202 -43.309,25.292 -64.973,37.943"
+         id="path129"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+      <path
+         d="m 106.161,-101.277 -10.4004,2.0208 6.8704,-8.0658 z"
+         id="path131"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000" />
+      <text
+         font-weight="700"
+         font-size="10"
+         x="134.5"
+         y="-116"
+         id="text133"
+         style="font-weight:700;font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">False </text>
+      <path
+         d="M 164.5,-112 H 116.988"
+         id="path135"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+    </g>
+    <g
+       id="node9">
+      <path
+         d="m 297.5,-36 h -76 V 0 h 76 z"
+         id="path138"
+         inkscape:connector-curvature="0"
+         style="fill:url(#linearGradient4733);stroke:#000000" />
+      <text
+         font-size="10"
+         x="228.5"
+         y="-15.5"
+         id="text140"
+         style="font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">e = next edge</text>
+    </g>
+    <g
+       id="edge9">
+      <path
+         d="m 197.53,-138.399 c 11.629,22.593 33.337,64.7683 47.723,92.7182"
+         id="path143"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+      <path
+         d="m 248.543,-46.9364 1.464,10.4931 -7.688,-7.2896 z"
+         id="path145"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000" />
+      <text
+         font-weight="700"
+         font-size="10"
+         x="236.5"
+         y="-79.5"
+         id="text147"
+         style="font-weight:700;font-size:10px;font-family:'open sans', 'noto sans sc', 'noto sans tc', 'noto sans jp', 'noto sans kr';text-anchor:start;fill:#000000">True </text>
+      <path
+         d="M 264.5,-75.5 H 230.152"
+         id="path149"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+    </g>
+    <g
+       id="edge8">
+      <path
+         d="m 120.379,-62.9467 c 28.767,9.294 63.485,20.5106 91.043,29.4137"
+         id="path152"
+         inkscape:connector-curvature="0"
+         style="fill:none;stroke:#000000" />
+      <path
+         d="m 212.786,-36.7703 8.44,6.4049 -10.592,0.2561 z"
+         id="path154"
+         inkscape:connector-curvature="0"
+         style="fill:#000000;stroke:#000000" />
+    </g>
+    <g
+       transform="rotate(141.48722,277.03578,-197.23428)"
+       id="edge7-9">
+      <path
+         style="fill:none;stroke:#000000"
+         inkscape:connector-curvature="0"
+         d="m 361.422,-336.138 c -11.308,3.6 -66.352,21.124 -105.242,33.505"
+         id="path89-5" />
+      <path
+         style="fill:#000000;stroke:#000000"
+         inkscape:connector-curvature="0"
+         d="m 256.775,-299.149 -10.591,-0.301 8.467,-6.369 z"
+         id="path91-3" />
+    </g>
+  </g>
+</svg>

@@ -179,7 +179,7 @@ End
 \output_sync 0
 \bibtex_command default
 \index_command default
-\float_placement tbh
+\float_placement tbph
 \paperfontsize 12
 \spacing single
 \use_hyperref true
@@ -7693,10 +7693,45 @@ reference "alg:Defining-the-root"
 \end_layout
 
 \begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/AlgorithmFlowCharts/Picture1.svg
+	lyxscale 50
+	width 75col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Root object algorithm outline.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
@@ -7913,6 +7948,41 @@ reference "alg:Objects-stacking"
 \end_layout
 
 \begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/AlgorithmFlowCharts/Picture2.svg
+	lyxscale 50
+	width 75col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Object stacking algorithm outline.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -8129,9 +8199,6 @@ name "alg:Objects-stacking"
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
 \begin_inset Note Note
 status collapsed
 
@@ -8356,10 +8423,6 @@ end{algorithm}
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 If at some step a potential configuration with no concavities is obtained,
  in case no more objects needed to be stacked it is accepted, but if some
  other objects left – other configurations can be considered to evade potential
@@ -8393,6 +8456,44 @@ Due to the complexity of the process, it is divided into 2 parts: specific
  It is possible to restrict regions on edges due to adjacent objects, but
  at this point it is assumed that fingers are infinitesimally small and
  thus can fit in any desired location.
+\end_layout
+
+\begin_layout Standard
+\noindent
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/AlgorithmFlowCharts/Picture3.svg
+	lyxscale 50
+	width 75col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Inter-object contacts search algorithm outline.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -9219,9 +9320,39 @@ reference "subsec:Maximizing-the-Inscribed"
 
  is used to select the most promising contact location.
  The algorithm is presented below:
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/AlgorithmFlowCharts/Picture4.svg
+	lyxscale 75
+	width 75col%
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Last finger algorithm outline.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -9502,7 +9633,7 @@ The algorithm gives a solution for cases where wrench space vectors of 3
  the 3rd one should be chosen and passed to 
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "alg:Finding-2-fingers"
+reference "alg:Finding2fingers"
 
 \end_inset
 
@@ -9630,7 +9761,7 @@ the plane
  
 \begin_inset CommandInset ref
 LatexCommand ref
-reference "alg:Finding-2-fingers"
+reference "alg:Finding2fingers"
 
 \end_inset
 
@@ -9639,10 +9770,43 @@ reference "alg:Finding-2-fingers"
  be on both sides of the plane.
  If such edge found, two marginal wrenches are tested to get grasp quality
  measure, which is saved along with contact locations.
- Optimal locations along with optimal GQM are calculated numerically
+ Optimal locations along with optimal GQM are calculated numerically.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/AlgorithmFlowCharts/Picture5.svg
+	lyxscale 75
+	width 75col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Two fingers on one edge algorithm outline.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -9972,7 +10136,7 @@ end{algorithmic}
 Finding 2 fingers on same edge given 2 effective contacts .
 \begin_inset CommandInset label
 LatexCommand label
-name "alg:Finding-2-fingers"
+name "alg:Finding2fingers"
 
 \end_inset
 
@@ -9987,9 +10151,39 @@ name "alg:Finding-2-fingers"
 \end_inset
 
 
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/AlgorithmFlowCharts/Picture6.svg
+	lyxscale 75
+	width 75col%
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Two fingers on one edge algorithm outline.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -12222,9 +12416,39 @@ reference "alg:Grasp-assessment"
  Since in previous steps finger positions are found along with allowed regions
  along the edge, some of the contacts external to subset can be moved and
  ensure immobilization of the grasp.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/AlgorithmFlowCharts/Picture7.svg
+	lyxscale 75
+	width 75col%
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Grasp assessment and securing algorithm outline.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -12481,9 +12705,9 @@ EndIf
 
 
 \backslash
-State{Add fingers according to
+State{Add fingers according to 
 \backslash
-autoref{alg:add2cont}}
+autoref{alg:Finding2fingers}.}
 \end_layout
 
 \begin_layout Plain Layout
@@ -13251,7 +13475,7 @@ Step 3
 \begin_inset Float figure
 wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \noindent
