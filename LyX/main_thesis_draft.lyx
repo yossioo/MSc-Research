@@ -320,11 +320,11 @@ pagenumbering{gobble}
 \end_layout
 
 \begin_layout Subject
-Ben-Gurion University of Negev
+BEN-GURION UNIVERSITY OF NEGEV
 \begin_inset Newline newline
 \end_inset
 
-Faculty of Engineering Sciences
+FACULTY OF ENGINEERING SCIENCES
 \begin_inset Newline newline
 \end_inset
 
@@ -396,22 +396,47 @@ In this research we introduce novel methods for objects set rearrangement,
  designed for simultaneous grasping with minimal amount of fingers.
  Potential applications of the methods presented are industrial robots,
  warehouse automation, home assistance etc.
- We present mathematical definitions for inter-object contact modeling,
- generalized wrenches and wrench cone evaluations.
+\end_layout
+
+\begin_layout Standard
+We present mathematical definitions for inter-object contact modeling, generaliz
+ed wrenches and wrench cone evaluations.
  We also describe algorithms for rearrangement of set of objects and present
  the results of simulations and experiments that validate the algorithm
  performance.
- Our aspiring goal is to introduce new tools for simultaneous robotic grasping
+\end_layout
+
+\begin_layout Standard
+Our aspiring goal is to introduce new tools for simultaneous robotic grasping
  and provide analytical solutions for immobilization problems.
- General idea is to rearrange the objects in constellation that will require
- min- imal amount of fingers to immobilize it.
+\end_layout
+
+\begin_layout Standard
+General idea is to rearrange the objects in constellation that will require
+ minimal amount of fingers to immobilize it.
 \end_layout
 
 \begin_layout Standard
 \align center
 
 \series bold
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+
+\series bold
 \begin_inset VSpace 25theight%
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset VSpace vfill
 \end_inset
 
 
@@ -2168,6 +2193,24 @@ literal "true"
 \emph default
  motion.
  The mapping between twist and screws can be done using matrix exponential.
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$\\upsilon$"
+description "linear velocity \\nomunit{[m/s]}"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$\\omega$"
+description "angular velocity \\nomunit{[rad/s]}"
+literal "true"
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{equation}
 V=\begin{bmatrix}\upsilon\\
@@ -2183,6 +2226,24 @@ A generalized force, acting on the body is described as a
 \emph default
  – force/moment pair, which consists from a linear component and an angular
  component acting on a point.
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$f$"
+description "force \\nomunit{[N]}"
+literal "true"
+
+\end_inset
+
+
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$\\tau$"
+description "torque \\nomunit{[N$\\cdot$m]}"
+literal "true"
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{equation}
 F=\begin{bmatrix}f\\
@@ -2578,7 +2639,7 @@ where
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$\\mu$"
-description "coefficient of frfiction"
+description "coefficient of frfiction  \\nomunit{[unitless]}"
 literal "true"
 
 \end_inset
@@ -2735,6 +2796,15 @@ reference "fig:Planar-grasping"
 : a planar rectangular object held by two fingers which apply forces in
  the plane.
  Resulting wrench on the object from one finger can be described as following:
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$R_{c}$"
+description "transformation matrix from contact's frame \\nomunit{[unitless]}"
+literal "true"
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{equation}
 F_{o}=\begin{bmatrix}f_{o}\\
@@ -2811,7 +2881,7 @@ e frames are reflected in this representation.
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$F_{o}$"
-description "wrench vector \\nomunit{[N and Nmm]}"
+description "wrench vector \\nomunit{[N, N$\\cdot$m]}"
 literal "true"
 
 \end_inset
@@ -2847,7 +2917,7 @@ literal "true"
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$r$"
-description "contact location distance from origin \\nomunit{[mm]}"
+description "contact location distance from origin \\nomunit{[m]}"
 literal "true"
 
 \end_inset
@@ -2918,7 +2988,7 @@ literal "true"
 \begin_inset CommandInset nomenclature
 LatexCommand nomenclature
 symbol "$T_{i}$"
-description "torque component in $i$ direction \\nomunit{[Nmm]}"
+description "torque component in $i$ direction \\nomunit{[N$\\cdot$m]}"
 literal "true"
 
 \end_inset
@@ -3625,7 +3695,16 @@ Given 2 polygons,
 \end_inset
 
 .
- Polygons can maintain contact but not penetrate one another.
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$\\dot{x}$"
+description "twist \\nomunit{[m/s, rad/s]}"
+literal "true"
+
+\end_inset
+
+Polygons can maintain contact but not penetrate one another.
  Given a contact point, relative velocities of the contact point on each
  of the polygons cannot have a component in the inward normal directions
  of any polygon.
@@ -3636,7 +3715,16 @@ Let
 \begin_inset Formula $\hat{n}_{i}^{j}$
 \end_inset
 
- denote the inward normal direction of the boundary of polygon
+ 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$\\hat{n}$"
+description "normal direction \\nomunit{[unitless]}"
+literal "true"
+
+\end_inset
+
+denote the inward normal direction of the boundary of polygon
 \emph on
  j
 \emph default
@@ -4167,7 +4255,7 @@ All possible contacts on the edge will have the same direction and hence
 \end_layout
 
 \begin_layout Proposition
-4 point fingers acting on a 2D object in distinct points along object's
+4 point fingers acting/ on a 2D object in distinct points along object's
  boundary may constitute a force closure equilibrium grasp.
 \end_layout
 
@@ -4258,6 +4346,7 @@ Assuming optimal configuration of the objects where each of them is immobilized
 
 .
  Example: jigsaw puzzle which once assembled can be immobilized by 4 fingers.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -4337,7 +4426,16 @@ For a given set of polygonal objects in contact, and some amount of external
 \begin_layout Proof
 Four contacts acting on each object (whether from inter-object contacts
  or from external contacts), maintaining equilibrium have a grasp map of
- form:
+ form: 
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$G_{f\\left[m:n\\right]}$"
+description "grasp map of finger \\emph{m} to \\emph{n} \\nomunit{[unitless]}"
+literal "true"
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{equation}
 G_{f\left[m:n\right]}=\begin{bmatrix}c_{m} & ... & c_{n}\\
@@ -4861,6 +4959,15 @@ which is exactly a linear combination of two marginal wrenches.
  space.
  The expression for the edge generalized wrench can be rewritten to a form
  of:
+\begin_inset CommandInset nomenclature
+LatexCommand nomenclature
+symbol "$w_{e}\\left(s\\right)$"
+description "Edge Generalized Wrench parameterization \\nomunit{[N, N$\\cdot$m]}"
+literal "true"
+
+\end_inset
+
+
 \begin_inset Formula 
 \begin{align}
 w_{e}\left(s\right) & =\left(1-s\right)\begin{bmatrix}\hat{n}\\
@@ -11856,7 +11963,7 @@ z{DEAL WITH THIS PART LATER}
 \end_layout
 
 \begin_layout Section
-Multi object grasp evaluation and securing
+Multi–object grasp evaluation and securing
 \begin_inset CommandInset label
 LatexCommand label
 name "sec:MultiO-eval-n-grasp-secur"
@@ -15220,8 +15327,8 @@ The algorithms yield consistent results, and provide immobilizing grasps
 ed for individual objects and thus while configurations are optimal for
  individual objects, it is not the best solution achievable for the whole
  set.
- For example, placing 20 triangles arranges them in two rows and not in
- some more compact shape.
+ For example, having 20 triangles, the algorithm arranges them in two rows
+ and not in some more compact shape.
 \end_layout
 
 \begin_layout Standard
@@ -15242,121 +15349,7 @@ In future work this can be addressed and with other quality measures introduced,
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "main"
-options "bibtotoc,apalike"
-
-\end_inset
-
-
-\begin_inset Note Note
-status collapsed
-
-\begin_layout Chapter*
-\start_of_appendix
-Appendix
-\end_layout
-
-\begin_layout Chapter
-Algorithms
-\end_layout
-
-\begin_layout Plain Layout
-This section presents more elaborate representation of the algorithms presented
- in the paper.
-\end_layout
-
-\begin_layout Chapter
-Software
-\end_layout
-
-\begin_layout Plain Layout
-Source code is available at 
-\begin_inset CommandInset href
-LatexCommand href
-name "https://github.com/yossioo/MSc-Research"
-target "https://github.com/yossioo/MSc-Research"
-literal "false"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Plain Layout
-Additional videos are available at YouTube channel: &&&
-\end_layout
-
-\begin_layout Plain Layout
-The software used for the research is:
-\end_layout
-
-\begin_layout Plain Layout
-MATLAB r2018a
-\end_layout
-
-\begin_layout Plain Layout
-V-REP 3.5.0 Educational Version
-\end_layout
-
-\begin_layout Plain Layout
-ROS Kinetic on Ubuntu 16.04
-\end_layout
-
-\begin_layout Chapter
-Examples of calculated grasps
-\end_layout
-
-\begin_layout Plain Layout
-3 fingers - 1 found
-\end_layout
-
-\begin_layout Chapter
-Examples of rearranged object sets
-\end_layout
-
-\begin_layout Chapter
-Examples of finger combinations found for sets
-\end_layout
-
-\begin_layout Chapter
-Simulations
-\end_layout
-
-\begin_layout Plain Layout
-V-REP
-\end_layout
-
-\begin_layout Chapter
-Experiments
-\end_layout
-
-\begin_layout Plain Layout
-Real robot
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-z{test}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
+options "apalike"
 
 \end_inset
 
