@@ -100,7 +100,8 @@
 
 
 
-
+\usepackage{appendix}
+%\usepackage[titletoc]{appendix}
 
 
 
@@ -210,7 +211,8 @@ End
 \use_package undertilde 1
 \cite_engine natbib
 \cite_engine_type numerical
-\biblio_style plainnat
+\biblio_style ieeetr
+\biblio_options numbers
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -384,10 +386,197 @@ Advisor: Prof.
 \end_layout
 
 \begin_layout Date
-July 2018
+December 2018
 \end_layout
 
 \begin_layout Minisec
+\noindent
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+BEN-GURION UNIVERSITY OF NEGEV
+\begin_inset Newline newline
+\end_inset
+
+FACULTY OF ENGINEERING SCIENCES
+\begin_inset Newline newline
+\end_inset
+
+Department of Mechanical Engineering
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Formula $\hfill$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+SIMULTANEOUS GRASPING OF MULTIPLE OBJECTS
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+Thesis submitted in partial fulfillment of
+\begin_inset Newline newline
+\end_inset
+
+the requirements for the degree of Master of Science
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+by Yosef Ovcharik
+\begin_inset Newline newline
+\end_inset
+
+Advisor: Prof.
+ Amir Shapiro
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+December 2018
+\series bold
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+\size large
+Prepared by: Yosef Ovcharik
+\begin_inset space \quad{}
+\end_inset
+
+
+\bar under
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+\size large
+Advisor: Prof.
+ Amir Shapiro
+\bar under
+
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\align left
+
+\size large
+\bar under
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\bar default
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\bar under
+
+\begin_inset Graphics
+	filename images/amir.png
+	lyxscale 30
+	height 1cm
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align left
+
+\size large
+Chairman of Graduate Studies Committee:
+\bar under
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Minisec
+\begin_inset Newpage newpage
+\end_inset
+
 Abstract
 \end_layout
 
@@ -433,107 +622,6 @@ status collapsed
 
 \end_layout
 
-\end_inset
-
-
-\begin_inset VSpace vfill
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\size large
-Prepared by: Yosef Ovcharik
-\bar under
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\size large
-Advisor: Prof.
- Amir Shapiro
-\bar under
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset Note Note
-status open
-
-\begin_layout Plain Layout
-\align left
-
-\size large
-\bar under
-\begin_inset Graphics
-	filename images/amir.png
-	lyxscale 30
-	height 1cm
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\align left
-
-\size large
-Chairman of Graduate Studies Committee:
-\bar under
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
-\end_inset
-
-
-\begin_inset space \qquad{}
 \end_inset
 
 
@@ -1665,7 +1753,7 @@ A Contact Exploitative Approach to the Amazon Robotics Challenge
  published and presented in Warehouse Picking Automation Workshop at Internation
 al Conference of Robotics and Automation 2017, Singapore, authored by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "GMUBGU_ICRA2017"
 literal "false"
 
@@ -1700,7 +1788,7 @@ name "sec:Literature-Review"
 Important contribution to the future development of robotics in general
  and grasping in particular belongs to 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Reuleaux1876,Landau1982"
 literal "true"
 
@@ -1708,9 +1796,9 @@ literal "true"
 
  for bringing the basics of mechanics and mechanism kinematics, which serve
  as foundation for every analytical approach of robotics study.
- 
+ To 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Lozano-Perez1983"
 literal "true"
 
@@ -1726,7 +1814,7 @@ literal "true"
 
 \begin_layout Standard
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Ball1998"
 literal "true"
 
@@ -1737,7 +1825,7 @@ literal "true"
  robotics studies.
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Murray1994"
 literal "true"
 
@@ -1750,7 +1838,7 @@ literal "true"
  friction, categorizing contacts for frictional, frictionless, hard or soft
  contacts as show 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Murray1994"
 literal "true"
 
@@ -1763,7 +1851,7 @@ literal "true"
 Given broad mathematical basics, grasping becomes of particular interest
  with introduction of contact modeling by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Xydas1999"
 literal "true"
 
@@ -1771,7 +1859,7 @@ literal "true"
 
  and grasp basics by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Mishra1987"
 literal "true"
 
@@ -1780,7 +1868,7 @@ literal "true"
  showing existence of positive grasps, and allowing following grasp synthesis
  development: 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Bunis2018,Borst2004"
 literal "true"
 
@@ -1790,7 +1878,7 @@ literal "true"
  Derivations would not be possible without defining form and force closure
  by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Asada1989"
 literal "true"
 
@@ -1798,7 +1886,7 @@ literal "true"
 
 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Rimon1996"
 literal "true"
 
@@ -1807,7 +1895,7 @@ literal "true"
 .
  With theory being introduced, 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Nguyen1986"
 literal "true"
 
@@ -1817,7 +1905,7 @@ literal "true"
  More methods on grasp construction include grasp synthesis evolved from
  predefined configurations 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Pollard1996"
 literal "true"
 
@@ -1827,7 +1915,7 @@ literal "true"
  modes for closure grasps are planned with numerical computations of trajectorie
 s intersections 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Wren1995"
 literal "true"
 
@@ -1836,7 +1924,7 @@ literal "true"
 .
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Rimon1995"
 literal "true"
 
@@ -1849,7 +1937,7 @@ literal "true"
 \begin_layout Standard
 Grasping and immobilizing can be seen as analogous terms, and 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Rimon1998"
 literal "true"
 
@@ -1859,7 +1947,7 @@ literal "true"
  of bodies in contact, intended for multi-finger grasping.
  Grasp evaluation takes a long way with 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Mishra1989"
 literal "true"
 
@@ -1867,7 +1955,7 @@ literal "true"
 
  discussing the stability of grasps, 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Ferrari1992"
 literal "true"
 
@@ -1875,7 +1963,7 @@ literal "true"
 
  introducing quality measures based on wrenches, 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Roa2015"
 literal "true"
 
@@ -1883,7 +1971,7 @@ literal "true"
 
  surveying several methods of grasp quality measure, while 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Lin1997"
 literal "true"
 
@@ -1893,7 +1981,7 @@ literal "true"
  Grasp generation can be addressed with different approach, with randomized
  grasp generation 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Borst2003"
 literal "true"
 
@@ -1905,7 +1993,7 @@ literal "true"
 
 \begin_layout Standard
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Shapiro2010"
 literal "false"
 
@@ -1915,7 +2003,7 @@ literal "false"
  to external perturbations acting on the immobilization of spatial objects.
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Sintov2013"
 literal "false"
 
@@ -1932,7 +2020,7 @@ status collapsed
 \begin_layout Plain Layout
 Planar fixture of single part with 4 contacts in lattice points 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Brost1994"
 literal "false"
 
@@ -1950,7 +2038,7 @@ literal "false"
 \begin_layout Standard
 Envelope grasping introduced by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Harada2002"
 literal "false"
 
@@ -1965,7 +2053,7 @@ literal "false"
 Integrating developed methods in real life applications normally require
  use of vision systems as shows 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Corke2011"
 literal "true"
 
@@ -1974,7 +2062,7 @@ literal "true"
  and often extended to use of machine learning for vision based grasping:
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Quillen2018,Bezak2014,Le2010"
 literal "true"
 
@@ -1986,7 +2074,7 @@ literal "true"
 \begin_layout Standard
 The list would not be full without mentioning 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Siciliano2016"
 literal "true"
 
@@ -2000,7 +2088,7 @@ literal "true"
 Polygon interactions presented in this work resemble the ideas introduced
  by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Brost1991"
 literal "false"
 
@@ -2014,7 +2102,7 @@ literal "false"
 Several ideas similar to the one presented in this work were introduced
  by: 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Mattikalli1995"
 literal "false"
 
@@ -2023,7 +2111,7 @@ literal "false"
 , who deal with stability of frictional assemblies, and defined immobilization
  under gravity; manipulations of multiple objects by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Pajarinen2017,Zeng2017"
 literal "true"
 
@@ -2032,7 +2120,7 @@ literal "true"
  present solutions by POMDP method; multiple robot cooperation to move multiple
  objects was presented by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Donald2000"
 literal "false"
 
@@ -2042,7 +2130,7 @@ literal "false"
  parts stacks as alternative to grasping and carrying the whole assembly
  was presented by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Bernheisel2004"
 literal "true"
 
@@ -2051,7 +2139,7 @@ literal "true"
 .
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Baraff1997"
 literal "false"
 
@@ -2065,7 +2153,7 @@ on of grasps and rearranging the object constellations and mostly relying
 \begin_layout Standard
 Assembly fixturing 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Romney1997"
 literal "false"
 
@@ -2096,7 +2184,7 @@ status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Akella1998,Bernheisel2004,Lynch1992,Lynch1999"
 literal "true"
 
@@ -2110,7 +2198,7 @@ literal "true"
 \emph on
 in past by
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Akella1998,Bernheisel2004,Lynch1992,Lynch1999"
 literal "true"
 
@@ -2119,7 +2207,7 @@ literal "true"
 .
  The most suitable solution for this case seems to be the one proposed by
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Anders2018"
 literal "false"
 
@@ -2178,7 +2266,7 @@ Traditionally, motion of rigid bodies can be described by utilizing a concept
  a rigid body.
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Murray1994"
 literal "true"
 
@@ -2768,7 +2856,7 @@ A grasp is a collection of contacts (types and locations) that can apply
  by these contacts is called a Grasp Map.
  Derivation of the matrix is not shown here, reader can refer to 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Murray1994"
 literal "true"
 
@@ -2780,7 +2868,7 @@ literal "true"
 \begin_layout Example
 Grasp map derived by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Murray1994"
 literal "true"
 
@@ -3065,7 +3153,7 @@ Grasp
 
 stability concept was introduced by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Montana1988"
 literal "true"
 
@@ -3074,7 +3162,7 @@ literal "true"
 .
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Bicchi2000"
 literal "true"
 
@@ -3266,7 +3354,7 @@ reference "fig:Form-Force-closure"
  with blue frictionless fingers; left variant is first order form closure
  and middle one is second order form closure as introduced by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Rimon1995"
 literal "false"
 
@@ -3330,7 +3418,7 @@ Several method proposed for calculation of Grasp Quality Measures (GQM)
 
 \begin_layout Standard
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Roa2015"
 literal "false"
 
@@ -3342,7 +3430,7 @@ literal "false"
 ons, manipulability ellipsoid, finger joints positions etc.).
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Ferrari1992"
 literal "true"
 
@@ -3368,7 +3456,7 @@ Grasp planning and construction
 When planning a grasp for given object, one has to determine how many contacts
  and of what kinds are needed.
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Murray1994"
 literal "true"
 
@@ -3382,7 +3470,7 @@ literal "true"
  maximal wrenches an hand can exert can be calculated.
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Xiong2007"
 literal "true"
 
@@ -3401,7 +3489,7 @@ Variety of methods for grasp planning was presented during years, yet for
  the purposes of this research we use geometrical methods as proposed by
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Nguyen1986"
 literal "true"
 
@@ -3544,7 +3632,7 @@ The methods uses geometric relations between object's edges and corresponding
 Additional method that is used in a research is random grasp generation
  with evaluation of the resultant grasps, as proposed by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Borst2003"
 literal "true"
 
@@ -4396,7 +4484,7 @@ Given a polygonal object and 3 parallel frictionless contacts on the object
 Four contacts of a frictionless grasp have to not to intersect in one point,
  as showed 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Nguyen1986"
 literal "false"
 
@@ -6061,7 +6149,7 @@ d.
  of power sets, connectivity analysis etc.
  as show 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Hartuv2000,Gouda2010,Luxburg2007,Bron1973"
 literal "false"
 
@@ -6389,7 +6477,7 @@ Grasp Quality Measure for a set of objects
 \begin_layout Standard
 We use simple GQM based on 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Ferrari1992"
 literal "true"
 
@@ -6724,10 +6812,6 @@ name "fig:GQMs-difference."
 
 \begin_layout Section
 Determining new configuration for objects
-\end_layout
-
-\begin_layout Subsection
-Description
 \end_layout
 
 \begin_layout Standard
@@ -9211,7 +9295,7 @@ noprefix "false"
 ), some of them can adopt predefined locations of part of fingers, among
  them 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Wu2006"
 literal "false"
 
@@ -11176,7 +11260,7 @@ This case is the most undefined and require more decisions as to finger
  this case with minor adjustments.
  The method presented below is influenced by methods proposed by
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Wu2006"
 literal "true"
 
@@ -11184,7 +11268,7 @@ literal "true"
 
  for IRC evaluation and
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Nguyen1986a"
 literal "true"
 
@@ -11201,7 +11285,7 @@ First, we define a geometric 2 dimensional convex cone: a planar angle between
  is formed by two contact normal directions.
  This is analogous to friction cone of single frictional contact (see
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Nguyen1986"
 literal "true"
 
@@ -12334,7 +12418,7 @@ Using the notation, we assume that the subset is immobilized internally
  grasp, four contacts have to positively span the origin of a wrench space
  and three of them cannot intersect in one point (
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Nguyen1986a"
 literal "false"
 
@@ -13200,7 +13284,7 @@ nt to be feasible, and hence the output of the stacking algorithm is arranged
  That being said, solutions for moving object assemblies in plane were proposed
  in past by 
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Akella1998,Bernheisel2004,Lynch1992,Lynch1999"
 literal "true"
 
@@ -13210,7 +13294,7 @@ literal "true"
  The most suitable solution for this case seems to be the one proposed by
  
 \begin_inset CommandInset citation
-LatexCommand citet
+LatexCommand citep
 key "Anders2018"
 literal "false"
 
@@ -14817,7 +14901,7 @@ status open
 \begin_layout Plain Layout
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/gripper-side-view.png
+	filename ../MATLAB/Figures_RAL/gripper-side-view.png
 	width 55col%
 
 \end_inset
@@ -15090,7 +15174,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.44.jpg
+	filename ../MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.44.jpg
 	lyxscale 30
 	width 30col%
 
@@ -15125,7 +15209,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.48-2.jpg
+	filename ../MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.48-2.jpg
 	lyxscale 30
 	width 30col%
 
@@ -15160,7 +15244,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.49.jpg
+	filename ../MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.49.jpg
 	lyxscale 30
 	width 30col%
 
@@ -15195,7 +15279,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.50.jpg
+	filename ../MATLAB/Figures_RAL/60-v2-60FPS.mp4_snapshot_01.50.jpg
 	lyxscale 30
 	width 30col%
 
@@ -15274,7 +15358,7 @@ status collapsed
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v4-60FPS.mp4_snapshot_02.54.jpg
+	filename ../MATLAB/Figures_RAL/60-v4-60FPS.mp4_snapshot_02.54.jpg
 	lyxscale 30
 	width 30col%
 
@@ -15309,7 +15393,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v4-60FPS.mp4_snapshot_02.55.jpg
+	filename ../MATLAB/Figures_RAL/60-v4-60FPS.mp4_snapshot_02.55.jpg
 	lyxscale 30
 	width 30col%
 
@@ -15344,7 +15428,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v4-60FPS.mp4_snapshot_02.55-2.jpg
+	filename ../MATLAB/Figures_RAL/60-v4-60FPS.mp4_snapshot_02.55-2.jpg
 	lyxscale 30
 	width 30col%
 
@@ -15379,7 +15463,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename C:/Users/yossi/MSc Research/MATLAB/Figures_RAL/60-v4-60FPS.mp4_snapshot_02.58.jpg
+	filename ../MATLAB/Figures_RAL/60-v4-60FPS.mp4_snapshot_02.58.jpg
 	lyxscale 30
 	width 30col%
 
@@ -15487,7 +15571,103 @@ In future work this can be addressed and with other quality measures introduced,
 LatexCommand bibtex
 btprint "btPrintCited"
 bibfiles "main"
-options "apalike"
+options "ieeetr"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\start_of_appendix
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{appendices}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter*
+Changes in final revision
+\end_layout
+
+\begin_layout Itemize
+Reorganized the chapters
+\end_layout
+
+\begin_layout Itemize
+Added clarifications and outlines to the algorithms
+\end_layout
+
+\begin_layout Itemize
+Added clarification as to optimality achieved
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{appendices}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Things to add to the thesis:
+\end_layout
+
+\begin_layout Plain Layout
+What optimality is promised.
+ Is the configuration optimal or are there other solutions?
+\end_layout
+
+\begin_layout Plain Layout
+What about picking?
+\end_layout
+
+\begin_layout Plain Layout
+Maybe clarify in the abstract that the objects are not picked up/
+\end_layout
+
+\begin_layout Plain Layout
+Or deal with forces?
+\end_layout
+
+\begin_layout Plain Layout
+Added clarifying descriptions the the algorithms.
+ Outline.
+\end_layout
+
+\begin_layout Plain Layout
+Difference between this and other papers.
+\end_layout
+
+\begin_layout Plain Layout
+Reorganized chapters
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
 
 \end_inset
 
