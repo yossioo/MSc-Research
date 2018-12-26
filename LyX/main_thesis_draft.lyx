@@ -307,7 +307,7 @@ End
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -391,6 +391,10 @@ December 2018
 
 \begin_layout Minisec
 \noindent
+\begin_inset Newpage cleardoublepage
+\end_inset
+
+
 \begin_inset Box Frameless
 position "t"
 hor_pos "c"
@@ -412,11 +416,17 @@ status open
 \begin_layout Plain Layout
 \noindent
 \align center
-BEN-GURION UNIVERSITY OF NEGEV
-\begin_inset Newline newline
-\end_inset
 
-FACULTY OF ENGINEERING SCIENCES
+\size larger
+BEN-GURION UNIVERSITY OF NEGEV
+\end_layout
+
+\begin_layout Plain Layout
+\noindent
+\align center
+
+\size larger
+Faculty Of Engineering Sciences
 \begin_inset Newline newline
 \end_inset
 
@@ -426,6 +436,8 @@ Department of Mechanical Engineering
 \begin_layout Plain Layout
 \noindent
 \align center
+
+\size larger
 \begin_inset Formula $\hfill$
 \end_inset
 
@@ -435,6 +447,8 @@ Department of Mechanical Engineering
 \begin_layout Plain Layout
 \noindent
 \align center
+
+\size larger
 SIMULTANEOUS GRASPING OF MULTIPLE OBJECTS
 \end_layout
 
@@ -463,20 +477,50 @@ Advisor: Prof.
 \noindent
 \align center
 December 2018
-\series bold
+\end_layout
 
-\begin_inset VSpace bigskip
 \end_inset
 
 
 \end_layout
 
+\begin_layout Standard
+\noindent
+\align center
+
+\series bold
+\begin_inset VSpace vfill
+\end_inset
+
+
+\end_layout
+
+\begin_layout Minisec
+\noindent
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status collapsed
+
 \begin_layout Plain Layout
-\align left
+\paragraph_spacing double
 
 \size large
 Prepared by: Yosef Ovcharik
-\begin_inset space \quad{}
+\begin_inset space \hfill{}
 \end_inset
 
 
@@ -486,16 +530,33 @@ Prepared by: Yosef Ovcharik
 \end_inset
 
 
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
 \end_layout
 
 \begin_layout Plain Layout
-\align left
+\paragraph_spacing double
 
 \size large
 Advisor: Prof.
  Amir Shapiro
 \bar under
 
+\begin_inset Note Note
+status collapsed
+
+\begin_layout Plain Layout
+\paragraph_spacing onehalf
+\noindent
+
+\size large
+\bar under
 \begin_inset Note Note
 status collapsed
 
@@ -543,16 +604,41 @@ status collapsed
 
 \end_layout
 
-\begin_layout Plain Layout
-\align left
+\end_inset
 
-\size large
-Chairman of Graduate Studies Committee:
+
+\bar default
+
+\begin_inset space \hfill{}
+\end_inset
+
+
 \bar under
 
 \begin_inset space \qquad{}
 \end_inset
 
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\paragraph_spacing double
+
+\size large
+Chairman of Graduate Studies Committee:
+\begin_inset space \hfill{}
+\end_inset
+
+
+\bar under
 
 \begin_inset space \qquad{}
 \end_inset
@@ -581,28 +667,55 @@ Abstract
 \end_layout
 
 \begin_layout Standard
-In this research we introduce novel methods for objects set rearrangement,
- designed for simultaneous grasping with minimal amount of fingers.
- Potential applications of the methods presented are industrial robots,
- warehouse automation, home assistance etc.
+In this research we look into grasping of several objects simultaneously,
+ investigating what is the amount of required external contacts.
+ We introduce novel methods for objects set rearrangement, designed for
+ simultaneous grasping with finite amount of fingers, i.e.
+ minimal number of fingers required to grasp two given objects together.
+ The methods are based on studies of contact modeling, wrenches, configuration
+ space and more.
 \end_layout
 
 \begin_layout Standard
 We present mathematical definitions for inter-object contact modeling, generaliz
 ed wrenches and wrench cone evaluations.
- We also describe algorithms for rearrangement of set of objects and present
+ The solution implements search of 
+\begin_inset Quotes eld
+\end_inset
+
+vantage
+\begin_inset Quotes erd
+\end_inset
+
+ points on the objects boundary that will be beneficial inter-object contact
+ locations for the stacking of the objects.
+ Such contacts are classified and selected to provide suitable configurations
+ for grasps with minimal amount of fingers.
+ We introduce algorithms for rearrangement of set of objects and present
  the results of simulations and experiments that validate the algorithm
  performance.
 \end_layout
 
 \begin_layout Standard
-Our aspiring goal is to introduce new tools for simultaneous robotic grasping
- and provide analytical solutions for immobilization problems.
+Potential applications of the methods presented are industrial robots, warehouse
+ automation, home assistance etc.
+ Such tasks can benefit from 
+\begin_inset Quotes eld
+\end_inset
+
+smarter
+\begin_inset Quotes erd
+\end_inset
+
+ grasping methods which utilize the geometry of grasped objects in order
+ to minimize the amount of required external contacts and by that maximizing
+ the amount of items that can be picked with finite amount of fingers.
 \end_layout
 
 \begin_layout Standard
-General idea is to rearrange the objects in constellation that will require
- minimal amount of fingers to immobilize it.
+Our aspiring goal is to introduce new tools for simultaneous robotic grasping
+ and provide analytical solutions for immobilization problems, which in
+ term can be incorporated in industrial and research projects.
 \end_layout
 
 \begin_layout Standard
@@ -650,7 +763,7 @@ t work.
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -736,7 +849,7 @@ status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -766,7 +879,7 @@ addcontentsline{toc}{chapter}{List of Tables} % Puts toc item link to THIS
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -790,7 +903,7 @@ addcontentsline{toc}{chapter}{List of Figures}
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -816,7 +929,7 @@ set_width "auto"
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -838,7 +951,7 @@ status collapsed
 \begin_inset Float table
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -879,7 +992,7 @@ Status
 \series default
 
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 ✗✓☐☑
@@ -1580,7 +1693,7 @@ Advancement.
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -2180,7 +2293,7 @@ Main difference of the presented work relative to the similar papers shown
  above is generation of optimal grasps while maximizing the grasp quality
  measure and online algorithms for optimal configuration construction.
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset CommandInset citation
@@ -2245,7 +2358,7 @@ Manipulator forces, relations between joint forces/torques and end-effector
  is out of the scope of this work.
  
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Fix this?
@@ -2537,7 +2650,7 @@ Contact point location is usually defined in object-attached coordinate
  It is convenient to define the origin of this coordinate frame at object's
  center of mass
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
  for reason listed below
@@ -2598,7 +2711,7 @@ literal "true"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -2746,7 +2859,7 @@ literal "true"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -2807,7 +2920,7 @@ capable
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -2927,7 +3040,7 @@ r & 0 & r & 0
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -3236,7 +3349,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -3367,7 +3480,7 @@ literal "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -3516,7 +3629,7 @@ reference "fig:Grasp-planning-Nguyen"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -3524,7 +3637,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -3562,7 +3675,7 @@ Frictionless grasps on four edges.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -3668,7 +3781,7 @@ Graph is structure describing a set of objects and relations between them.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -3887,7 +4000,7 @@ where
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -4032,7 +4145,7 @@ v_{12}\cdot\hat{n}_{1}^{2}=0
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -4098,7 +4211,7 @@ Edge-Edge
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -4160,7 +4273,7 @@ Vertex-inner-Vertex
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -4213,7 +4326,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -4259,7 +4372,7 @@ name "fig:Multi-object-vertex"
 \begin_layout Subsection
 Solution existence
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
  for combination of internal and external contacts
@@ -4441,7 +4554,7 @@ Assuming optimal configuration of the objects where each of them is immobilized
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -4605,7 +4718,7 @@ Building a global grasp map for the whole object set can be rearranged to
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -4674,7 +4787,7 @@ s_{AB}
 .
  The objects are immobilized by 3 fingers, according to the 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -4883,7 +4996,7 @@ noprefix "false"
 
 \emph on
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -4950,7 +5063,7 @@ The evaluation of possible contact positions on an edged can be simplified
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -5227,7 +5340,7 @@ As stated above, a convex hull of the contact wrenches should contain the
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -5385,7 +5498,7 @@ name "exa:A-square-Inverted-Cone"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -5519,7 +5632,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -5632,7 +5745,7 @@ The distance of some point from 3 faces of the inverted cone is calculated
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -5687,7 +5800,7 @@ noprefix "false"
  contains the origin in it's interior.
  The idea is elaborated in 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -5744,7 +5857,7 @@ name "prop:EGW_InvC_GQM"
 \begin_layout Proof
 As seen in 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -5858,7 +5971,7 @@ note the
 
  sign to obtain positive distance
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 MATLAB polyshapes are stored with vertices in clockwise direction, hence
@@ -5911,7 +6024,7 @@ n_{y}^{i+1}-n_{y}^{k}\\
 
  Substituting the expression for wrench vectors
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
  (shown in Appendix)
@@ -5980,7 +6093,7 @@ s
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -5988,7 +6101,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6021,7 +6134,7 @@ Distance from convex cone faces.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6073,7 +6186,7 @@ name "fig:Selecting-the-contact"
 
 Elaborating on the 
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6117,7 +6230,7 @@ s
  part of the domain.
  Contact point selected to be furthest from the edge.
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
  Additional examples provided in Appendix.
@@ -6190,11 +6303,11 @@ reference "alg:Connected-subsets-extraction"
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6339,7 +6452,7 @@ An adjacency matrix for the given graph is built.Recursively excluding nodes
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6499,7 +6612,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -6716,7 +6829,7 @@ y
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6724,7 +6837,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6757,7 +6870,7 @@ Immobilized objects.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6933,7 +7046,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6941,7 +7054,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -6974,7 +7087,7 @@ Spanning vectors
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7060,7 +7173,7 @@ noprefix "false"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7068,7 +7181,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7107,7 +7220,7 @@ name "fig:In-v-a"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7253,14 +7366,14 @@ reference "fig:2-Contiguous-edges."
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7300,7 +7413,7 @@ name "fig:Contiguous-edge-with"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7394,7 +7507,7 @@ status collapsed
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7403,7 +7516,7 @@ status open
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -7521,7 +7634,7 @@ Object placement priority.
 placement h
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7542,14 +7655,14 @@ separation "3pt"
 shadowsize "4pt"
 framecolor "black"
 backgroundcolor "none"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -7645,14 +7758,14 @@ separation "3pt"
 shadowsize "4pt"
 framecolor "black"
 backgroundcolor "none"
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -7782,7 +7895,7 @@ reference "alg:Defining-the-root"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -7822,7 +7935,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -8037,7 +8150,7 @@ reference "alg:Objects-stacking"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -8070,14 +8183,14 @@ Object stacking algorithm outline.
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -8291,7 +8404,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -8548,7 +8661,7 @@ Due to the complexity of the process, it is divided into 2 parts: specific
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -8584,14 +8697,14 @@ Inter-object contacts search algorithm outline.
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -8813,7 +8926,7 @@ reference "alg:Contacts-between-2-poly"
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Old algorithm
@@ -8825,7 +8938,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9305,7 +9418,7 @@ literal "false"
  Our method is based on wrench space vectors evaluation and convex hull
  construction.
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 ofFor the purposes of this work 2 (??) methods were compared: moment-labeling
@@ -9333,7 +9446,7 @@ Steps of the algorithm.
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9407,7 +9520,7 @@ reference "subsec:Maximizing-the-Inscribed"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -9440,14 +9553,14 @@ Last finger algorithm outline.
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -9775,7 +9888,7 @@ reference "fig:4-contacts"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -9861,7 +9974,7 @@ reference "alg:Finding2fingers"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -9894,14 +10007,14 @@ Two fingers on one edge algorithm outline.
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -10238,7 +10351,7 @@ name "alg:Finding2fingers"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -10271,14 +10384,14 @@ Two fingers on one edge algorithm outline.
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -10503,7 +10616,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -10833,7 +10946,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -11232,7 +11345,7 @@ Finding 3 finger contacts for 1 inter-object contact
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -11341,7 +11454,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -11727,7 +11840,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -12221,7 +12334,7 @@ What about a restrictions on finger placement that arise from close objects?
 
 \begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -12271,7 +12384,7 @@ reference "fig:2-of-3-objects-not-immobilized"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -12321,7 +12434,7 @@ Total immobilization can be achieved by ensuring that every possible subset
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -12503,7 +12616,7 @@ reference "alg:Grasp-assessment"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -12536,14 +12649,14 @@ Grasp assessment and securing algorithm outline.
 \begin_inset Float algorithm
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \begin_inset Preview
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -12875,7 +12988,7 @@ reference "alg:Connected-subsets-extraction"
 
 \begin_layout Standard
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Old Algorithm
@@ -12890,7 +13003,7 @@ status collapsed
 
 \begin_layout Standard
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -13334,7 +13447,7 @@ MATLAB computing environment was used for the purpose of geometrical simulations
  Specialized graphical user interface (GUI) programs were created for evaluation
  and presentation of the algorithms
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 The code is available at 
@@ -13447,7 +13560,7 @@ ing grasp, finger are moved if possible and otherwise additional fingers
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -13559,7 +13672,7 @@ Step 3
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -13740,7 +13853,7 @@ reference "fig:Stacking-of-3"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -13855,7 +13968,7 @@ reference "fig:Inter-object-contacts-search."
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14004,7 +14117,7 @@ Once inter-object contacts are determined for each square, required fingers
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14188,7 +14301,7 @@ undergo similar process, with small differences: root concavity defined
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14387,7 +14500,7 @@ again uses the vertex-to-midpoint edge alignment to form root concavity,
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14590,7 +14703,7 @@ form a state-of-the-art grasp of four objects with 4 fingers.
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14598,7 +14711,7 @@ status open
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14633,7 +14746,7 @@ Rearranged configuration
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14668,7 +14781,7 @@ Inter-object contacts search
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14703,7 +14816,7 @@ Proposed grasp
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -14812,7 +14925,7 @@ A case of 3-4-5 octagons?
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -14896,7 +15009,7 @@ Robotic arm MANIPULATOR-H by ROBOTIS company was selected due to availability
 placement tbh
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \align center
@@ -14958,7 +15071,7 @@ reference "fig:Six-equilateral-triangles"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -15058,7 +15171,7 @@ name "fig:Six-equilateral-triangles"
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -15168,7 +15281,7 @@ status collapsed
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -15387,7 +15500,7 @@ Starting position
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -15422,7 +15535,7 @@ Intermediate step
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -15457,7 +15570,7 @@ Intermediate step
 \begin_inset Float figure
 wide false
 sideways false
-status open
+status collapsed
 
 \begin_layout Plain Layout
 \noindent
@@ -15506,7 +15619,7 @@ Translation and counter-clockwise rotation by 180◦ of 6 equilateral triangles.
 \begin_layout Standard
 Video of the simulations can be accessed on YouTube website: 
 \begin_inset Flex URL
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -15576,12 +15689,13 @@ options "ieeetr"
 \end_inset
 
 
-\end_layout
+\begin_inset Note Note
+status collapsed
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \start_of_appendix
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -15611,9 +15725,9 @@ Added clarifications and outlines to the algorithms
 Added clarification as to optimality achieved
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset ERT
-status open
+status collapsed
 
 \begin_layout Plain Layout
 
@@ -15627,9 +15741,9 @@ end{appendices}
 
 \end_layout
 
-\begin_layout Standard
+\begin_layout Plain Layout
 \begin_inset Note Note
-status open
+status collapsed
 
 \begin_layout Plain Layout
 Things to add to the thesis:
@@ -15665,7 +15779,8 @@ Difference between this and other papers.
 Reorganized chapters
 \end_layout
 
-\begin_layout Plain Layout
+\end_inset
+
 
 \end_layout
 
